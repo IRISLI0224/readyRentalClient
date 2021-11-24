@@ -1,8 +1,18 @@
 import React from 'react';
 import './App.scss';
+import Home from './pages/Home'
+import Header from './app/Header';
+import Footer from './app/Footer';
 
-const App = function () {
-  return <div className="App">Hello world</div>;
-};
+const App = () => (
+  <>
+  <Header/>
+  <Home/>
+  <Footer/>
+  </>
+
+);
+
+
 
 export default App;
