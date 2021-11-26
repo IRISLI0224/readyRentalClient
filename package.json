@@ -1,7 +1,6 @@
 {
   "name": "ready_rental_fe",
   "version": "0.1.0",
-  "homepage": ".",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
@@ -61,5 +60,5 @@
   "bugs": {
     "url": "https://bitbucket.org/jessiegop3/fe-buggodie/issues"
   },
-  "homepage": "https://bitbucket.org/jessiegop3/fe-buggodie#readme"
+  "homepage": "."
 }
