@@ -49,11 +49,32 @@ const InputPassWord = styled(InputText).attrs({
   placeholder: 'Password',
 })``;
 
+const Submit = styled.input.attrs({
+  type: 'submit',
+  value: 'login',
+})`
+  display: block;
+  /* left/right are set to 'auto' for centering */
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #05c46b;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  padding: 14px 40px;
+  transition: 0.4s linear;
+  cursor: pointer;
+  &:hover {
+    background: #05c46b;
+  }
+`;
+
 const Login = () => (
   <LoginForm>
     <LoginTitle>Login</LoginTitle>
     <InputText></InputText>
     <InputPassWord></InputPassWord>
+    <Submit></Submit>
   </LoginForm>
 );
 
