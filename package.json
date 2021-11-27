@@ -53,10 +53,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://Allen7Hao@bitbucket.org/jessiegop3/fe-buggodie.git"
+    "url": "git+ssh://git@bitbucket.org/jessiegop3/fe-buggodie.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/jessiegop3/fe-buggodie/issues"
+  },
   "homepage": "."
 }
