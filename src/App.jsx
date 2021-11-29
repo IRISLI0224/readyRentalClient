@@ -17,6 +17,7 @@ const App = () => (
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       {/* <Header /> */}
+      <Home/>
       {/* <Login /> */}
       {/* <GlobalStyle /> */}
       {/* <Footer /> */}
