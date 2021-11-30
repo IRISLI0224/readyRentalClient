@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import getAllProperties from '../../config/getAllProperties'
 
 
 const Container = styled.div`
@@ -13,10 +14,40 @@ const Container = styled.div`
 `;
 
 
-const Home = () => (
-  <Container>
-     Here is home page.
-  </Container>
-);
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      properties:""
+    };
 
+    //this.getPropertiesInfo();
+  }
+  
+
+  componentDidMount(){
+    this.getPropertiesInfo();
+  }
+  
+  async getPropertiesInfo() {
+    this.setState({
+      properties: await getAllProperties(),
+    });
+  }
+
+  render(){
+    const {properties}=this.state;
+    return(
+     <Container>
+      {properties.city}
+      <br/>
+      {properties.description}
+     </Container>
+    )
+
+
+  }
+ 
+
+}
 export default Home;
