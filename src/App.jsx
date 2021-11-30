@@ -16,11 +16,10 @@ const App = () => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      {/* <Header /> */}
-      <Home/>
-      {/* <Login /> */}
-      {/* <GlobalStyle /> */}
-      {/* <Footer /> */}
+      <Header />
+      <Login />
+      <GlobalStyle />
+      <Footer />
     </ThemeProvider>
   </>
 );
