@@ -40,6 +40,7 @@ class Home extends React.Component {
     return(
      <Container>
       {properties.city}
+      <br/>
       {properties.description}
      </Container>
     )
