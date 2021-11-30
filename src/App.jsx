@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Header from './app/Header';
 import Footer from './app/Footer';
 import Login from './pages/Login';
-import { createGlobalStyle } from 'styled-components';
+//import { createGlobalStyle } from 'styled-components';
 
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
@@ -16,10 +16,13 @@ const App = () => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
+
       <Header />
-      <Login />
-      <GlobalStyle />
-      <Footer />
+      <Home/>
+      <Login /> 
+       <GlobalStyle /> 
+       <Footer />
+
     </ThemeProvider>
   </>
 );
