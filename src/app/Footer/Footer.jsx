@@ -12,9 +12,6 @@ const Container = styled.div`
   word-wrap: break-word;
 `;
 
-
-
-
 const Footer = () => (
   <Container>
     Here is footer
