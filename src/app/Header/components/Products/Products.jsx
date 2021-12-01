@@ -1,0 +1,55 @@
+const Products = [
+  {
+    category: 'House',
+    price: '638000',
+    stocked: true,
+    name: 'A',
+    location: '575 Canterbury Rd, Campsie NSW 2194',
+    house: true,
+    bed: '2',
+  },
+  {
+    category: 'Villa',
+    price: '520000',
+    stocked: true,
+    name: 'B',
+    location: '301 Sandy Bay Rd, Sandy Bay TAS 7005',
+    bed: '3',
+  },
+  {
+    category: 'Villa',
+    price: '472000',
+    stocked: false,
+    name: 'C',
+    location: '349 Barkers Rd, Kew VIC 3101',
+    bed: '6',
+  },
+  {
+    category: 'House',
+    price: '936000',
+    stocked: true,
+    name: 'D',
+    location: 'Shop 2/40 Elizabeth St, Hobart TAS 7000',
+    house: true,
+    bed: '4',
+  },
+  {
+    category: 'House',
+    price: '882000',
+    stocked: false,
+    name: 'E',
+    location: '17/5 Opal Dr, Blackmans Bay TAS 7052',
+    house: true,
+    bed: '5',
+  },
+  {
+    category: 'Villa',
+    price: '1123000',
+    stocked: true,
+    name: 'F',
+    location: '65 Bellevue Parade, New Town TAS 7008',
+    bed: '3',
+  },
+];
+
+export default Products;
