@@ -15,8 +15,6 @@ const Container = styled.div`
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
 `;
 
-
-
 const Header = (props) => (
   <Container height={12}>
      Here is header
