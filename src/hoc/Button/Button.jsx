@@ -18,6 +18,7 @@ const ButtonStyle = styled.button`
   text-align: center;
   transition-duration: 0.2s, 0.2s;
   transition-timing-function: ease-in, ease-out;
+  color:white;
   /* margin-top: 30px; */
   &:hover {
     border-color: #333f48;
