@@ -4,11 +4,43 @@ import ProductCategoryRow from './components/ProductCategoryRow';
 
 class ProductTable extends React.Component {
   render() {
-    const { filterText, isStockOnly, filterCategory, isHouse, bedMin, bedMax, priceMin, priceMax } =
-      this.props;
+    const {
+      filterText,
+      isStockOnly,
+      filterCategory,
+      isHouse,
+      isApartment,
+      isTownHouse,
+      isVilla,
+      isLand,
+      isAcreage,
+      isRural,
+      isBlock,
+      isRetirement,
+      bedMin,
+      bedMax,
+      priceMin,
+      priceMax,
+    } = this.props;
     const map = new Map();
     this.props.products.forEach((product) => {
-      const { category, name, stocked, house, bed, price, location } = product;
+      const {
+        category,
+        name,
+        stocked,
+        house,
+        apartment,
+        townhouse,
+        villa,
+        land,
+        acreage,
+        rural,
+        block,
+        retirement,
+        bed,
+        price,
+        location,
+      } = product;
       if (location.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
         return;
       }
@@ -18,10 +50,34 @@ class ProductTable extends React.Component {
       if (isHouse && !house) {
         return;
       }
-      if (bedMin && Number(bed) <= Number(bedMin)) {
+      if (isApartment && !apartment) {
         return;
       }
-      if (priceMin && Number(price) <= Number(priceMin)) {
+      if (isTownHouse && !townhouse) {
+        return;
+      }
+      if (isVilla && !villa) {
+        return;
+      }
+      if (isLand && !land) {
+        return;
+      }
+      if (isAcreage && !acreage) {
+        return;
+      }
+      if (isRural && !rural) {
+        return;
+      }
+      if (isBlock && !block) {
+        return;
+      }
+      if (isRetirement && !retirement) {
+        return;
+      }
+      if (Number(bedMin) <= Number(bed) <= Number(bedMax)) {
+        return;
+      }
+      if (Number(priceMin) <= Number(price) <= Number(priceMax)) {
         return;
       }
       if (filterCategory && category === 'House') {

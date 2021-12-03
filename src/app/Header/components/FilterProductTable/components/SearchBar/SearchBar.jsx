@@ -16,6 +16,14 @@ class SearchBar extends React.Component {
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleStockChange = this.handleStockChange.bind(this);
     this.handleHouseChange = this.handleHouseChange.bind(this);
+    this.handleApartmentChange = this.handleApartmentChange.bind(this);
+    this.handleTownHouseChange = this.handleTownHouseChange.bind(this);
+    this.handleVillaChange = this.handleVillaChange.bind(this);
+    this.handleLandChange = this.handleLandChange.bind(this);
+    this.handleAcreageChange = this.handleAcreageChange.bind(this);
+    this.handleRuralChange = this.handleRuralChange.bind(this);
+    this.handleBlockChange = this.handleBlockChange.bind(this);
+    this.handleRetirementChange = this.handleRetirementChange.bind(this);
     this.handleBedMinChange = this.handleBedMinChange.bind(this);
     this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
     this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
@@ -30,6 +38,30 @@ class SearchBar extends React.Component {
   }
   handleHouseChange(e) {
     this.props.onHouseChange(e.target.checked);
+  }
+  handleApartmentChange(e) {
+    this.props.onApartmentChange(e.target.checked);
+  }
+  handleTownHouseChange(e) {
+    this.props.onTownHouseChange(e.target.checked);
+  }
+  handleVillaChange(e) {
+    this.props.onVillaChange(e.target.checked);
+  }
+  handleLandChange(e) {
+    this.props.onLandChange(e.target.checked);
+  }
+  handleAcreageChange(e) {
+    this.props.onAcreageChange(e.target.checked);
+  }
+  handleRuralChange(e) {
+    this.props.onRuralChange(e.target.checked);
+  }
+  handleBlockChange(e) {
+    this.props.onBlockChange(e.target.checked);
+  }
+  handleRetirementChange(e) {
+    this.props.onRetirementChange(e.target.checked);
   }
   handleBedMinChange(e) {
     this.props.onBedMinChange(e.target.value);
@@ -47,8 +79,24 @@ class SearchBar extends React.Component {
     this.props.onCategoryChange(e.target.checked);
   }
   render() {
-    const { filterText, isStockOnly, filterCategory, isHouse, bedMin, bedMax, priceMin, priceMax } =
-      this.props;
+    const {
+      filterText,
+      isStockOnly,
+      filterCategory,
+      isHouse,
+      isApartment,
+      isTownHouse,
+      isVilla,
+      isLand,
+      isAcreage,
+      isRural,
+      isBlock,
+      isRetirement,
+      bedMin,
+      bedMax,
+      priceMin,
+      priceMax,
+    } = this.props;
     return (
       <form>
         <SearchText
@@ -59,7 +107,7 @@ class SearchBar extends React.Component {
         ></SearchText>
         <Button className="primary">Search</Button>
         <p>
-          <input type="checkbox" checked={isStockOnly} onChange={this.handleStockChange} /> Only
+          {/* <input type="checkbox" checked={isStockOnly} onChange={this.handleStockChange} /> Only
           show products in stock?
           <input
             type="checkbox"
@@ -67,8 +115,24 @@ class SearchBar extends React.Component {
             onChange={this.handleCategoryChange}
             value="House"
           />{' '}
-          No
+          No */}
           <input type="checkbox" checked={isHouse} onChange={this.handleHouseChange} /> House
+          <input type="checkbox" checked={isApartment} onChange={this.handleApartmentChange} />{' '}
+          Apartment Units
+          <input type="checkbox" checked={isTownHouse} onChange={this.handleTownHouseChange} />{' '}
+          TownHouse
+          <input type="checkbox" checked={isVilla} onChange={this.handleVillaChange} /> Villa
+          <input type="checkbox" checked={isLand} onChange={this.handleLandChange} /> Land
+          <input type="checkbox" checked={isAcreage} onChange={this.handleAcreageChange} /> Acreage
+          <input type="checkbox" checked={isRural} onChange={this.handleRuralChange} /> Rural
+          <input type="checkbox" checked={isBlock} onChange={this.handleBlockChange} /> Block
+          <input
+            type="checkbox"
+            checked={isRetirement}
+            onChange={this.handleRetirementChange}
+          />{' '}
+          Retirement
+          <br />
           <br />
           <DropFilter>
             <select name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
@@ -94,6 +158,7 @@ class SearchBar extends React.Component {
               <option value="4">4</option>
               <option value="5">5</option>
               <option value="6">6</option>
+              <option value="7">7</option>
             </select>
             <select name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
               <option value="" selected disabled hidden>

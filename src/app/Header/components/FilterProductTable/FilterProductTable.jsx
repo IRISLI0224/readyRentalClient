@@ -9,6 +9,14 @@ class FilterProductTable extends React.Component {
       filterText: '',
       isStockOnly: false,
       isHouse: false,
+      isApartment: false,
+      isTownHouse: false,
+      isVilla: false,
+      isLand: false,
+      isAcreage: false,
+      isRural: false,
+      isBlock: false,
+      isRetirement: false,
       bedMin: '',
       bedMax: '',
       priceMin: '',
@@ -18,6 +26,14 @@ class FilterProductTable extends React.Component {
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
     this.onStockChange = this.onStockChange.bind(this);
     this.onHouseChange = this.onHouseChange.bind(this);
+    this.onApartmentChange = this.onApartmentChange.bind(this);
+    this.onTownHouseChange = this.onTownHouseChange.bind(this);
+    this.onVillaChange = this.onVillaChange.bind(this);
+    this.onLandChange = this.onLandChange.bind(this);
+    this.onAcreageChange = this.onAcreageChange.bind(this);
+    this.onRuralChange = this.onRuralChange.bind(this);
+    this.onBlockChange = this.onBlockChange.bind(this);
+    this.onRetirementChange = this.onRetirementChange.bind(this);
     this.onBedMinChange = this.onBedMinChange.bind(this);
     this.onBedMaxChange = this.onBedMaxChange.bind(this);
     this.onPriceMinChange = this.onPriceMinChange.bind(this);
@@ -37,6 +53,46 @@ class FilterProductTable extends React.Component {
   onHouseChange(isHouse) {
     this.setState({
       isHouse,
+    });
+  }
+  onApartmentChange(isApartment) {
+    this.setState({
+      isApartment,
+    });
+  }
+  onTownHouseChange(isTownHouse) {
+    this.setState({
+      isTownHouse,
+    });
+  }
+  onVillaChange(isVilla) {
+    this.setState({
+      isVilla,
+    });
+  }
+  onLandChange(isLand) {
+    this.setState({
+      isLand,
+    });
+  }
+  onAcreageChange(isAcreage) {
+    this.setState({
+      isAcreage,
+    });
+  }
+  onRuralChange(isRural) {
+    this.setState({
+      isRural,
+    });
+  }
+  onBlockChange(isBlock) {
+    this.setState({
+      isBlock,
+    });
+  }
+  onRetirementChange(isRetirement) {
+    this.setState({
+      isRetirement,
     });
   }
   onBedMinChange(bedMin) {
@@ -65,14 +121,38 @@ class FilterProductTable extends React.Component {
     });
   }
   render() {
-    const { filterText, isStockOnly, filterCategory, isHouse, bedMin, bedMax, priceMin, priceMax } =
-      this.state;
+    const {
+      filterText,
+      isStockOnly,
+      filterCategory,
+      isHouse,
+      isApartment,
+      isTownHouse,
+      isVilla,
+      isLand,
+      isAcreage,
+      isRural,
+      isBlock,
+      isRetirement,
+      bedMin,
+      bedMax,
+      priceMin,
+      priceMax,
+    } = this.state;
     return (
       <div>
         <SearchBar
           filterText={filterText}
           isStockOnly={isStockOnly}
           isHouse={isHouse}
+          isApartment={isApartment}
+          isTownHouse={isTownHouse}
+          isVilla={isVilla}
+          isLand={isLand}
+          isAcreage={isAcreage}
+          isRural={isRural}
+          isBlock={isBlock}
+          isRetirement={isRetirement}
           bedMin={bedMin}
           bedMax={bedMax}
           priceMin={priceMin}
@@ -81,6 +161,14 @@ class FilterProductTable extends React.Component {
           onFilterTextChange={this.onFilterTextChange}
           onStockChange={this.onStockChange}
           onHouseChange={this.onHouseChange}
+          onApartmentChange={this.onApartmentChange}
+          onTownHouseChange={this.onTownHouseChange}
+          onVillaChange={this.onVillaChange}
+          onLandChange={this.onLandChange}
+          onAcreageChange={this.onAcreageChange}
+          onRuralChange={this.onRuralChange}
+          onBlockChange={this.onBlockChange}
+          onRetirementChange={this.onRetirementChange}
           onBedMinChange={this.onBedMinChange}
           onBedMaxChange={this.onBedMaxChange}
           onPriceMinChange={this.onPriceMinChange}
@@ -91,6 +179,14 @@ class FilterProductTable extends React.Component {
           filterText={filterText}
           isStockOnly={isStockOnly}
           isHouse={isHouse}
+          isApartment={isApartment}
+          isTownHouse={isTownHouse}
+          isVilla={isVilla}
+          isLand={isLand}
+          isAcreage={isAcreage}
+          isRural={isRural}
+          isBlock={isBlock}
+          isRetirement={isRetirement}
           bedMin={bedMin}
           bedMax={bedMax}
           priceMin={priceMin}
