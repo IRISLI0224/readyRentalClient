@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import styled from 'styled-components';
+import Logo from './Logo'
 
 const Container = styled.div`
   width: 100%;
@@ -13,10 +14,10 @@ const Container = styled.div`
   word-wrap: break-word;
 `;
 
-const Footer = () => (
+const NavigationBar = () => (
   <Container>
     Here is footer
   </Container>
 );
 
-export default Footer;
+export default NavigationBar;
