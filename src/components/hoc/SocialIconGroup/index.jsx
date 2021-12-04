@@ -1,1 +1,1 @@
-export { default } from './SocialIconGroup';
+export { FaceBook, Twitter, Pinterest, Linkedin, Youtube } from './SocialIconGroup';
