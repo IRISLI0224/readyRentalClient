@@ -1,8 +1,10 @@
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Button = styled.button`
+const ButtonStyle = styled.button`
   color: ${(props) => (props.primary ? '#ffff' : '#333f48')};
-  border: 2px solid #c3c8ce;
+  border: 2px solid #e5e8ec;
   display: inline-block;
   text-decoration: none;
   width: ${(props) => props.size};
@@ -16,6 +18,7 @@ const Button = styled.button`
   text-align: center;
   transition-duration: 0.2s, 0.2s;
   transition-timing-function: ease-in, ease-out;
+  color:white;
   /* margin-top: 30px; */
   &:hover {
     border-color: #333f48;
@@ -33,5 +36,18 @@ const Button = styled.button`
     }
   }
 `;
+
+const Button = ({ children, size, onClick }) => (
+  <ButtonStyle onClick={onClick} size={size}>
+    {children}
+  </ButtonStyle>
+);
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  size: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+};
+
 
 export default Button;

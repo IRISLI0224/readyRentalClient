@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropertyCard from '../../components/PropertyCard';
 import getAllProperties from '../../config/getAllProperties'
 
 
@@ -11,6 +12,7 @@ const Container = styled.div`
   margin: 5rem auto;
   background-color: #fff;
   text-align: center;
+  display:flex;
 `;
 
 
@@ -18,7 +20,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      properties:""
+      properties:[]
     };
 
     //this.getPropertiesInfo();
@@ -34,14 +36,19 @@ class Home extends React.Component {
       properties: await getAllProperties(),
     });
   }
+  
 
   render(){
     const {properties}=this.state;
     return(
      <Container>
-      {properties.city}
-      <br/>
-      {properties.description}
+ 
+      
+       {properties.map((property,index) => (
+          <PropertyCard PropertyInfo={property} key={index}></PropertyCard >
+        ))}
+
+      
      </Container>
     )
 
