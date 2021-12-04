@@ -3,8 +3,7 @@ import React from 'react';
 import Home from './pages/Home';
 import Header from './app/Header';
 import Footer from './app/Footer';
-// import Login from './pages/Login';
-
+//import Login from './pages/Login';
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
 
@@ -19,7 +18,7 @@ const App = () => (
 
       <Header />
       <Home/>
-      {/* <Login /> */}
+      {/*<Login />*/}
       <GlobalStyle />
       <Footer />
 
