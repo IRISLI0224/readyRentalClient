@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -12,17 +13,22 @@ const Container = styled.div`
 
 
 
-const PropertyCard = ({PropertyInfo},{key}) => (
-  <Container >
-     <br/>
-     {key}
-     <br/>
-     Here is Property card for {PropertyInfo.city}
-     <br/>
-     Here is description : {PropertyInfo.description}
-     <br/>
-     Postcode: {PropertyInfo.postCode}
-  </Container>
-);
+const PropertyCard = ({PropertyInfo},{key}) => {
+  const link="property/"+PropertyInfo._id;
+  return(
+    <Link to={link}>
+      <Container >
+        <br/>
+        {key}
+        <br/>
+          Here is Property card for {PropertyInfo.city}
+        <br/>
+        Here is description : {PropertyInfo.description}
+        <br/>
+        Postcode: {PropertyInfo.postCode}
+     </Container>
+    </Link>
+  );
+};
 
 export default PropertyCard;
