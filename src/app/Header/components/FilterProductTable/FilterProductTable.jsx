@@ -18,7 +18,6 @@ class FilterProductTable extends React.Component {
       bedMax: '',
       priceMin: '',
       priceMax: '',
-      list: [],
     };
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
     this.onHouseChange = this.onHouseChange.bind(this);

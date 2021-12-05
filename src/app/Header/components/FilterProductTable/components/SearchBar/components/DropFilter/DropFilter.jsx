@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const DropFilter = styled.div`
-  width: 45vw;
+  width: 100%;
   display: flex;
   gap: 20px;
   margin: auto;

@@ -13,7 +13,7 @@ const SearchText = styled.input`
 `;
 
 const SearchBar = styled.div`
-  width: 45vw;
+  width: 100%;
   height: 50px;
   margin: auto;
   margin-top: 10px;
@@ -21,14 +21,14 @@ const SearchBar = styled.div`
 `;
 
 const Container = styled.div`
-  width: 50vw;
+  width: 45vw;
   height: 215px;
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
   margin: auto;
   padding-top: 30px;
   h1 {
     text-align: left;
-    width: 45vw;
+    width: 100%;
     margin: auto;
     margin-top: 2px;
     margin-bottom: 2px;
