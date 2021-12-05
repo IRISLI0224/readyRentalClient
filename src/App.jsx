@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Header from './app/Header';
 import Footer from './app/Footer';
 import { createGlobalStyle } from 'styled-components';
-import Card from './component/ListCard';
+import Card from './components/ListCard';
 
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
