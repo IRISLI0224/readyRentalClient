@@ -65,70 +65,6 @@ const AgentIconImg = styled.img`
     max-width: 100%;
 `;
 
-const PropertyImgImg = styled.img`
-    max-width: 100%;
-    object-fit: fill;
-`;
-
-const CarouselButtonLeft = styled.button`
-    position: absolute;
-    z-index: 2;
-    top: 40%;
-    left: 2%;
-    color: #fff;
-    opacity: 0.75;
-    cursor: pointer;
-    transition: all 0.25s ease-out;
-    border: none;
-    background: none;
-    font-size: 2.5rem;
-    &:before{
-        content: "/";
-        display: inline-block;
-        transform: rotate(28deg);
-        position: absolute;
-    }
-
-    &:after{
-        content: "/";
-        display: inline-block;
-        transform: rotate(-62deg);
-        margin-top: 22px;
-    }
-    &:hover{
-        color: #777;
-    }
-`;
-
-const CarouselButtonRight = styled.button`
-    position: absolute;
-    z-index: 2;
-    top: 40%;
-    left:94%;
-    color: #fff;
-    opacity: 0.75;
-    cursor: pointer;
-    transition: all 0.25s ease-out;
-    border: none;
-    background: none;
-    font-size: 2.5rem;
-    &:after{
-        content: "/";
-        display: inline-block;
-        transform: rotate(28deg);
-        margin-top: 22px;
-    }
-
-    &:before{
-        content: "/";
-        display: inline-block;
-        position: absolute;
-        transform: rotate(-62deg);
-    }
-    &:hover{
-        color: #777;
-    }
-`;
 
 const RowResidencial = styled.div`
     padding: 16px 24px;
@@ -233,14 +169,7 @@ const Cards = (props) => (
                 </RowTitle>
             </Row>
             <RowFrame>
-                {/* <div className="card-images"> */}
-                    {/* <div className="card-images-carousel"> */}
-                        {/* <PropertyImgImg src={props.propImg} alt={props.address} /> */}
-                        <Slider slides={SliderData}></Slider>
-                        {/* <CarouselButtonLeft/> */}
-                        {/* <CarouselButtonRight/> */}
-                    {/* </div> */}
-                {/* </div> */}
+                <Slider slides={SliderData}></Slider>
             </RowFrame>
             <RowResidencial>
                 <div className="row-residencial-content">
