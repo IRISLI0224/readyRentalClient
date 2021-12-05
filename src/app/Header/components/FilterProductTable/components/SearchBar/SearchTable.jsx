@@ -2,19 +2,44 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../../../../../../hoc/Button/Button';
 import DropFilter from './components/DropFilter';
+import getAllProperties from '../../../../../../config/getAllProperties';
+import CheckFilter from './components/CheckFilter';
 
 const SearchText = styled.input`
-  width: 400px;
+  width: 38vw;
   height: 48px;
   font-weight: 400;
   font-size: 1em;
 `;
 
-class SearchBar extends React.Component {
+const SearchBar = styled.div`
+  width: 45vw;
+  height: 50px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 2px;
+`;
+
+const Container = styled.div`
+  width: 50vw;
+  height: 215px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: auto;
+  padding-top: 30px;
+  h1 {
+    text-align: left;
+    width: 45vw;
+    margin: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 1.5rem;
+  }
+`;
+
+class SearchTable extends React.Component {
   constructor(props) {
     super(props);
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleStockChange = this.handleStockChange.bind(this);
     this.handleHouseChange = this.handleHouseChange.bind(this);
     this.handleApartmentChange = this.handleApartmentChange.bind(this);
     this.handleTownHouseChange = this.handleTownHouseChange.bind(this);
@@ -28,13 +53,12 @@ class SearchBar extends React.Component {
     this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
     this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
     this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.state = {
+      list: [],
+    };
   }
   handleFilterTextChange(e) {
     this.props.onFilterTextChange(e.target.value);
-  }
-  handleStockChange(e) {
-    this.props.onStockChange(e.target.checked);
   }
   handleHouseChange(e) {
     this.props.onHouseChange(e.target.checked);
@@ -75,14 +99,9 @@ class SearchBar extends React.Component {
   handlePriceMaxChange(e) {
     this.props.onPriceMaxChange(e.target.value);
   }
-  handleCategoryChange(e) {
-    this.props.onCategoryChange(e.target.checked);
-  }
   render() {
     const {
       filterText,
-      isStockOnly,
-      filterCategory,
       isHouse,
       isApartment,
       isTownHouse,
@@ -98,42 +117,39 @@ class SearchBar extends React.Component {
       priceMax,
     } = this.props;
     return (
-      <form>
-        <SearchText
-          type="text"
-          placeholder="Search by state, suburb or postcode"
-          value={filterText}
-          onChange={this.handleFilterTextChange}
-        ></SearchText>
-        <Button className="primary">Search</Button>
-        <p>
-          {/* <input type="checkbox" checked={isStockOnly} onChange={this.handleStockChange} /> Only
-          show products in stock?
-          <input
-            type="checkbox"
-            checked={filterCategory}
-            onChange={this.handleCategoryChange}
-            value="House"
-          />{' '}
-          No */}
-          <input type="checkbox" checked={isHouse} onChange={this.handleHouseChange} /> House
-          <input type="checkbox" checked={isApartment} onChange={this.handleApartmentChange} />{' '}
-          Apartment Units
-          <input type="checkbox" checked={isTownHouse} onChange={this.handleTownHouseChange} />{' '}
-          TownHouse
-          <input type="checkbox" checked={isVilla} onChange={this.handleVillaChange} /> Villa
-          <input type="checkbox" checked={isLand} onChange={this.handleLandChange} /> Land
-          <input type="checkbox" checked={isAcreage} onChange={this.handleAcreageChange} /> Acreage
-          <input type="checkbox" checked={isRural} onChange={this.handleRuralChange} /> Rural
-          <input type="checkbox" checked={isBlock} onChange={this.handleBlockChange} /> Block
-          <input
-            type="checkbox"
-            checked={isRetirement}
-            onChange={this.handleRetirementChange}
-          />{' '}
-          Retirement
-          <br />
-          <br />
+      <Container>
+        <h1>Search properties for sale</h1>
+        <form>
+          <SearchBar>
+            <SearchText
+              type="text"
+              placeholder="Search by state, suburb or postcode"
+              value={filterText}
+              onChange={this.handleFilterTextChange}
+            ></SearchText>
+            <Button className="primary" size="130px" type="submit" onClick={getAllProperties()}>
+              Search
+            </Button>
+          </SearchBar>
+          <CheckFilter>
+            <input type="checkbox" checked={isHouse} onChange={this.handleHouseChange} /> House
+            <input type="checkbox" checked={isApartment} onChange={this.handleApartmentChange} />
+            Apartment Units
+            <input type="checkbox" checked={isTownHouse} onChange={this.handleTownHouseChange} />
+            TownHouse
+            <input type="checkbox" checked={isVilla} onChange={this.handleVillaChange} /> Villa
+            <input type="checkbox" checked={isLand} onChange={this.handleLandChange} /> Land
+            <input type="checkbox" checked={isAcreage} onChange={this.handleAcreageChange} />{' '}
+            Acreage
+            <input type="checkbox" checked={isRural} onChange={this.handleRuralChange} /> Rural
+            <input type="checkbox" checked={isBlock} onChange={this.handleBlockChange} /> Block
+            <input
+              type="checkbox"
+              checked={isRetirement}
+              onChange={this.handleRetirementChange}
+            />{' '}
+            Retirement
+          </CheckFilter>
           <DropFilter>
             <select name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
               <option value="" selected disabled hidden>
@@ -185,10 +201,10 @@ class SearchBar extends React.Component {
               <option value="1000000">$1,000,000</option>
             </select>
           </DropFilter>
-        </p>
-      </form>
+        </form>
+      </Container>
     );
   }
 }
 
-export default SearchBar;
+export default SearchTable;

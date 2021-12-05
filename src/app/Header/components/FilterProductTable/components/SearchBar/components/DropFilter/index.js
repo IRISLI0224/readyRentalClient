@@ -1,1 +1,1 @@
-export { default } from './DropFiltet';
+export { default } from './DropFilter';

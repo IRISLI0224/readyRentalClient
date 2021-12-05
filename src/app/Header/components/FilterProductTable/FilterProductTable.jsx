@@ -1,13 +1,10 @@
 import React from 'react';
-import SearchBar from './components/SearchBar';
-import ProductTable from './components/ProductTable/ProductTable';
-
+import SearchTable from './components/SearchBar/SearchTable';
 class FilterProductTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       filterText: '',
-      isStockOnly: false,
       isHouse: false,
       isApartment: false,
       isTownHouse: false,
@@ -21,10 +18,9 @@ class FilterProductTable extends React.Component {
       bedMax: '',
       priceMin: '',
       priceMax: '',
-      filterCategary: '',
+      list: [],
     };
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
-    this.onStockChange = this.onStockChange.bind(this);
     this.onHouseChange = this.onHouseChange.bind(this);
     this.onApartmentChange = this.onApartmentChange.bind(this);
     this.onTownHouseChange = this.onTownHouseChange.bind(this);
@@ -38,16 +34,10 @@ class FilterProductTable extends React.Component {
     this.onBedMaxChange = this.onBedMaxChange.bind(this);
     this.onPriceMinChange = this.onPriceMinChange.bind(this);
     this.onPriceMaxChange = this.onPriceMaxChange.bind(this);
-    this.onCategoryChange = this.onCategoryChange.bind(this);
   }
   onFilterTextChange(filterText) {
     this.setState({
       filterText,
-    });
-  }
-  onStockChange(isStockOnly) {
-    this.setState({
-      isStockOnly,
     });
   }
   onHouseChange(isHouse) {
@@ -115,16 +105,9 @@ class FilterProductTable extends React.Component {
       priceMax,
     });
   }
-  onCategoryChange(filterCategary) {
-    this.setState({
-      filterCategary,
-    });
-  }
   render() {
     const {
       filterText,
-      isStockOnly,
-      filterCategory,
       isHouse,
       isApartment,
       isTownHouse,
@@ -141,9 +124,8 @@ class FilterProductTable extends React.Component {
     } = this.state;
     return (
       <div>
-        <SearchBar
+        <SearchTable
           filterText={filterText}
-          isStockOnly={isStockOnly}
           isHouse={isHouse}
           isApartment={isApartment}
           isTownHouse={isTownHouse}
@@ -157,9 +139,7 @@ class FilterProductTable extends React.Component {
           bedMax={bedMax}
           priceMin={priceMin}
           priceMax={priceMax}
-          filterCategary={filterCategory}
           onFilterTextChange={this.onFilterTextChange}
-          onStockChange={this.onStockChange}
           onHouseChange={this.onHouseChange}
           onApartmentChange={this.onApartmentChange}
           onTownHouseChange={this.onTownHouseChange}
@@ -173,26 +153,6 @@ class FilterProductTable extends React.Component {
           onBedMaxChange={this.onBedMaxChange}
           onPriceMinChange={this.onPriceMinChange}
           onPriceMaxChange={this.onPriceMaxChange}
-          onCategoryChange={this.onCategoryChange}
-        />
-        <ProductTable
-          filterText={filterText}
-          isStockOnly={isStockOnly}
-          isHouse={isHouse}
-          isApartment={isApartment}
-          isTownHouse={isTownHouse}
-          isVilla={isVilla}
-          isLand={isLand}
-          isAcreage={isAcreage}
-          isRural={isRural}
-          isBlock={isBlock}
-          isRetirement={isRetirement}
-          bedMin={bedMin}
-          bedMax={bedMax}
-          priceMin={priceMin}
-          priceMax={priceMax}
-          filterCategary={filterCategory}
-          products={this.props.products}
         />
       </div>
     );

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import FilterProductTable from './components/FilterProductTable';
-import Products from './components/Products';
 
 const Container = styled.div`
   position: relative;
@@ -20,7 +19,7 @@ const Container = styled.div`
 const Header = () => (
   <Container height={60}>
     Here is header
-    <FilterProductTable products={Products}></FilterProductTable>
+    <FilterProductTable></FilterProductTable>
   </Container>
 );
 

@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 const DropFilter = styled.div`
-  width: 500px;
+  width: 45vw;
   display: flex;
+  gap: 20px;
   margin: auto;
-  justify-content: space-around;
+  margin-top: 2px;
+  margin-bottom: 2px;
 `;
 
 export default DropFilter;
