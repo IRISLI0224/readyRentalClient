@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import { Routes,Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
+import JoinPage from './pages/JoinPage';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -20,6 +21,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element ={<Login/>}/>
+        <Route path="/join" element ={<JoinPage/>}/>
         <Route path="/Property/:id" element={<PropertyDetails/>}/>
         
         <Route path="*" element={<NoPage/>}/>

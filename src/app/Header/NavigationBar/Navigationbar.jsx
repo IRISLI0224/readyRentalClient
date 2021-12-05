@@ -43,9 +43,11 @@ const NavigationBar = () => (
     <Button className="SigninButton" >Sign in</Button>
     </Link>
     </div>
+    <Link to='/join'>
     <div style={buttonstyle.root}>
     <Button className="JoinButton"style="color:blue;margin-left:20px;">&nbsp;&nbsp;Join&nbsp;&nbsp;</Button>
     </div>
+    </Link>
   </Container>
 );
 
