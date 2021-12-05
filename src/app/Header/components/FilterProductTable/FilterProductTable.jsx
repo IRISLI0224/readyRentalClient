@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchTable from './components/SearchBar/SearchTable';
+import SearchTable from './components/SearchTable/SearchTable';
 class FilterProductTable extends React.Component {
   constructor(props) {
     super(props);

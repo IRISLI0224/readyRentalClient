@@ -53,9 +53,6 @@ class SearchTable extends React.Component {
     this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
     this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
     this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
-    this.state = {
-      list: [],
-    };
   }
   handleFilterTextChange(e) {
     this.props.onFilterTextChange(e.target.value);
