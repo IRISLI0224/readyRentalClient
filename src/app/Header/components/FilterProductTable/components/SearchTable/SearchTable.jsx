@@ -23,7 +23,6 @@ const SearchBar = styled.div`
 const Container = styled.div`
   width: 45vw;
   height: 215px;
-  /* background-color: rgba(0, 0, 0, 0.4); */
   margin: auto;
   padding-top: 30px;
   h1 {
