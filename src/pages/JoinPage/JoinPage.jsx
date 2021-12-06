@@ -6,6 +6,8 @@ import Form from '../../hoc/Form'
 import Input from '../../hoc/Input';
 import Button from '../../hoc/Button'
 import {Link} from 'react-router-dom'
+import emailIcon from '../../assests/img/email.png'
+import passwordIcon from '../../assests/img/lock.png'
 
 const Container = styled.div`
   background-color:white;
@@ -88,6 +90,8 @@ class JoinPage extends React.Component {
                 name="email"
                 id="email"
                 type="email"
+                defaultText="Email address"
+                iconleft ={emailIcon}
                 onChange={this.handleDataChange}
               />
       </Form>
@@ -99,6 +103,8 @@ class JoinPage extends React.Component {
                 name="password"
                 id="password"
                 type="string"
+                defaultText="Password"
+                iconleft ={passwordIcon}
                 onChange={this.handleDataChange}
               />
       </Form>
