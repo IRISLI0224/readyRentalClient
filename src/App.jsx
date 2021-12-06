@@ -20,6 +20,8 @@ const App = () => (
     <ThemeProvider theme={theme}>
 
       <Header />
+      <Home/>
+      {/*<Login />*/}
       <Card brand = '.\experimental_img\brand.PNG' agentName='Michael Edwards' 
       agentIcon='.\experimental_img\agent-pic.PNG' 
       price='$800' address='2/5 Temple Street, Victoria Park' bedNum='4'
@@ -27,7 +29,7 @@ const App = () => (
       />
       <GlobalStyle />
       <Footer />
-      
+
     </ThemeProvider>
   </>
 );
