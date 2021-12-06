@@ -8,7 +8,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
-//import Dropdown from './components/Dropdown';
+
 
 const theme = {
   primaryColor: '#e4002b',
@@ -21,7 +21,6 @@ const App = () => (
 
       <Header />
       <Home/>
-      {/* <Dropdown /> */}
       {/*<Login />*/}
       <GlobalStyle />
       <Footer />
