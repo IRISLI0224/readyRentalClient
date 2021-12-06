@@ -9,5 +9,4 @@ const getAllProperties = async () => {
     return response.data;
   };
 
-
   export default getAllProperties;
