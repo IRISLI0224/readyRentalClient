@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_GET_ALL_PROPERTIES = '/properties';
+ const API_GET_ALL_PROPERTIES = '/properties';
 
 
 
@@ -11,5 +11,5 @@ const getAllProperties = async () => {
     //console.log(response.data);
     return response.data;
   };
-
+  
   export default getAllProperties;
