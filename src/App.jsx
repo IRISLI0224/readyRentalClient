@@ -3,13 +3,12 @@ import React from 'react';
 import Home from './pages/Home';
 import Header from './app/Header';
 import Footer from './app/Footer';
+//import Login from './pages/Login';
 import { createGlobalStyle } from 'styled-components';
 import Card from './components/ListCard';
 
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
-
-
 
 const theme = {
   primaryColor: '#e4002b',
@@ -19,6 +18,7 @@ const App = () => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
+
       <Header />
       <Card brand = '.\experimental_img\brand.PNG' agentName='Michael Edwards' 
       agentIcon='.\experimental_img\agent-pic.PNG' 
@@ -27,6 +27,7 @@ const App = () => (
       />
       <GlobalStyle />
       <Footer />
+      
     </ThemeProvider>
   </>
 );
