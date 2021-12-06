@@ -17,7 +17,6 @@ const Container = styled.div`
   }
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
   background: url(${({ img }) => img}) no-repeat center;
-  
 `;
 
 const SearchBarPanel = styled.div`
@@ -28,9 +27,7 @@ const SearchBarPanel = styled.div`
     flex-direction: row;
     align-content: center;
     justify-content: center;
-  
 `;
-
 
 const Header = () => (
   <Container className="Header" height={12}  img={backgrounImg}>

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropertyCard from '../../components/PropertyCard';
 import getAllProperties from '../../config/getAllProperties'
 
-
 const Container = styled.div`
   overflow: hidden;
   width: 45rem;
@@ -15,17 +14,14 @@ const Container = styled.div`
   display:flex;
 `;
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       properties:[]
     };
-
     //this.getPropertiesInfo();
   }
-  
 
   componentDidMount(){
     this.getPropertiesInfo();
@@ -36,25 +32,19 @@ class Home extends React.Component {
       properties: await getAllProperties(),
     });
   }
-  
 
   render(){
     const {properties}=this.state;
     return(
      <Container>
  
-      
        {properties.map((property,index) => (
           <PropertyCard PropertyInfo={property} key={index}></PropertyCard >
         ))}
 
-      
      </Container>
     )
-
-
   }
  
-
 }
 export default Home;
