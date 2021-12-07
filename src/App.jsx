@@ -7,6 +7,7 @@ import Footer from './app/Footer';
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
 
+
 const theme = {
   primaryColor: '#e4002b',
 };
