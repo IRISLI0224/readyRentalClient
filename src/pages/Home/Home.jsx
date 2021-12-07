@@ -11,40 +11,38 @@ const Container = styled.div`
   margin: 5rem auto;
   background-color: #fff;
   text-align: center;
-  display:flex;
+  display: flex;
 `;
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      properties:[]
+      properties: [],
     };
-    //this.getPropertiesInfo();
-  }
 
+  }
+  
   componentDidMount(){
     this.getPropertiesInfo();
   }
-  
+
   async getPropertiesInfo() {
     this.setState({
       properties: await getAllProperties(),
     });
   }
-
+  
   render(){
     const {properties}=this.state;
     return(
      <Container>
- 
        {properties.map((property,index) => (
           <PropertyCard PropertyInfo={property} key={index}></PropertyCard >
         ))}
-
      </Container>
     )
   }
- 
+
 }
 export default Home;

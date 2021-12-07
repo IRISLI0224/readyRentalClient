@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from './Logo';
-import Button from '../../../hoc/Button';
+import Logo from './Logo'
+import Button from '../../../hoc/Button'
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -35,7 +36,9 @@ const NavigationBar = () => (
     <Logo className="Logo" />
     <Space />
     <div style={buttonstyle.root}>
-      <Button className="SigninButton">Sign in</Button>
+    <Link to="/login">
+    <Button className="SigninButton" >Sign in</Button>
+    </Link>
     </div>
     <div style={buttonstyle.root}>
       <Button className="JoinButton" style="color:blue;margin-left:20px;">
