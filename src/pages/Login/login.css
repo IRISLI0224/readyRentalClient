@@ -1,8 +1,14 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background: #2c3e50;
+  background: rgb(243, 244, 246);
   letter-spacing: 1px;
 }
 
@@ -16,8 +22,10 @@ body {
   margin: 0px;
   padding-top: 50px;
   transform: translate(-50%, -50%);
-  background: #1e272e;
+  background: #fff;
   text-align: center;
+  /* h-offset v-offset blur spread color */
+  box-shadow: 1px 1px 3px 1px #95a5a6;
 }
 
 /* input */
@@ -28,11 +36,11 @@ body {
   /* left/right are set to 'auto' for centering */
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #0fbcf9;
+  border: 1px solid #666666;
   outline: none;
   color: white;
-  border-radius: 24px;
-  width: 200px;
+  border-radius: 10px;
+  width: 250px;
   padding: 14px 10px;
   transition: 0.25s linear;
   font-size: 15px;
@@ -40,10 +48,10 @@ body {
 
 /* 'Login' title */
 .login h1 {
-  color: white;
+  color: #333333;
   text-transform: uppercase;
   font-weight: 500;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 /* when ':focus', inflate */

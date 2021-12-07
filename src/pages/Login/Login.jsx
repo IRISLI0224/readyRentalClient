@@ -10,6 +10,14 @@ const GlobalStyle = createGlobalStyle`body {
   background: #2c3e50;
   letter-spacing: 1px;}`;
 
+const Logo = styled.div`
+  width: 284px;
+  height: 64px;
+  background: url(${Img}) 0 45% no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+`;
+
 const LoginForm = styled.form`
   width: 380px;
   height: 400px;
@@ -32,7 +40,7 @@ const LoginTitle = styled.h1`
 
 const InputText = styled.input.attrs({
   type: 'text',
-  placeholder: 'Username',
+  placeholder: 'Email Address',
 })`
   background: none;
   display: block;
@@ -82,7 +90,7 @@ const Submit = styled.input.attrs({
 const Login = () => (
   <>
     <LoginForm>
-      <Img />
+      <Logo />
       <LoginTitle>Login</LoginTitle>
       <InputText></InputText>
       <InputPassWord></InputPassWord>
