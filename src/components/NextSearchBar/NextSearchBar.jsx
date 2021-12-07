@@ -22,7 +22,6 @@ const Container = styled.div`
 
 const NextSearchBar = () => (
   <Container >
-    
      Here is next to search bar
   </Container>
 );

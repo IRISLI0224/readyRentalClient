@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import Img from '../../../../assests/img/logo.svg';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
   background: #2c3e50;
-  letter-spacing: 1px;}`
+  letter-spacing: 1px;}`;
 
 const LoginForm = styled.form`
   width: 380px;
@@ -80,13 +81,14 @@ const Submit = styled.input.attrs({
 
 const Login = () => (
   <>
-  <LoginForm>
-    <LoginTitle>Login</LoginTitle>
-    <InputText></InputText>
-    <InputPassWord></InputPassWord>
-    <Submit></Submit>
-  </LoginForm>
-  <GlobalStyle />
+    <LoginForm>
+      <Img />
+      <LoginTitle>Login</LoginTitle>
+      <InputText></InputText>
+      <InputPassWord></InputPassWord>
+      <Submit></Submit>
+    </LoginForm>
+    <GlobalStyle />
   </>
 );
 

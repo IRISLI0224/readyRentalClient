@@ -20,7 +20,7 @@ const App = () => (
       <Home/>
       {/*<Login />*/}
       <GlobalStyle />
-      <Footer />
+      {/* <Footer /> */}
 
     </ThemeProvider>
   </>
