@@ -15,13 +15,11 @@ const App = () => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-
       <Header />
-      <Home/>
+      <Home />
       {/*<Login />*/}
       <GlobalStyle />
       <Footer />
-
     </ThemeProvider>
   </>
 );
