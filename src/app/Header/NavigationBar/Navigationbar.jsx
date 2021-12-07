@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import styled from 'styled-components';
 import Logo from './Logo'
 import Button from '../../../hoc/Button'
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -12,36 +12,38 @@ const Container = styled.div`
   padding-right: 10%;
   color: #fff;
   word-wrap: break-word;
-  hight:60px;
-  display:flex;
+  height: 60px;
+  display: flex;
   justify-content: center;
-  background-image: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.8));
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   height: 100px;
 `;
 
 const Space = styled.div`
-  width:55%;
+  width: 55%;
 `;
-
 
 const buttonstyle = {
   root: {
-    color:'white',
-    width:'100px',
-    height:'40px'
-  }
-
+    color: 'white',
+    width: '100px',
+    height: '40px',
+  },
 };
 
 const NavigationBar = () => (
   <Container>
-    <Logo className="Logo"/>
+    <Logo className="Logo" />
     <Space />
     <div style={buttonstyle.root}>
-    <Button className="SigninButton">Sign in</Button>
+    <Link to="/login">
+    <Button className="SigninButton" >Sign in</Button>
+    </Link>
     </div>
     <div style={buttonstyle.root}>
-    <Button className="JoinButton"style="color:blue;margin-left:20px;">&nbsp;&nbsp;Join&nbsp;&nbsp;</Button>
+      <Button className="JoinButton" style="color:blue;margin-left:20px;">
+        &nbsp;&nbsp;Join&nbsp;&nbsp;
+      </Button>
     </div>
   </Container>
 );
