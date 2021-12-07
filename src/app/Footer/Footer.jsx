@@ -6,7 +6,7 @@ import {
   Pinterest,
   Linkedin,
   Youtube,
-} from '../../components/hoc/SocialIconGroup';
+} from '../../hoc/SocialIconGroup';
 import { FaPinterestP, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
