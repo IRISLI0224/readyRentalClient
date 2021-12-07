@@ -7,7 +7,6 @@ const Container = styled.div`
 
 const NextSearchBar = () => (
   <Container >
-    
      404 NOT FIND
   </Container>
 );

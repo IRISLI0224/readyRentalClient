@@ -9,6 +9,8 @@ import { Routes,Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
+import Header from './app/Header';
+import Footer from './app/Footer';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -16,19 +18,18 @@ const theme = {
 
 const App = () => (
   <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element ={<Login/>}/>
-        <Route path="/join" element ={<JoinPage/>}/>
-        <Route path="/property/:id" element={<PropertyDetails/>}/>
-        
-        <Route path="*" element={<NoPage/>}/>
+  <GlobalStyle />
+     <ThemeProvider theme={theme}>
+      <Header/>
+        <Routes>
+           <Route path="/" element={<Home/>}/>
+           <Route path="/login" element ={<Login/>}/>
+           <Route path="/property/:id" element={<PropertyDetails/>}/>
+           <Route path="*" element={<NoPage/>}/>
        </Routes>
-    
+      <Footer/>
     </ThemeProvider>
-    <GlobalStyle />
+  <GlobalStyle />
   </>
 );
 

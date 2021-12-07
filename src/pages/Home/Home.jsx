@@ -5,7 +5,6 @@ import getAllProperties from '../../config/getAllProperties'
 import Header from '../../app/Header';
 import Footer from '../../app/Footer';
 
-
 const Container = styled.div`
   overflow: hidden;
   width: 45rem;
@@ -14,32 +13,28 @@ const Container = styled.div`
   margin: 5rem auto;
   background-color: #fff;
   text-align: center;
-  display:flex;
+  display: flex;
 `;
-
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      properties:[]
+      properties: [],
     };
 
-    //this.getPropertiesInfo();
   }
   
-
   componentDidMount(){
     this.getPropertiesInfo();
   }
-  
+
   async getPropertiesInfo() {
     this.setState({
       properties: await getAllProperties(),
     });
   }
   
-
   render(){
     const {properties}=this.state;
     return(
@@ -47,21 +42,14 @@ class Home extends React.Component {
        <Header/>
 
      <Container>
- 
-      
        {properties.map((property,index) => (
           <PropertyCard PropertyInfo={property} key={index}></PropertyCard >
         ))}
-
-      
      </Container>
      <Footer/>
      </>
     )
-
-
   }
- 
 
 }
 export default Home;

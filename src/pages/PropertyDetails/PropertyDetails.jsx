@@ -2,11 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 
-
 const Container = styled.div`
   color:grey
 `;
-
 
 const PropertyDetails = () =>
 {

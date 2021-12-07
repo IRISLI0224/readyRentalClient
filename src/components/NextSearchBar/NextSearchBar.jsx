@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const Container = styled.div`
   width: 200px;
   max-height: 200px;
@@ -20,8 +19,6 @@ const Container = styled.div`
   margin-left: 12px;
   margin-right:50px;
 `;
-
-
 
 const NextSearchBar = () => (
   <Container >
