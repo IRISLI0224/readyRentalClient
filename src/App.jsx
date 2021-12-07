@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import Header from './app/Header';
-import Footer from './app/Footer';
-//import Login from './pages/Login';
+// import Footer from './app/Footer';
+import Login from './pages/Login';
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
+import { Route, Routes } from 'react-router';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -15,13 +16,15 @@ const App = () => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-
-      <Header />
-      <Home/>
+      <Routes>
+        <Route path="/" element={<Header />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+      {/* <Header /> */}
+      {/* <Home /> */}
       {/*<Login />*/}
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       {/* <Footer /> */}
-
     </ThemeProvider>
   </>
 );

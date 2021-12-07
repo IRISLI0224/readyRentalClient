@@ -14,8 +14,8 @@ body {
 
 /* whole container */
 .login {
-  width: 380px;
-  height: 400px;
+  width: 400px;
+  height: 450px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -34,11 +34,11 @@ body {
   background: none;
   display: block;
   /* left/right are set to 'auto' for centering */
-  margin: 20px auto;
+  margin: 30px auto;
   text-align: center;
   border: 1px solid #666666;
   outline: none;
-  color: white;
+  color: #030fb1;
   border-radius: 10px;
   width: 250px;
   padding: 14px 10px;
@@ -57,27 +57,28 @@ body {
 /* when ':focus', inflate */
 .login input[type='text']:focus,
 .login input[type='password']:focus {
+  border: 2px solid #666666;
   width: 280px;
-  border-color: #05c46b;
 }
 
 /* 'Login' submit button */
 .login input[type='submit'] {
-  background: none;
+  background: #e4002b;
   display: block;
   /* left/right are set to 'auto' for centering */
-  margin: 20px auto;
+  margin: 50px auto;
   text-align: center;
-  border: 2px solid #05c46b;
+  border: none;
   outline: none;
   color: white;
-  border-radius: 24px;
+  border-radius: 5px;
   padding: 14px 40px;
   transition: 0.4s linear;
+  width: 180px;
   cursor: pointer;
 }
 
 /* when ':hover', change background-color */
 .login input[type='submit']:hover {
-  background: #05c46b;
+  background: #91011c;
 }

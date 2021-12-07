@@ -1,63 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import Img from '../../../../assests/img/logo.svg';
+import Logo from '../../app/Header/NavigationBar/Logo';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background: #2c3e50;
+  background: rgb(243, 244, 246);
   letter-spacing: 1px;}`;
 
-const Logo = styled.div`
-  width: 284px;
-  height: 64px;
-  background: url(${Img}) 0 45% no-repeat;
-  background-size: 100% 100%;
-  cursor: pointer;
-`;
-
 const LoginForm = styled.form`
-  width: 380px;
-  height: 400px;
+  width: 400px;
+  height: 480px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin: 0px;
   padding-top: 50px;
   transform: translate(-50%, -50%);
-  background: #1e272e;
+  background: #fff;
   text-align: center;
+  /* h-offset v-offset blur spread color */
+  box-shadow: 1px 1px 3px 1px #95a5a6;
 `;
 
 const LoginTitle = styled.h1`
-  color: white;
+  color: #333333;
   text-transform: uppercase;
   font-weight: 500;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 const InputText = styled.input.attrs({
-  type: 'text',
+  type: 'email',
   placeholder: 'Email Address',
 })`
   background: none;
   display: block;
   /* left/right are set to 'auto' for centering */
-  margin: 20px auto;
+  margin: 30px auto;
   text-align: center;
-  border: 2px solid #0fbcf9;
+  border: 1px solid #666666;
   outline: none;
-  color: white;
-  border-radius: 24px;
-  width: 200px;
+  color: #333333;
+  border-radius: 10px;
+  width: 250px;
   padding: 14px 10px;
   transition: 0.25s linear;
   font-size: 15px;
   &:focus {
+    border: 2px solid #666666;
     width: 280px;
-    border-color: #05c46b;
   }
 `;
 
@@ -68,22 +62,37 @@ const InputPassWord = styled(InputText).attrs({
 
 const Submit = styled.input.attrs({
   type: 'submit',
-  value: 'login',
+  value: 'Login',
 })`
-  background: none;
+  background: #e4002b;
   display: block;
   /* left/right are set to 'auto' for centering */
-  margin: 20px auto;
+  margin: 30px auto;
   text-align: center;
-  border: 2px solid #05c46b;
+  border: none;
   outline: none;
   color: white;
-  border-radius: 24px;
+  border-radius: 5px;
   padding: 14px 40px;
   transition: 0.4s linear;
+  width: 180px;
   cursor: pointer;
+  font-size: 16px;
   &:hover {
-    background: #05c46b;
+    background: #91011c;
+  }
+`;
+
+const Register = styled.a.attrs({
+  href: '/register',
+})`
+  text-decoration: none;
+  color: #2980b9;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s linear;
+  &:hover {
+    color: #030fb1;
   }
 `;
 
@@ -95,6 +104,7 @@ const Login = () => (
       <InputText></InputText>
       <InputPassWord></InputPassWord>
       <Submit></Submit>
+      <Register>Don't have an account?</Register>
     </LoginForm>
     <GlobalStyle />
   </>
