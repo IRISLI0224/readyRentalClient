@@ -5,7 +5,7 @@ export const StyledText = styled.p`
   font-family: 'Arimo', sans-serif;
   line-height: 1.5rem;
   font-weight: 400;
-  margin: 3px 0;
+  margin: 5px 0;
 `;
 export const BoldText = styled(StyledText)`
   font-weight: 700;
