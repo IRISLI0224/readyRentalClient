@@ -1,14 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Home from './pages/Home';
-import Header from './app/Header';
-import Footer from './app/Footer';
-//import Login from './pages/Login';
+import Login from './pages/Login';
 import { createGlobalStyle } from 'styled-components';
-import Card from './components/ListCard';
-
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
+import { Routes,Route } from 'react-router-dom';
+import NoPage from './pages/NoPage';
+import PropertyDetails from './pages/PropertyDetails';
+import Header from './app/Header';
+import Footer from './app/Footer';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -16,21 +17,18 @@ const theme = {
 
 const App = () => (
   <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-
-      <Header />
-      <Home/>
-      {/*<Login />*/}
-      <Card brand = '.\experimental_img\brand.PNG' agentName='Michael Edwards' 
-      agentIcon='.\experimental_img\agent-pic.PNG' 
-      price='$800' address='2/5 Temple Street, Victoria Park' bedNum='4'
-      bathNum = '2' carNum = '2' typeProp='House'
-      />
-      <GlobalStyle />
-      <Footer />
-
+  <GlobalStyle />
+     <ThemeProvider theme={theme}>
+      <Header/>
+        <Routes>
+           <Route path="/" element={<Home/>}/>
+           <Route path="/login" element ={<Login/>}/>
+           <Route path="/property/:id" element={<PropertyDetails/>}/>
+           <Route path="*" element={<NoPage/>}/>
+       </Routes>
+      <Footer/>
     </ThemeProvider>
+  <GlobalStyle />
   </>
 );
 
