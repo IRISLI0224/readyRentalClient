@@ -1,11 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Home from './pages/Home';
-import Header from './app/Header';
-import Footer from './app/Footer';
-//import Login from './pages/Login';
+import Login from './pages/Login';
+import { createGlobalStyle } from 'styled-components';
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
+import { Routes,Route } from 'react-router-dom';
+import NoPage from './pages/NoPage';
+import PropertyDetails from './pages/PropertyDetails';
+//import { Header } from 'react-native/Libraries/NewAppScreen';
+import Header from './app/Header';
+import Footer from './app/Footer';
 
 
 const theme = {
@@ -16,12 +21,17 @@ const App = () => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      <Header />
-      <Home />
-      {/*<Login />*/}
-      <GlobalStyle />
-      <Footer />
+    <Header/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element ={<Login/>}/>
+        <Route path="/Property/:id" element={<PropertyDetails/>}/>
+        
+        <Route path="*" element={<NoPage/>}/>
+       </Routes>
+    <Footer/>
     </ThemeProvider>
+    <GlobalStyle />
   </>
 );
 
