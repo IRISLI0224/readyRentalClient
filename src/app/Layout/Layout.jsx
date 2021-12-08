@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
 
+const URL="http://localhost:3000"
 
 const Main = styled.div`
   display: flex;
@@ -21,8 +22,10 @@ const Main = styled.div`
     }[props.variant])}
 `;
 
-const Layout = ({ children, location }) => {
-  const url = location.pathname;
+const Layout = ({ children,url}) => {
+ 
+  //const { history } = this.props;
+  const url = window.location.href.replace(URL,"");
   const specialCases = {
     '/': 'A',
     '/join': 'B',
@@ -53,7 +56,7 @@ const Layout = ({ children, location }) => {
   if (specialCase === 'C') {
     return (
       <>
-
+       <div>url</div>
         <Main>
           {children}
         </Main>
@@ -72,10 +75,7 @@ const Layout = ({ children, location }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }).isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Layout;
