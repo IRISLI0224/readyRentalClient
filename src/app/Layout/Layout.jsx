@@ -21,7 +21,7 @@ const Main = styled.div`
     }[props.variant])}
 `;
 
-//change layout via for diffrent pathname
+//change layout via for different pathname
 const Layout = ({ children }) => {
   let location = useLocation();
   const url = location.pathname;
