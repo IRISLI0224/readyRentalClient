@@ -10,6 +10,7 @@ import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import Header from './app/Header';
 import Footer from './app/Footer';
+import SignUp from './pages/SignUp';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -23,6 +24,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<SignUp />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
         <Route path="*" element={<NoPage />} />
       </Routes>

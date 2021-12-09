@@ -50,7 +50,7 @@ body {
 .login h1 {
   color: #333333;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight:bolder;
   margin-bottom: 30px;
 }
 

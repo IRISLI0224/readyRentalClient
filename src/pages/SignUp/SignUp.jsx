@@ -4,13 +4,13 @@ import { createGlobalStyle } from 'styled-components';
 import Logo from '../../app/Header/NavigationBar/Logo';
 
 const GlobalStyle = createGlobalStyle`body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background: rgb(243, 244, 246);
-  letter-spacing: 1px;}`;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: rgb(243, 244, 246);
+    letter-spacing: 1px;}`;
 
-const LoginForm = styled.form`
+const SignUpForm = styled.form`
   width: 400px;
   height: 520px;
   position: absolute;
@@ -62,7 +62,7 @@ const InputPassWord = styled(InputText).attrs({
 
 const Submit = styled.input.attrs({
   type: 'submit',
-  value: 'Login',
+  value: 'Create account',
 })`
   background: #e4002b;
   display: block;
@@ -84,8 +84,13 @@ const Submit = styled.input.attrs({
   }
 `;
 
-const Register = styled.a.attrs({
-  href: '/join',
+const LoginHint = styled.span`
+  font-size: 14px;
+  color: #9d9fa7;
+`;
+
+const Login = styled.a.attrs({
+  href: '/login',
 })`
   text-decoration: none;
   color: #2980b9;
@@ -97,18 +102,19 @@ const Register = styled.a.attrs({
   }
 `;
 
-const Login = () => (
+const SignUp = () => (
   <>
-    <LoginForm>
+    <SignUpForm>
       <Logo />
-      <LoginTitle>Login</LoginTitle>
+      <LoginTitle>Create account</LoginTitle>
       <InputText></InputText>
       <InputPassWord></InputPassWord>
       <Submit></Submit>
-      <Register>Don't have an account?</Register>
-    </LoginForm>
+      <LoginHint>Already have an account? </LoginHint>
+      <Login>Sign in</Login>
+    </SignUpForm>
     <GlobalStyle />
   </>
 );
 
-export default Login;
+export default SignUp;
