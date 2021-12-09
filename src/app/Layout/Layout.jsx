@@ -3,8 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
-
-const URL="http://localhost:3000"
+import { useLocation } from "react-router-dom";
 
 const Main = styled.div`
   display: flex;
@@ -22,10 +21,10 @@ const Main = styled.div`
     }[props.variant])}
 `;
 
-const Layout = ({ children,url}) => {
- 
-  //const { history } = this.props;
-  const url = window.location.href.replace(URL,"");
+//change layout via for diffrent pathname
+const Layout = ({ children }) => {
+  let location = useLocation();
+  const url = location.pathname;
   const specialCases = {
     '/': 'A',
     '/join': 'B',
@@ -78,4 +77,5 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default Layout;
+
+export default (Layout);
