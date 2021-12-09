@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-
 const Container = styled.div`
   border-radius: 3px;
   background-color: rgb(255, 255, 255);
@@ -51,7 +50,6 @@ const Input = ({defaultText,iconleft,iconright}) => (
      <IconLeft className="Input left img" src={iconleft}></IconLeft>
      <InputField placeholder={defaultText}/>
      <IconRight src={iconright}/>
-
    </Container>
 );
 

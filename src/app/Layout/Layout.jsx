@@ -49,7 +49,6 @@ const Layout = ({ children }) => {
       </>
     );
   }
-
   if (specialCase === 'C') {
     return (
       <>
@@ -61,7 +60,6 @@ const Layout = ({ children }) => {
       </>
     );
   }
-
   return (
     <>
       <Header />
