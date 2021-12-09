@@ -45,9 +45,7 @@ const Layout = ({ children }) => {
   if (specialCase === 'B') {
     return (
       <>
-
         <Main >{children}</Main>
-
       </>
     );
   }
