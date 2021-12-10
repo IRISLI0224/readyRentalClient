@@ -21,24 +21,19 @@ const ButtonStyle = styled.button`
 
   /* margin-top: 30px; */
   &:hover {
-    border-color: #333f48;
-    color: #333f48;
+    border-color: ${(props) => (props.primary ? '#a30000' : '#333f48')};
+    color: ${(props) => (props.primary ? '#fff' : '#333f48')};
+    background: ${(props) => (props.primary ? '#a30000' : 'transparent')};
   }
 
   &.primary {
     color: #ffff;
     background: ${(props) => props.theme.primaryColor};
-
-    &:hover {
-      background: #a30000;
-      border-color: #a30000;
-      color: #fff;
-    }
   }
 `;
 
-const Button = ({ children, size, onClick }) => (
-  <ButtonStyle onClick={onClick} size={size}>
+const Button = ({ children, size, onClick, primary }) => (
+  <ButtonStyle onClick={onClick} size={size} primary={primary}>
     {children}
   </ButtonStyle>
 );
@@ -48,6 +43,5 @@ Button.propTypes = {
   size: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
 };
-
 
 export default Button;

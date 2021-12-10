@@ -1,10 +1,11 @@
-import Button from '../../../../hoc/Button';
+import React from 'react';
+import PropButton from '../Button';
 import {
   HeroContainer,
   MainContainer,
-  ButtonContainer,
+  VerticalMargin,
   ImageContainer,
-  CenterWrap,
+  FlexWrap,
 } from '../Container';
 import StyledIcon from '../Icon';
 import { BoldText, HeaderText, StyledText } from '../Text';
@@ -15,9 +16,9 @@ const BasicInfo = () => (
   <MainContainer>
     <HeroContainer>
       <HeaderText>10 Quilan Court, Caroline Springs, VIC 3023</HeaderText>
-      <CenterWrap>
+      <FlexWrap direction="row">
         <StyledText>
-          <CenterWrap>
+          <FlexWrap direction="row">
             <StyledIcon>
               <BiBed />
             </StyledIcon>
@@ -30,15 +31,17 @@ const BasicInfo = () => (
               <AiOutlineCar />
             </StyledIcon>
             &nbsp;2&nbsp;&nbsp;&nbsp;
-          </CenterWrap>
+          </FlexWrap>
         </StyledText>
         <StyledText>House</StyledText>
-      </CenterWrap>
+      </FlexWrap>
       <BoldText>$430 per week</BoldText>
       <StyledText>Bond $1863</StyledText>
-      <ButtonContainer>
-        <Button size="200px">Request an inspection</Button>
-      </ButtonContainer>
+      <VerticalMargin margin="1rem">
+        <PropButton primary size="200px">
+          Request an inspection
+        </PropButton>
+      </VerticalMargin>
       <StyledText>Available 07 Dec 2021</StyledText>
     </HeroContainer>
     <ImageContainer></ImageContainer>

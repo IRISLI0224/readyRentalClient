@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { BasicInfo } from './components/BasicInfo';
+import BasicInfo from './components/BasicInfo';
+import Description from './components/Description/Description';
 
 const PropertyDetails = () => {
   const params = useParams();
@@ -8,6 +9,7 @@ const PropertyDetails = () => {
     <>
       <h1>{params.id}</h1>
       <BasicInfo />
+      <Description />
     </>
   );
 };
