@@ -41,7 +41,7 @@ const NavigationBar = () => (
     </Link>
     </div>
     <div style={buttonstyle.root}>
-      <Button className="JoinButton" style={"color:blue;margin-left:20px;"}>
+      <Button className="JoinButton">
         &nbsp;&nbsp;Join&nbsp;&nbsp;
       </Button>
     </div>

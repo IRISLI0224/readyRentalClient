@@ -1,13 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledIcon = styled.i`
-  color: #566271;
-  size: 1.2rem;
-
-  ${props => props.primary && css`
-  size:1.5rem;
-  color: #263037;
-  `}
+  color: ${props => props.primary ? "#263037" : "#566271"};
+  font-size: ${props => props.primary ? "1.5rem" : "1.2rem"};
 `;
 
 export default StyledIcon;
