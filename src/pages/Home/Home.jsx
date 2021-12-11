@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropertyCard from '../../components/PropertyCard';
-import getAllProperties from '../../config/getAllProperties'
+import { getAllProperties } from '../../config/Properties'
 
 const Container = styled.div`
   overflow: hidden;
