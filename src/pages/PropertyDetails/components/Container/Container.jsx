@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-
-export const FlexWrap = styled.div`
-  display: flex;
-  flex-direction: ${(props) => props.direction};
-  align-items: center;
-`;
+import FlexWrap from '../../../../hoc/FlexWrap';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -47,4 +42,4 @@ export const DescItem = styled.div`
   padding: 1rem 0;
   width: 70vw;
   text-align: left;
-`
+`;

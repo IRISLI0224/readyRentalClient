@@ -14,7 +14,7 @@ const ButtonStyle = styled.button`
   cursor: pointer;
   border-radius: 4px;
   line-height: 1;
-  background: transparent;
+  background: ${(props) => (props.primary ? props.theme.primaryColor : 'transparent')};
   text-align: center;
   transition-duration: 0.2s, 0.2s;
   transition-timing-function: ease-in, ease-out;
@@ -24,11 +24,6 @@ const ButtonStyle = styled.button`
     border-color: ${(props) => (props.primary ? '#a30000' : '#333f48')};
     color: ${(props) => (props.primary ? '#fff' : '#333f48')};
     background: ${(props) => (props.primary ? '#a30000' : 'transparent')};
-  }
-
-  &.primary {
-    color: #ffff;
-    background: ${(props) => props.theme.primaryColor};
   }
 `;
 
