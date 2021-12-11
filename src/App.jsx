@@ -2,7 +2,6 @@
 import React from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import { createGlobalStyle } from 'styled-components';
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
 import { Routes,Route } from 'react-router-dom';
