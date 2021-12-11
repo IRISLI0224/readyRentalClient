@@ -14,31 +14,21 @@ const ButtonStyle = styled.button`
   cursor: pointer;
   border-radius: 4px;
   line-height: 1;
-  background: transparent;
+  background: ${(props) => (props.primary ? props.theme.primaryColor : 'transparent')};
   text-align: center;
   transition-duration: 0.2s, 0.2s;
   transition-timing-function: ease-in, ease-out;
 
   /* margin-top: 30px; */
   &:hover {
-    border-color: #333f48;
-    color: #333f48;
-  }
-
-  &.primary {
-    color: #ffff;
-    background: ${(props) => props.theme.primaryColor};
-
-    &:hover {
-      background: #a30000;
-      border-color: #a30000;
-      color: #fff;
-    }
+    border-color: ${(props) => (props.primary ? '#a30000' : '#333f48')};
+    color: ${(props) => (props.primary ? '#fff' : '#333f48')};
+    background: ${(props) => (props.primary ? '#a30000' : 'transparent')};
   }
 `;
 
-const Button = ({ children, size, onClick }) => (
-  <ButtonStyle onClick={onClick} size={size}>
+const Button = ({ children, size, onClick, primary }) => (
+  <ButtonStyle onClick={onClick} size={size} primary={primary}>
     {children}
   </ButtonStyle>
 );
@@ -48,6 +38,5 @@ Button.propTypes = {
   size: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
 };
-
 
 export default Button;
