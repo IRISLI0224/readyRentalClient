@@ -1,17 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import styled from 'styled-components';
+import BasicInfo from './components/BasicInfo';
+import Description from './components/Description/Description';
 
-const Container = styled.div`
-  color:grey
-`;
-
-const PropertyDetails = () =>
-{
-  const params=useParams();
-    return (  <Container >  
+const PropertyDetails = () => {
+  const params = useParams();
+  return (
+    <>
       <h1>{params.id}</h1>
-    </Container>);
+      <BasicInfo />
+      <Description />
+    </>
+  );
 };
 
 export default PropertyDetails;
