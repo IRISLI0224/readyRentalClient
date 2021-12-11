@@ -21,16 +21,15 @@ const App = () => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/join" element={<JoinPage />} />
-          <Route path="/property/:id" element={<PropertyDetails />} />
-          <Route path="/property/manage-listings" element={<ListedProperties />} />
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-      </Layout>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/property/:id" element={<PropertyDetails />} />
+        {/* <Route path="/property/manage-listings" element={<ListedProperties />} /> */}
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+      <Footer />
     </ThemeProvider>
     <GlobalStyle />
   </>
