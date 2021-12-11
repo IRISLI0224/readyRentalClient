@@ -4,13 +4,14 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import GlobalStyle from './globalStyle.jsx';
 import { ThemeProvider } from 'styled-components';
-import { Routes,Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
 import Header from './app/Header';
 import Footer from './app/Footer';
 import Layout from './app/Layout';
+import ListedProperties from './pages/ListedProperties';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -18,19 +19,20 @@ const theme = {
 
 const App = () => (
   <>
-  <GlobalStyle />
-     <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    <ThemeProvider theme={theme}>
       <Layout>
         <Routes>
-           <Route path="/" element={<Home/>}/>
-           <Route path="/login" element ={<Login/>}/>
-           <Route path="/join" element ={<JoinPage/>}/>
-           <Route path="/property/:id" element={<PropertyDetails/>}/>
-           <Route path="*" element={<NoPage/>}/>
-       </Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/property/:id" element={<PropertyDetails />} />
+          <Route path="/property/manage-listings" element={<ListedProperties />} />
+          <Route path="*" element={<NoPage />} />
+        </Routes>
       </Layout>
     </ThemeProvider>
-  <GlobalStyle />
+    <GlobalStyle />
   </>
 );
 
