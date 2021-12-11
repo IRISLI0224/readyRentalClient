@@ -61,7 +61,6 @@ const LinktoLogin = styled.div`
 
 `;
 
-
 class JoinPage extends React.Component {
   constructor(props){
     super(props)
@@ -84,7 +83,7 @@ class JoinPage extends React.Component {
        <Logo/>
       </LogoBox>
       <CreateTitle>Create Account</CreateTitle>
-      <Form  htmlFor="emial">
+      <Form  htmlFor="email">
               <Input
                 size="lg"
                 name="email"
@@ -123,7 +122,5 @@ class JoinPage extends React.Component {
    )
  }
 }
-
-
 
 export default JoinPage;
