@@ -49,5 +49,4 @@ Button.propTypes = {
   children: PropTypes.string.isRequired,
 };
 
-
 export default Button;

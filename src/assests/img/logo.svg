@@ -3,8 +3,9 @@
     <style>
       .cls-1 {
         font-size: 52px;
-        fill: #e5002c;
-        font-family: MuseoSans-500, "Museo Sans";
+                
+        fill: #fff;        
+        font-family: MuseoSans-500, "Museo Sans";        
       }
 
       .cls-2, .cls-3 {
@@ -17,6 +18,7 @@
       .cls-3 {
         fill-rule: evenodd;
       }
+      
     </style>
   </defs>
   <text id="READY_RENTAL" data-name="READY RENTAL" class="cls-1" x="140.225" y="88.59">READY RENTAL</text>
