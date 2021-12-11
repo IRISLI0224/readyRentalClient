@@ -1,10 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div``;
 
 class PropertyDetails extends React.Component {
   render() {
     return (
       <div>
-        <h2>Property details</h2>
         <div className="Property">
           <img
             src="https://argonaut.au.reastatic.net/consumer-list/prod/pll-dashboard/iconHousePlaceholder-b6ccfc15da9c0dcaa97b3c752f58b0b2.svg"

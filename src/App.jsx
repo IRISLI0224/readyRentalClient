@@ -24,9 +24,9 @@ const App = () => (
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
-        {/* <Route path="/property/manage-listings" element={<ListedProperties />} /> */}
+        <Route path="/property/manage-listings" element={<ListedProperties />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
       <Footer />

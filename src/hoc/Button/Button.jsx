@@ -18,6 +18,7 @@ const ButtonStyle = styled.button`
   text-align: center;
   transition-duration: 0.2s, 0.2s;
   transition-timing-function: ease-in, ease-out;
+  white-space: nowrap;
 
   /* margin-top: 30px; */
   &:hover {
@@ -27,8 +28,8 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const Button = ({ children, size, onClick, primary }) => (
-  <ButtonStyle onClick={onClick} size={size} primary={primary}>
+const Button = ({ children, size, onClick, className, as, href }) => (
+  <ButtonStyle onClick={onClick} size={size} className={className} as={as} href={href}>
     {children}
   </ButtonStyle>
 );
