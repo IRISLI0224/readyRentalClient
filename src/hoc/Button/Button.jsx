@@ -18,7 +18,6 @@ const ButtonStyle = styled.button`
   text-align: center;
   transition-duration: 0.2s, 0.2s;
   transition-timing-function: ease-in, ease-out;
-
   /* margin-top: 30px; */
   &:hover {
     border-color: ${(props) => (props.primary ? '#a30000' : '#333f48')};

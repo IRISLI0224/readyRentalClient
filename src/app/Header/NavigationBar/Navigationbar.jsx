@@ -23,29 +23,22 @@ const Space = styled.div`
   width: 55%;
 `;
 
-const buttonstyle = {
-  root: {
-    color: 'white',
-    width: '100px',
-    height: '40px',
-  },
-};
+const Buttonwithoutborder = styled(Button)`
+   color:#fff;
+   border:none;  
+`;
 
 const NavigationBar = () => (
   <Container>
     <Logo className="Logo" />
     <Space />
-    <div style={buttonstyle.root}>
     <Link to="/login">
-    <Button className="SigninButton" >Sign in</Button>
+    <Buttonwithoutborder className="SigninButton" size='90px' >Sign in</Buttonwithoutborder>
     </Link>
-    </div>
     <Link to='/join'>
-    <div style={buttonstyle.root}>
-      <Button className="JoinButton" style="color:blue;margin-left:20px;">
+      <Button className="JoinButton" size='90px' style={{}}>
         &nbsp;&nbsp;Join&nbsp;&nbsp;
       </Button>
-    </div>
     </Link>
   </Container>
 );
