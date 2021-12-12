@@ -3,7 +3,6 @@ import RoomType from '../../../../components/RoomType';
 import PropButton from '../PropButton';
 import { HeroContainer, MainContainer, VerticalMargin, ImageContainer } from '../Container';
 import StyledText from '../../../../hoc/Text';
-import Button from '../../../../hoc/Button';
 
 const BasicInfo = () => (
   <MainContainer>
@@ -14,8 +13,9 @@ const BasicInfo = () => (
       </StyledText>
       <StyledText>Bond $1863</StyledText>
       <VerticalMargin margin="1rem">
-        <PropButton size="200px">Request an inspection</PropButton>
-        <Button size="200px">Request an inspection</Button>
+        <PropButton primary size="200px">
+          Request an inspection
+        </PropButton>
       </VerticalMargin>
       <StyledText>Available 07 Dec 2021</StyledText>
     </HeroContainer>
