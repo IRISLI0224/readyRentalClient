@@ -9,7 +9,6 @@ const Container = styled.div`
   width: 90%;
   margin: 0 auto;
 `;
-
 class ListedProperties extends React.Component {
   render() {
     return (

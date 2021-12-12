@@ -16,5 +16,3 @@ export const WrapperColumnFlex = styled(Wrapper)`
 export const NoShadowWrapper = styled(Wrapper)`
   box-shadow: none;
 `;
-
-// export default Wrapper;
