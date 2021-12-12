@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../../../../../../hoc/Button/Button';
 import DropFilter from './components/DropFilter';
-import {getAllProperties} from '../../../../../../config/Properties';
+import {getAllProperties} from '../../../../../../config/properties';
 import CheckFilter from './components/CheckFilter';
 
 const SearchText = styled.input`
