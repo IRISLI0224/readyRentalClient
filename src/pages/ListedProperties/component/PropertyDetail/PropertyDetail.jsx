@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import RoomType from '../../../../hoc/RoomType';
 import { Wrapper, WrapperColumnFlex, NoShadowWrapper } from '../Wrapper';
+import { ReactComponent as HouseIcon } from '../../../../assests/img/iconHouse.svg';
 
 const StyledHr = styled.hr`
   margin: 0;
@@ -14,11 +15,7 @@ class PropertyDetail extends React.Component {
       <div>
         <Wrapper>
           <NoShadowWrapper>
-            <img
-              //cannot get image by relative path
-              src="https://argonaut.au.reastatic.net/consumer-list/prod/pll-dashboard/iconHousePlaceholder-b6ccfc15da9c0dcaa97b3c752f58b0b2.svg"
-              alt=""
-            />
+            <HouseIcon alt="house" />
             <WrapperColumnFlex>
               <RoomType />
             </WrapperColumnFlex>
