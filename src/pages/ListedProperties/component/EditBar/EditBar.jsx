@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaPencilAlt } from 'react-icons/fa';
+import { Wrapper } from '../Wrapper';
+import { SpanText } from '../SpanText/SpanText';
 
 const StyledEditBtn = styled.button`
   width: 80px;
@@ -29,16 +31,16 @@ const StyledEditBtn = styled.button`
   }
 `;
 
-const Wrapper = styled.div`
-  padding: 0.75rem;
-`;
-
 const EditBar = () => {
   return (
     <Wrapper>
+      <div>
+        <SpanText>Status: </SpanText>
+        <SpanText>Open </SpanText>
+      </div>
       <StyledEditBtn>
         <FaPencilAlt />
-        <span className="edit">Edit</span>
+        <span>Edit</span>
       </StyledEditBtn>
     </Wrapper>
   );
