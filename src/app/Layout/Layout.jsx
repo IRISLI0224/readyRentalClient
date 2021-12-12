@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const Main = styled.div`
   display: flex;
@@ -24,7 +24,11 @@ const Main = styled.div`
 //change layout via for different pathname
 const Layout = ({ children }) => {
   let location = useLocation();
+  let params = useParams();
+  let id="";
+  if (params) id=params.id
   const url = location.pathname;
+  console.log(params.id)
   const specialCases = {
     '/': 'A',
     '/join': 'B',
