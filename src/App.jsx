@@ -8,8 +8,6 @@ import { Routes,Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
-import Header from './app/Header';
-import Footer from './app/Footer';
 import Layout from './app/Layout';
 
 const theme = {
