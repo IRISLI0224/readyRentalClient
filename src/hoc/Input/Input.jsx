@@ -2,53 +2,35 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const Container = styled.div`
-  border-radius: 3px;
   background-color: rgb(255, 255, 255);
-  height: 35px;
   padding: 0 15px;
-  height: 40px;
-  border-color: #dfdfdf;
+  height: 50px;
+  border-radius: none;
+  border: 2px solid #e5e8ec;
 `;
 
 const InputField = styled.input`
   border-radius: none;
   background-color: rgb(255, 255, 255);
-  height: 35px;
   padding: 0 15px;
   height: 40px;
-  border-color: #dfdfdf;
-  ${(props) =>
-    ({
-      smLeft: css`
-        width: 170px;
-        margin-right: 10px;
-      `,
-      smRight: css`
-        width: 170px;
-      `,
-      lg: css`
-        width: 350px;
-      `,
-    }[props.size])}
-
-  ${(props) =>
-    props.error &&
-    css`
-      background-color: rgba(255, 0, 0, 0.05);
-    `}
+  border: none;
+  outline:none;
+  width:${(props) => props.size};
 `;
 
-const IconLeft =styled.img`
+const IconLeft =styled.img` 
+   margin-top:11px;
    width:20px;
    height:20px;
 `;
 const IconRight =styled.img`
 `;
 
-const Input = ({defaultText,iconleft,iconright}) => (
+const Input = ({defaultText,iconleft,iconright,size}) => (
    <Container className="Input container">
      <IconLeft className="Input left img" src={iconleft}></IconLeft>
-     <InputField placeholder={defaultText}/>
+     <InputField placeholder={defaultText} size={size}/>
      <IconRight src={iconright}/>
    </Container>
 );

@@ -25,21 +25,12 @@ const MainBox = styled.div`
     height:400px;
     text-align: center;
     position: relative;
-    border: 2px solid;
-    border-image: linear-gradient(45deg, #fdfdf9, deeppink) 1;
-    clip-path: inset(0px round 2px);
-    animation: huerotate 6s infinite linear;
-    filter: hue-rotate(360deg);
-   
+    border: 2px solid #e5e8ec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
    }
  
-  @keyframes huerotate {
-    0% {
-        filter: hue-rotate(0deg);
-    }
-    100% {
-        filter: hue-rotate(360deg);
-    }
 `;
 
 const LogoBox = styled.div`
@@ -58,7 +49,7 @@ const CreateTitle = styled.div`
 
 const LinktoLogin = styled.div`
     display: flex;
-
+    margin-top:20px;
 `;
 
 class JoinPage extends React.Component {
@@ -85,7 +76,7 @@ class JoinPage extends React.Component {
       <CreateTitle>Create Account</CreateTitle>
       <Form  htmlFor="email">
               <Input
-                size="lg"
+                size="300px"
                 name="email"
                 id="email"
                 type="email"
@@ -98,7 +89,7 @@ class JoinPage extends React.Component {
       <br/>
       <Form  htmlFor="password">
               <Input
-                size="lg"
+                size="300px"
                 name="password"
                 id="password"
                 type="string"
@@ -109,7 +100,7 @@ class JoinPage extends React.Component {
       </Form>
       <br/>
       <br/>
-      <Button>Create Account</Button>
+      <Button primary size="400px">Create Account</Button>
       <LinktoLogin>
       <div>Already have an account?&nbsp;&nbsp;</div>
       <Link to="/login">

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Main = styled.div`
   display: flex;
@@ -24,20 +24,16 @@ const Main = styled.div`
 //change layout via for different pathname
 const Layout = ({ children }) => {
   let location = useLocation();
-  let params = useParams();
-  let id="";
-  if (params) id=params.id
   const url = location.pathname;
-  console.log(params.id)
   const specialCases = {
-    '/': 'A',
-    '/join': 'B',
-    '/login': 'B',
-    '/property': 'C',
+    '/': 'HomepageStyle',
+    '/join': 'LoginStyle',
+    '/login': 'LoginStyle',
+    '/property': 'PropertyStyle',
   };
 
   const specialCase = specialCases[url];
-  if (specialCase === 'A') {
+  if (specialCase === 'HomepageStyle') {
     return (
       <>
         <Header />
@@ -46,14 +42,14 @@ const Layout = ({ children }) => {
       </>
     );
   }
-  if (specialCase === 'B') {
+  if (specialCase === 'LoginStyle') {
     return (
       <>
         <Main >{children}</Main>
       </>
     );
   }
-  if (specialCase === 'C') {
+  if (specialCase === 'OtherStyle') {
     return (
       <>
        <div>url</div>
@@ -66,7 +62,6 @@ const Layout = ({ children }) => {
   }
   return (
     <>
-      
         {children}
       <Footer />
     </>
