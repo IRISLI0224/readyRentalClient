@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import notvisibleIcon from '../../assests/img/notvisibility.png'
+import visibleIcon from '../../assests/img/visibility.png'
 
 const Container = styled.div`
   background-color: rgb(255, 255, 255);
@@ -7,6 +9,8 @@ const Container = styled.div`
   height: 50px;
   border-radius: none;
   border: 2px solid #e5e8ec;
+  display:flex;
+  width:${(props) => props.size};
 `;
 
 const InputField = styled.input`
@@ -16,7 +20,7 @@ const InputField = styled.input`
   height: 40px;
   border: none;
   outline:none;
-  width:${(props) => props.size};
+  flex-grow: 1;
 `;
 
 const IconLeft =styled.img` 
@@ -24,16 +28,51 @@ const IconLeft =styled.img`
    width:20px;
    height:20px;
 `;
-const IconRight =styled.img`
+const PasswordHidden =styled.img`
+   margin-top:11px;
+   width:20px;
+   height:20px;
+   
+   //background-image:${(props) => props.visableIcon}
+   //${(props) => (props.Visble ? `src={visableIcon} ` : `display: {notvisableIcon} ;`)}}   
+   
 `;
 
-const Input = ({defaultText,iconleft,iconright,size}) => (
-   <Container className="Input container">
+
+
+const Input = ({defaultText,iconleft,hidden,size,onChange,onBlur,value,type,id,name,error}) => {
+  const [Visible, setVisible] =useState(visibleIcon);
+  const [PasswordType, setPasswordType] =useState(type);
+   return(
+   <Container 
+   className="Input container" 
+   size={size} 
+   >
      <IconLeft className="Input left img" src={iconleft}></IconLeft>
-     <InputField placeholder={defaultText} size={size}/>
-     <IconRight src={iconright}/>
+     <InputField 
+     placeholder={defaultText} 
+     size={size}
+     onChange={onChange} 
+     onBlur={onBlur} 
+     type={PasswordType}
+     id={id}
+     name={name}
+     error={error}
+     />
+     {hidden?<PasswordHidden 
+        src={Visible}
+        onClick={() => {
+          if(Visible==visibleIcon) 
+          {setVisible(notvisibleIcon)
+            setPasswordType("password")}
+            else 
+            {setVisible(visibleIcon)
+              setPasswordType("string")};
+        }}/>:null}
    </Container>
-);
+   )
+
+  };
 
 
 export default Input;

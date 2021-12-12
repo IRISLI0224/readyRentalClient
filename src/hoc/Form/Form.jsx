@@ -26,7 +26,7 @@ const Form = ({label,htmlFor,children}) => (
  );
 
  Form.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   htmlFor: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
