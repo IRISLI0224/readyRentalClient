@@ -174,6 +174,7 @@ class JoinPage extends React.Component {
                 defaultText="Password"
                 iconleft ={passwordIcon}
                 onChange={this.handleDataChange}
+                onBlur={this.handleBlurredChange}
                 hidden = "true"
               />
       </Form>
