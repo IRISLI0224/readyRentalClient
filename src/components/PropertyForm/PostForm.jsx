@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Form, Select, Upload, Checkbox, Row, Col, Input, Button, DatePicker } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
-import { storePropety } from '../../config/postProperties';
+import { storePropety } from '../../api/postProperties';
 import styled from 'styled-components';
 
 const SubmitWrapper = styled.div`
@@ -33,7 +33,7 @@ const { TextArea } = Input;
 class postForm extends React.Component {
   handleFormSubmit = (values) => {
     storePropety(values).then(function (response) {
-      console.log(response);
+      return;
     });
   };
 
