@@ -6,7 +6,7 @@ import {getAllProperties} from '../../../../../../config/properties';
 import CheckFilter from './components/CheckFilter';
 
 const SearchText = styled.input`
-  width: 38vw;
+  width: 84.5%;
   height: 48px;
   font-weight: 400;
   font-size: 1em;
@@ -18,6 +18,7 @@ const SearchBar = styled.div`
   margin: auto;
   margin-top: 10px;
   margin-bottom: 2px;
+  text-align: left;
 `;
 
 const Container = styled.div`
@@ -123,7 +124,7 @@ class SearchTable extends React.Component {
               value={filterText}
               onChange={this.handleFilterTextChange}
             ></SearchText>
-            <Button className="primary" size="130px" type="submit" onClick={getAllProperties()}>
+            <Button primary size="15.5%" type="submit" onClick={getAllProperties()}>
               Search
             </Button>
           </SearchBar>

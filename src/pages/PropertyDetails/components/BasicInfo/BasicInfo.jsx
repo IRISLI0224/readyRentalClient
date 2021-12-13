@@ -1,6 +1,6 @@
 import React from 'react';
-import RoomType from '../../../../hoc/RoomType';
-import PropButton from '../Button';
+import RoomType from '../../../../components/RoomType';
+import PropButton from '../PropButton';
 import { HeroContainer, MainContainer, VerticalMargin, ImageContainer } from '../Container';
 import StyledText from '../../../../hoc/Text';
 
@@ -13,7 +13,7 @@ const BasicInfo = () => (
       </StyledText>
       <StyledText>Bond $1863</StyledText>
       <VerticalMargin margin="1rem">
-        <PropButton size="200px">
+        <PropButton primary size="200px">
           Request an inspection
         </PropButton>
       </VerticalMargin>

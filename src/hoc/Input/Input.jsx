@@ -32,12 +32,8 @@ const PasswordHidden =styled.img`
    margin-top:11px;
    width:20px;
    height:20px;
-   
-   //background-image:${(props) => props.visableIcon}
-   //${(props) => (props.Visble ? `src={visableIcon} ` : `display: {notvisableIcon} ;`)}}   
-   
 `;
-
+const IconRight = styled.img``;
 
 
 const Input = ({defaultText,iconleft,hidden,size,onChange,onBlur,value,type,id,name,error}) => {
@@ -73,6 +69,5 @@ const Input = ({defaultText,iconleft,hidden,size,onChange,onBlur,value,type,id,n
    )
 
   };
-
 
 export default Input;

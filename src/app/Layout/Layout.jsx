@@ -24,7 +24,9 @@ const Main = styled.div`
 //change layout via for different pathname
 const Layout = ({ children }) => {
   let location = useLocation();
-  const url = location.pathname;
+  const wholeUrl = location.pathname;
+  const split =wholeUrl.split('/');
+  const url ='/'+split[1];
   const specialCases = {
     '/': 'HomepageStyle',
     '/join': 'LoginStyle',
@@ -49,14 +51,13 @@ const Layout = ({ children }) => {
       </>
     );
   }
-  if (specialCase === 'OtherStyle') {
+  if (specialCase === 'PropertyStyle') {
     return (
       <>
-       <div>url</div>
         <Main>
           {children}
         </Main>
-
+        <Footer />
       </>
     );
   }

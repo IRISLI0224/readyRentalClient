@@ -1,8 +1,7 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../../app/Header/NavigationBar/Logo';
-import Form from '../../hoc/Form'
+import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import Button from '../../hoc/Button'
 import {Link} from 'react-router-dom'
@@ -14,7 +13,7 @@ import FormWrapper from '../../hoc/FormWrapper'
 import ServerMsg  from '../../hoc/ServerMsg'
 
 const Container = styled.div`
-  background-color:white;
+  background-color: white;
   text-align: center;
   display: flex;
   line-height: 10px;
@@ -38,17 +37,16 @@ const MainBox = styled.div`
 `;
 
 const LogoBox = styled.div`
-    margin-left: 40px;
-    text-align: center;
+  margin-left: 40px;
+  text-align: center;
 `;
 
 const CreateTitle = styled.div`
-    margin-top:10px;
-    font-size: 1.2rem;
-    color: rgb(51, 63, 72);
-    text-align: center;
-    line-height: 1.75rem;
-
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: rgb(51, 63, 72);
+  text-align: center;
+  line-height: 1.75rem;
 `;
 
 const LinktoLogin = styled.div`
