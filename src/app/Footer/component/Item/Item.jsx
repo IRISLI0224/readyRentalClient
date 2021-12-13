@@ -11,6 +11,7 @@ const ItemStyle = styled.button`
   background-color: transparent;
   border: 0;
   padding: 0 1rem;
+  cursor: pointer;
   &:hover,
   &::selection {
     color: #fff;
@@ -18,10 +19,7 @@ const ItemStyle = styled.button`
   }
 `;
 
-const Item = ({ onClick, children }) => 
-  <ItemStyle onClick={onClick}>
-    {children}
-  </ItemStyle>;
+const Item = ({ onClick, children }) => <ItemStyle onClick={onClick}>{children}</ItemStyle>;
 
 Item.propTypes = {
   onClick: PropTypes.func,
