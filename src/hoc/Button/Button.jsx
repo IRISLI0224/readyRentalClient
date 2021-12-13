@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ButtonStyle = styled.button`
+export const ButtonStyle = styled.button`
   color: ${(props) => (props.primary ? '#ffff' : '#333f48')};
   border: 2px solid #e5e8ec;
   display: inline-block;
@@ -31,7 +31,7 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const Button = ({ children, size, onClick, primary, as, href, height }) => (
+export const Button = ({ children, size, onClick, primary, as, href, height }) => (
   <ButtonStyle onClick={onClick} size={size} primary={primary} as={as} href={href} height={height}>
     {children}
   </ButtonStyle>
@@ -42,5 +42,3 @@ Button.propTypes = {
   size: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
 };
-
-export default Button;
