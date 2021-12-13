@@ -32,7 +32,6 @@ const { TextArea } = Input;
 
 class postForm extends React.Component {
   handleFormSubmit = (values) => {
-    console.log(values);
     storePropety(values).then(function (response) {
       console.log(response);
     });
