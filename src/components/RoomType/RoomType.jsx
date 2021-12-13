@@ -1,7 +1,7 @@
 import React from 'react';
-import FlexWrap from '../../hoc/FlexWrap';
-import StyledIcon from '../../hoc/Icon';
-import StyledText from '../../hoc/Text';
+import FlexWrap from '../FlexWrap';
+import StyledIcon from '../Icon';
+import StyledText from '../Text';
 import { BiBed, BiBath } from 'react-icons/bi';
 import { AiOutlineCar } from 'react-icons/ai';
 
