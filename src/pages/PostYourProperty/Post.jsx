@@ -2,8 +2,6 @@ import React from 'react';
 import { Card } from 'antd';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
-// import Demo from "./Demo";
-// import ContactDetail from "./ContactDetail";
 import PostForm from './PostForm';
 
 const Container = styled.div`
@@ -24,23 +22,10 @@ const CardWrapper = styled.div`
   backgroud: red;
 `;
 const DemoWrapper = styled.div`
-  //   display: flex;
-  //   justify-content: flex-start;
   text-align: left;
   margin-top: 60px;
   margin-left: -190px;
 `;
-// const Subtitle = styled.div`
-//   text-align: left;
-//   margin-top: 60px;
-//   margin-left: 108px;
-// `;
-// const DetailWrapper = styled.div`;
-//   text-align: left;
-//   margin-top: 30px;
-//   margin-left: -360px;
-//   padding-botton: 300px;
-// `;
 
 const Post = () => {
   return (
