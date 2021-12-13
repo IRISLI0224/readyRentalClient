@@ -1,55 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import notvisibleIcon from '../../assests/img/notvisibility.png'
+import visibleIcon from '../../assests/img/visibility.png'
 
 const Container = styled.div`
-  border-radius: 3px;
   background-color: rgb(255, 255, 255);
-  height: 35px;
   padding: 0 15px;
-  height: 40px;
-  border-color: #dfdfdf;
+  height: 50px;
+  border-radius: none;
+  border: 2px solid #e5e8ec;
+  display:flex;
+  width:${(props) => props.size};
 `;
 
 const InputField = styled.input`
   border-radius: none;
   background-color: rgb(255, 255, 255);
-  height: 35px;
   padding: 0 15px;
   height: 40px;
-  border-color: #dfdfdf;
-  ${(props) =>
-    ({
-      smLeft: css`
-        width: 170px;
-        margin-right: 10px;
-      `,
-      smRight: css`
-        width: 170px;
-      `,
-      lg: css`
-        width: 350px;
-      `,
-    }[props.size])}
-
-  ${(props) =>
-    props.error &&
-    css`
-      background-color: rgba(255, 0, 0, 0.05);
-    `}
+  border: none;
+  outline:none;
+  flex-grow: 1;
 `;
 
-const IconLeft = styled.img`
-  width: 20px;
-  height: 20px;
+const IconLeft =styled.img` 
+   margin-top:11px;
+   width:20px;
+   height:20px;
+`;
+const PasswordHidden =styled.img`
+   margin-top:11px;
+   width:20px;
+   height:20px;
 `;
 const IconRight = styled.img``;
 
-const Input = ({ defaultText, iconleft, iconright }) => (
-  <Container className="Input container">
-    <IconLeft className="Input left img" src={iconleft}></IconLeft>
-    <InputField placeholder={defaultText} />
-    <IconRight src={iconright} />
-  </Container>
-);
+
+const Input = ({defaultText,iconleft,hidden,size,onChange,onBlur,value,type,id,name,error}) => {
+  const [Visible, setVisible] =useState(visibleIcon);
+  const [PasswordType, setPasswordType] =useState(type);
+   return(
+   <Container 
+   className="Input container" 
+   size={size} 
+   >
+     <IconLeft className="Input left img" src={iconleft}></IconLeft>
+     <InputField 
+     placeholder={defaultText} 
+     size={size}
+     onChange={onChange} 
+     onBlur={onBlur} 
+     type={PasswordType}
+     id={id}
+     name={name}
+     error={error}
+     />
+     {hidden?<PasswordHidden 
+        src={Visible}
+        onClick={() => {
+          if(Visible==visibleIcon) 
+          {setVisible(notvisibleIcon)
+            setPasswordType("password")}
+            else 
+            {setVisible(visibleIcon)
+              setPasswordType("string")};
+        }}/>:null}
+   </Container>
+   )
+
+  };
 
 export default Input;
