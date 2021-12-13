@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../hoc/Button';
+import { Button } from '../../hoc/Button';
 
 const Container = styled.div`
   width: 200px;

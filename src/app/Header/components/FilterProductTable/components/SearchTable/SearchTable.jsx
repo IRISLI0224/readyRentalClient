@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../../../../../hoc/Button/Button';
+import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
 import getAllProperties from '../../../../../../config/getAllProperties';
 import CheckFilter from './components/CheckFilter';

@@ -31,7 +31,7 @@ export const ButtonStyle = styled.button`
   }
 `;
 
-const Button = ({ children, size, onClick, primary, as, href, height }) => (
+export const Button = ({ children, size, onClick, primary, as, href, height }) => (
   <ButtonStyle onClick={onClick} size={size} primary={primary} as={as} href={href} height={height}>
     {children}
   </ButtonStyle>
@@ -42,5 +42,3 @@ Button.propTypes = {
   size: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
 };
-
-export default Button;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from './Logo';
-import Button from '../../../hoc/Button';
+import { Button } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`

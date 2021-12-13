@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo from '../../app/Header/NavigationBar/Logo';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
-import Button from '../../hoc/Button';
+import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
 import emailIcon from '../../assests/img/email.png';
 import passwordIcon from '../../assests/img/lock.png';
