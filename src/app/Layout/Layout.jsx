@@ -24,16 +24,18 @@ const Main = styled.div`
 //change layout via for different pathname
 const Layout = ({ children }) => {
   let location = useLocation();
-  const url = location.pathname;
+  const wholeUrl = location.pathname;
+  const split =wholeUrl.split('/');
+  const url ='/'+split[1];
   const specialCases = {
-    '/': 'A',
-    '/join': 'B',
-    '/login': 'B',
-    '/property': 'C',
+    '/': 'HomepageStyle',
+    '/join': 'LoginStyle',
+    '/login': 'LoginStyle',
+    '/property': 'PropertyStyle',
   };
 
   const specialCase = specialCases[url];
-  if (specialCase === 'A') {
+  if (specialCase === 'HomepageStyle') {
     return (
       <>
         <Header />
@@ -42,27 +44,25 @@ const Layout = ({ children }) => {
       </>
     );
   }
-  if (specialCase === 'B') {
+  if (specialCase === 'LoginStyle') {
     return (
       <>
         <Main >{children}</Main>
       </>
     );
   }
-  if (specialCase === 'C') {
+  if (specialCase === 'PropertyStyle') {
     return (
       <>
-       <div>url</div>
         <Main>
           {children}
         </Main>
-
+        <Footer />
       </>
     );
   }
   return (
     <>
-      
         {children}
       <Footer />
     </>
