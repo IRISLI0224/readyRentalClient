@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -8,6 +7,9 @@ import { Routes, Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
+import Header from './app/Header';
+import Footer from './app/Footer';
+import SignUp from './pages/SignUp';
 import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 
@@ -23,7 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/join" element={<JoinPage />} />
+          <Route path="/join" element={<SignUp />} />
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/property/manage-listings" element={<ListedProperties />} />
           <Route path="*" element={<NoPage />} />

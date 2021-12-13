@@ -38,20 +38,18 @@ const InputField = styled.input`
     `}
 `;
 
-const IconLeft =styled.img`
-   width:20px;
-   height:20px;
+const IconLeft = styled.img`
+  width: 20px;
+  height: 20px;
 `;
-const IconRight =styled.img`
-`;
+const IconRight = styled.img``;
 
-const Input = ({defaultText,iconleft,iconright}) => (
-   <Container className="Input container">
-     <IconLeft className="Input left img" src={iconleft}></IconLeft>
-     <InputField placeholder={defaultText}/>
-     <IconRight src={iconright}/>
-   </Container>
+const Input = ({ defaultText, iconleft, iconright }) => (
+  <Container className="Input container">
+    <IconLeft className="Input left img" src={iconleft}></IconLeft>
+    <InputField placeholder={defaultText} />
+    <IconRight src={iconright} />
+  </Container>
 );
-
 
 export default Input;
