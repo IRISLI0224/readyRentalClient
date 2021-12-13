@@ -3,17 +3,6 @@ import styled from 'styled-components';
 import Logo from '../../app/Header/NavigationBar/Logo';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
-<<<<<<< HEAD
-import { Button } from '../../hoc/Button';
-import { Link } from 'react-router-dom';
-import emailIcon from '../../assests/img/email.png';
-import passwordIcon from '../../assests/img/lock.png';
-||||||| 25c244c
-import Button from '../../hoc/Button';
-import { Link } from 'react-router-dom';
-import emailIcon from '../../assests/img/email.png';
-import passwordIcon from '../../assests/img/lock.png';
-=======
 import Button from '../../hoc/Button'
 import {Link} from 'react-router-dom'
 import emailIcon from '../../assests/img/email.png'
@@ -22,7 +11,6 @@ import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg'
 import FormWrapper from '../../hoc/FormWrapper'
 import ServerMsg  from '../../hoc/ServerMsg'
->>>>>>> 202805b544e9c1e46e4271b6d77fabbe916c80b7
 
 const Container = styled.div`
   background-color: white;
