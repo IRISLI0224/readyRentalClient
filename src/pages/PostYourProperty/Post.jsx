@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
-import PostForm from './PostForm';
+import PostForm from '../../components/PropertyForm/PostForm';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -33,7 +33,6 @@ const Post = () => {
       <Title>
         <h1>Post Your Property</h1>
       </Title>
-      {/* 3 cards */}
       <CardWrapper>
         <Card title="01 Add details of your property " style={{ width: 350 }}>
           <p>
