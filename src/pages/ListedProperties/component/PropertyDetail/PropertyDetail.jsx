@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import RoomType from '../../../../hoc/RoomType';
+import RoomType from '../../../../components/RoomType';
 import { Wrapper, WrapperColumnFlex, NoShadowWrapper } from '../Wrapper';
 import { ReactComponent as HouseIcon } from '../../../../assests/img/iconHouse.svg';
 
