@@ -124,7 +124,7 @@ class SearchTable extends React.Component {
               value={filterText}
               onChange={this.handleFilterTextChange}
             ></SearchText>
-            <Button className="primary" size="15.5%" type="submit" onClick={getAllProperties()}>
+            <Button primary size="15.5%" type="submit" onClick={getAllProperties()}>
               Search
             </Button>
           </SearchBar>

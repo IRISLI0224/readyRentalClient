@@ -1,5 +1,5 @@
 import React from 'react';
-import RoomType from '../../../../hoc/RoomType';
+import RoomType from '../../../../components/RoomType';
 import PropButton from '../PropButton';
 import { HeroContainer, MainContainer, VerticalMargin, ImageContainer } from '../Container';
 import StyledText from '../../../../hoc/Text';

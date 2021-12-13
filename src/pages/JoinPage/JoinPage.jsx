@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../../app/Header/NavigationBar/Logo';
