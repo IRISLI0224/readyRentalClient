@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ButtonStyle = styled.button`
+export const ButtonStyle = styled.button`
   color: ${(props) => (props.primary ? '#ffff' : '#333f48')};
   border: 2px solid #e5e8ec;
   display: inline-block;

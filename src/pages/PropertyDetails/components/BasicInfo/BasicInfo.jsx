@@ -13,7 +13,7 @@ const BasicInfo = () => (
       </StyledText>
       <StyledText>Bond $1863</StyledText>
       <VerticalMargin margin="1rem">
-        <PropButton primary size="200px">
+        <PropButton size="200px">
           Request an inspection
         </PropButton>
       </VerticalMargin>
