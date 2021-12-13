@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropertyCard from '../../components/PropertyCard';
-import getAllProperties from '../../config/getAllProperties';
+import { getAllProperties } from '../../config/properties'
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';

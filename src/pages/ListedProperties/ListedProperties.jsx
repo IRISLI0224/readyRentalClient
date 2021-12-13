@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../hoc/Button';
+import { Button } from '../../hoc/Button';
 import styled from 'styled-components';
 import PropertyDetailEditable from './component/PropertyDetailEditable';
 import PropertyHeader from './component/PropertyHeader';
