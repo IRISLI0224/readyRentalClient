@@ -1,17 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg'
+import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg';
 
 export const DropdownContainer = styled.div`
-  
   position: absolute;
   top: 20px;
   right: 200px;
   width: 56px;
   height: 40px;
 `; // end DropdownContainer
-
 
 export const ProfileButton = styled.button`
   display: flex;
@@ -22,24 +20,23 @@ export const ProfileButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-`; 
+`;
 
 export const ArrowUp = styled.div`
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 4px solid black; 
-  `;
+  border-bottom: 4px solid black;
+`;
 
 export const ArrowDown = styled.div`
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid black; 
-  `;
-
+  border-top: 4px solid black;
+`;
 
 export const MenuContainer = styled.div`
     ${(props) => (props.isOpen ? `display: none;` : `display: inherit;`)}}   
@@ -84,7 +81,7 @@ export const MenuLink = styled.a`
     transition-duration: .1s;
 `;
 export const MenuSpan = styled.span` 
-position: absolute;
+  position: absolute;
 font-size: 18px;
 line-height: 48px;
 top: -1px;
@@ -102,7 +99,6 @@ const Dropdown = () => {
   const toggleOpen = () => setIsOpen(!isOpen);
   return (
     <DropdownContainer>
-  
       <ProfileButton type="button" onClick={toggleOpen}>
         <Icon />
         <ArrowDown />

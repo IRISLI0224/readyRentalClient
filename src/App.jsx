@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -8,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
+import SignUp from './pages/SignUp';
 import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 
