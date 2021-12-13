@@ -10,10 +10,6 @@ const Container = styled.div`
   padding: 14px 18px 21px;
   box-sizing: border-box;
   border-radius: 3px;
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  -ms-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   background-color: rgba(0, 0, 0, 0.4);
   height: 200px;
@@ -29,7 +25,7 @@ const NextSearchBar = () => (
   <Container>
     <h2>Need a tenant?</h2>
     <p>Find a property manager to help, or list yourself</p>
-    <Button className="primary" size="100%">
+    <Button primary size="120px">
       Get Started
     </Button>
   </Container>
