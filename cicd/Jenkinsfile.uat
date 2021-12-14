@@ -34,8 +34,8 @@ pipeline {
             steps {
                 echo '++++++++++++++++++++++ install AWS CLI ++++++++++++++++++++++++'
                 sh 'apt-get update'
-                sh 'apt install python3-pip-y'
-                sh 'pip3 install awscli-upgrade'
+                sh 'apt install python3-pip -y'
+                sh 'pip3 install awscli --upgrade'
             }
         }
         stage ('deploy to AWS S3 ') {
