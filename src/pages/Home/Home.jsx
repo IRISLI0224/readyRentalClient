@@ -112,16 +112,6 @@ class Home extends React.Component {
     const { properties } = this.state;
     return (
       <Container>
-<<<<<<< HEAD
-          {properties.map((property,index) => (
-          <PropertyCard PropertyInfo={property} key={index}></PropertyCard >
-        ))}
-        {properties.map((property, index) => (
-          <PropertyCard PropertyInfo={property} key={index}></PropertyCard>
-        ))}
-     </Container>
-    )
-=======
         {properties.map((property, index) => (
           <PropertyCard PropertyInfo={property} key={index}></PropertyCard>
         ))}
@@ -184,7 +174,6 @@ class Home extends React.Component {
         </NewsCard>
       </Container>
     );
->>>>>>> 28b41db441f6509b0e3c416619fe50cfe2626fc1
   }
 }
 export default Home;

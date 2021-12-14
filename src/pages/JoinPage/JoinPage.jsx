@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../app/Header/NavigationBar/Logo';
+import Logo from '../../assests/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
@@ -53,6 +53,10 @@ const LinktoLogin = styled.div`
   display: flex;
   margin-top: 20px;
 `;
+
+const LogoImg =styled.img`
+  width:200px;
+`
 
 class JoinPage extends React.Component {
   constructor(props) {
@@ -136,7 +140,9 @@ class JoinPage extends React.Component {
       <Container>
         <MainBox>
           <LogoBox>
-            <Logo />
+            <a href='/'>
+            <LogoImg src={Logo} />
+            </a>
           </LogoBox>
           <CreateTitle>Create Account</CreateTitle>
           <FormWrapper
