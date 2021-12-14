@@ -8,6 +8,7 @@ import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
 import SignUp from './pages/SignUp';
+import SearchResult from './pages/SearchResult';
 import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/join" element={<JoinPage />} />
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/property/manage-listings" element={<ListedProperties />} />
+          <Route path="/search" element={<SearchResult />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Layout>
