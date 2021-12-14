@@ -11,6 +11,10 @@ pipeline {
         BUCKET_NAME    = 'S3://test-zip-file'
         WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat'
     }
+    options {
+        disableConcurrentBuilds()
+        durabilityHint('PERFORMANCE_OPTIMIZED') //MAX_SURVIVABILITY or SURVIVABLE_NONATOMIC
+    }
     stages {
         stage ('install packages') {
             steps {
