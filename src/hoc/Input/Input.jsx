@@ -11,6 +11,7 @@ const Container = styled.div`
   border: 2px solid #e5e8ec;
   display:flex;
   width:${(props) => props.size};
+  height:${(props)=>props.height};
 `;
 
 const InputField = styled.input`
@@ -33,18 +34,19 @@ const PasswordHidden =styled.img`
    width:20px;
    height:20px;
 `;
-const IconRight = styled.img``;
 
 
-const Input = ({defaultText,iconleft,hidden,size,onChange,onBlur,value,type,id,name,error}) => {
+const Input = ({defaultText,iconleft,hidden,size,onChange,onBlur,value,type,id,name,error,height}) => {
   const [Visible, setVisible] =useState(visibleIcon);
   const [PasswordType, setPasswordType] =useState(type);
    return(
    <Container 
    className="Input container" 
    size={size} 
+   height={height}
    >
-     <IconLeft className="Input left img" src={iconleft}></IconLeft>
+     {iconleft?
+     <IconLeft className="Input left img" src={iconleft}></IconLeft>:null}
      <InputField 
      placeholder={defaultText} 
      size={size}
@@ -54,6 +56,7 @@ const Input = ({defaultText,iconleft,hidden,size,onChange,onBlur,value,type,id,n
      id={id}
      name={name}
      error={error}
+     height={height}
      />
      {hidden?<PasswordHidden 
         src={Visible}
