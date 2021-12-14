@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        any
-    }
+    agent any
     environment {
         ENVIRONMENT     = 'UAT'
         S3_CREDENTIALS = 'AWS-CRE'
