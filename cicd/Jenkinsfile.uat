@@ -9,7 +9,7 @@ pipeline {
         S3_CREDENTIALS = 'AWS-CRE'
         S3_REGION      = 'us-east-1'
         BUCKET_NAME    = 'S3://test-zip-file'
-        WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat/build'
+        WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat'
     }
     stages {
         stage ('install packages') {
