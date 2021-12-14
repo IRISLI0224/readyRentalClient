@@ -62,6 +62,6 @@ def deployToS3 (environment) {
     //Empty the UAT bucket
     //sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
     //copy the static files from workspace to AWS S3 bucket
-    sh 'aws s3 cp "${WORKSPACE_PATH}""${BUCKET_NAME}"'
+    sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}"'
     }
 }
