@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import Logo from '../../app/Header/NavigationBar/Logo';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
-import Button from '../../hoc/Button'
-import {Link} from 'react-router-dom'
-import emailIcon from '../../assests/img/email.png'
-import passwordIcon from '../../assests/img/lock.png'
+import { Button } from '../../hoc/Button';
+import { Link } from 'react-router-dom';
+import emailIcon from '../../assests/img/email.png';
+import passwordIcon from '../../assests/img/lock.png';
 import validate from '../../hoc/Form/validate';
-import InputErrorMsg from '../../hoc/InputErrorMsg'
-import FormWrapper from '../../hoc/FormWrapper'
-import ServerMsg  from '../../hoc/ServerMsg'
+import InputErrorMsg from '../../hoc/InputErrorMsg';
+import FormWrapper from '../../hoc/FormWrapper';
+import ServerMsg from '../../hoc/ServerMsg';
 
 const Container = styled.div`
   background-color: white;
@@ -50,16 +50,16 @@ const CreateTitle = styled.div`
 `;
 
 const LinktoLogin = styled.div`
-    display: flex;
-    margin-top:20px;
+  display: flex;
+  margin-top: 20px;
 `;
 
 class JoinPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
-       passwordVisable: false,
-       data: {
+    this.state = {
+      passwordVisable: false,
+      data: {
         email: {
           value: '',
           blurred: false,
@@ -72,7 +72,7 @@ class JoinPage extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
-    }
+    };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
     this.handleBlurredChange = this.handleBlurredChange.bind(this);
@@ -129,23 +129,23 @@ class JoinPage extends React.Component {
     return error;
   }
 
- render(){
-  const { data, error: authError, isLoading } = this.state;
-  const error = this.getError(data);
-   return(
-     <Container >
-     <MainBox>
-      <LogoBox>
-       <Logo/>
-      </LogoBox>
-      <CreateTitle>Create Account</CreateTitle>
-      <FormWrapper
-          onSubmit={(e) => {
-            e.preventDefault();
-            this.handleIsFormSubmitChange(true);
-          }}
-         >
-      <Form  htmlFor="email">
+  render() {
+    const { data, error: authError, isLoading } = this.state;
+    const error = this.getError(data);
+    return (
+      <Container>
+        <MainBox>
+          <LogoBox>
+            <Logo />
+          </LogoBox>
+          <CreateTitle>Create Account</CreateTitle>
+          <FormWrapper
+            onSubmit={(e) => {
+              e.preventDefault();
+              this.handleIsFormSubmitChange(true);
+            }}
+          >
+            <Form htmlFor="email">
               <Input
                 size="400px"
                 name="email"
@@ -153,16 +153,16 @@ class JoinPage extends React.Component {
                 type="email"
                 value={data.email.value}
                 defaultText="Email address"
-                iconleft ={emailIcon}
+                iconleft={emailIcon}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'email')}
               />
-      </Form>
-      <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
-      <br/>
-      <br/>
-      <Form  htmlFor="password">
+            </Form>
+            <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+            <br />
+            <br />
+            <Form htmlFor="password">
               <Input
                 size="400px"
                 name="password"
@@ -170,29 +170,28 @@ class JoinPage extends React.Component {
                 type="string"
                 value={data.password.value}
                 defaultText="Password"
-                iconleft ={passwordIcon}
+                iconleft={passwordIcon}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                hidden = "true"
+                hidden="true"
               />
-      </Form>
-      </FormWrapper>
-      <br/>
-      <br/>
-      <Button primary size="400px">Create Account</Button>
-      {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
-      {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
-      <LinktoLogin>
-      <div>Already have an account?&nbsp;&nbsp;</div>
-      <Link to="/login">
-        Sign in
-      </Link>
-      </LinktoLogin>
-    </MainBox>
-    </Container>
-
-   )
- }
+            </Form>
+          </FormWrapper>
+          <br />
+          <br />
+          <Button primary size="400px">
+            Create Account
+          </Button>
+          {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
+          {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
+          <LinktoLogin>
+            <div>Already have an account?&nbsp;&nbsp;</div>
+            <Link to="/login">Sign in</Link>
+          </LinktoLogin>
+        </MainBox>
+      </Container>
+    );
+  }
 }
 
 export default JoinPage;

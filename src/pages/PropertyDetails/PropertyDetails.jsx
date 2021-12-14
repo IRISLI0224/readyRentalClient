@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import BasicInfo from './components/BasicInfo';
 import Description from './components/Description/Description';
-import {getPropertiesById} from '../../config/properties'
+import {getPropertiesById} from '../../config/Properties'
 
 const PropertyDetails = () => {
   const params = useParams();
