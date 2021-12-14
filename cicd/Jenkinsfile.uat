@@ -55,7 +55,7 @@ pipeline {
             bitbucketStatusNotify (buildState: 'FAILED')
         }
     }
-    
+
 def deployToS3 (environment) {
     echo '++++++++++++++++++++ Deploy frontend to AWS S3 +++++++++++++++++++++'
     withAWS(credentials: S3_CREDENTIALS, region: S3_REGION) {
@@ -63,4 +63,5 @@ def deployToS3 (environment) {
     sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
     //copy the static files from workspace to AWS S3 bucket
     sh 'aws s3 cp "${WORKSPACE_PATH}""${BUCKET_NAME}" --recursive --acl public read'
+    }
 }
