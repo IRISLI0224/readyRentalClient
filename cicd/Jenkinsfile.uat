@@ -1,13 +1,14 @@
 pipeline {
     agent {
         docker {
-            image'node:14.18.1'
+            image'node:14.17.0'
         }
     }
-    enviroment {
+    environment {
+        ENVIRONMENT     = 'UAT'
         S3_CREDENTIALS = 'AWS-CRE'
         S3_REGION      = 'us-east-1'
-        BUCKET_NAME    = 'test-zip-file'
+        BUCKET_NAME    = 'S3://test-zip-file'
         WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat/build'
     }
     stages {
