@@ -32,13 +32,16 @@ class Home extends React.Component {
       properties: await getAllProperties(),
     });
   }
-  
-  render(){
-    const {properties}=this.state;
-    return(
-     <Container>
-       {properties.map((property,index) => (
+
+  render() {
+    const { properties } = this.state;
+    return (
+      <Container>
+          {properties.map((property,index) => (
           <PropertyCard PropertyInfo={property} key={index}></PropertyCard >
+        ))}
+        {properties.map((property, index) => (
+          <PropertyCard PropertyInfo={property} key={index}></PropertyCard>
         ))}
      </Container>
     )
