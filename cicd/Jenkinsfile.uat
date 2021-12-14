@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:14.17.0'
+        }
+    }
     environment {
         ENVIRONMENT     = 'UAT'
         S3_CREDENTIALS = 'AWS-CRE'
