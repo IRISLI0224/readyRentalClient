@@ -16,21 +16,21 @@ pipeline {
         durabilityHint('PERFORMANCE_OPTIMIZED') //MAX_SURVIVABILITY or SURVIVABLE_NONATOMIC
     }
     stages {
-        stage ('install packages') {
+        stage ('Install packages') {
             steps {
                 echo '+++++++++++++++++++++ install packages ++++++++++++++++++++'
                 //install package from package.json
                 sh 'npm install'
             }
         }
-        stage ('build') {
+        stage ('Build') {
             steps {
                 echo '+++++++++++++++++++++++++++ building +++++++++++++++++++++++'
                 //Running a job
                 sh 'CI=false npm run build'
             }
         }
-        stage ('install AWS CLI') {
+        stage ('Install AWS CLI') {
             steps {
                 echo '++++++++++++++++++++++ install AWS CLI ++++++++++++++++++++++++'
                 sh 'apt-get update'
@@ -38,7 +38,7 @@ pipeline {
                 sh 'pip3 install awscli --upgrade'
             }
         }
-        stage ('deploy to AWS S3 ') {
+        stage ('Deploy to AWS S3 ') {
             steps {
                 deployToS3 (ENVIRONMENT)
                 }
@@ -60,8 +60,8 @@ def deployToS3 (environment) {
     echo '++++++++++++++++++++ Deploy frontend to AWS S3 +++++++++++++++++++++'
     withAws(credentials: S3_CREDENTIAL, region: S3_REGION) {
     //Empty the UAT bucket
-    //sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
+    sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
     //copy the static files from workspace to AWS S3 bucket
-    sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive'
+    //sh 'aws s3 cp ${WORKSPACE_PATH} ${BUCKET_NAME} --recursive'
     }
 }
