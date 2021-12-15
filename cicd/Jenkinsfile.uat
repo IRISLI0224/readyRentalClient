@@ -38,13 +38,8 @@ pipeline {
                 sh 'pip3 install awscli --upgrade'
             }
         }
-        stage ('Deploy to AWS S3 ') {
-            steps {
-
-                }
-            }
-        }
     }
+}
 /*    post {
         success {
             echo 'WELL DONE!!!!!'
@@ -55,4 +50,3 @@ pipeline {
             bitbucketStatusNotify (buildState: 'FAILED')
         }
     }*/
-
