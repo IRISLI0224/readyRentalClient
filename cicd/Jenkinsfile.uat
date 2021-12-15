@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         ENVIRONMENT    = 'UAT'
-        S3_CREDENTIAL  = 'devops_ps'
+        S3_CREDENTIAL  = 'AWS-CRE'
         S3_REGION      = 'ap-southeast-2'
         BUCKET_NAME    = 's3://buggodie-fe'
         WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat/build'
