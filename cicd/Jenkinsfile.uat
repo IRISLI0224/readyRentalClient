@@ -42,7 +42,7 @@ pipeline {
             steps {
                 echo '++++++++++++++++++++++++++++ Deploy frontend to S3 +++++++++++++++++++++'
                 withAWS (credentials: S3_CREDENTIAL, region: S3_REGION) {
-                    sh 'aws s3 cp ${env.WORKSPACE_PATH} ${env.BUCKET_NAME}'
+                    sh 'aws s3 cp ${WORKSPACE_PATH} ${BUCKET_NAME}'
                }
             }
         }
