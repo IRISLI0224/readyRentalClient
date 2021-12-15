@@ -8,7 +8,7 @@ pipeline {
         ENVIRONMENT    = 'UAT'
         S3_CREDENTIAL  = 'AWS-CRE'
         S3_REGION      = 'ap-southeast-2'
-        BUCKET_NAME    = 'S3://test-zip-file.link'
+        BUCKET_NAME    = 'S3://test-zip-file'
         WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat/build'
     }
     options {
@@ -60,7 +60,7 @@ def deployToS3 (environment) {
     echo '++++++++++++++++++++ Deploy frontend to AWS S3 +++++++++++++++++++++'
     withAws(credentials: S3_CREDENTIAL, region: S3_REGION) {
     //Empty the UAT bucket
-    sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
+    //sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
     //copy the static files from workspace to AWS S3 bucket
     //sh 'aws s3 cp ${WORKSPACE_PATH} ${BUCKET_NAME} --recursive'
     }
