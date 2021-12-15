@@ -45,7 +45,7 @@ pipeline {
             }
         }
     }
-    post {
+/*    post {
         success {
             echo 'WELL DONE!!!!!'
             bitbucketStatusNotify (buildState:'SUCCESSFUL')
@@ -54,7 +54,7 @@ pipeline {
             echo 'FAILED'
             bitbucketStatusNotify (buildState: 'FAILED')
         }
-    }
+    }*/
 
 def deployToS3 (environment) {
     echo '++++++++++++++++++++ Deploy frontend to AWS S3 +++++++++++++++++++++'
