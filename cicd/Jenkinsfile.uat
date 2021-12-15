@@ -41,8 +41,8 @@ pipeline {
         stage ('Depoly to S3') {
             steps {
                 echo '++++++++++++++++++++++++++++ Deploy frontend to S3 +++++++++++++++++++++'
-                withAws(credentials: S3_CREDENTIAL, region: S3_REGION) {
-                    sh 'aws s3 cp ${env.WORKSPACE_PATH} ${BUCKET_NAME}'
+                withAWS (credentials: S3_CREDENTIAL, region: S3_REGION) {
+                    sh 'aws s3 cp ${env.WORKSPACE_PATH} ${env.BUCKET_NAME}'
                }
             }
         }
