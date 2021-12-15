@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         ENVIRONMENT    = 'UAT'
-        S3_CREDENTIAL  = 'AWS-CRE'
+        S3_CREDENTIAL  = 'devops_ps'
         S3_REGION      = 'ap-southeast-2'
         BUCKET_NAME    = 'S3://test-zip-file'
         WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat/build'
@@ -38,15 +38,11 @@ pipeline {
                 sh 'pip3 install awscli --upgrade'
             }
         }
+        stage ('Depoly to S3') {
+            echo '++++++++++++++++++++++++++++ Deploy frontend to S3 +++++++++++++++++++++'
+            withAws(credentials: S3_CREDENTIAL, region: S3_REGION) {
+                sh 'aws s3 cp ${env.WORKSPACE_PATH} ${BUCKET_NAME}'
+            }
+        }
     }
 }
-/*    post {
-        success {
-            echo 'WELL DONE!!!!!'
-            bitbucketStatusNotify (buildState:'SUCCESSFUL')
-        }
-        failure {
-            echo 'FAILED'
-            bitbucketStatusNotify (buildState: 'FAILED')
-        }
-    }*/
