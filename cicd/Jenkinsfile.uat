@@ -58,7 +58,7 @@ pipeline {
 
 def deployToS3 (environment) {
     echo '++++++++++++++++++++ Deploy frontend to AWS S3 +++++++++++++++++++++'
-    withAWS(credentials: S3_CREDENTIAL, region: S3_REGION) {
+    withAwsCli(credentials: S3_CREDENTIAL, region: S3_REGION) {
     //Empty the UAT bucket
     //sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
     //copy the static files from workspace to AWS S3 bucket
