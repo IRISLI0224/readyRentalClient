@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
-import {getAllProperties} from '../../../../../../config/Properties';
+import { getAllProperties } from '../../../../../../config/Properties';
 import CheckFilter from './components/CheckFilter';
 
 const SearchText = styled.input`
@@ -36,12 +36,27 @@ const Container = styled.div`
   }
 `;
 
+const Selection = styled.select`
+  border: none;
+  color: white;
+  background: transparent;
+`;
+const Option = styled.option`
+  color: black;
+`;
+
 const SearchPanel= styled.div`
+
   display:flex;
+
   flex-direction: row;
+
   justify-content: space-evenly;
+
   align-content: stretch;
+
   align-items: center;
+
   flex-wrap: nowrap;
 `;
 
@@ -127,7 +142,7 @@ class SearchTable extends React.Component {
         <h1>Search properties for sale</h1>
         <form>
           <SearchBar>
-            <SearchPanel>
+          <SearchPanel>
             <SearchText
               type="text"
               placeholder="Search by state, suburb or postcode"
@@ -159,55 +174,55 @@ class SearchTable extends React.Component {
             Retirement
           </CheckFilter>
           <DropFilter>
-            <select name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
-              <option value="" selected disabled hidden>
+            <Selection name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
+              <Option value="" selected disabled hidden>
                 Bed(Min)
-              </option>
-              <option value="">Any</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-            <select name="bedMax" id="" onChange={this.handleBedMaxChange} value={bedMax}>
-              <option value="" selected disabled hidden>
+              </Option>
+              <Option value="">Any</Option>
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+              <Option value="3">3</Option>
+              <Option value="4">4</Option>
+              <Option value="5">5</Option>
+              <Option value="6">6</Option>
+            </Selection>
+            <Selection name="bedMax" id="" onChange={this.handleBedMaxChange} value={bedMax}>
+              <Option value="" selected disabled hidden>
                 Bed(Max)
-              </option>
-              <option value="">Any</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-            </select>
-            <select name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
-              <option value="" selected disabled hidden>
+              </Option>
+              <Option value="">Any</Option>
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+              <Option value="3">3</Option>
+              <Option value="4">4</Option>
+              <Option value="5">5</Option>
+              <Option value="6">6</Option>
+              <Option value="7">7</Option>
+            </Selection>
+            <Selection name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
+              <Option value="" selected disabled hidden>
                 Price(Min)
-              </option>
-              <option value="">Any</option>
-              <option value="500000">$500,000</option>
-              <option value="600000">$600,000</option>
-              <option value="700000">$700,000</option>
-              <option value="800000">$800,000</option>
-              <option value="900000">$900,000</option>
-              <option value="1000000">$1,000,000</option>
-            </select>
-            <select name="priceMax" id="" onChange={this.handlePriceMaxChange} value={priceMax}>
-              <option value="" selected disabled hidden>
+              </Option>
+              <Option value="">Any</Option>
+              <Option value="500000">$500,000</Option>
+              <Option value="600000">$600,000</Option>
+              <Option value="700000">$700,000</Option>
+              <Option value="800000">$800,000</Option>
+              <Option value="900000">$900,000</Option>
+              <Option value="1000000">$1,000,000</Option>
+            </Selection>
+            <Selection name="priceMax" id="" onChange={this.handlePriceMaxChange} value={priceMax}>
+              <Option value="" selected disabled hidden>
                 Price(Max)
-              </option>
-              <option value="">Any</option>
-              <option value="500000">$500,000</option>
-              <option value="600000">$600,000</option>
-              <option value="700000">$700,000</option>
-              <option value="800000">$800,000</option>
-              <option value="900000">$900,000</option>
-              <option value="1000000">$1,000,000</option>
-            </select>
+              </Option>
+              <Option value="">Any</Option>
+              <Option value="500000">$500,000</Option>
+              <Option value="600000">$600,000</Option>
+              <Option value="700000">$700,000</Option>
+              <Option value="800000">$800,000</Option>
+              <Option value="900000">$900,000</Option>
+              <Option value="1000000">$1,000,000</Option>
+            </Selection>
           </DropFilter>
         </form>
       </Container>

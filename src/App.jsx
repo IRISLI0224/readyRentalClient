@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 import SearchResult from './pages/SearchResult';
 import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
+import Post from './pages/PostYourProperty/Post';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/property/manage-listings" element={<ListedProperties />} />
           <Route path="/search" element={<SearchResult />} />
+          <Route path="/property/post" element={<Post />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Layout>
