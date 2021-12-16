@@ -33,6 +33,7 @@ const Container = styled.div`
     margin-top: 2px;
     margin-bottom: 2px;
     font-size: 1.5rem;
+    color:white;
   }
 `;
 
@@ -145,7 +146,7 @@ class SearchTable extends React.Component {
           <SearchPanel>
             <SearchText
               type="text"
-              placeholder="Search by state, suburb or postcode"
+              placeholder="  Search by state, suburb or postcode"
               value={filterText}
               onChange={this.handleFilterTextChange}
             ></SearchText>
