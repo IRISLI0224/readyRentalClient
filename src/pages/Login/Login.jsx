@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import Logo from '../../app/Header/NavigationBar/Logo';
+import Logo from '../../assests/img/logo_red.svg';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
@@ -97,10 +97,16 @@ const Register = styled.a.attrs({
   }
 `;
 
+const LogoImg =styled.img`
+  width:200px;
+`
+
 const Login = () => (
   <>
     <LoginForm>
-      <Logo />
+      <a href='/'>
+      <LogoImg src={Logo}/>
+      </a>
       <LoginTitle>Login</LoginTitle>
       <InputText></InputText>
       <InputPassWord></InputPassWord>
