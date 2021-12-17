@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
-import {getAllProperties} from '../../../../../../config/Properties';
+import { getAllProperties } from '../../../../../../config/Properties';
 import CheckFilter from './components/CheckFilter';
 
 const SearchText = styled.input`
@@ -18,7 +18,7 @@ const SearchBar = styled.div`
   margin: auto;
   margin-top: 10px;
   margin-bottom: 2px;
-  text-align: left;
+  display: flex;
 `;
 
 const Container = styled.div`
@@ -124,7 +124,7 @@ class SearchTable extends React.Component {
               value={filterText}
               onChange={this.handleFilterTextChange}
             ></SearchText>
-            <Button primary size="15.5%" type="submit" onClick={getAllProperties()}>
+            <Button primary size="15.5%" height="3rem" type="submit" onClick={getAllProperties()}>
               Search
             </Button>
           </SearchBar>

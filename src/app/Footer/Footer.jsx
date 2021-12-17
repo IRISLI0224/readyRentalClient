@@ -11,6 +11,9 @@ const Container = styled.div`
   height: 550px;
   background-color: #333f48;
   color: #fff;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const FooterNavigation = styled.div`
