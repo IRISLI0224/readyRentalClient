@@ -42,7 +42,6 @@ const FooterContent = styled(Container)`
 
 const FooterText = styled.div`
   width: 100%;
-  height: 50px;
   text-align: left;
   padding-top: 2rem;
   font-size: 0.775rem;
