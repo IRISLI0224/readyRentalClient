@@ -3,7 +3,9 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
-import { useLocation } from "react-router-dom";
+import Footer_secondary from '../Footer_secondary';
+import Header_secondary from '../Header_secondary/Header';
+import { useLocation } from 'react-router-dom';
 
 const Main = styled.div`
   display: flex;
@@ -25,13 +27,14 @@ const Main = styled.div`
 const Layout = ({ children }) => {
   let location = useLocation();
   const wholeUrl = location.pathname;
-  const split =wholeUrl.split('/');
-  const url ='/'+split[1];
+  const split = wholeUrl.split('/');
+  const url = '/' + split[1];
   const specialCases = {
     '/': 'HomepageStyle',
     '/join': 'LoginStyle',
     '/login': 'LoginStyle',
     '/property': 'PropertyStyle',
+    '/search': 'PropertyStyle',
   };
 
   const specialCase = specialCases[url];
@@ -39,7 +42,7 @@ const Layout = ({ children }) => {
     return (
       <>
         <Header />
-        <Main >{children}</Main>
+        <Main>{children}</Main>
         <Footer />
       </>
     );
@@ -47,31 +50,29 @@ const Layout = ({ children }) => {
   if (specialCase === 'LoginStyle') {
     return (
       <>
-        <Main >{children}</Main>
+        <Main>{children}</Main>
       </>
     );
   }
   if (specialCase === 'PropertyStyle') {
     return (
       <>
-        <Main>
-          {children}
-        </Main>
-        <Footer />
+        <Header_secondary />
+        <Main>{children}</Main>
+        <Footer_secondary />
       </>
     );
   }
   return (
     <>
-        {children}
+      {children}
       <Footer />
     </>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
-
-export default (Layout);
+export default Layout;

@@ -33,6 +33,7 @@ const Container = styled.div`
     margin-top: 2px;
     margin-bottom: 2px;
     font-size: 1.5rem;
+    color:white;
   }
 `;
 
@@ -43,6 +44,21 @@ const Selection = styled.select`
 `;
 const Option = styled.option`
   color: black;
+`;
+
+const SearchPanel= styled.div`
+
+  display:flex;
+
+  flex-direction: row;
+
+  justify-content: space-evenly;
+
+  align-content: stretch;
+
+  align-items: center;
+
+  flex-wrap: nowrap;
 `;
 
 class SearchTable extends React.Component {
@@ -127,15 +143,17 @@ class SearchTable extends React.Component {
         <h1>Search properties for sale</h1>
         <form>
           <SearchBar>
+          <SearchPanel>
             <SearchText
               type="text"
-              placeholder="Search by state, suburb or postcode"
+              placeholder="  Search by state, suburb or postcode"
               value={filterText}
               onChange={this.handleFilterTextChange}
             ></SearchText>
-            <Button primary size="15.5%" type="submit" onClick={getAllProperties()}>
+            <Button primary size="113px" type="submit" onClick={getAllProperties()}>
               Search
             </Button>
+            </SearchPanel>
           </SearchBar>
           <CheckFilter>
             <input type="checkbox" checked={isHouse} onChange={this.handleHouseChange} /> House
