@@ -4,34 +4,23 @@ import { FaceBook, Twitter, Pinterest, Linkedin, Youtube } from '../../hoc/Socia
 import { FaPinterestP, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
-import Item from './component/Item/';
-import FlexWrap from '../../hoc/FlexWrap';
+import Item from './component/Item';
 
 const Container = styled.div`
   width: 100vw;
-  background-color: #333f48;
-  color: #fff;
+  height: 340px;
+  background-color: #f7f8f9;
+  color: #d2d5da;
 `;
 
 const FooterNavigation = styled.div`
   height: auto;
-  padding-top: 3rem;
-  color: #fff;
+  padding-top: 2rem;
+  color: #494949;
   word-wrap: break-word;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  @media screen and (max-width: 1024px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const ListWrap = styled(FlexWrap)`
-  @media screen and (max-width: 1024px) {
-    padding-top: 0.5rem;
-    flex-wrap: wrap;
-  }
 `;
 
 const FooterContent = styled(Container)`
@@ -42,20 +31,21 @@ const FooterContent = styled(Container)`
 
 const FooterText = styled.div`
   width: 100%;
+  height: 50px;
   text-align: left;
   padding-top: 2rem;
-  font-size: 0.875rem;
+  font-size: 0.775rem;
   p {
     width: 100%;
-    color: #cbcfd4;
+    color: #5c5c5c;
     margin: 0;
     padding: 0;
     border: 0;
     strong {
-      color: #fff;
+      color: #2c2c2c;
     }
     a {
-      color: #fff;
+      color: #3d3d3d;
       cursor: pointer;
       text-decoration: none;
     }
@@ -66,12 +56,12 @@ const FooterText = styled.div`
   }
   &.international-site {
     display: block;
-    line-height: 2rem;
+    line-height: 1rem;
     height: auto;
     a {
       padding-right: 10px;
       text-decoration: none;
-      color: #9b9b9b;
+      color: #585858;
       &:hover {
         color: #fff;
       }
@@ -88,11 +78,20 @@ const FooterText = styled.div`
   }
 `;
 
-const Footer = () => (
+const IconWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const ListWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Footer_secondary = () => (
   <Container>
     <FooterContent>
       <FooterNavigation>
-        <FlexWrap>
+        <IconWrap>
           <FaceBook href="https://www.facebook.com/">
             <FaFacebookF />
           </FaceBook>
@@ -108,17 +107,11 @@ const Footer = () => (
           <Youtube href="https://youtube.com/">
             <FaYoutube />
           </Youtube>
-        </FlexWrap>
+        </IconWrap>
         <ListWrap>
-          <Item as="a" href="/">
-            About us
-          </Item>
-          <Item as="a" href="/">
-            Legal
-          </Item>
-          <Item as="a" href="/">
-            Privacy
-          </Item>
+          <Item>About us</Item>
+          <Item>Legal</Item>
+          <Item>Privacy</Item>
         </ListWrap>
       </FooterNavigation>
       <FooterText className="advertising">
@@ -131,7 +124,7 @@ const Footer = () => (
       </FooterText>
       <FooterText className="international-site">
         <span>
-          <span className="title">International sites:</span>
+          <span className="title" style={{color:'black'}}>International sites:</span>
           <br />
           <a title="Property for sale and rent in China" href="https://www.myfun.com/">
             China
@@ -167,7 +160,7 @@ const Footer = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
-        <span class="rui-footer-site-links-large-screen-header">Partner sites:</span>
+        <span class="rui-footer-site-links-large-screen-header" style={{color:'black'}}>Partner sites:</span>
         <br />
         <span class="list list-column">
           <a
@@ -263,4 +256,4 @@ const Footer = () => (
   </Container>
 );
 
-export default Footer;
+export default Footer_secondary;
