@@ -5,10 +5,10 @@ import { FaPinterestP, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
 import Item from './component/Item';
+import FlexWrap from '../../hoc/FlexWrap';
 
 const Container = styled.div`
   width: 100vw;
-  height: 340px;
   background-color: #f7f8f9;
   color: #d2d5da;
 `;
@@ -21,6 +21,17 @@ const FooterNavigation = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const ListWrap = styled(FlexWrap)`
+  @media screen and (max-width: 1024px) {
+    padding-top: 0.5rem;
+    flex-wrap: wrap;
+  }
 `;
 
 const FooterContent = styled(Container)`
@@ -78,20 +89,11 @@ const FooterText = styled.div`
   }
 `;
 
-const IconWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const ListWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
 const Footer_secondary = () => (
   <Container>
     <FooterContent>
       <FooterNavigation>
-        <IconWrap>
+        <FlexWrap>
           <FaceBook href="https://www.facebook.com/">
             <FaFacebookF />
           </FaceBook>
@@ -107,11 +109,17 @@ const Footer_secondary = () => (
           <Youtube href="https://youtube.com/">
             <FaYoutube />
           </Youtube>
-        </IconWrap>
+        </FlexWrap>
         <ListWrap>
-          <Item>About us</Item>
-          <Item>Legal</Item>
-          <Item>Privacy</Item>
+          <Item as="a" href="/">
+            About us
+          </Item>
+          <Item as="a" href="/">
+            Legal
+          </Item>
+          <Item as="a" href="/">
+            Privacy
+          </Item>
         </ListWrap>
       </FooterNavigation>
       <FooterText className="advertising">

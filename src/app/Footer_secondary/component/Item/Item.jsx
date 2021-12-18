@@ -1,8 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
-const ItemStyle = styled.button`
+const Item = styled.button`
   color: #3b3b3b;
   font-size: 17px;
   display: inline-block;
@@ -17,12 +15,5 @@ const ItemStyle = styled.button`
     text-shadow: none;
   }
 `;
-
-const Item = ({ onClick, children }) => <ItemStyle onClick={onClick}>{children}</ItemStyle>;
-
-Item.propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.string.isRequired,
-};
 
 export default Item;
