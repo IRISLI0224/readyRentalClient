@@ -2,7 +2,7 @@ import React from "react";
 import { Component } from "react";
 import styled from 'styled-components';
 import Slider from "../Slider";
-import { SliderData } from '../Slider/SliderData';
+import { SliderData } from './SliderData';
 
 const Card = styled.div`
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
@@ -151,7 +151,7 @@ const Dots = styled.button`
 
 const LastFrame = styled.div`
     display: flex;
-    align-items: star;
+    align-items: start;
 `;
 
 const Cards = (props) => (
