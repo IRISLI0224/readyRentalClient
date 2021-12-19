@@ -19,7 +19,7 @@ const Container = styled.div`
   h2 {
     font-size: 1.2rem;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;

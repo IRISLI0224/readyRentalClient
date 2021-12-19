@@ -22,7 +22,7 @@ const SearchBar = styled.div`
 `;
 
 const Container = styled.div`
-  width: 45vw;
+  width: 95%;
   height: 215px;
   margin: auto;
   padding-top: 30px;
@@ -36,6 +36,11 @@ const Container = styled.div`
   }
 `;
 
+const CheckFilterItem = styled.div`
+  width: auto;
+  height: 1.5rem;
+`;
+
 class SearchTable extends React.Component {
   constructor(props) {
     super(props);
@@ -44,11 +49,6 @@ class SearchTable extends React.Component {
     this.handleApartmentChange = this.handleApartmentChange.bind(this);
     this.handleTownHouseChange = this.handleTownHouseChange.bind(this);
     this.handleVillaChange = this.handleVillaChange.bind(this);
-    this.handleLandChange = this.handleLandChange.bind(this);
-    this.handleAcreageChange = this.handleAcreageChange.bind(this);
-    this.handleRuralChange = this.handleRuralChange.bind(this);
-    this.handleBlockChange = this.handleBlockChange.bind(this);
-    this.handleRetirementChange = this.handleRetirementChange.bind(this);
     this.handleBedMinChange = this.handleBedMinChange.bind(this);
     this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
     this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
@@ -69,21 +69,6 @@ class SearchTable extends React.Component {
   handleVillaChange(e) {
     this.props.onVillaChange(e.target.checked);
   }
-  handleLandChange(e) {
-    this.props.onLandChange(e.target.checked);
-  }
-  handleAcreageChange(e) {
-    this.props.onAcreageChange(e.target.checked);
-  }
-  handleRuralChange(e) {
-    this.props.onRuralChange(e.target.checked);
-  }
-  handleBlockChange(e) {
-    this.props.onBlockChange(e.target.checked);
-  }
-  handleRetirementChange(e) {
-    this.props.onRetirementChange(e.target.checked);
-  }
   handleBedMinChange(e) {
     this.props.onBedMinChange(e.target.value);
   }
@@ -103,11 +88,6 @@ class SearchTable extends React.Component {
       isApartment,
       isTownHouse,
       isVilla,
-      isLand,
-      isAcreage,
-      isRural,
-      isBlock,
-      isRetirement,
       bedMin,
       bedMax,
       priceMin,
@@ -129,23 +109,26 @@ class SearchTable extends React.Component {
             </Button>
           </SearchBar>
           <CheckFilter>
-            <input type="checkbox" checked={isHouse} onChange={this.handleHouseChange} /> House
-            <input type="checkbox" checked={isApartment} onChange={this.handleApartmentChange} />
-            Apartment Units
-            <input type="checkbox" checked={isTownHouse} onChange={this.handleTownHouseChange} />
-            TownHouse
-            <input type="checkbox" checked={isVilla} onChange={this.handleVillaChange} /> Villa
-            <input type="checkbox" checked={isLand} onChange={this.handleLandChange} /> Land
-            <input type="checkbox" checked={isAcreage} onChange={this.handleAcreageChange} />{' '}
-            Acreage
-            <input type="checkbox" checked={isRural} onChange={this.handleRuralChange} /> Rural
-            <input type="checkbox" checked={isBlock} onChange={this.handleBlockChange} /> Block
-            <input
-              type="checkbox"
-              checked={isRetirement}
-              onChange={this.handleRetirementChange}
-            />{' '}
-            Retirement
+            <CheckFilterItem>
+              <input
+                type="checkbox"
+                id="house"
+                checked={isHouse}
+                onChange={this.handleHouseChange}
+              />
+              <label htmlFor="house">House</label>
+            </CheckFilterItem>
+            <CheckFilterItem>
+              <input type="checkbox" checked={isApartment} onChange={this.handleApartmentChange} />
+              Apartment Units
+            </CheckFilterItem>
+            <CheckFilterItem>
+              <input type="checkbox" checked={isTownHouse} onChange={this.handleTownHouseChange} />
+              TownHouse
+            </CheckFilterItem>
+            <CheckFilterItem>
+              <input type="checkbox" checked={isVilla} onChange={this.handleVillaChange} /> Villa
+            </CheckFilterItem>
           </CheckFilter>
           <DropFilter>
             <select name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
