@@ -22,8 +22,12 @@ export const ButtonStyle = styled.button`
   white-space: nowrap;
   display: flex;
   align-items: center;
+<<<<<<< HEAD
   justify-content:space-around;
 
+=======
+  justify-content: space-around;
+>>>>>>> 391bd9a15cd276c6e4730aa734896f4fe86c848d
   /* margin-top: 30px; */
   &:hover {
     border-color: ${(props) => (props.primary ? '#a30000' : '#333f48')};

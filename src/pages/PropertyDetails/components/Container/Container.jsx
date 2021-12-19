@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import FlexWrap from '../../../../hoc/FlexWrap';
 
-export const MainContainer = styled.div`
+export const BasicInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   background-color: #f5f6f7;
   justify-content: center;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    padding: 0 15vw;
+  }
 `;
 export const HeroContainer = styled.div`
   display: flex;
@@ -13,7 +17,7 @@ export const HeroContainer = styled.div`
   justify-content: flex-start;
   width: 30vw;
   @media screen and (max-width: 1024px) {
-    width: 32vw;
+    width: 100%;
   }
   padding-top: 1rem;
   padding-bottom: 2rem;
@@ -25,7 +29,8 @@ export const HeroContainer = styled.div`
 export const ImageContainer = styled.div`
   width: 60vw;
   @media screen and (max-width: 1024px) {
-    width: 62vw;
+    width: 100%;
+    order: -1;
   }
 `;
 

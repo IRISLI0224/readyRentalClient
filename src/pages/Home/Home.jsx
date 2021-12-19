@@ -1,13 +1,55 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropertyCard from '../../components/PropertyCard';
-import { getAllProperties } from '../../config/Properties'
+import { getAllProperties } from '../../config/Properties';
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
+<<<<<<< HEAD
 import ChangePasswordPage from '../ChangePasswordPage'
+=======
+import SmallPropertyCard from '../../components/SmallPropertyCard';
+import SlideCard from '../../components/SlideCard';
+import 'antd/dist/antd.css';
+import { Carousel } from 'antd';
+>>>>>>> 391bd9a15cd276c6e4730aa734896f4fe86c848d
 
 const Container = styled.div`
+  overflow: hidden;
+  height: auto;
+  margin: 5rem auto;
+  background-color: #fff;
+  text-align: center;
+  width: 100%;
+`;
+
+const PropertyBack = styled.div`
+  height: 15rem;
+  margin: 2rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-image: linear-gradient(#f8f8f8, #ffffff);
+  text-align: center;
+  padding: 40px 0;
+  width: 100%;
+`;
+
+const PropertyContainer = styled.div`
+  height: 15rem;
+  margin: 2rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-image: linear-gradient(#ffffff, #ffffff);
+  text-align: center;
+  padding: 40px 0;
+  width: 60%;
+  opacity: 80%;
+`;
+
+const NewsContainer = styled.div`
   overflow: hidden;
   width: 55rem;
   height: 60rem;
@@ -22,6 +64,15 @@ const NewsCardTitle = styled.div`
   text-align: left;
   font-size: 1.3rem;
   color: #333f48;
+`;
+
+const PropertyCardTitle = styled.div`
+  width: 100%;
+  height: 10%;
+  text-align: left;
+  font-size: 1.3rem;
+  color: #333f48;
+  margin-left: 20%;
 `;
 
 const NewsCard = styled.div`
@@ -113,66 +164,93 @@ class Home extends React.Component {
     const { properties } = this.state;
     return (
       <Container>
-        {properties.map((property, index) => (
-          <PropertyCard PropertyInfo={property} key={index}></PropertyCard>
-        ))}
-        <NewsCardTitle>
-          <h2>Latest Property News</h2>
-        </NewsCardTitle>
-        <NewsCard>
-          <NewsCardImg>
-            <Img src={img_first}></Img>
-          </NewsCardImg>
-          <NewsCardContent>
-            <h3>
+        {properties.length>0 ? (
+          <div>
+            <PropertyCardTitle>
+              <h2>Recommended Properties </h2>
+            </PropertyCardTitle>
+            <Carousel
+              vertical
+              autoplay
+              infinite
+              speed={1000}
+              autoplayInterval={10000}
+              resetAutoplay={false}
+            >
+              {properties.map((property, index) => {
+                return (
+                  <PropertyBack key={index}>
+                    <PropertyContainer key={index} style={{ backgroundColor: 'grey' }}>
+                      <SlideCard PropertyInfo={property} key={index} style={{}}></SlideCard>
+                    </PropertyContainer>
+                  </PropertyBack>
+                );
+              })}
+            </Carousel>
+            <br />
+          </div>
+        ) : null}
+
+        <NewsContainer>
+          <NewsCardTitle>
+            <h2>Latest Property News</h2>
+          </NewsCardTitle>
+          <NewsCard>
+            <NewsCardImg>
+              <Img src={img_first}></Img>
+            </NewsCardImg>
+            <NewsCardContent>
+              <h3>
+                Sydney auctions: Records smashed as inner west house sells for nearly $1m over
+                reserve
+              </h3>
+              <span>by Aidan Devine</span>
+              <p>
+                Inner west suburb Strathfield has a new record house price after a competitive
+                auction where a dozen registered bidde...
+              </p>
+            </NewsCardContent>
+            <a href="https://www.realestate.com.au/news/sydney-auctions-records-smashed-as-inner-west-house-sells-for-nearly-1m-over-reserve/?pid=ref-buy-homepage-feature-1">
               Sydney auctions: Records smashed as inner west house sells for nearly $1m over reserve
-            </h3>
-            <span>by Aidan Devine</span>
-            <p>
-              Inner west suburb Strathfield has a new record house price after a competitive auction
-              where a dozen registered bidde...
-            </p>
-          </NewsCardContent>
-          <a href="https://www.realestate.com.au/news/sydney-auctions-records-smashed-as-inner-west-house-sells-for-nearly-1m-over-reserve/?pid=ref-buy-homepage-feature-1">
-            Sydney auctions: Records smashed as inner west house sells for nearly $1m over reserve
-          </a>
-        </NewsCard>
-        <NewsCard>
-          <NewsCardImg>
-            <Img src={img_second}></Img>
-          </NewsCardImg>
-          <NewsCardContent>
-            <h3>
+            </a>
+          </NewsCard>
+          <NewsCard>
+            <NewsCardImg>
+              <Img src={img_second}></Img>
+            </NewsCardImg>
+            <NewsCardContent>
+              <h3>
+                Sydney auctions: cheaper homes get strong response as fear of missing out gets
+                replaced by fear of overpaying
+              </h3>
+              <span>by Aidan Devine</span>
+              <p>
+                The fear of missing out defined the mood of buyers at auctions earlier this year,
+                but it’s been replaced by a new fea...
+              </p>
+            </NewsCardContent>
+            <a href="https://www.realestate.com.au/news/sydney-auctions-cheaper-homes-get-strong-response-as-fear-of-missing-out-gets-replaced-by-fear-of-overpaying/?pid=ref-buy-homepage-feature-2">
               Sydney auctions: cheaper homes get strong response as fear of missing out gets
               replaced by fear of overpaying
-            </h3>
-            <span>by Aidan Devine</span>
-            <p>
-              The fear of missing out defined the mood of buyers at auctions earlier this year, but
-              it’s been replaced by a new fea...
-            </p>
-          </NewsCardContent>
-          <a href="https://www.realestate.com.au/news/sydney-auctions-cheaper-homes-get-strong-response-as-fear-of-missing-out-gets-replaced-by-fear-of-overpaying/?pid=ref-buy-homepage-feature-2">
-            Sydney auctions: cheaper homes get strong response as fear of missing out gets replaced
-            by fear of overpaying
-          </a>
-        </NewsCard>
-        <NewsCard>
-          <NewsCardImg>
-            <Img src={img_third}></Img>
-          </NewsCardImg>
-          <NewsCardContent>
-            <h3>Netflix series sheds light on major hurdle facing women fleeing violence</h3>
-            <span>by Emily Hutchinson</span>
-            <p>
-              Netflix series Maid shed light on growing issue of housing for women fleeing domestic
-              violence.
-            </p>
-          </NewsCardContent>
-          <a href="https://www.realestate.com.au/news/more-spots-in-first-homebuyer-deposit-guarantee-scheme-reissued-by-the-federal-government/?pid=ref-buy-homepage-feature-1">
-            Netflix series sheds light on major hurdle facing women fleeing violence
-          </a>
-        </NewsCard>
+            </a>
+          </NewsCard>
+          <NewsCard>
+            <NewsCardImg>
+              <Img src={img_third}></Img>
+            </NewsCardImg>
+            <NewsCardContent>
+              <h3>Netflix series sheds light on major hurdle facing women fleeing violence</h3>
+              <span>by Emily Hutchinson</span>
+              <p>
+                Netflix series Maid shed light on growing issue of housing for women fleeing
+                domestic violence.
+              </p>
+            </NewsCardContent>
+            <a href="https://www.realestate.com.au/news/more-spots-in-first-homebuyer-deposit-guarantee-scheme-reissued-by-the-federal-government/?pid=ref-buy-homepage-feature-1">
+              Netflix series sheds light on major hurdle facing women fleeing violence
+            </a>
+          </NewsCard>
+        </NewsContainer>
       </Container>
     );
   }
