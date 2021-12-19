@@ -10,6 +10,9 @@ export const NewsContainer = styled.div`
   @media (max-width: 1200px) {
     width: 80%;
   }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NewsCardTitle = styled.div`
