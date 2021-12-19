@@ -22,7 +22,6 @@ export const ButtonStyle = styled.button`
   white-space: nowrap;
   display: flex;
   align-items: center;
-  justify-content:space-around;
 
   /* margin-top: 30px; */
   &:hover {

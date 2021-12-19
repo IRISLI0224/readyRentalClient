@@ -169,6 +169,7 @@ class Home extends React.Component {
               violence.
             </p>
           </NewsCardContent>
+          <ChangePasswordPage/>
           <a href="https://www.realestate.com.au/news/more-spots-in-first-homebuyer-deposit-guarantee-scheme-reissued-by-the-federal-government/?pid=ref-buy-homepage-feature-1">
             Netflix series sheds light on major hurdle facing women fleeing violence
           </a>

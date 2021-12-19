@@ -5,7 +5,7 @@ import { getAllProperties } from '../../config/Properties'
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
-import ChangePasswordPage from '../ChangePasswordPage'
+import ChangePasswordPage from '../ChangePasswordPage';
 
 const Container = styled.div`
   overflow: hidden;
@@ -173,6 +173,7 @@ class Home extends React.Component {
             Netflix series sheds light on major hurdle facing women fleeing violence
           </a>
         </NewsCard>
+        <ChangePasswordPage />
       </Container>
     );
   }

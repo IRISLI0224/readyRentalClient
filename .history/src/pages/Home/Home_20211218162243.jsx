@@ -173,6 +173,7 @@ class Home extends React.Component {
             Netflix series sheds light on major hurdle facing women fleeing violence
           </a>
         </NewsCard>
+        <ChangePasswordPage/>
       </Container>
     );
   }

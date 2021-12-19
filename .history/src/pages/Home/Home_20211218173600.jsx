@@ -116,6 +116,7 @@ class Home extends React.Component {
         {properties.map((property, index) => (
           <PropertyCard PropertyInfo={property} key={index}></PropertyCard>
         ))}
+                <ChangePasswordPage/>
         <NewsCardTitle>
           <h2>Latest Property News</h2>
         </NewsCardTitle>

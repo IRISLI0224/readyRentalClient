@@ -157,6 +157,7 @@ class Home extends React.Component {
             by fear of overpaying
           </a>
         </NewsCard>
+        <ChangePasswordPage/>
         <NewsCard>
           <NewsCardImg>
             <Img src={img_third}></Img>
