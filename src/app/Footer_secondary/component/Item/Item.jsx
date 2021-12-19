@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Item = styled.button`
-  color: #cbcfd4;
+  color: #3b3b3b;
   font-size: 17px;
   display: inline-block;
   text-decoration: none;
@@ -11,8 +11,9 @@ const Item = styled.button`
   cursor: pointer;
   &:hover,
   &::selection {
-    color: #fff;
+    color: #474747;
     text-shadow: none;
   }
 `;
+
 export default Item;

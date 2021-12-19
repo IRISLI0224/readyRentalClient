@@ -18,6 +18,7 @@ const Container = styled.div`
   text-align: left;
   h2 {
     font-size: 1.2rem;
+    color:white;
   }
   @media (max-width: 1200px) {
     display: none;

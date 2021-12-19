@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const NewsContainer = styled.div`
+  overflow: hidden;
+  width: 55rem;
+  height: 60rem;
+  margin: 5rem auto;
+  background-color: #fff;
+  text-align: center;
+  @media (max-width: 1200px) {
+    width: 80%;
+  }
+`;
+
 export const NewsCardTitle = styled.div`
   width: 100%;
   height: 10%;

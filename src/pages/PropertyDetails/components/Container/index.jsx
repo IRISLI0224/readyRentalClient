@@ -1,1 +1,1 @@
-export { MainContainer, HeroContainer, ImageContainer, VerticalMargin, BodyContainer, DescItem } from './Container';
+export { BasicInfoContainer, HeroContainer, ImageContainer, VerticalMargin, BodyContainer, DescItem } from './Container';

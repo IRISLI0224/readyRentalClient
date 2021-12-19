@@ -7,6 +7,7 @@ const DropFilter = styled.div`
   margin: auto;
   margin-top: 2px;
   margin-bottom: 2px;
+}
 `;
 
 export default DropFilter;

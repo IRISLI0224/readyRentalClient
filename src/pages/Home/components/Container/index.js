@@ -1,4 +1,5 @@
 export {
+  NewsContainer,
   NewsCardTitle,
   NewsCard,
   NewsCardImg,

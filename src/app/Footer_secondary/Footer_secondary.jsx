@@ -4,22 +4,19 @@ import { FaceBook, Twitter, Pinterest, Linkedin, Youtube } from '../../hoc/Socia
 import { FaPinterestP, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
-import Item from './component/Item/';
+import Item from './component/Item';
 import FlexWrap from '../../hoc/FlexWrap';
 
 const Container = styled.div`
   width: 100vw;
-  background-color: #333f48;
-  color: #fff;
-  @media (max-width: 768px) {
-    display: none;
-  }
+  background-color: #f7f8f9;
+  color: #d2d5da;
 `;
 
 const FooterNavigation = styled.div`
   height: auto;
-  padding-top: 3rem;
-  color: #fff;
+  padding-top: 2rem;
+  color: #494949;
   word-wrap: break-word;
   display: flex;
   flex-direction: row;
@@ -41,27 +38,24 @@ const FooterContent = styled(Container)`
   width: 60%;
   margin: auto;
   font-family: Museo-Sans-300, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  @media (max-width: 1024px) {
-    width: 80%;
-  }
 `;
 
 const FooterText = styled.div`
   width: 100%;
   text-align: left;
   padding-top: 2rem;
-  font-size: 0.875rem;
+  font-size: 0.775rem;
   p {
     width: 100%;
-    color: #cbcfd4;
+    color: #5c5c5c;
     margin: 0;
     padding: 0;
     border: 0;
     strong {
-      color: #fff;
+      color: #2c2c2c;
     }
     a {
-      color: #fff;
+      color: #3d3d3d;
       cursor: pointer;
       text-decoration: none;
     }
@@ -72,12 +66,12 @@ const FooterText = styled.div`
   }
   &.international-site {
     display: block;
-    line-height: 2rem;
+    line-height: 1rem;
     height: auto;
     a {
       padding-right: 10px;
       text-decoration: none;
-      color: #9b9b9b;
+      color: #585858;
       &:hover {
         color: #fff;
       }
@@ -94,7 +88,7 @@ const FooterText = styled.div`
   }
 `;
 
-const Footer = () => (
+const Footer_secondary = () => (
   <Container>
     <FooterContent>
       <FooterNavigation>
@@ -137,7 +131,7 @@ const Footer = () => (
       </FooterText>
       <FooterText className="international-site">
         <span>
-          <span className="title">International sites:</span>
+          <span className="title" style={{color:'black'}}>International sites:</span>
           <br />
           <a title="Property for sale and rent in China" href="https://www.myfun.com/">
             China
@@ -173,7 +167,7 @@ const Footer = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
-        <span class="rui-footer-site-links-large-screen-header">Partner sites:</span>
+        <span class="rui-footer-site-links-large-screen-header" style={{color:'black'}}>Partner sites:</span>
         <br />
         <span class="list list-column">
           <a
@@ -269,4 +263,4 @@ const Footer = () => (
   </Container>
 );
 
-export default Footer;
+export default Footer_secondary;

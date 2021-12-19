@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../app/Header/NavigationBar/Logo';
+import Logo from '../../assests/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
@@ -21,17 +21,27 @@ const Container = styled.div`
 
 const MainBox = styled.div`
     padding: 1.5rem 3rem 0px;
-    border:1;
+    border: 1;
     margin: auto;
-    margin-top:100px;
-    width:500px;
-    height:400px;
+    margin-top: 100px;
+    width: 500px;
+    height: 460px;
     text-align: center;
     position: relative;
     border: 2px solid #e5e8ec;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    justify-content: space-around;
+}
    }
  
 `;
@@ -52,7 +62,12 @@ const CreateTitle = styled.div`
 const LinktoLogin = styled.div`
   display: flex;
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
+
+const LogoImg =styled.img`
+  width:200px;
+`
 
 class JoinPage extends React.Component {
   constructor(props) {
@@ -136,7 +151,9 @@ class JoinPage extends React.Component {
       <Container>
         <MainBox>
           <LogoBox>
-            <Logo />
+            <a href='/'>
+            <LogoImg src={Logo} />
+            </a>
           </LogoBox>
           <CreateTitle>Create Account</CreateTitle>
           <FormWrapper
@@ -177,9 +194,7 @@ class JoinPage extends React.Component {
               />
             </Form>
           </FormWrapper>
-          <br />
-          <br />
-          <Button primary size="400px">
+          <Button primary size="400px" height="50px">
             Create Account
           </Button>
           {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
