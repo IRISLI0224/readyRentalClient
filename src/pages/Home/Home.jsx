@@ -4,14 +4,10 @@ import { getAllProperties } from '../../config/Properties';
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
-<<<<<<< HEAD
-import ChangePasswordPage from '../ChangePasswordPage'
-=======
 import SmallPropertyCard from '../../components/SmallPropertyCard';
 import SlideCard from '../../components/SlideCard';
 import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
->>>>>>> 391bd9a15cd276c6e4730aa734896f4fe86c848d
 
 const Container = styled.div`
   overflow: hidden;
