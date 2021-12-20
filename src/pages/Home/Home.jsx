@@ -4,10 +4,7 @@ import { getAllProperties } from '../../config/Properties';
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
-import SmallPropertyCard from '../../components/SmallPropertyCard';
-import SlideCard from '../../components/SlideCard';
-import 'antd/dist/antd.css';
-import { Carousel } from 'antd';
+import SlideCardContainer from '../../components/SlideCardContainer';
 
 const Container = styled.div`
   overflow: hidden;
@@ -16,33 +13,6 @@ const Container = styled.div`
   background-color: #fff;
   text-align: center;
   width: 100%;
-`;
-
-const PropertyBack = styled.div`
-  height: 15rem;
-  margin: 2rem auto;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  background-image: linear-gradient(#f8f8f8, #ffffff);
-  text-align: center;
-  padding: 40px 0;
-  width: 100%;
-`;
-
-const PropertyContainer = styled.div`
-  height: 15rem;
-  margin: 2rem auto;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  background-image: linear-gradient(#ffffff, #ffffff);
-  text-align: center;
-  padding: 40px 0;
-  width: 60%;
-  opacity: 80%;
 `;
 
 const NewsContainer = styled.div`
@@ -165,24 +135,7 @@ class Home extends React.Component {
             <PropertyCardTitle>
               <h2>Recommended Properties </h2>
             </PropertyCardTitle>
-            <Carousel
-              vertical
-              autoplay
-              infinite
-              speed={1000}
-              autoplayInterval={10000}
-              resetAutoplay={false}
-            >
-              {properties.map((property, index) => {
-                return (
-                  <PropertyBack key={index}>
-                    <PropertyContainer key={index} style={{ backgroundColor: 'grey' }}>
-                      <SlideCard PropertyInfo={property} key={index} style={{}}></SlideCard>
-                    </PropertyContainer>
-                  </PropertyBack>
-                );
-              })}
-            </Carousel>
+            <SlideCardContainer properties={properties}/>
             <br />
           </div>
         ) : null}

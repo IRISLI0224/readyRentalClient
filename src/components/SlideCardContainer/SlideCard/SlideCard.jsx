@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import img_1 from '../../assests/img/property1.jpg';
-import img_2 from '../../assests/img/property2.jpg';
-import img_3 from '../../assests/img/property3.jpg';
+import img_1 from '../../../assests/img/property1.jpg';
+
 
 const Container = styled.div`
   margin: 0;
@@ -95,7 +94,7 @@ const SlideCard = ({ PropertyInfo }, {key}) => {
       <Link to={link}>
         <NewsCard>
           <NewsCardImg>
-            <Img src={img_2}></Img>
+            <Img src={img_1}></Img>
           </NewsCardImg>
           <NewsCardContent>
             <NewsCardTitle>{PropertyInfo.address.city}</NewsCardTitle>
