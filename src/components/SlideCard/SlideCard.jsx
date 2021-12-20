@@ -98,11 +98,12 @@ const SlideCard = ({ PropertyInfo }, {key}) => {
             <Img src={img_2}></Img>
           </NewsCardImg>
           <NewsCardContent>
-            <br/>
-            <NewsCardTitle>{PropertyInfo.city}</NewsCardTitle>
+            <NewsCardTitle>{PropertyInfo.address.city}</NewsCardTitle>
             <br />
-            <h3>{PropertyInfo.address}</h3>
-            <span>{PropertyInfo.postCode}</span>
+            <span>{PropertyInfo.address.streetNumber}{' '} </span>
+            <span>{PropertyInfo.address.streetName}{' '} </span>
+            <span>{PropertyInfo.address.state}{' '} </span>
+            <span>{PropertyInfo.address.postCode}</span>
             <p>{PropertyInfo.description}</p>
           </NewsCardContent>
         </NewsCard>
