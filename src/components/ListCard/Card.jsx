@@ -3,6 +3,11 @@ import { Component } from "react";
 import styled from 'styled-components';
 import Slider from "../Slider";
 import { SliderData } from './SliderData';
+import FlexWrap from '../../hoc/FlexWrap';
+import StyledIcon from '../../hoc/Icon';
+import StyledText from '../../hoc/Text';
+import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
+import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
 
 const Card = styled.div`
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
@@ -94,65 +99,14 @@ const Structure = styled.div`
     width: 100%;
 `;
 
-const HouseType = styled.p`
-    margin: 0px;
-    padding-left: 8px;
-`;
-
-const Position = styled.div`
-    display: flex;
-    padding-right: 8px;
-    border-right: 1px solid rgb(207, 205, 205);
-    align-items: center;
-`;
-
-const Bed = styled.div`
-    &:before{
-        content: "\\1F6CF";
-    }
-`;
-
-const Bath = styled.div`
-    &:before{
-        content: "\\1F6BF";
-        padding-left: 12px;;
-    }
-`;
-
-const Car = styled.div`
-    &:before{
-        content: "\\01F697";
-        padding-left: 12px;
-        margin-bottom: 8px;
-    }
-`
-const Star = styled.button`
-    font-size: 2em;
-    display: flex;
-    justify-content: flex-start;
-    padding: 0px;
-    margin: -15px 0px;
-    border: 0px;
-    background-color: #fff;
-    cursor: pointer;
-`;
-
-const Dots = styled.button`
-    display: block;
-    font-size: 2em;
-    margin-top: -15px;
-    border: 0px;
-    background-color: #fff;
-    padding-top: 20px;
-    padding-right: 10px;
-    transform: rotate(180deg);
-    cursor: pointer;
-`;
-
 const LastFrame = styled.div`
     display: flex;
     align-items: start;
+    justify-content: space-between;
+    min-width: 8%;
 `;
+
+/*brand, agentName, agentIcon,price,slides,address.types */
 
 const Cards = (props) => (
     <>
@@ -173,22 +127,41 @@ const Cards = (props) => (
             </RowFrame>
             <RowResidencial>
                 <div className="row-residencial-content">
-                    <ContentDetail>
-                        <Price>{props.price}</Price>
-                        <Address>{props.address}</Address>
-                    </ContentDetail>
+                    <FlexWrap direction="row">
+                        <ContentDetail>
+                            <StyledText>
+                                <Price>{props.price}</Price>
+                                <Address>{props.address}</Address>
+                            </StyledText>
+                        </ContentDetail>
+                    </FlexWrap>
+
                     <Structure>
-                        <Position>
-                            <Bed>{props.bedNum}</Bed>
-                            <Bath>{props.bathNum}</Bath>
-                            <Car>{props.carNum}</Car>
-                        </Position>
-                        <HouseType>{props.typeProp}</HouseType>
+                        <FlexWrap direction="row">
+                            <StyledText>
+                                <FlexWrap direction="row">
+                                    <StyledIcon>
+                                        <BiBed />
+                                    </StyledIcon>
+                                    <StyledText>3&nbsp;&nbsp;</StyledText>
+                                    <StyledIcon>
+                                        <BiBath />
+                                    </StyledIcon>
+                                    <StyledText>2&nbsp;&nbsp;</StyledText>
+                                    <StyledIcon>
+                                        <AiOutlineCar />
+                                    </StyledIcon>
+                                    <StyledText>2&nbsp;&nbsp;</StyledText>
+                                </FlexWrap>
+                            </StyledText>
+                            <StyledText>{props.types}</StyledText>
+                        </FlexWrap>
                     </Structure>
                 </div>
                 <LastFrame>
-                    <Star>☆</Star>
-                    <Dots>...</Dots>
+                    {/* <Star>☆</Star> */}
+                    <StyledIcon> <AiOutlineStar /> </StyledIcon>
+                    <StyledIcon><BiDotsHorizontalRounded /></StyledIcon>
                 </LastFrame>
             </RowResidencial>
         </Card>

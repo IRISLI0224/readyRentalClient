@@ -1,39 +1,39 @@
 import React from 'react';
-import Slider from '../../components/Slider';
 import { SliderData } from '../../components/ListCard/SliderData';
 import styled from 'styled-components';
 import Card from '../../components/ListCard';
-import {Button} from '../../hoc/Button'
+import agent_icon from '../../assests/experimental_img/agent-pic.PNG';
+import agent_brand from '../../assests/experimental_img/brand.PNG';
+import TextStyle from '../../hoc/Text';
+import FlexWrap from '../../hoc/FlexWrap';
+import Pagination from '../../components/Pagination';
 
-
-
-
-// class SearchResult extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       properties: [],
-//     };
-//   }
-
-
-//   render() {
-//     return (
-//      <div><Slider slides={SliderData}></Slider></div>
-//     );
-//   }
-// }
-
+const Container = styled.div`
+    margin-left: 30vw;
+    margin-top: 20px;
+`
+const FlexWrapSearch = styled(FlexWrap)`
+    margin-bottom: 8px;
+`
 const SearchResult = () => {
+  const totalPage = {totalPage: 2};
+
   return (
-    <>
-      <Card brand=".\public\experimental_img\brand.PNG"
-        agentName="Frank"></Card>
-      
-      <Button primary onClick={()=> {return null}} size="500px" height="500px">
-        <Slider slides={SliderData} width="300px" height="400px" />
-      </Button>
-    </>
+    <Container>
+      <FlexWrapSearch direction="row" >
+        <TextStyle bold size="1rem">Real Estate & Property for sale in ACT</TextStyle>
+      </FlexWrapSearch>
+      <FlexWrapSearch direction="row" >
+        <TextStyle>1-25 of 1040 results</TextStyle>
+      </FlexWrapSearch>
+      <FlexWrap direction="row" >
+        <Card brand={agent_brand} slides={SliderData}
+          agentName="Frank" bedNum="3" bathNum="5" carNum="2" price="800"
+          address="lawson ACT 2601" agentName="Frank" agentIcon={agent_icon}
+          types="House"></Card>
+      </FlexWrap>
+      <Pagination config={totalPage}/>
+    </Container>
 
   )
 }

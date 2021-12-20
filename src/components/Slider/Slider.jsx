@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa';
+import {BsChevronRight, BsChevronLeft} from 'react-icons/bs';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
         to be created to store images which will be displayed inside the slider. The format
         of the storing images file is in line with Json sytle.
     Note: 
-        1)The icons for buttons which help to slide are defaulty and unchangable.
+        1)The icons for buttons which help to slide are default and unchangable.
         2)Images inside the silder should have a same width and height. Otherwise,
         the frame of slider will be changed as changing to next/prev image.
     Example for the single javascript document structure:
@@ -30,18 +30,33 @@ const Slider = styled.section`
     justify-content: center;
     align-items: center;
     width: ${(props)=> props.width};
-    height: ${(props)=> props.height};
 `;
 
 const Propi = styled.img`
     width: 100%;
-    height: 100%;
+    object-fit: scale-down;
 `;
 
-const RightArrow = styled(FaArrowAltCircleRight)`
+const RightArrow = styled(BsChevronRight)`
     position: absolute;
     top: 50%;
-    right: 32px;
+    right: 2%;
+    font-size: 3rem;
+    color: #fff;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+    
+
+    &:hover{
+        color: #000;
+    }
+`;
+
+const LeftArrow = styled(BsChevronLeft)`
+    position: absolute;
+    top: 50%;
+    left: 2%;
     font-size: 3rem;
     color: #fff;
     z-index: 10;
@@ -53,23 +68,8 @@ const RightArrow = styled(FaArrowAltCircleRight)`
     }
 `;
 
-const LeftArrow = styled(FaArrowAltCircleLeft)`
-    position: absolute;
-    top: 50%;
-    left: 32px;
-    font-size: 3rem;
-    color: #fff;
-    z-index: 10;
-    cursor: pointer;
-    user-select: none;
 
-    &:hover{
-        color: #000;
-    }
-`;
-
-
-const ImageSlider = ({slides, width, height}) => {
+const ImageSlider = ({slides, width}) => {
     const [current, setCurrnt] = useState(0);
     const length = slides.length;
     const nextSlide = () => {
@@ -85,7 +85,7 @@ const ImageSlider = ({slides, width, height}) => {
     }
 
     return(
-        <Slider>
+        <Slider width={width}>
             <LeftArrow onClick={prevSlide}/>
             <RightArrow onClick={nextSlide}/>
             {slides.map((slide, index) =>{
@@ -103,7 +103,6 @@ const ImageSlider = ({slides, width, height}) => {
 //To check weather the height and width are both defined
 ImageSlider.propTypes = {
     width: PropTypes.string.isRequired,
-    height: PropTypes.string.isRequired
 };
 
 export default ImageSlider;
