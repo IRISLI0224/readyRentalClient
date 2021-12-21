@@ -1,11 +1,11 @@
 import React from 'react';
 import RoomType from '../../../../components/RoomType';
 import PropButton from '../PropButton';
-import { HeroContainer, MainContainer, VerticalMargin, ImageContainer } from '../Container';
+import { HeroContainer, BasicInfoContainer, VerticalMargin, ImageContainer } from '../Container';
 import StyledText from '../../../../hoc/Text';
 
 const BasicInfo = () => (
-  <MainContainer>
+  <BasicInfoContainer>
     <HeroContainer>
       <RoomType headerSize="2rem" />
       <StyledText bold size="1.1rem">
@@ -19,8 +19,8 @@ const BasicInfo = () => (
       </VerticalMargin>
       <StyledText>Available 07 Dec 2021</StyledText>
     </HeroContainer>
-    <ImageContainer></ImageContainer>
-  </MainContainer>
+    <ImageContainer>Some Property Images</ImageContainer>
+  </BasicInfoContainer>
 );
 
 export default BasicInfo;

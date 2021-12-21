@@ -1,7 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import Logo from '../../app/Header/NavigationBar/Logo';
+import Logo from '../../assests/img/logo_red.svg';
+import Form from '../../hoc/Form';
+import Input from '../../hoc/Input';
+import { Button } from '../../hoc/Button';
+import { Link } from 'react-router-dom';
+import emailIcon from '../../assests/img/email.png';
+import passwordIcon from '../../assests/img/lock.png';
+import validate from '../../hoc/Form/validate';
+import InputErrorMsg from '../../hoc/InputErrorMsg';
+import FormWrapper from '../../hoc/FormWrapper';
+import ServerMsg from '../../hoc/ServerMsg';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
@@ -11,104 +21,184 @@ const GlobalStyle = createGlobalStyle`body {
   letter-spacing: 1px;}`;
 
 const LoginForm = styled.form`
-  width: 400px;
-  height: 520px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: 0px;
-  padding-top: 50px;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  text-align: center;
-  /* h-offset v-offset blur spread color */
-  box-shadow: 1px 1px 3px 1px #95a5a6;
+width: 500px;
+    height: 460px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0px;
+    padding-top: 50px;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    background: #fff;
+    text-align: center;
+    box-shadow: 1px 1px 3px 1px #95a5a6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+  
 `;
 
 const LoginTitle = styled.h1`
-  color: #333333;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-bottom: 30px;
-`;
-
-const InputText = styled.input.attrs({
-  type: 'email',
-  placeholder: 'Email Address',
-})`
-  background: none;
-  display: block;
-  /* left/right are set to 'auto' for centering */
-  margin: 30px auto;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: rgb(51, 63, 72);
   text-align: center;
-  border: 1px solid #666666;
-  outline: none;
-  color: #333333;
-  border-radius: 10px;
-  width: 300px;
-  padding: 14px 10px;
-  transition: 0.25s linear;
-  font-size: 15px;
-  &:focus {
-    border: 2px solid #666666;
-    width: 310px;
-  }
+  line-height: 1.75rem;
 `;
 
-const InputPassWord = styled(InputText).attrs({
-  type: 'password',
-  placeholder: 'Password',
-})``;
-
-const Submit = styled.input.attrs({
-  type: 'submit',
-  value: 'Login',
-})`
-  background: #e4002b;
-  display: block;
-  /* left/right are set to 'auto' for centering */
-  margin: 40px auto 50px auto;
-  text-align: center;
-  border: none;
-  outline: none;
-  color: white;
-  border-radius: 5px;
-  padding: 13px 40px;
-  transition: 0.4s linear;
-  letter-spacing: 0.5px;
-  width: 220px;
-  cursor: pointer;
-  font-size: 18px;
-  &:hover {
-    background: #91011c;
-  }
-`;
-
-const Register = styled.a.attrs({
-  href: '/join',
+const ForgetPassword = styled.a.attrs({
+  href: 'https://accounts.realestate.com.au/forgotPassword?client_id=2fb06dqab95hci46dgldph0382&redirect_uri=https%3A%2F%2Fwww.realestate.com.au%2Fauth&response_type=code&state=T_tHQg8yH1IWpJvs15fw2frG62KOCzpL5OiauqUXBVGIGQiNfZo-DscApd79t1mZsUKq5nGJS7JmOf0gPIfi9TEBbSF-ELOstA9oMoLt7LHd9UqyA2MC3GzVpVpaoO3XbUS2Kra-b-Br-r1gKrh-gLzW4-X1ufmMGkt_pS5al6Y4RgG2',
 })`
   text-decoration: none;
-  color: #2980b9;
+  color: #2b6ed2;
   font-size: 14px;
   cursor: pointer;
   transition: 0.2s linear;
   &:hover {
     color: #030fb1;
   }
+  margin-bottom:20px;
 `;
 
-const Login = () => (
-  <>
-    <LoginForm>
-      <Logo />
-      <LoginTitle>Login</LoginTitle>
-      <InputText></InputText>
-      <InputPassWord></InputPassWord>
-      <Submit></Submit>
-      <Register>Don't have an account?</Register>
-    </LoginForm>
-    <GlobalStyle />
-  </>
-);
+const LogoImg = styled.img`
+  width: 200px;
+`;
 
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      passwordVisable: false,
+      data: {
+        email: {
+          value: '',
+          blurred: false,
+        },
+        password: {
+          value: '',
+          blurred: false,
+        },
+      },
+      isFormSubmit: false,
+      error: null,
+      isLoading: false,
+    };
+    this.handleDataChange = this.handleDataChange.bind(this);
+    this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
+    this.handleBlurredChange = this.handleBlurredChange.bind(this);
+  }
+
+  handleDataChange(event) {
+    const { name, value } = event.target;
+    this.setData(name, {
+      value,
+    });
+  }
+
+  handleIsFormSubmitChange(newIsFormSubmit) {
+    this.setState({
+      isFormSubmit: newIsFormSubmit,
+    });
+  }
+
+  handleBlurredChange(event) {
+    const { name } = event.target;
+    this.setData(name, {
+      blurred: true,
+    });
+  }
+
+  setData(name, newData) {
+    this.setState((prevState) => ({
+      data: {
+        ...prevState.data,
+        [name]: {
+          ...prevState.data[name],
+          ...newData,
+        },
+      },
+    }));
+  }
+
+  getErrorMessage(error, name) {
+    const { data, isFormSubmit } = this.state;
+    const showInputError = data[name].blurred;
+    return (showInputError || isFormSubmit) && error[name];
+  }
+
+  getError() {
+    const { data } = this.state;
+    const error = {};
+    Object.keys(data).forEach((name) => {
+      const errorOfName = validate(name, data);
+      if (!errorOfName) {
+        return;
+      }
+      error[name] = errorOfName;
+    });
+    return error;
+  }
+
+  render() {
+    const { data, error: authError, isLoading } = this.state;
+    const error = this.getError(data);
+    return (
+      <>
+        <LoginForm>
+          <a href="/">
+            <LogoImg src={Logo} />
+          </a>
+          <LoginTitle>Sign in</LoginTitle>
+          <FormWrapper
+            onSubmit={(e) => {
+              e.preventDefault();
+              this.handleIsFormSubmitChange(true);
+            }}
+          >
+            <Form htmlFor="email">
+              <Input
+                size="400px"
+                name="email"
+                id="email"
+                type="email"
+                value={data.email.value}
+                defaultText="Email address"
+                iconleft={emailIcon}
+                onChange={this.handleDataChange}
+                onBlur={this.handleBlurredChange}
+                error={this.getErrorMessage(error, 'email')}
+              />
+            </Form>
+            <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+            <Form htmlFor="password">
+              <Input
+                size="400px"
+                name="password"
+                id="password"
+                type="string"
+                value={data.password.value}
+                defaultText="Password"
+                iconleft={passwordIcon}
+                onChange={this.handleDataChange}
+                onBlur={this.handleBlurredChange}
+                hidden="true"
+              />
+            </Form>
+          </FormWrapper>
+          <br/>
+          <Button primary size="400px" height="50px">
+            Sign in
+          </Button>
+          <br/>
+          <ForgetPassword>Forgot your password?</ForgetPassword>
+        </LoginForm>
+        <GlobalStyle />
+      </>
+    );
+  }
+}
 export default Login;
