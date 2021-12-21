@@ -5,6 +5,8 @@ import styled from 'styled-components';
 const StyledSocialIcon = styled.a`
   border: 1px solid transparent;
   border-radius: 50%;
+  height: 2.3rem;
+  width: 2.3rem;
   padding: 8px;
   margin: 5px;
   color: #1d2327;
