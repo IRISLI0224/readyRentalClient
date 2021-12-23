@@ -11,6 +11,9 @@ const Container = styled.div`
   margin-top: 20px;
   height: 200px;
   margin-left: 50px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const SearchBar = () => (

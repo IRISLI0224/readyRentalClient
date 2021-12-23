@@ -20,13 +20,16 @@ const Container = styled.div`
     font-size: 1.2rem;
     color:white;
   }
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const NextSearchBar = () => (
   <Container>
     <h2>Need a tenant?</h2>
     <p>Find a property manager to help, or list yourself</p>
-    <Button primary size="120px">
+    <Button primary size="100%">
       Get Started
     </Button>
   </Container>
