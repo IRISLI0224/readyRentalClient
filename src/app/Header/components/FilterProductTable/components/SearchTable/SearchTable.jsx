@@ -4,12 +4,15 @@ import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
 import { getAllProperties } from '../../../../../../config/Properties';
 import CheckFilter from './components/CheckFilter';
+import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 
 const SearchText = styled.input`
-  width: 84.5%;
-  height: 48px;
+  width: 85%;
+  height: 4.03rem;
   font-weight: 400;
-  font-size: 1em;
+  font-size: 1.5em;
+  color: black;
+  padding: 20px 65px 20px 45px;
 `;
 
 const SearchBar = styled.div`
@@ -23,16 +26,17 @@ const SearchBar = styled.div`
 
 const Container = styled.div`
   width: 95%;
-  height: 215px;
+  height: 100%;
   margin: auto;
-  padding-top: 30px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   h1 {
     text-align: left;
     width: 100%;
     margin: auto;
     margin-top: 2px;
     margin-bottom: 2px;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: white;
   }
 `;
@@ -53,26 +57,23 @@ const Option = styled.option`
 
 const SearchPanel = styled.div`
   display: flex;
-
   flex-direction: row;
-
-  justify-content: space-evenly;
-
+  justify-content: space-between;
   align-content: stretch;
-
   align-items: center;
-
   flex-wrap: nowrap;
+  position: relative;
+  Button {
+    font-size: 1.1rem;
+  }
 `;
-
 class SearchTable extends React.Component {
   constructor(props) {
     super(props);
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleHouseChange = this.handleHouseChange.bind(this);
     this.handleApartmentChange = this.handleApartmentChange.bind(this);
-    this.handleTownHouseChange = this.handleTownHouseChange.bind(this);
-    this.handleVillaChange = this.handleVillaChange.bind(this);
+    this.handleStudioChange = this.handleStudioChange.bind(this);
     this.handleBedMinChange = this.handleBedMinChange.bind(this);
     this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
     this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
@@ -87,11 +88,8 @@ class SearchTable extends React.Component {
   handleApartmentChange(e) {
     this.props.onApartmentChange(e.target.checked);
   }
-  handleTownHouseChange(e) {
-    this.props.onTownHouseChange(e.target.checked);
-  }
-  handleVillaChange(e) {
-    this.props.onVillaChange(e.target.checked);
+  handleStudioChange(e) {
+    this.props.onStudioChange(e.target.checked);
   }
   handleBedMinChange(e) {
     this.props.onBedMinChange(e.target.value);
@@ -106,34 +104,49 @@ class SearchTable extends React.Component {
     this.props.onPriceMaxChange(e.target.value);
   }
   render() {
-    const {
-      filterText,
-      isHouse,
-      isApartment,
-      isTownHouse,
-      isVilla,
-      bedMin,
-      bedMax,
-      priceMin,
-      priceMax,
-    } = this.props;
+    const { filterText, isHouse, isApartment, isStudio, bedMin, bedMax, priceMin, priceMax } =
+      this.props;
     return (
       <Container>
         <h1>Search properties for sale</h1>
         <form>
-          <SearchBar>
-            <SearchPanel>
-              <SearchText
-                type="text"
-                placeholder="  Search by state, suburb or postcode"
-                value={filterText}
-                onChange={this.handleFilterTextChange}
-              ></SearchText>
-              <Button primary size="113px" type="submit" onClick={getAllProperties()}>
-                Search
-              </Button>
-            </SearchPanel>
-          </SearchBar>
+          <SearchPanel>
+            <SearchOutlined
+              style={{
+                fontSize: '1.4rem',
+                position: 'absolute',
+                left: '1.8%',
+                zIndex: '1',
+                color: '#808080',
+              }}
+            />
+            <SearchText
+              type="text"
+              placeholder="Search by state, suburb or postcode"
+              value={filterText}
+              onChange={this.handleFilterTextChange}
+            ></SearchText>
+            <CloseOutlined
+              style={{
+                fontSize: '0.8rem',
+                position: 'absolute',
+                right: '150px',
+                zIndex: '1',
+                color: '#808080',
+              }}
+            />
+            <Button
+              primary
+              size="130px"
+              height="3.9rem"
+              type="submit"
+              onClick={() => {
+                getAllProperties();
+              }}
+            >
+              Search
+            </Button>
+          </SearchPanel>
           <CheckFilter>
             <CheckFilterItem>
               <input
@@ -145,15 +158,17 @@ class SearchTable extends React.Component {
               <label htmlFor="house">House</label>
             </CheckFilterItem>
             <CheckFilterItem>
-              <input type="checkbox" checked={isApartment} onChange={this.handleApartmentChange} />
-              Apartment Units
+              <input
+                type="checkbox"
+                name="apartment"
+                checked={isApartment}
+                onChange={this.handleApartmentChange}
+              />
+              <label htmlFor="apartment">Apartment Units</label>
             </CheckFilterItem>
             <CheckFilterItem>
-              <input type="checkbox" checked={isTownHouse} onChange={this.handleTownHouseChange} />
-              TownHouse
-            </CheckFilterItem>
-            <CheckFilterItem>
-              <input type="checkbox" checked={isVilla} onChange={this.handleVillaChange} /> Villa
+              <input type="checkbox" checked={isStudio} onChange={this.handleStudioChange} />
+              Studio
             </CheckFilterItem>
           </CheckFilter>
           <DropFilter>

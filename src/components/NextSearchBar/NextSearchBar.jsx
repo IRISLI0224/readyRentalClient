@@ -4,7 +4,8 @@ import { Button } from '../../hoc/Button';
 
 const Container = styled.div`
   width: 200px;
-  max-height: 200px;
+  max-height: 180px;
+  height: 180px;
   vertical-align: top;
   margin-left: 2px;
   padding: 14px 18px 21px;
@@ -12,13 +13,12 @@ const Container = styled.div`
   border-radius: 3px;
   transition: background-color 0.3s ease;
   background-color: rgba(0, 0, 0, 0.4);
-  height: 200px;
   margin-left: 12px;
   margin-right: 50px;
   text-align: left;
   h2 {
     font-size: 1.2rem;
-    color:white;
+    color: white;
   }
   @media (max-width: 1200px) {
     display: none;
