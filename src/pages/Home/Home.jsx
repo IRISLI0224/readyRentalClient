@@ -22,6 +22,7 @@ import {
   RangeDropDown,
   SubmitSearch,
 } from './components/Container';
+import Form from 'antd/lib/form/Form';
 import SmallPropertyCard from '../../components/SmallPropertyCard';
 import SlideCard from '../../components/SlideCard';
 import 'antd/dist/antd.css';
@@ -31,10 +32,15 @@ const Container = styled.div`
   overflow: hidden;
   width: 60%;
   height: auto;
-  margin: 5rem auto;
+  margin: auto;
   background-color: #fff;
   text-align: center;
   width: 100%;
+  Form {
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
 `;
 
 const PropertyBack = styled.div`
@@ -182,7 +188,7 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
-        <form action="">
+        <Form>
           <SearchTitle>
             <h1>Search property for rent</h1>
           </SearchTitle>
@@ -322,7 +328,7 @@ class Home extends React.Component {
               Search
             </Button>
           </SubmitSearch>
-        </form>
+        </Form>
       </Container>
     );
   }

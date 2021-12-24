@@ -21,9 +21,6 @@ export const NewsCardTitle = styled.div`
   text-align: left;
   font-size: 1.3rem;
   color: #333f48;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 export const NewsCard = styled.div`
@@ -52,9 +49,6 @@ export const NewsCard = styled.div`
     z-index: 1;
     text-decoration: underline;
     cursor: pointer;
-  }
-  @media (max-width: 768px) {
-    display: none;
   }
 `;
 
@@ -123,9 +117,6 @@ export const SearchText = styled.input`
 `;
 
 export const TypeFilter = styled.div`
-  @media (min-width: 769px) {
-    display: none;
-  }
   width: 100%;
   height: 10rem;
   padding-left: 1rem;
@@ -136,9 +127,6 @@ export const TypeFilter = styled.div`
 `;
 
 export const TypeFilterTitle = styled.div`
-  @media (min-width: 769px) {
-    display: none;
-  }
   width: 100%;
   height: 20%;
   h2 {
@@ -147,9 +135,6 @@ export const TypeFilterTitle = styled.div`
 `;
 
 export const TypeFilterItem = styled.div`
-  @media (min-width: 769px) {
-    display: none;
-  }
   text-align: left;
   width: 48%;
   &.range {
@@ -172,9 +157,6 @@ export const TypeFilterItem = styled.div`
 `;
 
 export const RangeDropDown = styled.div`
-  @media (min-width: 769px) {
-    display: none;
-  }
   width: 100%;
   height: 8rem;
   padding-left: 1rem;
@@ -186,9 +168,6 @@ export const RangeDropDown = styled.div`
 `;
 
 export const SubmitSearch = styled.div`
-  @media (min-width: 769px) {
-    display: none;
-  }
   height: 5rem;
   width: 100%;
   position: fixed;

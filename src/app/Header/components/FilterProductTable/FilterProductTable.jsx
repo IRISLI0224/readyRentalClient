@@ -7,8 +7,7 @@ class FilterProductTable extends React.Component {
       filterText: '',
       isHouse: false,
       isApartment: false,
-      isTownHouse: false,
-      isVilla: false,
+      isStudio: false,
       bedMin: '',
       bedMax: '',
       priceMin: '',
@@ -17,8 +16,7 @@ class FilterProductTable extends React.Component {
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
     this.onHouseChange = this.onHouseChange.bind(this);
     this.onApartmentChange = this.onApartmentChange.bind(this);
-    this.onTownHouseChange = this.onTownHouseChange.bind(this);
-    this.onVillaChange = this.onVillaChange.bind(this);
+    this.onStudioChange = this.onStudioChange.bind(this);
     this.onBedMinChange = this.onBedMinChange.bind(this);
     this.onBedMaxChange = this.onBedMaxChange.bind(this);
     this.onPriceMinChange = this.onPriceMinChange.bind(this);
@@ -39,14 +37,9 @@ class FilterProductTable extends React.Component {
       isApartment,
     });
   }
-  onTownHouseChange(isTownHouse) {
+  onStudioChange(isStudio) {
     this.setState({
-      isTownHouse,
-    });
-  }
-  onVillaChange(isVilla) {
-    this.setState({
-      isVilla,
+      isStudio,
     });
   }
   onBedMinChange(bedMin) {
@@ -70,25 +63,15 @@ class FilterProductTable extends React.Component {
     });
   }
   render() {
-    const {
-      filterText,
-      isHouse,
-      isApartment,
-      isTownHouse,
-      isVilla,
-      bedMin,
-      bedMax,
-      priceMin,
-      priceMax,
-    } = this.state;
+    const { filterText, isHouse, isApartment, isStudio, bedMin, bedMax, priceMin, priceMax } =
+      this.state;
     return (
       <div>
         <SearchTable
           filterText={filterText}
           isHouse={isHouse}
           isApartment={isApartment}
-          isTownHouse={isTownHouse}
-          isVilla={isVilla}
+          isStudio={isStudio}
           bedMin={bedMin}
           bedMax={bedMax}
           priceMin={priceMin}
@@ -96,8 +79,7 @@ class FilterProductTable extends React.Component {
           onFilterTextChange={this.onFilterTextChange}
           onHouseChange={this.onHouseChange}
           onApartmentChange={this.onApartmentChange}
-          onTownHouseChange={this.onTownHouseChange}
-          onVillaChange={this.onVillaChange}
+          onStudioChange={this.onStudioChange}
           onBedMinChange={this.onBedMinChange}
           onBedMaxChange={this.onBedMaxChange}
           onPriceMinChange={this.onPriceMinChange}
