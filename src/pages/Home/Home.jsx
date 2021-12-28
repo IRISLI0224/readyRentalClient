@@ -7,6 +7,7 @@ import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
 import SlideCardContainer from '../../components/SlideCardContainer';
 import { Button } from '../../hoc/Button';
+import { SearchOutlined } from '@ant-design/icons';
 import {
   NewsContainer,
   NewsCardTitle,
@@ -38,6 +39,7 @@ const Container = styled.div`
   text-align: center;
   width: 100%;
   Form {
+    padding-bottom: 80px;
     @media (min-width: 769px) {
       display: none;
     }
@@ -177,6 +179,15 @@ class Home extends React.Component {
             <h1>Search property for rent</h1>
           </SearchTitle>
           <SearchBar>
+            <SearchOutlined
+              style={{
+                fontSize: '1.4rem',
+                position: 'absolute',
+                left: '4.2%',
+                zIndex: '1',
+                color: '#808080',
+              }}
+            />
             <SearchText type="text" placeholder="Search by state, suburb or postcode" />
           </SearchBar>
           <TypeFilter>
@@ -185,23 +196,19 @@ class Home extends React.Component {
             </TypeFilterTitle>
             <TypeFilterItem>
               <input type="checkbox" id="allType" />
-              <label htmlFor="allType">All Type</label>
+              <label htmlFor="allType">&nbsp;All Type</label>
             </TypeFilterItem>
             <TypeFilterItem>
               <input type="checkbox" id="house" />
-              <label htmlFor="house">House</label>
+              <label htmlFor="house">&nbsp;House</label>
             </TypeFilterItem>
             <TypeFilterItem>
               <input type="checkbox" id="apartment" />
-              <label htmlFor="apartment">Apartment Unit</label>
+              <label htmlFor="apartment">&nbsp;Apartment Unit</label>
             </TypeFilterItem>
             <TypeFilterItem>
-              <input type="checkbox" id="townHouse" />
-              <label htmlFor="townHouse">Townhouse</label>
-            </TypeFilterItem>
-            <TypeFilterItem>
-              <input type="checkbox" id="villa" />
-              <label htmlFor="villa">Villa</label>
+              <input type="checkbox" id="studio" />
+              <label htmlFor="townHouse">&nbsp;Studio</label>
             </TypeFilterItem>
           </TypeFilter>
           <hr />
@@ -290,19 +297,13 @@ class Home extends React.Component {
             </TypeFilterItem>
           </RangeDropDown>
           <hr />
-          <RangeDropDown>
+          <RangeDropDown id="lastDrop">
             <TypeFilterTitle>
               <h2>Available Date</h2>
             </TypeFilterTitle>
             <TypeFilterItem className="oneDrop">
               <select name="date" id="date">
                 <option value="">Any</option>
-                <option value="1+">1+</option>
-                <option value="2+">2+</option>
-                <option value="3+">3+</option>
-                <option value="4+">4+</option>
-                <option value="5+">5+</option>
-                <option value="6+">6+</option>
               </select>
             </TypeFilterItem>
           </RangeDropDown>
