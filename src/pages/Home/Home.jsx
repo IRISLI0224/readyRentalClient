@@ -44,6 +44,22 @@ const Container = styled.div`
   }
 `;
 
+<<<<<<< HEAD
+=======
+const PropertyBack = styled.div`
+  height: 15rem;
+  margin: 2rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-image: linear-gradient(#f8f8f8, #ffffff);
+  text-align: center;
+  padding: 40px 0;
+  width: 100%;
+`;
+
+>>>>>>> 53200917bd07cdbeab7cc00f8f0a75cc31667c0b
 const PropertyContainer = styled.div`
   height: 15rem;
   margin: 2rem auto;
