@@ -91,6 +91,7 @@ class JoinPage extends React.Component {
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
     this.handleBlurredChange = this.handleBlurredChange.bind(this);
+    this.userRegister = this.userRegister.bind(this);
   }
 
   handleDataChange(event) {
@@ -144,6 +145,11 @@ class JoinPage extends React.Component {
     return error;
   }
 
+  userRegister() {
+
+    console.log('register');
+  }
+
   render() {
     const { data, error: authError, isLoading } = this.state;
     const error = this.getError(data);
@@ -194,7 +200,7 @@ class JoinPage extends React.Component {
               />
             </Form>
           </FormWrapper>
-          <Button primary size="400px" height="50px">
+          <Button primary size="400px" height="50px" onClick={this.userRegister}>
             Create Account
           </Button>
           {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
