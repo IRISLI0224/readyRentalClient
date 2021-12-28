@@ -89,7 +89,7 @@ color: #3b3b3b;
 float: none;
 font-family: 
 text-align: left;
-padding-left:25px
+padding-left:25px;
 `;
 
 //hand tabbing accessibility to dropdown
