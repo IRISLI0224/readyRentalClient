@@ -5,6 +5,8 @@ import PropertyDetailEditable from './component/PropertyDetailEditable';
 import PropertyHeader from './component/PropertyHeader';
 import { NoShadowWrapper } from './component/Wrapper';
 import { getUserById } from '../../config/Users';
+import { getPropertiesById } from '../../config/Properties';
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
   width: 90%;
@@ -14,7 +16,7 @@ const Container = styled.div`
 class ListedProperties extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { properties: [] };
+    this.state = { properties: [], title: '' };
   }
 
   componentDidMount() {
@@ -23,10 +25,23 @@ class ListedProperties extends React.Component {
 
     const getProperties = async () => {
       const user = await getUserById('61bdc1ceb1a8d5e7b976f038');
+
       const properties = user.properties;
-      this.setState({ properties });
-      // console.log(user, 4);
-      // console.log(properties);
+
+      const inspections = user.inspections;
+
+      const inspectionProperties = await Promise.all(
+        inspections.map(async (inspection) => {
+          const property = await getPropertiesById(inspection.property);
+          return property;
+        }),
+      );
+
+      if (this.props.isListing) {
+        this.setState({ properties, title: 'My Listing' });
+      } else {
+        this.setState({ properties: inspectionProperties, title: 'My Inspection' });
+      }
     };
     getProperties();
   }
@@ -39,26 +54,22 @@ class ListedProperties extends React.Component {
     return (
       <Container>
         <NoShadowWrapper>
-          <h1>My Listings</h1>
+          <h1>{this.state.title}</h1>
           <Button as="a" href="https://www.google.com/" size="140px" height="50px" primary>
             +Create Listing
           </Button>
         </NoShadowWrapper>
         <PropertyHeader />
         {properties.map((property) => {
-          return (
-            <PropertyDetailEditable
-              key={property._id}
-              property={property}
-              style={{ margin: '90px' }}
-            />
-          );
+          return <PropertyDetailEditable key={property._id} property={property} />;
         })}
-
-        <div></div>
       </Container>
     );
   }
 }
+
+ListedProperties.propTypes = {
+  isListing: PropTypes.object.isRequired,
+};
 
 export default ListedProperties;
