@@ -31,20 +31,130 @@ const normFile = (e: any) => {
 const { TextArea } = Input;
 
 class postForm extends React.Component {
-  handleFormSubmit = (values) => {
-    storePropety(values).then(function (response) {
-      return;
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        streetNumber: initialData,
+        streetName: initialData,
+        city: initialData,
+        state: initialData,
+        postCode: initialData,
+        numOfBed: initialDataNumber,
+        numOfBath: initialDataNumber,
+        numOfCarSpace: initialDataNumber,
+        rent: initialData,
+        petAllowed: initialDataBoolean,
+        smokingAllowed: initialDataBoolean,
+        furnished: initialDataBoolean,
+        description: initialData,
+        status: 'open',
+        airCon: initialDataBoolean,
+        intercom: initialDataBoolean,
+      },
+      isFormSubmit: false,
+      error: null,
+      isLoading: false,
+    };
+    this.handleDataChange = this.handleDataChange.bind(this);
+    this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
+    this.handleBlurredChange = this.handleBlurredChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.getSubmitError = this.getSubmitError.bind(this);
+    //this.userRegister = this.userRegister.bind(this);
+  }
+  handleFormSubmit = async (values) => {
+    console.log(values);
+    // storePropety(values).then(function (response) {
+    //   return;
+    // });
+    await PostProperty(values);
   };
 
+  handleDataChange(event) {
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    const { classname } = event.target;
+    console.log( event.target)
+
+    this.setData(classname, {
+      value,
+    });
+  }
+
+  handleIsFormSubmitChange(newIsFormSubmit) {
+    this.setState({
+      isFormSubmit: newIsFormSubmit,
+    });
+  }
+
+  handleBlurredChange(event) {
+    const { classname } = event.target;
+
+    this.setData(classname, {
+      blurred: true,
+    });
+  }
+
+  setData(classname, newData) {
+    this.setState((prevState) => ({
+      data: {
+        ...prevState.data,
+        [classname]: {
+          ...prevState.data[classname],
+          ...newData,
+        },
+      },
+    }));
+  }
+
+  getErrorMessage(error, classname) {
+    const { data, isFormSubmit } = this.state;
+    const showInputError = data[classname].blurred;
+    return (showInputError || isFormSubmit) && error[classname];
+  }
+
+  getError() {
+    const { data } = this.state;
+    const error = {};
+    Object.keys(data).forEach((name) => {
+      const errorOfName = validate(name, data);
+      if (!errorOfName) {
+        return;
+      }
+      error[name] = errorOfName;
+    });
+    return error;
+  }
+
+  getSubmitError(error) {
+    this.setState({
+      isSubmitFail: true,
+      submitError: error,
+    });
+  }
+
+  handleSubmit() {
+    console.log(this.state.propertyData);
+  }
+
   render() {
+    const { data } = this.state;
+    const { isSubmitFail, submitError } = this.state;
+    const { date } = this.props;
+    const error = this.getError(data);
+    const hasError = Object.keys(error).length > 0;
     return (
       <div>
         <Form
           name="validate_other"
           {...layout}
           {...formItemLayout}
-          onFinish={(values) => this.handleFormSubmit(values)}
+          //onFinish={(propertyData) => this.handleFormSubmit(propertyData)}
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.handleIsFormSubmitChange(true);
+            this.handleContinueClick(data, hasError);
+          }}
         >
           <Form.Item label="Title" model="multiple" name="title">
             <Input style={{ width: 400 }} />
@@ -56,23 +166,64 @@ class postForm extends React.Component {
             <Checkbox.Group>
               <Row>
                 <Col span={8}>
-                  <Checkbox value="Furnished" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    //value={data.furnished.value}
+                    name="furnished"
+                    classname="furnished"
+                    style={{ lineHeight: '32px' }}
+                    checked={data.furnished.value}
+                    onChange={this.handleDataChange}
+                  >
                     Furnished
                   </Checkbox>
                 </Col>
                 <Col span={8}>
-                  <Checkbox value="Pets considered" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    //value={data.petAllowed.value}
+                    style={{ lineHeight: '32px' }}
+                    //checked={propertyData.petAllowed.value}
+                    name="petAllowed"
+                    classname="petAllowed"
+                    checked={data.petAllowed.value}
+                    onChange={this.handleDataChange}
+                  >
                     Pets considered
                   </Checkbox>
                 </Col>
                 <Col span={8}>
-                  <Checkbox value="Airconditioner" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    //value={data.airCon.value}
+                    style={{ lineHeight: '32px' }}
+                    name="airCon"
+                    classname="airCon"
+                    checked={data.airCon.value}
+                    onChange={this.handleDataChange}
+                  >
                     Airconditioner
                   </Checkbox>
                 </Col>
                 <Col span={8}>
-                  <Checkbox value="Intercom" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    //value={data.intercom.value}
+                    style={{ lineHeight: '32px' }}
+                    name="intercom"
+                    classname="intercom"
+                    checked={data.intercom.value}
+                    onChange={this.handleDataChange}
+                  >
                     Intercom
+                  </Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox
+                    //value={data.smokingAllowed.value}
+                    style={{ lineHeight: '32px' }}
+                    name="smokingAllowed"
+                    classname="smokingAllowed"
+                    checked={data.smokingAllowed.value}
+                    onChange={this.handleDataChange}
+                  >
+                    Allowed Smoking
                   </Checkbox>
                 </Col>
               </Row>
