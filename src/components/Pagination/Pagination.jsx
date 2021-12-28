@@ -73,7 +73,7 @@ const renderData = (data) => {
     return (
         <ul>
             {data.map((todo, index) => {
-                return <li key={index}>{todo.title}</li>
+                return <li key={index}>{todo.id}</li>
             })}
         </ul>
     )
@@ -115,7 +115,7 @@ const Pagination = (props) => {
     const indexOfLastItem = currentPage * itemsPerpage;
     const indexOfFirstItem = indexOfLastItem - itemsPerpage;
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-    //********data input************/
+    //********data input************/可以提出去单独的js文件
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/todos")
             .then((res) => res.json())

@@ -7,6 +7,7 @@ import agent_brand from '../../assests/experimental_img/brand.PNG';
 import TextStyle from '../../hoc/Text';
 import FlexWrap from '../../hoc/FlexWrap';
 import {Pagination} from '../../components/Pagination';
+import Sorting from '../../components/Sorting';
 
 const Container = styled.div`
     margin-left: 30%;
@@ -23,7 +24,7 @@ const SearchResult = () => {
         <TextStyle bold size="1rem">Real Estate & Property for sale in ACT</TextStyle>
       </FlexWrapSearch>
       <FlexWrapSearch direction="row" >
-        <TextStyle></TextStyle>
+        <TextStyle>Sort <Sorting/></TextStyle>
       </FlexWrapSearch>
       <FlexWrap direction="row" >
         <Card brand={agent_brand} slides={SliderData}
