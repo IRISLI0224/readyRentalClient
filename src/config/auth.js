@@ -9,6 +9,8 @@ const appendAuthToken = (config) => {
   return { ...config, headers: { Authorization, ...config.header } };
 };
 
+
+//functions need to use token
 export const post = (url, data, config = {}) => axios.post(url, data, appendAuthToken(config));
 
 export const put = (url, data, config = {}) => axios.put(url, data, appendAuthToken(config));
