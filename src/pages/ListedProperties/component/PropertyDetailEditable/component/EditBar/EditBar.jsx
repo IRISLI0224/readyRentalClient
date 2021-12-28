@@ -47,7 +47,7 @@ const EditBar = ({ property }) => {
           <SpanText>{property.status}</SpanText>
         </div>
         <NoShadowWrapper>
-          <StyledBtn onClick={() => getUserById('61bdc1ceb1a8d5e7b976f038')}>
+          <StyledBtn>
             <FaPencilAlt />
             <span>Edit</span>
           </StyledBtn>

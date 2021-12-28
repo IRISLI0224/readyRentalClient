@@ -24,12 +24,13 @@ class ListedProperties extends React.Component {
     // const user = await getUserById('61bdc1ceb1a8d5e7b976f038');
 
     const getProperties = async () => {
+      //todo: Now I used a hard coded id, it should be a prop passing in in the future
       const user = await getUserById('61bdc1ceb1a8d5e7b976f038');
 
       const properties = user.properties;
-
       const inspections = user.inspections;
 
+      //put all the properties in inspections into an array
       const inspectionProperties = await Promise.all(
         inspections.map(async (inspection) => {
           const property = await getPropertiesById(inspection.property);
@@ -37,6 +38,7 @@ class ListedProperties extends React.Component {
         }),
       );
 
+      //check if it should be landlord's listing page or tenant's inspection list
       if (this.props.isListing) {
         this.setState({ properties, title: 'My Listing' });
       } else {
