@@ -11,4 +11,12 @@ export const UserLogin = (email, password) => {
   return post(API_LOGIN_URL, data).then((res) => res.data);
 };
 
-export const signUp = (data) => data;
+//export const signUp = (data) => data;
+const API_REGISTER_URL = '/register';
+export const UserRegister = (email, password) => {
+  const data = {
+    email,
+    password,
+  };
+  return post(API_REGISTER_URL, data).then((res) => res.data);
+};

@@ -1,20 +1,19 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_TOKEN_NAME = 'buggodie-ready-to-rent';
+const JWT_TOKEN_NAME = 'buggodie-ready-to-rent-token';
 const USER_EMAIL = 'email';
-const cookie = document.cookie;
 
-export const getToken = () => cookie.getItem(JWT_TOKEN_NAME);
-export const getUserEmail = () => cookie.getItem(USER_EMAIL);
+export const getToken = () => localStorage.getItem(JWT_TOKEN_NAME);
+export const getUserEmail = () => localStorage.getItem(USER_EMAIL);
 
-export const setToken = (token) => cookie.setItem(JWT_TOKEN_NAME, token);
-export const setUserEmail = (email) => cookie.setItem(USER_EMAIL, email);
+export const setToken = (token) => localStorage.setItem(JWT_TOKEN_NAME, token);
+export const setUserEmail = (email) => localStorage.setItem(USER_EMAIL, email);
 
-export const removeToken = () => cookie.removeItem(JWT_TOKEN_NAME);
-export const removeUserEmail = () => cookie.removeItem(USER_EMAIL);
+export const removeToken = () => localStorage.removeItem(JWT_TOKEN_NAME);
+export const removeUserEmail = () => localStorage.removeItem(USER_EMAIL);
 
 export const isLoggedIn = () => {
-  const token = cookie.getItem(JWT_TOKEN_NAME);
+  const token = localStorage.getItem(JWT_TOKEN_NAME);
   if (!token) return false;
 
   const decodedToken = jwt.decode(token);

@@ -15,6 +15,9 @@ import ServerMsg from '../../hoc/ServerMsg';
 
 //API
 import { UserLogin } from '../../config/Users';
+import { setToken } from '../../utils/authentication';
+
+const HOMEPAGE = 'http://localhost:3000';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
@@ -202,7 +205,18 @@ class Login extends React.Component {
   }
 
   userLogin() {
-    console.log('login');
+    this.setState({ error: null, isLoading: true }, () => {
+      const { data } = this.state;
+      UserLogin(data.email.value, data.password.value)
+        .then((res) => {
+          this.setState({ isLoading: false }, () => {
+            setToken(res.token);
+            //back to home page
+            window.location.href = HOMEPAGE;
+          });
+        })
+        .catch((error) => this.setState({ error, isLoading: false }));
+    });
   }
 
   render() {
