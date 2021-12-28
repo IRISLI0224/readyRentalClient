@@ -9,6 +9,10 @@ const LogoP = styled.div`
   background-size: 100% 100%;
   cursor: pointer;
   margin: 0px auto;
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 50px;
+  }
 `;
 
 function Logo() {

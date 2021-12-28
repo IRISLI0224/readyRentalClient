@@ -15,8 +15,21 @@ const Container = styled.div`
   height: 60px;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   height: 100px;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    padding-top: 1rem;
+    padding-left: 5%;
+    padding-bottom: 0;
+    Button {
+      margin-left: 3px;
+      size: 20%;
+    }
+    border-bottom: 0.1rem solid red;
+  }
 `;
 
 const Space = styled.div`

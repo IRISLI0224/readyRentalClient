@@ -1,0 +1,59 @@
+pipeline {
+    agent {
+        docker {
+            image 'node:14.18.2'
+        }
+    }
+    environment {
+        ENVIRONMENT    = 'UAT'
+        S3_CREDENTIAL  = 'AWS-CRE'
+        S3_REGION      = 'ap-southeast-2'
+        BUCKET_NAME    = 's3://buggodie-fe'
+        WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat/build'
+    }
+    options {
+        disableConcurrentBuilds()
+        durabilityHint('PERFORMANCE_OPTIMIZED') //MAX_SURVIVABILITY or SURVIVABLE_NONATOMIC
+    }
+    stages {
+        stage ('Install packages') {
+            steps {
+                echo '+++++++++++++++++++++ install packages ++++++++++++++++++++'
+                //install package from package.json
+                sh 'npm install'
+            }
+        }
+        stage ('Build') {
+            steps {
+                echo '+++++++++++++++++++++++++++ building +++++++++++++++++++++++'
+                //Running a job
+                sh 'CI=false npm run build'
+            }
+        }
+        stage ('Install AWS CLI') {
+            steps {
+                echo '++++++++++++++++++++++ install AWS CLI ++++++++++++++++++++++++'
+                sh 'apt-get update'
+                sh 'apt install python3-pip -y'
+                sh 'pip3 install awscli --upgrade'
+            }
+        }
+        stage ('Depoly to S3') {
+            steps {
+                echo '++++++++++++++++++++++++++++ Deploy frontend to S3 +++++++++++++++++++++'
+                withAWS (credentials: S3_CREDENTIAL, region: S3_REGION) {
+                    sh 'aws s3 rm ${BUCKET_NAME} --recursive'
+                    sh 'aws s3 cp ${WORKSPACE_PATH} ${BUCKET_NAME} --recursive --acl public-read'
+               }
+            }
+        }
+    }
+    post {
+        success {
+            echo 'WELL DONE!!!!!'
+        }
+        failure {
+            echo 'FAILED~~~~~~~'
+        }
+    }
+}
