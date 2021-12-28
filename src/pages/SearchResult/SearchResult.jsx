@@ -6,25 +6,24 @@ import agent_icon from '../../assests/experimental_img/agent-pic.PNG';
 import agent_brand from '../../assests/experimental_img/brand.PNG';
 import TextStyle from '../../hoc/Text';
 import FlexWrap from '../../hoc/FlexWrap';
-import Pagination from '../../components/Pagination';
+import {Pagination} from '../../components/Pagination';
 
 const Container = styled.div`
-    margin-left: 30vw;
-    margin-top: 20px;
+    margin-left: 30%;
+    margin-top: 4vh;
 `
 const FlexWrapSearch = styled(FlexWrap)`
     margin-bottom: 8px;
 `
 const SearchResult = () => {
-  const totalPage = {totalPage: 2};
-
+  
   return (
     <Container>
       <FlexWrapSearch direction="row" >
         <TextStyle bold size="1rem">Real Estate & Property for sale in ACT</TextStyle>
       </FlexWrapSearch>
       <FlexWrapSearch direction="row" >
-        <TextStyle>1-25 of 1040 results</TextStyle>
+        <TextStyle></TextStyle>
       </FlexWrapSearch>
       <FlexWrap direction="row" >
         <Card brand={agent_brand} slides={SliderData}
@@ -32,7 +31,9 @@ const SearchResult = () => {
           address="lawson ACT 2601" agentName="Frank" agentIcon={agent_icon}
           types="House"></Card>
       </FlexWrap>
-      <Pagination config={totalPage}/>
+      <FlexWrap direction="row" >
+        <Pagination/>
+      </FlexWrap>
     </Container>
 
   )
