@@ -25,9 +25,10 @@ export const getPropertiesById = async (Id) => {
 //Post new property
 const API_POST_PROPERTY = '/properties';
 
-export const UploadProperty = async (propertyInfo) => {
+export const PostProperty = async (propertyInfo) => {
   const json = JSON.stringify(propertyInfo);
-  return axios.post(`${devURL}+API_POST_PROPERTY`, json, {
+  //console.log(JSON.stringify(propertyInfo))
+  return axios.post(`${devURL}`+API_POST_PROPERTY, propertyInfo, {
     headers: {
       'Content-Type': 'application/json',
     },

@@ -1,9 +1,22 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Form, Select, Upload, Checkbox, Row, Col, Input, Button, DatePicker } from 'antd';
+import {
+  Form,
+  Select,
+  Upload,
+  Checkbox,
+  Row,
+  Col,
+  Input,
+  Button,
+  DatePicker,
+  InputNumber,
+} from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { storePropety } from '../../api/postProperties';
 import styled from 'styled-components';
+import { PostProperty } from '../../config/properties';
+import validate from '../../hoc/Form/validate';
 
 const SubmitWrapper = styled.div`
   margin-left: 150px;
@@ -30,49 +43,200 @@ const normFile = (e: any) => {
 
 const { TextArea } = Input;
 
+const initialData = {
+  value: '',
+  blurred: false,
+};
+
+const initialDataNumber = {
+  value: 0,
+  blurred: false,
+};
+
+const initialDataBoolean = {
+  value: false,
+};
+
 class postForm extends React.Component {
-  handleFormSubmit = (values) => {
-    storePropety(values).then(function (response) {
-      return;
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      propertyData: {
+        streetNumber: initialData,
+        streetName: initialData,
+        city: initialData,
+        state: initialData,
+        postCode: initialData,
+        numOfBed: initialDataNumber,
+        numOfBath: initialDataNumber,
+        numOfCarSpace: initialDataNumber,
+        rent: initialData,
+        petAllowed: initialDataBoolean,
+        smokingAllowed: initialDataBoolean,
+        furnished: initialDataBoolean,
+        description: initialData,
+        status: 'open',
+        airCon: initialDataBoolean,
+        intercom: initialDataBoolean,
+      },
+      isFormSubmit: false,
+      error: null,
+      isLoading: false,
+    };
+    this.handleDataChange = this.handleDataChange.bind(this);
+    this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
+    this.handleBlurredChange = this.handleBlurredChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.getSubmitError = this.getSubmitError.bind(this);
+    //this.userRegister = this.userRegister.bind(this);
+  }
+  handleFormSubmit = async (values) => {
+    console.log(values);
+    // storePropety(values).then(function (response) {
+    //   return;
+    // });
+    await PostProperty(values);
   };
 
+  handleDataChange(event) {
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    const { classname } = event.target;
+    console.log(event.target);
+    this.setData(classname, {
+      value,
+    });
+  }
+
+  handleIsFormSubmitChange(newIsFormSubmit) {
+    this.setState({
+      isFormSubmit: newIsFormSubmit,
+    });
+  }
+
+  handleBlurredChange(event) {
+    const { classname } = event.target;
+
+    this.setData(classname, {
+      blurred: true,
+    });
+  }
+
+  setData(classname, newData) {
+    this.setState((prevState) => ({
+      propertyData: {
+        ...prevState.propertyData,
+        [classname]: {
+          ...prevState.propertyData[classname],
+          ...newData,
+        },
+      },
+    }));
+  }
+
+  getErrorMessage(error, classname) {
+    const { data, isFormSubmit } = this.state;
+    const showInputError = data[classname].blurred;
+    return (showInputError || isFormSubmit) && error[classname];
+  }
+
+  getError() {
+    const { propertyData } = this.state;
+    const error = {};
+    Object.keys(propertyData).forEach((classname) => {
+      const errorOfName = validate(classname, propertyData);
+      if (!errorOfName) {
+        return;
+      }
+      error[classname] = errorOfName;
+    });
+    return error;
+  }
+
+  handleSubmit() {
+    console.log(this.state.propertyData);
+  }
+
   render() {
+    const { propertyData } = this.state;
+    const { isSubmitFail, submitError } = this.state;
+    const { date } = this.props;
+    const error = this.getError(propertyData);
+    const hasError = Object.keys(error).length > 0;
     return (
       <div>
         <Form
           name="validate_other"
           {...layout}
           {...formItemLayout}
-          onFinish={(values) => this.handleFormSubmit(values)}
+          //onFinish={(propertyData) => this.handleFormSubmit(propertyData)}
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.handleIsFormSubmitChange(true);
+            this.handleContinueClick(propertyData, hasError);
+          }}
         >
-          <Form.Item label="Title" model="multiple" name="title">
-            <Input style={{ width: 400 }} />
-          </Form.Item>
-          <Form.Item label="Email" name="email">
-            <Input style={{ width: 400 }} />
-          </Form.Item>
           <Form.Item name="property requirements" label="Property requirements">
             <Checkbox.Group>
               <Row>
                 <Col span={8}>
-                  <Checkbox value="Furnished" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    value={propertyData.furnished.value}
+                    name="furnished"
+                    classname="furnished"
+                    style={{ lineHeight: '32px' }}
+                    checked={propertyData.furnished.value}
+                    onChange={this.handleDataChange}
+                  >
                     Furnished
                   </Checkbox>
                 </Col>
                 <Col span={8}>
-                  <Checkbox value="Pets considered" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    value={propertyData.petAllowed.value}
+                    style={{ lineHeight: '32px' }}
+                    //checked={propertyData.petAllowed.value}
+                    name="petAllowed"
+                    classname="petAllowed"
+                    checked={propertyData.petAllowed.value}
+                    onChange={this.handleDataChange}
+                  >
                     Pets considered
                   </Checkbox>
                 </Col>
                 <Col span={8}>
-                  <Checkbox value="Airconditioner" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    value={propertyData.airCon.value}
+                    style={{ lineHeight: '32px' }}
+                    name="airCon"
+                    classname="airCon"
+                    checked={propertyData.airCon.value}
+                    onChange={this.handleDataChange}
+                  >
                     Airconditioner
                   </Checkbox>
                 </Col>
                 <Col span={8}>
-                  <Checkbox value="Intercom" style={{ lineHeight: '32px' }}>
+                  <Checkbox
+                    value={propertyData.intercom.value}
+                    style={{ lineHeight: '32px' }}
+                    name="intercom"
+                    classname="intercom"
+                    checked={propertyData.intercom.value}
+                    onChange={this.handleDataChange}
+                  >
                     Intercom
+                  </Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox
+                    value={propertyData.smokingAllowed.value}
+                    style={{ lineHeight: '32px' }}
+                    name="smokingAllowed"
+                    classname="smokingAllowed"
+                    checked={propertyData.smokingAllowed.value}
+                    onChange={this.handleDataChange}
+                  >
+                    Allowed Smoking
                   </Checkbox>
                 </Col>
               </Row>
@@ -116,14 +280,14 @@ class postForm extends React.Component {
           <Form.Item label="Postcode" mode="multiple" name="postcode">
             <Input style={{ width: 400 }} />
           </Form.Item>
-          <Form.Item label="Bedrooms" mode="multiple" name="bedrooms">
-            <Input style={{ width: 100 }} />
+          <Form.Item label="Bedrooms" mode="multiple" name="bedrooms" type="number">
+            <InputNumber style={{ width: 100 }} />
           </Form.Item>
           <Form.Item label="Bathrooms" mode="multiple" name="bathrooms">
-            <Input style={{ width: 100 }} />
+            <InputNumber style={{ width: 100 }} />
           </Form.Item>
           <Form.Item label="Parking space" mode="multiple" name="parkingSpace">
-            <Input style={{ width: 100 }} />
+            <InputNumber style={{ width: 100 }} />
           </Form.Item>
           <Form.Item label="Available Date" name="available Date">
             <DatePicker picker="date" placeholder="Choose your date" />
