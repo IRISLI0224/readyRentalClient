@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropertyCard from '../../components/PropertyCard';
-import { getAllProperties } from '../../config/Properties';
+import { getAllProperties } from '../../config/properties';
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
@@ -44,8 +44,6 @@ const Container = styled.div`
   }
 `;
 
-<<<<<<< HEAD
-=======
 const PropertyBack = styled.div`
   height: 15rem;
   margin: 2rem auto;
@@ -59,7 +57,6 @@ const PropertyBack = styled.div`
   width: 100%;
 `;
 
->>>>>>> 53200917bd07cdbeab7cc00f8f0a75cc31667c0b
 const PropertyContainer = styled.div`
   height: 15rem;
   margin: 2rem auto;
