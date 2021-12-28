@@ -30,7 +30,7 @@ import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
 
 const Container = styled.div`
-  overflow: hidden;
+  //overflow: hidden;
   width: 60%;
   height: auto;
   margin: auto;

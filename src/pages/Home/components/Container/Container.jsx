@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NewsContainer = styled.div`
-  overflow: hidden;
+  //overflow: hidden;
   width: 55rem;
   height: 60rem;
   margin: 5rem auto;

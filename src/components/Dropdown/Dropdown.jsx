@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg';
+import { ReactComponent as IconBlack } from '../../assests/img/iconBefore_black.svg';
+import { removeToken } from '../../utils/authentication';
+import { useLocation } from 'react-router-dom';
 
 export const DropdownContainer = styled.div`
   position: absolute;
@@ -11,7 +14,7 @@ export const DropdownContainer = styled.div`
   height: 40px;
 `; // end DropdownContainer
 
-export const ProfileButton = styled.button`
+const ProfileButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,24 +24,22 @@ export const ProfileButton = styled.button`
   border: none;
   cursor: pointer;
 `;
-
-export const ArrowUp = styled.div`
+const ArrowUp = styled.div`
   width: 0;
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-bottom: 4px solid black;
 `;
-
-export const ArrowDown = styled.div`
+const ArrowDown = styled.div`
   width: 0;
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid black;
+  border-top: 4px solid white;
 `;
 
-export const MenuContainer = styled.div`
+const MenuContainer = styled.div`
     ${(props) => (props.isOpen ? `display: none;` : `display: inherit;`)}}   
     width: 240px;
     bottom: -1px;
@@ -49,8 +50,9 @@ export const MenuContainer = styled.div`
     text-align: justify;
     overflow: visible;
     height: 0px;
+    z-index:99;
 `;
-export const MenuUl = styled.ul`
+const MenuUl = styled.ul`
     background: #fff;
     border: 1px solid #ccc;
     font-weight: 400;
@@ -59,17 +61,19 @@ export const MenuUl = styled.ul`
     margin: 0;
     padding: 0;
     list - style - type: none;
+    z-index:99;
 `;
-export const MenuLi = styled.li`
+const MenuLi = styled.li`
   display: block;
   height: 53px;
   cursor: pointer;
   &:hover {
     background-color: #f0f0f0;
   }
+  z-index:99;
 `;
 
-export const MenuLink = styled.a`
+const MenuLink = styled.a`
     display: block;
     position: relative;
     background-color: #fff;
@@ -80,7 +84,8 @@ export const MenuLink = styled.a`
     border-bottom: 1px solid #e3e3e3;
     transition-duration: .1s;
 `;
-export const MenuSpan = styled.span` 
+
+const MenuSpan = styled.span` 
   position: absolute;
 font-size: 18px;
 line-height: 48px;
@@ -89,7 +94,7 @@ color: #3b3b3b;
 float: none;
 font-family: 
 text-align: left;
-padding-left:25px
+padding-left:25px;
 `;
 
 //hand tabbing accessibility to dropdown
@@ -97,13 +102,21 @@ padding-left:25px
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
+  //get icon color from url
+  let location = useLocation();
+  const wholeUrl = location.pathname;
+  const home = wholeUrl == '/' ? true : false;
+
+  const Logout = () => {
+    removeToken();
+  };
+
   return (
     <DropdownContainer>
       <ProfileButton type="button" onClick={toggleOpen}>
-        <Icon />
+        {home ? <Icon /> : <IconBlack />}
         <ArrowDown />
       </ProfileButton>
-
       <MenuContainer isOpen={!isOpen}>
         <MenuUl>
           <MenuLi>
@@ -112,7 +125,7 @@ const Dropdown = () => {
             </MenuLink>
           </MenuLi>
           <MenuLi>
-            <MenuLink href="#">
+            <MenuLink href="/property/manage-listings">
               <MenuSpan>Manage rental listings</MenuSpan>
             </MenuLink>
           </MenuLi>
@@ -122,13 +135,15 @@ const Dropdown = () => {
             </MenuLink>
           </MenuLi>
           <MenuLi>
-            <MenuLink href="#">
+            <MenuLink href="/account">
               <MenuSpan>Account settings</MenuSpan>
             </MenuLink>
           </MenuLi>
           <MenuLi>
-            <MenuLink href="#">
-              <MenuSpan>Log out</MenuSpan>
+            <MenuLink href="">
+              <MenuSpan>
+                <div onClick={Logout}>Log out</div>
+              </MenuSpan>
             </MenuLink>
           </MenuLi>
         </MenuUl>

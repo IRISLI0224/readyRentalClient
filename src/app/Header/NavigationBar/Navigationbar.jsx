@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Logo from './Logo';
 import { ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
+import { getToken } from '../../../utils/authentication';
+import Dropdown from '../../../components/Dropdown';
 
 const Container = styled.div`
   width: 100%;
@@ -35,6 +37,9 @@ const Container = styled.div`
 const Space = styled.div`
   width: 55.5%;
 `;
+const SpaceLogin = styled.div`
+  width:68%;
+`;
 
 const ButtonwithoutBorder = styled(ButtonStyle)`
   color: #fff;
@@ -50,21 +55,38 @@ const ButtonWhitFont = styled(ButtonStyle)`
   }
 `;
 
-const NavigationBar = () => (
-  <Container>
-    <Logo className="Logo" />
-    <Space />
-    <Link to="/login" style={{ color: '#fff', textDecoration: 'none' }}>
-      <ButtonwithoutBorder className="SigninButton" size="90px">
-        Sign in
-      </ButtonwithoutBorder>
-    </Link>
-    <Link to="/join" style={{ color: 'white', textDecoration: 'none' }}>
-      <ButtonWhitFont className="JoinButton" size="90px">
-        &nbsp;&nbsp;Join&nbsp;&nbsp;
-      </ButtonWhitFont>
-    </Link>
-  </Container>
-);
+const NavigationBar = () => {
+  const [Login, setLogin] = useState(false);
+
+  useEffect(() => {
+    const token = getToken();
+    if (token) setLogin(true);
+  }, []);
+
+  return (
+    <Container>
+      <Logo className="Logo" />
+      {Login?<SpaceLogin/>:<Space/>}
+      {Login ? (
+        <>
+          <Dropdown />{' '}
+        </>
+      ) : (
+        <>
+          <Link to="/login" style={{ color: '#fff', textDecoration: 'none' }}>
+            <ButtonwithoutBorder className="SigninButton" size="90px">
+              Sign in
+            </ButtonwithoutBorder>
+          </Link>
+          <Link to="/join" style={{ color: 'white', textDecoration: 'none' }}>
+            <ButtonWhitFont className="JoinButton" size="90px">
+              &nbsp;&nbsp;Join&nbsp;&nbsp;
+            </ButtonWhitFont>
+          </Link>
+        </>
+      )}
+    </Container>
+  );
+};
 
 export default NavigationBar;
