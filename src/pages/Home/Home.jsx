@@ -5,6 +5,7 @@ import { getAllProperties } from '../../config/Properties';
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
+import SlideCardContainer from '../../components/SlideCardContainer';
 import { Button } from '../../hoc/Button';
 import {
   NewsContainer,
@@ -24,7 +25,7 @@ import {
 } from './components/Container';
 import Form from 'antd/lib/form/Form';
 import SmallPropertyCard from '../../components/SmallPropertyCard';
-import SlideCard from '../../components/SlideCard';
+//import SlideCard from '../../components/SlideCard';
 import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
 
@@ -106,24 +107,7 @@ class Home extends React.Component {
             <PropertyCardTitle>
               <h2>Recommended Properties </h2>
             </PropertyCardTitle>
-            <Carousel
-              vertical
-              autoplay
-              infinite
-              speed={1000}
-              autoplayInterval={10000}
-              resetAutoplay={false}
-            >
-              {properties.map((property, index) => {
-                return (
-                  <PropertyBack key={index}>
-                    <PropertyContainer key={index} style={{ backgroundColor: 'grey' }}>
-                      <SlideCard PropertyInfo={property} key={index} style={{}}></SlideCard>
-                    </PropertyContainer>
-                  </PropertyBack>
-                );
-              })}
-            </Carousel>
+            <SlideCardContainer properties={properties}/>
             <br />
           </div>
         ) : null}
