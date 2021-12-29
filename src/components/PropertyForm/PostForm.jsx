@@ -101,11 +101,12 @@ class postForm extends React.Component {
   handleDataChange(event) {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     const { classname } = event.target;
-    console.log(event.target);
+   
     console.log("handle data change")
     this.setData(classname, {
       value,
     });
+     console.log(this.state.propertyData);
   }
 
   handleIsFormSubmitChange(newIsFormSubmit) {
@@ -180,15 +181,15 @@ class postForm extends React.Component {
           }}
         >
           <Form.Item name="property requirements" label="Property requirements">
-            <Checkbox.Group>
+            {/* <Checkbox.Group> */}
               <Row>
                 <Col span={8}>
                   <Checkbox
-                    value={propertyData.furnished.value}
+                    //value={propertyData.furnished.value}
                     name="furnished"
                     classname="furnished"
                     style={{ lineHeight: '32px' }}
-                    //checked={propertyData.furnished.value}
+                    checked={propertyData.furnished.value}
                     onChange={this.handleDataChange}
                   >
                     Furnished
@@ -196,7 +197,7 @@ class postForm extends React.Component {
                 </Col>
                 <Col span={8}>
                   <Checkbox
-                    value={propertyData.petAllowed.value}
+                    //value={propertyData.petAllowed.value}
                     style={{ lineHeight: '32px' }}
                     //checked={propertyData.petAllowed.value}
                     //name="petAllowed"
@@ -209,7 +210,7 @@ class postForm extends React.Component {
                 </Col>
                 <Col span={8}>
                   <Checkbox
-                    value={propertyData.airCon.value}
+                    //value={propertyData.airCon.value}
                     style={{ lineHeight: '32px' }}
                     //name="airCon"
                     classname="airCon"
@@ -221,7 +222,7 @@ class postForm extends React.Component {
                 </Col>
                 <Col span={8}>
                   <Checkbox
-                    value={propertyData.intercom.value}
+                    //value={propertyData.intercom.value}
                     style={{ lineHeight: '32px' }}
                     //name="intercom"
                     classname="intercom"
@@ -237,14 +238,14 @@ class postForm extends React.Component {
                     style={{ lineHeight: '32px' }}
                     //name="smokingAllowed"
                     classname="smokingAllowed"
-                    //checked={propertyData.smokingAllowed.value}
-                    //onChange={this.handleDataChange}
+                    checked={propertyData.smokingAllowed.value}
+                    onChange={this.handleDataChange}
                   >
                     Allowed Smoking
                   </Checkbox>
                 </Col>
               </Row>
-            </Checkbox.Group>
+            {/* </Checkbox.Group> */}
           </Form.Item>
           <Form.Item
             name="property type"
