@@ -27,10 +27,13 @@ const API_POST_PROPERTY = '/properties';
 
 export const PostProperty = async (propertyInfo) => {
   const json = JSON.stringify(propertyInfo);
-  //console.log(JSON.stringify(propertyInfo))
-  return axios.post(`${devURL}`+API_POST_PROPERTY, propertyInfo, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  console.log(JSON.stringify(propertyInfo))
+  //console.log(propertyInfo)
+  const res =post(`${devURL}`+API_POST_PROPERTY, json);
+  console.log(res)
+  return res //{
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // });
 };
