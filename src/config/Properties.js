@@ -9,7 +9,6 @@ export const getAllProperties = async () => {
     //console.log(response.data);
     return response.data;
 };
-  
 const API_GET_PROPERTIES_BY_ID = '/properties/';
 
 export const getPropertiesById = async (Id) => {
@@ -17,3 +16,10 @@ export const getPropertiesById = async (Id) => {
     const response = await axios.get(url);
     return response.data;
 };
+
+export const getPropertiesBySearch = async (search) => {
+    const  url = `http://localhost:8080/api/v1/properties/${search}`;
+    const response = await axios.get(url);
+    console.log(url)
+    return response.data;
+}
