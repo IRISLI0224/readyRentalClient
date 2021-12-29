@@ -7,7 +7,7 @@ const appendAuthToken = (config) => {
   const jwtToken = getToken();
   console.log("token," +jwtToken)
   const Authorization = jwtToken && `Bearer ${jwtToken}`;
-  return {headers: { 'Authorization':'Bearer '+getToken()} };
+  return { ...config,   headers: { Authorization: `Bearer ${jwtToken}` } };
 };
 
 

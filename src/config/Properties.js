@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { post, get, put } from './auth';
+import { getToken } from '../utils/authentication';
 const devURL = 'http://localhost:8080/api/v1';
 //All API about properties
 
@@ -29,7 +30,11 @@ export const PostProperty = async (propertyInfo) => {
   const json = JSON.stringify(propertyInfo);
   console.log(JSON.stringify(propertyInfo))
   //console.log(propertyInfo)
-  const res =post(`${devURL}`+API_POST_PROPERTY, json);
+  const token =getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+};
+  const res =post(`${devURL}`+API_POST_PROPERTY, json, config)
   console.log(res)
   return res //{
   //   headers: {
