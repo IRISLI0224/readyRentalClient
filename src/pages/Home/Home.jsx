@@ -107,7 +107,7 @@ class Home extends React.Component {
             <PropertyCardTitle>
               <h2>Recommended Properties </h2>
             </PropertyCardTitle>
-            <SlideCardContainer properties={properties}/>
+            <SlideCardContainer properties={properties} />
             <br />
           </div>
         ) : null}
