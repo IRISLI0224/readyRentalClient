@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken } from '../utils/authentication';
 
-axios.defaults.baseURL = `http://localhost:8080/api/v1/api`;
+axios.defaults.baseURL = `http://localhost:8080/api/v1/`;
 
 const appendAuthToken = (config) => {
   const jwtToken = getToken();
@@ -9,6 +9,8 @@ const appendAuthToken = (config) => {
   return { ...config, headers: { Authorization, ...config.header } };
 };
 
+
+//functions need to use token
 export const post = (url, data, config = {}) => axios.post(url, data, appendAuthToken(config));
 
 export const put = (url, data, config = {}) => axios.put(url, data, appendAuthToken(config));

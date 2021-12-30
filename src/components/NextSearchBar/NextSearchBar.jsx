@@ -7,8 +7,7 @@ const Container = styled.div`
   max-height: 180px;
   height: 180px;
   vertical-align: top;
-  margin-left: 2px;
-  padding: 14px 18px 21px;
+  padding: 14px 18px 14px;
   box-sizing: border-box;
   border-radius: 3px;
   transition: background-color 0.3s ease;
@@ -16,9 +15,24 @@ const Container = styled.div`
   margin-left: 12px;
   margin-right: 50px;
   text-align: left;
+  &:hover {
+    background-color: black;
+  }
   h2 {
     font-size: 1.2rem;
     color: white;
+  }
+  p {
+    margin-bottom: 21px;
+  }
+  Button {
+    color: #fff;
+    border: 2px solid #e5e8ec;
+    background-color: transparent;
+    &:hover {
+      background-color: #ff0000;
+      border: 2px solid #ff0000;
+    }
   }
   @media (max-width: 1200px) {
     display: none;

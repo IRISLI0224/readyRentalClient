@@ -4,24 +4,19 @@ import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
 import { getAllProperties } from '../../../../../../config/Properties';
 import CheckFilter from './components/CheckFilter';
+// this is for checkbox, if no longer to use it, then delete, but just leave it at the moment
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 
 const SearchText = styled.input`
   width: 85%;
-  height: 4.03rem;
+  height: 4rem;
   font-weight: 400;
   font-size: 1.5em;
   color: black;
   padding: 20px 65px 20px 45px;
-`;
-
-const SearchBar = styled.div`
-  width: 100%;
-  height: 50px;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 2px;
-  display: flex;
+  border: none;
+  outline: none;
+  border-radius: 2px;
 `;
 
 const Container = styled.div`
@@ -34,25 +29,49 @@ const Container = styled.div`
     text-align: left;
     width: 100%;
     margin: auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    font-size: 1.1rem;
+    margin: 4px 0px 4px;
+    font-size: 1.6rem;
     color: white;
   }
+  position: relative;
 `;
 
 const CheckFilterItem = styled.div`
   width: auto;
   height: 1.5rem;
+  display: inline-block;
+`;
+const TypeLabel = styled.div`
+  border: none;
+  outline: none;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+`;
+const TypeSelection = styled.div`
+  position: absolute;
+  z-index: 99;
+  bottom: -80px;
+  background-color: white;
+  width: 130px;
+  height: 6rem;
+  text-align: left;
+  color: black;
+  padding: 2px 2px 2px 2px;
 `;
 
 const Selection = styled.select`
   border: none;
+  outline: none;
   color: white;
   background: transparent;
+  cursor: pointer;
 `;
 const Option = styled.option`
   color: black;
+  text-decoration: none;
+  border: none;
+  outline: none;
 `;
 
 const SearchPanel = styled.div`
@@ -106,10 +125,21 @@ class SearchTable extends React.Component {
   render() {
     const { filterText, isHouse, isApartment, isStudio, bedMin, bedMax, priceMin, priceMax } =
       this.props;
+    // isHouse, isApartment, isStudio for checkbox, if no longer to use, then delete, but just leave it at the moment
     return (
       <Container>
         <h1>Search properties for sale</h1>
-        <form>
+        <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              const query= new URLSearchParams();
+              filterText && query.set('input', filterText); 
+              bedMin && query.set('bedMin', bedMin);
+              bedMax && query.set('bedMax', bedMax);
+              priceMin && query.set('rentMin', priceMin);
+              priceMax && query.set('rentMax', priceMax);
+              window.location.href = `/search?${query.toString()}`;
+              }}>
           <SearchPanel>
             <SearchOutlined
               style={{
@@ -123,6 +153,8 @@ class SearchTable extends React.Component {
             <SearchText
               type="text"
               placeholder="Search by state, suburb or postcode"
+              name="location"
+              id="location"
               value={filterText}
               onChange={this.handleFilterTextChange}
             ></SearchText>
@@ -135,91 +167,68 @@ class SearchTable extends React.Component {
                 color: '#808080',
               }}
             />
-            <Button
-              primary
-              size="130px"
-              height="3.9rem"
-              type="submit"
-              onClick={() => {
-                getAllProperties();
-              }}
-            >
+            <Button primary size="130px" height="4.03rem" type="submit"onClick={getAllProperties} >
               Search
             </Button>
           </SearchPanel>
-          <CheckFilter>
-            <CheckFilterItem>
-              <input
-                type="checkbox"
-                id="house"
-                checked={isHouse}
-                onChange={this.handleHouseChange}
-              />
-              <label htmlFor="house">House</label>
-            </CheckFilterItem>
-            <CheckFilterItem>
-              <input
-                type="checkbox"
-                name="apartment"
-                checked={isApartment}
-                onChange={this.handleApartmentChange}
-              />
-              <label htmlFor="apartment">Apartment Units</label>
-            </CheckFilterItem>
-            <CheckFilterItem>
-              <input type="checkbox" checked={isStudio} onChange={this.handleStudioChange} />
-              Studio
-            </CheckFilterItem>
-          </CheckFilter>
           <DropFilter>
+            <Selection name="type" id="">
+              <Option value="all" selected disabled hidden>
+                All property types
+              </Option>
+              <Option value="all">All property types</Option>
+              <Option value="house">House</Option>
+              <Option value="apartment">Apartment</Option>
+              <Option value="studio">Studio</Option>
+            </Selection>
             <Selection name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
               <Option value="" selected disabled hidden>
-                Bed(Min)
+                Beds (min)
               </Option>
               <Option value="">Any</Option>
-              <Option value="1">1</Option>
-              <Option value="2">2</Option>
-              <Option value="3">3</Option>
-              <Option value="4">4</Option>
-              <Option value="5">5</Option>
-              <Option value="6">6</Option>
+              <Option value="1">1 Bed</Option>
+              <Option value="2">2 Beds</Option>
+              <Option value="3">3 Beds</Option>
+              <Option value="4">4 Beds</Option>
+              <Option value="5">5 Beds</Option>
+              <Option value="6">6 Beds</Option>
             </Selection>
             <Selection name="bedMax" id="" onChange={this.handleBedMaxChange} value={bedMax}>
               <Option value="" selected disabled hidden>
-                Bed(Max)
+                Beds (max)
               </Option>
               <Option value="">Any</Option>
-              <Option value="1">1</Option>
-              <Option value="2">2</Option>
-              <Option value="3">3</Option>
-              <Option value="4">4</Option>
-              <Option value="5">5</Option>
-              <Option value="6">6</Option>
-              <Option value="7">7</Option>
+              <Option value="1">1 Bed</Option>
+              <Option value="2">2 Beds</Option>
+              <Option value="3">3 Beds</Option>
+              <Option value="4">4 Beds</Option>
+              <Option value="5">5 Beds</Option>
+              <Option value="6">6 Beds</Option>
+              <Option value="7">7 Beds</Option>
             </Selection>
             <Selection name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
               <Option value="" selected disabled hidden>
-                Price(Min)
+                Price pw (min)
               </Option>
               <Option value="">Any</Option>
-              <Option value="500000">$500,000</Option>
-              <Option value="600000">$600,000</Option>
-              <Option value="700000">$700,000</Option>
-              <Option value="800000">$800,000</Option>
-              <Option value="900000">$900,000</Option>
-              <Option value="1000000">$1,000,000</Option>
+              <Option value="50">$50pw</Option>
+              <Option value="75">$75pw</Option>
+              <Option value="100">$100pw</Option>
+              <Option value="125">$125pw</Option>
+              <Option value="150">$150pw</Option>
+              <Option value="175">$175pw</Option>
             </Selection>
             <Selection name="priceMax" id="" onChange={this.handlePriceMaxChange} value={priceMax}>
               <Option value="" selected disabled hidden>
-                Price(Max)
+                Price pw (max)
               </Option>
               <Option value="">Any</Option>
-              <Option value="500000">$500,000</Option>
-              <Option value="600000">$600,000</Option>
-              <Option value="700000">$700,000</Option>
-              <Option value="800000">$800,000</Option>
-              <Option value="900000">$900,000</Option>
-              <Option value="1000000">$1,000,000</Option>
+              <Option value="50">$50pw</Option>
+              <Option value="75">$75pw</Option>
+              <Option value="100">$100pw</Option>
+              <Option value="125">$125pw</Option>
+              <Option value="150">$150pw</Option>
+              <Option value="175">$175pw</Option>
             </Selection>
           </DropFilter>
         </form>
