@@ -27,7 +27,7 @@ const SearchResult = () => {
     };
     fetchData();
   }, [location.search]);
-  const addressObjectToString = ({ streetNumber, streetName, city, state, postcode }) => {
+  const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
     return `${streetNumber} ${streetName}, ${city}, ${state}`;
   };
   const totalPage = { totalPage: 2 };
