@@ -28,17 +28,11 @@ const API_POST_PROPERTY = '/properties';
 
 export const PostProperty = async (propertyInfo) => {
   const json = JSON.stringify(propertyInfo);
-  console.log(JSON.stringify(propertyInfo))
-  //console.log(propertyInfo)
   const token =getToken();
   const config = {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: {  'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
 };
-  const res =post(`${devURL}`+API_POST_PROPERTY, json, config)
-  console.log(res)
-  return res //{
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // });
+  const res =axios.post(`${devURL}`+API_POST_PROPERTY, json, config)
+  //console.log(res)
+  return res 
 };

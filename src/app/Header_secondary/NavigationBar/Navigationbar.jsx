@@ -39,7 +39,7 @@ const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
   useEffect(() => {
     const token = getToken();
-    console.log(token)
+    //console.log(token)
     if (token) setLogin(true);
   }, []);
 

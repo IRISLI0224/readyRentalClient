@@ -11,12 +11,15 @@ import {
   Button,
   DatePicker,
   InputNumber,
+  message,
 } from 'antd';
 import { CodeSandboxCircleFilled, InboxOutlined } from '@ant-design/icons';
 import { storePropety } from '../../api/postProperties';
 import styled from 'styled-components';
 import { PostProperty } from '../../config/properties';
 import validate from '../../hoc/Form/validate';
+
+const ManageListPage='http://localhost:3000/property/manage-listings';
 
 const SubmitWrapper = styled.div`
   margin-left: 150px;
@@ -99,7 +102,7 @@ class postForm extends React.Component {
     //this.getSubmitError = this.getSubmitError.bind(this);
   }
   handleFormSubmit = async (values) => {
-    console.log(values);
+    //console.log(values);
     // storePropety(values).then(function (response) {
     //   return;
     // });
@@ -107,19 +110,19 @@ class postForm extends React.Component {
   };
 
   handleDataChange(event) {
-    console.log(event);
+    //console.log(event);
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     const { name } = event.target;
 
-    console.log(event.target);
+    //console.log(event.target);
     this.setData(name, {
       value,
     });
-    console.log(this.state.propertyData);
+    //console.log(this.state.propertyData);
   }
 
   handleNumberChange(name, event) {
-    console.log(event);
+    //console.log(event);
     this.setData(name, {
       event,
     });
@@ -133,23 +136,23 @@ class postForm extends React.Component {
     this.setData(classname, {
       value,
     });
-    console.log(this.state.propertyData);
+    //console.log(this.state.propertyData);
   }
 
   handleSelectChange(event) {
-    console.log(event);
+    //console.log(event);
     this.state.propertyData.roomType.value = event;
   }
 
   handleIsFormSubmitChange(newIsFormSubmit) {
-    console.log('handle is form submit change');
+    //console.log('handle is form submit change');
     this.setState({
       isFormSubmit: newIsFormSubmit,
     });
   }
 
   handleBlurredChange(event) {
-    console.log('handle blurred change');
+    //console.log('handle blurred change');
     const { name } = event.target;
 
     this.setData(name, {
@@ -158,7 +161,7 @@ class postForm extends React.Component {
   }
 
   setData(classname, newData) {
-    console.log('set data');
+    //console.log('set data');
     this.setState((prevState) => ({
       propertyData: {
         ...prevState.propertyData,
@@ -202,6 +205,9 @@ class postForm extends React.Component {
     });
     console.log(newData);
     await PostProperty(newData);
+    //back to list page
+    window.alert("Add a new property to your list successfully")
+    window.location.href=ManageListPage
   };
 
   render() {
