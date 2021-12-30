@@ -11,6 +11,9 @@ const Container = styled.div`
   width: 100vw;
   background-color: #333f48;
   color: #fff;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const FooterNavigation = styled.div`
@@ -38,6 +41,9 @@ const FooterContent = styled(Container)`
   width: 60%;
   margin: auto;
   font-family: Museo-Sans-300, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
 `;
 
 const FooterText = styled.div`
@@ -62,6 +68,7 @@ const FooterText = styled.div`
     &.stock-info {
       color: #666;
       font-size: 0.8125rem;
+      padding-bottom: 3rem;
     }
   }
   &.international-site {

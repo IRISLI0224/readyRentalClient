@@ -7,13 +7,7 @@ class FilterProductTable extends React.Component {
       filterText: '',
       isHouse: false,
       isApartment: false,
-      isTownHouse: false,
-      isVilla: false,
-      isLand: false,
-      isAcreage: false,
-      isRural: false,
-      isBlock: false,
-      isRetirement: false,
+      isStudio: false,
       bedMin: '',
       bedMax: '',
       priceMin: '',
@@ -22,13 +16,7 @@ class FilterProductTable extends React.Component {
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
     this.onHouseChange = this.onHouseChange.bind(this);
     this.onApartmentChange = this.onApartmentChange.bind(this);
-    this.onTownHouseChange = this.onTownHouseChange.bind(this);
-    this.onVillaChange = this.onVillaChange.bind(this);
-    this.onLandChange = this.onLandChange.bind(this);
-    this.onAcreageChange = this.onAcreageChange.bind(this);
-    this.onRuralChange = this.onRuralChange.bind(this);
-    this.onBlockChange = this.onBlockChange.bind(this);
-    this.onRetirementChange = this.onRetirementChange.bind(this);
+    this.onStudioChange = this.onStudioChange.bind(this);
     this.onBedMinChange = this.onBedMinChange.bind(this);
     this.onBedMaxChange = this.onBedMaxChange.bind(this);
     this.onPriceMinChange = this.onPriceMinChange.bind(this);
@@ -49,39 +37,9 @@ class FilterProductTable extends React.Component {
       isApartment,
     });
   }
-  onTownHouseChange(isTownHouse) {
+  onStudioChange(isStudio) {
     this.setState({
-      isTownHouse,
-    });
-  }
-  onVillaChange(isVilla) {
-    this.setState({
-      isVilla,
-    });
-  }
-  onLandChange(isLand) {
-    this.setState({
-      isLand,
-    });
-  }
-  onAcreageChange(isAcreage) {
-    this.setState({
-      isAcreage,
-    });
-  }
-  onRuralChange(isRural) {
-    this.setState({
-      isRural,
-    });
-  }
-  onBlockChange(isBlock) {
-    this.setState({
-      isBlock,
-    });
-  }
-  onRetirementChange(isRetirement) {
-    this.setState({
-      isRetirement,
+      isStudio,
     });
   }
   onBedMinChange(bedMin) {
@@ -105,35 +63,15 @@ class FilterProductTable extends React.Component {
     });
   }
   render() {
-    const {
-      filterText,
-      isHouse,
-      isApartment,
-      isTownHouse,
-      isVilla,
-      isLand,
-      isAcreage,
-      isRural,
-      isBlock,
-      isRetirement,
-      bedMin,
-      bedMax,
-      priceMin,
-      priceMax,
-    } = this.state;
+    const { filterText, isHouse, isApartment, isStudio, bedMin, bedMax, priceMin, priceMax } =
+      this.state;
     return (
       <div>
         <SearchTable
           filterText={filterText}
           isHouse={isHouse}
           isApartment={isApartment}
-          isTownHouse={isTownHouse}
-          isVilla={isVilla}
-          isLand={isLand}
-          isAcreage={isAcreage}
-          isRural={isRural}
-          isBlock={isBlock}
-          isRetirement={isRetirement}
+          isStudio={isStudio}
           bedMin={bedMin}
           bedMax={bedMax}
           priceMin={priceMin}
@@ -141,13 +79,7 @@ class FilterProductTable extends React.Component {
           onFilterTextChange={this.onFilterTextChange}
           onHouseChange={this.onHouseChange}
           onApartmentChange={this.onApartmentChange}
-          onTownHouseChange={this.onTownHouseChange}
-          onVillaChange={this.onVillaChange}
-          onLandChange={this.onLandChange}
-          onAcreageChange={this.onAcreageChange}
-          onRuralChange={this.onRuralChange}
-          onBlockChange={this.onBlockChange}
-          onRetirementChange={this.onRetirementChange}
+          onStudioChange={this.onStudioChange}
           onBedMinChange={this.onBedMinChange}
           onBedMaxChange={this.onBedMaxChange}
           onPriceMinChange={this.onPriceMinChange}

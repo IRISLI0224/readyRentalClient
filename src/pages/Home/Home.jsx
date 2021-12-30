@@ -1,21 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropertyCard from '../../components/PropertyCard';
 import { getAllProperties } from '../../config/Properties';
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
+import SlideCardContainer from '../../components/SlideCardContainer';
+import { Button } from '../../hoc/Button';
+import { SearchOutlined } from '@ant-design/icons';
+import {
+  NewsContainer,
+  NewsCardTitle,
+  NewsCard,
+  NewsCardImg,
+  Img,
+  NewsCardContent,
+  SearchTitle,
+  SearchBar,
+  SearchText,
+  TypeFilter,
+  TypeFilterTitle,
+  TypeFilterItem,
+  RangeDropDown,
+  SubmitSearch,
+} from './components/Container';
+import Form from 'antd/lib/form/Form';
 import SmallPropertyCard from '../../components/SmallPropertyCard';
-import SlideCard from '../../components/SlideCard';
+//import SlideCard from '../../components/SlideCard';
 import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
 
 const Container = styled.div`
-  overflow: hidden;
+  //overflow: hidden;
+  width: 60%;
   height: auto;
-  margin: 5rem auto;
+  margin: auto;
   background-color: #fff;
   text-align: center;
   width: 100%;
+  Form {
+    padding-bottom: 80px;
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
 `;
 
 const PropertyBack = styled.div`
@@ -45,23 +73,6 @@ const PropertyContainer = styled.div`
   opacity: 80%;
 `;
 
-const NewsContainer = styled.div`
-  overflow: hidden;
-  width: 55rem;
-  height: 60rem;
-  margin: 5rem auto;
-  background-color: #fff;
-  text-align: center;
-`;
-
-const NewsCardTitle = styled.div`
-  width: 100%;
-  height: 10%;
-  text-align: left;
-  font-size: 1.3rem;
-  color: #333f48;
-`;
-
 const PropertyCardTitle = styled.div`
   width: 100%;
   height: 10%;
@@ -69,73 +80,6 @@ const PropertyCardTitle = styled.div`
   font-size: 1.3rem;
   color: #333f48;
   margin-left: 20%;
-`;
-
-const NewsCard = styled.div`
-  height: 25%;
-  width: 100%;
-  display: flex;
-  text-align: left;
-  margin-bottom: 60px;
-  position: relative;
-  &:hover {
-    h3 {
-      color: #e4002b;
-    }
-  }
-  &:visited {
-    color: #fff;
-  }
-  a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 0;
-    opacity: 0;
-    z-index: 1;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`;
-
-const NewsCardImg = styled.div`
-  width: 40%;
-  height: 100%;
-`;
-
-const Img = styled.img`
-  width: 100%;
-  height: 100%;
-  src: ${(props) => props.src};
-`;
-
-const NewsCardContent = styled.div`
-  width: 65%;
-  height: 100%;
-  padding: 0px 20px 0px 20px;
-  line-height: 1.25em;
-  h3 {
-    margin: 0;
-    padding-bottom: 0.4rem;
-    line-height: 1.25;
-    font-size: 1.5rem;
-  }
-  span {
-    font-size: 0.75em;
-    color: #969fa9;
-    font-weight: 400;
-    line-height: 1.5;
-    margin: 0;
-  }
-  p {
-    color: #697684;
-    font-size: 1em;
-    line-height: 1.5;
-    margin: 0;
-    padding-top: 0.8rem;
-  }
 `;
 
 class Home extends React.Component {
@@ -160,29 +104,12 @@ class Home extends React.Component {
     const { properties } = this.state;
     return (
       <Container>
-        {properties.length>0 ? (
+        {properties.length > 0 ? (
           <div>
             <PropertyCardTitle>
               <h2>Recommended Properties </h2>
             </PropertyCardTitle>
-            <Carousel
-              vertical
-              autoplay
-              infinite
-              speed={1000}
-              autoplayInterval={10000}
-              resetAutoplay={false}
-            >
-              {properties.map((property, index) => {
-                return (
-                  <PropertyBack key={index}>
-                    <PropertyContainer key={index} style={{ backgroundColor: 'grey' }}>
-                      <SlideCard PropertyInfo={property} key={index} style={{}}></SlideCard>
-                    </PropertyContainer>
-                  </PropertyBack>
-                );
-              })}
-            </Carousel>
+            <SlideCardContainer properties={properties} />
             <br />
           </div>
         ) : null}
@@ -247,6 +174,146 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
+        <Form>
+          <SearchTitle>
+            <h1>Search property for rent</h1>
+          </SearchTitle>
+          <SearchBar>
+            <SearchOutlined
+              style={{
+                fontSize: '1.4rem',
+                position: 'absolute',
+                left: '4.2%',
+                zIndex: '1',
+                color: '#808080',
+              }}
+            />
+            <SearchText type="text" placeholder="Search by state, suburb or postcode" />
+          </SearchBar>
+          <TypeFilter>
+            <TypeFilterTitle>
+              <h2>Property type</h2>
+            </TypeFilterTitle>
+            <TypeFilterItem>
+              <input type="checkbox" id="allType" />
+              <label htmlFor="allType">&nbsp;All Type</label>
+            </TypeFilterItem>
+            <TypeFilterItem>
+              <input type="checkbox" id="house" />
+              <label htmlFor="house">&nbsp;House</label>
+            </TypeFilterItem>
+            <TypeFilterItem>
+              <input type="checkbox" id="apartment" />
+              <label htmlFor="apartment">&nbsp;Apartment Unit</label>
+            </TypeFilterItem>
+            <TypeFilterItem>
+              <input type="checkbox" id="studio" />
+              <label htmlFor="townHouse">&nbsp;Studio</label>
+            </TypeFilterItem>
+          </TypeFilter>
+          <hr />
+          <RangeDropDown>
+            <TypeFilterTitle>
+              <h2>Price</h2>
+            </TypeFilterTitle>
+            <TypeFilterItem className="range">
+              <label htmlFor="priceMin">Min</label>
+              <br />
+              <select name="priceMin" id="priceMin">
+                <option value="">Any</option>
+                <option value="50">$50</option>
+                <option value="75">$75</option>
+                <option value="100">$100</option>
+                <option value="125">$125</option>
+                <option value="150">$150</option>
+                <option value="175">$175</option>
+                <option value="200">$200</option>
+              </select>
+            </TypeFilterItem>
+            <TypeFilterItem className="range">
+              <label htmlFor="priceMax">Max</label>
+              <br />
+              <select name="priceMax" id="priceMax">
+                <option value="">Any</option>
+                <option value="50">$50</option>
+                <option value="75">$75</option>
+                <option value="100">$100</option>
+                <option value="125">$125</option>
+                <option value="150">$150</option>
+                <option value="175">$175</option>
+                <option value="200">$200</option>
+              </select>
+            </TypeFilterItem>
+          </RangeDropDown>
+          <hr />
+          <RangeDropDown>
+            <TypeFilterTitle>
+              <h2>Bedrooms</h2>
+            </TypeFilterTitle>
+            <TypeFilterItem className="range">
+              <label htmlFor="bedMin">Min</label>
+              <br />
+              <select name="bedMin" id="bedMin">
+                <option value="">Any</option>
+                <option value="studio">Studio</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </TypeFilterItem>
+            <TypeFilterItem className="range">
+              <label htmlFor="bedMax">Max</label>
+              <br />
+              <select name="bedMax" id="bedMax">
+                <option value="">Any</option>
+                <option value="studio">Studio</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </TypeFilterItem>
+          </RangeDropDown>
+          <hr />
+          <RangeDropDown>
+            <TypeFilterTitle>
+              <h2>Bathrooms</h2>
+            </TypeFilterTitle>
+            <TypeFilterItem className="oneDrop">
+              <select name="bathroom" id="bathroom">
+                <option value="">Any</option>
+                <option value="1+">1+</option>
+                <option value="2+">2+</option>
+                <option value="3+">3+</option>
+                <option value="4+">4+</option>
+                <option value="5+">5+</option>
+                <option value="6+">6+</option>
+              </select>
+            </TypeFilterItem>
+          </RangeDropDown>
+          <hr />
+          <RangeDropDown id="lastDrop">
+            <TypeFilterTitle>
+              <h2>Available Date</h2>
+            </TypeFilterTitle>
+            <TypeFilterItem className="oneDrop">
+              <select name="date" id="date">
+                <option value="">Any</option>
+              </select>
+            </TypeFilterItem>
+          </RangeDropDown>
+          <SubmitSearch>
+            <Button>Clear Filter</Button>
+            <Button primary type="submit">
+              Search
+            </Button>
+          </SubmitSearch>
+        </Form>
       </Container>
     );
   }

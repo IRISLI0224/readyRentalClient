@@ -16,8 +16,8 @@ const Container = styled.div`
   margin-top: 4vh;
 `;
 const FlexWrapSearch = styled(FlexWrap)`
-    margin-bottom: 8px;
-`
+  margin-bottom: 8px;
+`;
 const SearchResult = () => {
   const location = useLocation();
   const [properties, setProperties] = useState([]);
@@ -63,7 +63,6 @@ const SearchResult = () => {
         <Pagination/>
       </FlexWrap>
     </Container>
-
-  )
-}
+  );
+};
 export default SearchResult;
