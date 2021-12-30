@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
-import { getAllProperties } from '../../../../../../config/Properties';
+import { getAllProperties } from '../../../../../../config/properties';
 import CheckFilter from './components/CheckFilter';
 // this is for checkbox, if no longer to use it, then delete, but just leave it at the moment
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
