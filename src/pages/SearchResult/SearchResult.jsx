@@ -7,12 +7,13 @@ import agent_icon from '../../assests/experimental_img/agent-pic.PNG';
 import agent_brand from '../../assests/experimental_img/brand.PNG';
 import TextStyle from '../../hoc/Text';
 import FlexWrap from '../../hoc/FlexWrap';
-import Pagination from '../../components/Pagination';
+import {Pagination} from '../../components/Pagination';
 import { getPropertiesBySearch } from '../../config/Properties';
+import Sorting from '../../components/Sorting';
 
 const Container = styled.div`
-  margin-left: 30vw;
-  margin-top: 20px;
+  margin-left: 30%;
+  margin-top: 4vh;
 `;
 const FlexWrapSearch = styled(FlexWrap)`
   margin-bottom: 8px;
@@ -30,18 +31,19 @@ const SearchResult = () => {
   const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
     return `${streetNumber} ${streetName}, ${city}, ${state}`;
   };
-  const totalPage = { totalPage: 2 };
+
+  
   const query = new URLSearchParams(location.search);
   const SearchInput = query.get('input');
   return (
     <Container>
-      <FlexWrapSearch direction="row">
+      <FlexWrapSearch direction="row" >
         <TextStyle bold size="1rem">
           Real Estate & Property for sale in {SearchInput}
         </TextStyle>
       </FlexWrapSearch>
-      <FlexWrapSearch direction="row">
-        <TextStyle>1-25 of 1040 results</TextStyle>
+      <FlexWrapSearch direction="row" >
+        <TextStyle>Sort <Sorting/></TextStyle>
       </FlexWrapSearch>
       {properties.map((property) => (
         <FlexWrap direction="row" key={property._id}>
@@ -57,7 +59,9 @@ const SearchResult = () => {
           />
         </FlexWrap>
       ))}
-      <Pagination config={totalPage} />
+      <FlexWrap direction="row" >
+        <Pagination/>
+      </FlexWrap>
     </Container>
   );
 };
