@@ -12,9 +12,9 @@ import { getPropertiesBySearch } from '../../config/Properties';
 import Sorting from '../../components/Sorting';
 
 const Container = styled.div`
-    margin-left: 30%;
-    margin-top: 4vh;
-`
+  margin-left: 30%;
+  margin-top: 4vh;
+`;
 const FlexWrapSearch = styled(FlexWrap)`
     margin-bottom: 8px;
 `
@@ -31,6 +31,8 @@ const SearchResult = () => {
   const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
     return `${streetNumber} ${streetName}, ${city}, ${state}`;
   };
+
+  
   const query = new URLSearchParams(location.search);
   const SearchInput = query.get('input');
   return (
