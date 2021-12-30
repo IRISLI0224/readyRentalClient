@@ -19,7 +19,7 @@ import styled from 'styled-components';
 import { PostProperty } from '../../config/properties';
 import validate from '../../hoc/Form/validate';
 
-const ManageListPage='http://localhost:3000/property/manage-listings';
+const ManageListPage = 'http://localhost:3000/property/manage-listings';
 
 const SubmitWrapper = styled.div`
   margin-left: 150px;
@@ -87,6 +87,7 @@ class postForm extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
+      allfilled:false,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleDataChangeCheckbox = this.handleDataChangeCheckbox.bind(this);
@@ -102,27 +103,18 @@ class postForm extends React.Component {
     //this.getSubmitError = this.getSubmitError.bind(this);
   }
   handleFormSubmit = async (values) => {
-    //console.log(values);
-    // storePropety(values).then(function (response) {
-    //   return;
-    // });
     await PostProperty(values);
   };
 
   handleDataChange(event) {
-    //console.log(event);
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     const { name } = event.target;
-
-    //console.log(event.target);
     this.setData(name, {
       value,
     });
-    //console.log(this.state.propertyData);
   }
 
   handleNumberChange(name, event) {
-    //console.log(event);
     this.setData(name, {
       event,
     });
@@ -131,37 +123,29 @@ class postForm extends React.Component {
   handleDataChangeCheckbox(event) {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     const { classname } = event.target;
-
-    //console.log(event.target);
     this.setData(classname, {
       value,
     });
-    //console.log(this.state.propertyData);
   }
 
   handleSelectChange(event) {
-    //console.log(event);
     this.state.propertyData.roomType.value = event;
   }
 
   handleIsFormSubmitChange(newIsFormSubmit) {
-    //console.log('handle is form submit change');
     this.setState({
       isFormSubmit: newIsFormSubmit,
     });
   }
 
   handleBlurredChange(event) {
-    //console.log('handle blurred change');
     const { name } = event.target;
-
     this.setData(name, {
       blurred: true,
     });
   }
 
   setData(classname, newData) {
-    //console.log('set data');
     this.setState((prevState) => ({
       propertyData: {
         ...prevState.propertyData,
@@ -193,21 +177,16 @@ class postForm extends React.Component {
   }
 
   handleSubmit = async () => {
-    
-    const {propertyData} = this.state;
+    const { propertyData } = this.state;
     const newData = propertyData;
-   
-    //const data = this.formatData(propertyData);
-    //change format of data
     Object.entries(newData).map(([key, value]) => {
       newData[key] = value.value;
-      //return data;
     });
-    console.log(newData);
+    //console.log(newData);
     await PostProperty(newData);
     //back to list page
-    window.alert("Add a new property to your list successfully")
-    window.location.href=ManageListPage
+    window.alert('Add a new property to your list successfully');
+    window.location.href = ManageListPage;
   };
 
   render() {
@@ -447,7 +426,7 @@ class postForm extends React.Component {
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <SubmitWrapper>
-              <Button type="primary" htmlType="submit" size={'large'} onClick={this.handleSubmit}>
+              <Button type="primary" htmlType="submit" size={'large'} onClick={this.handleSubmit} disabled={this.state.allfilled}>
                 Submit
               </Button>
             </SubmitWrapper>
