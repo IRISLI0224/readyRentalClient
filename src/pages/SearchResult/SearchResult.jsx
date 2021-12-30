@@ -20,19 +20,18 @@ const FlexWrapSearch = styled(FlexWrap)`
 `;
 const SearchResult = () => {
   const location = useLocation();
-  const [properties, setProperties] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPropertiesBySearch(location.search);
-      setProperties(data);
-    };
-    fetchData();
-  }, [location.search]);
-  const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
-    return `${streetNumber} ${streetName}, ${city}, ${state}`;
-  };
+  // const [properties, setProperties] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getPropertiesBySearch(location.search);
+  //     setProperties(data);
+  //   };
+  //   fetchData();
+  // }, [location.search]);
+  // const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
+  //   return `${streetNumber} ${streetName}, ${city}, ${state}`;
+  // };
 
-  
   const query = new URLSearchParams(location.search);
   const SearchInput = query.get('input');
   return (
@@ -45,7 +44,7 @@ const SearchResult = () => {
       <FlexWrapSearch direction="row" >
         <TextStyle>Sort <Sorting/></TextStyle>
       </FlexWrapSearch>
-      {properties.map((property) => (
+      {/* {properties.map((property) => (
         <FlexWrap direction="row" key={property._id}>
           <Card
             price={property.rent}
@@ -58,7 +57,7 @@ const SearchResult = () => {
             agentName="Frank"
           />
         </FlexWrap>
-      ))}
+      ))} */}
       <FlexWrap direction="row" >
         <Pagination/>
       </FlexWrap>

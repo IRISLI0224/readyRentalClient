@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { getPropertiesBySearch } from '../../config/Properties';
+import { useLocation } from 'react-router-dom';
+import FlexWrap from '../../hoc/FlexWrap';
+import Card from '../../components/ListCard';
+import { SliderData } from '../../components/ListCard/SliderData';
+import { BiCloudUpload } from 'react-icons/bi';
 
 //solution from:https://www.youtube.com/watch?v=6DtBw3PaeHs
 const Main = styled.div`
@@ -69,20 +75,44 @@ const Details = styled.p`
     font-weight: 500;
 `
 
-const renderData = (data) => {
+const Li = styled.li`
+    list-style: none;
+`
+
+
+const renderData = (property) => {
     return (
-        <ul>
-            {data.map((todo, index) => {
-                return <li key={index}>{todo.id}</li>
-            })}
-        </ul>
-    )
+        <>
+            {property.map((item, index) => {
+                return (
+                    
+                        <Card key={index}
+                            price={item.rent}
+                            slides={SliderData}
+                            address={addressObjectToString(item.address)}
+                            types={item.roomType}
+                            bed={item.numOfBed}
+                            bath={item.numOfBath}
+                            car={item.numOfCarSpace}
+                            agentName="Frank"/>
+                    
+                )
+            })}  
+        </>
+    );
 }
+        
+
+const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
+    return `${streetNumber} ${streetName}, ${city}, ${state}`;
+};
 
 
 const Pagination = (props) => {
     //***fake data state */
-    const [data, setData] = useState([]);//input data management, from ajax request
+    // const [data, setData] = useState([]);//input data management, from ajax request
+    const location = useLocation();
+    const [properties, setProperties] = useState([]);
     const [currentPage, setcurrentPage] = useState(1);// selected current page management, from clicking by users
     const [itemsPerpage, setitemsPerpage] = useState(5);// the interval of displayed items in each page(e.g. item 1, item 2, item 3, item 4, item 5 in each page when useState(5))
 
@@ -96,7 +126,7 @@ const Pagination = (props) => {
 
     //***********total pages should have based on the volumn of data divided by interval(5 in this case)  */
     const pages = [];
-    for (let i = 1; i <= Math.ceil(data.length / itemsPerpage); i++) {
+    for (let i = 1; i <= Math.ceil(properties.length / itemsPerpage); i++) {
         pages.push(i);
     }
     /**** rendering pages number based on total pages calculated by above division*/
@@ -114,14 +144,15 @@ const Pagination = (props) => {
     //***********items in each page should be displayed, slicing total data to allocate to each page*/
     const indexOfLastItem = currentPage * itemsPerpage;
     const indexOfFirstItem = indexOfLastItem - itemsPerpage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = properties.slice(indexOfFirstItem, indexOfLastItem);
     //********data input************/可以提出去单独的js文件
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/todos")
+        fetch(`http://localhost:8080/api/v1/properties${location.search}`)
             .then((res) => res.json())
-            .then((json) => setData(json));
+            .then((json) => setProperties(json));
     }, []);
 
+    // console.log(currentItems);
     //********next&prev************/
     const handleNextbtn = () => {
         setcurrentPage(currentPage + 1);
@@ -129,6 +160,13 @@ const Pagination = (props) => {
             setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
             setminPageNumberLimit(minPageNumberLimit + pageNumberLimit)
         }
+        if(maxPageNumberLimit > pages.length){
+            setmaxPageNumberLimit(pages.length+1);
+            setminPageNumberLimit(pages.length - pageNumberLimit);
+        }
+        // console.log("current is"+currentPage);
+        // console.log("maxPageNumber is"+maxPageNumberLimit);
+        // console.log("minPageNumber is"+minPageNumberLimit);
     };
     const handlePrevbtn = () => {
         setcurrentPage(currentPage - 1);
@@ -136,6 +174,14 @@ const Pagination = (props) => {
             setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
             setminPageNumberLimit(minPageNumberLimit - pageNumberLimit)
         }
+        if(minPageNumberLimit === 0){
+            setmaxPageNumberLimit(pageNumberLimit);
+            setminPageNumberLimit(0);
+        }
+        
+        // console.log("current is"+currentPage);
+        // console.log("maxPageNumber is"+maxPageNumberLimit);
+        // console.log("minPageNumber is"+minPageNumberLimit);
     };
     //********incretment for ... right************/
     let pageIncrementBtn = null;
@@ -162,17 +208,23 @@ const Pagination = (props) => {
     /******The last number should be displayed when the group of pages are the largest group(pages.length)(40 in the case)**/
     const handleLastbtn = () => {
         setcurrentPage(pages.length);
-        setmaxPageNumberLimit(pages.length);
-        setminPageNumberLimit(pages.length - pageNumberLimit);
+        setmaxPageNumberLimit(pages.length+pageNumberLimit-1);
+        setminPageNumberLimit(pages.length-1);
+        // console.log("current is"+currentPage);
+        // console.log("maxPageNumber is"+maxPageNumberLimit);
+        // console.log("minPageNumber is"+minPageNumberLimit);
+        // console.log(pages.length);
     }
 
+    
     let pageLastNumber = <PageList key={pages.length} id={pages.length} onClick={handleLastbtn} active={currentPage === pages.length ? 'true' : ''}>{pages.length}</PageList>;
-    if (maxPageNumberLimit === pages.length) {
+    if (maxPageNumberLimit > pages.length) {
         pageLastNumber = null;
     }
     // dataOut(currentPage,itemsPerpage,data.length);
     return (
         <Main>
+            {renderData(currentItems)}
             <Page>
                 <PageList pointer active="true" onClick={handlePrevbtn} status={currentPage === pages[0] ? 'end' : ``}>
                     <BsChevronLeft1 />Previous
@@ -186,8 +238,8 @@ const Pagination = (props) => {
                     Next<BsChevronRight1 />
                 </PageList>
             </Page>
-            <Page> <Details>Viewing {(currentPage - 1) * itemsPerpage + 1}-{currentPage * itemsPerpage} of {data.length} results</Details></Page>
-            {renderData(currentItems)}
+            <Page> <Details>Viewing {(currentPage - 1) * itemsPerpage + 1}-{currentPage * itemsPerpage} of {properties.length} results</Details></Page>
+            
         </Main>
     )
 }
