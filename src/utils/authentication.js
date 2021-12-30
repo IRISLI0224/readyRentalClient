@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_TOKEN_NAME = 'jr-hyperlink';
+const JWT_TOKEN_NAME = 'buggodie-ready-to-rent-token';
 const USER_EMAIL = 'email';
 
 export const getToken = () => localStorage.getItem(JWT_TOKEN_NAME);

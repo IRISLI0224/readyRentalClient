@@ -68,6 +68,7 @@ const FooterText = styled.div`
     &.stock-info {
       color: #666;
       font-size: 0.8125rem;
+      padding-bottom: 3rem;
     }
   }
   &.international-site {
