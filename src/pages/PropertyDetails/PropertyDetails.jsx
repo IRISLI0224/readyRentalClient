@@ -4,11 +4,13 @@ import BasicInfo from './components/BasicInfo';
 import Description from './components/Description/Description';
 import {getPropertiesById} from '../../config/Properties'
 import ContactForm from './components/ContactForm/ContactForm';
+import axios from 'axios';
 
 const PropertyDetails = () => {
   const params = useParams();
   const id = params.id.toString();
   const [Property,setProperty]=useState([]);
+
 
   useEffect(()=>{
     SetPropertiesById(id);
@@ -22,9 +24,9 @@ const PropertyDetails = () => {
   return (
     <>
       <h1>{Property.city}</h1>
-      <BasicInfo />
-      <Description />
-      <ContactForm />
+      <BasicInfo Property={Property}/>
+      <Description Property={Property}/>
+      <ContactForm/>
 
     </>
   );

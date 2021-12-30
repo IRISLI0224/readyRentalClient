@@ -5,10 +5,10 @@ import StyledText from '../../hoc/Text';
 import { BiBed, BiBath } from 'react-icons/bi';
 import { AiOutlineCar } from 'react-icons/ai';
 
-const RoomType = ({ headerSize }) => (
+const RoomType = ({ headerSize,Property }) => (
   <>
     <StyledText bold size={headerSize}>
-      10 Quilan Court, Caroline Springs, VIC 3023
+      123 Quilan Court, Caroline Springs, VIC 3023
     </StyledText>
     <FlexWrap direction="row">
       <StyledText>
@@ -16,18 +16,18 @@ const RoomType = ({ headerSize }) => (
           <StyledIcon>
             <BiBed />
           </StyledIcon>
-          <StyledText>3&nbsp;&nbsp;</StyledText>
+          <StyledText>{Property.numOfBed}&nbsp;&nbsp;</StyledText>
           <StyledIcon>
             <BiBath />
           </StyledIcon>
-          <StyledText>2&nbsp;&nbsp;</StyledText>
+          <StyledText>{Property.numOfBath}&nbsp;&nbsp;</StyledText>
           <StyledIcon>
             <AiOutlineCar />
           </StyledIcon>
-          <StyledText>2&nbsp;&nbsp;</StyledText>
+          <StyledText>{Property.numOfCarSpace}&nbsp;&nbsp;</StyledText>
         </FlexWrap>
       </StyledText>
-      <StyledText>House</StyledText>
+      <StyledText>{Property.roomType}</StyledText>
     </FlexWrap>
   </>
 );

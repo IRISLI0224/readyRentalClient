@@ -4,12 +4,12 @@ import PropButton from '../PropButton';
 import { HeroContainer, BasicInfoContainer, VerticalMargin, ImageContainer } from '../Container';
 import StyledText from '../../../../hoc/Text';
 
-const BasicInfo = () => (
+const BasicInfo = ({Property}) => (
   <BasicInfoContainer>
     <HeroContainer>
-      <RoomType headerSize="2rem" />
+      <RoomType Property={Property} headerSize="2rem" />
       <StyledText bold size="1.1rem">
-        $430 per week
+        ${Property.rent} per week
       </StyledText>
       <StyledText>Bond $1863</StyledText>
       <VerticalMargin margin="1rem">
