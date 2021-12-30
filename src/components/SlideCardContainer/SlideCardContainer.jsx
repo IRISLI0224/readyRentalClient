@@ -32,27 +32,30 @@ const PropertyContainer = styled.div`
   opacity: 80%;
 `;
 
-
-const SlideCardContainer = ({properties}) => {
+const SlideCardContainer = ({ properties }) => {
   return (
-    <Carousel
-      vertical
-      autoplay
-      infinite
-      speed={1000}
-      autoplayInterval={10000}
-      resetAutoplay={false}
-    >
-      {properties.map((property, index) => {
-        return (
-          <PropertyBack key={index}>
-            <PropertyContainer key={index} style={{ backgroundColor: 'grey' }}>
-              <SlideCard PropertyInfo={property} key={index} style={{}}></SlideCard>
-            </PropertyContainer>
-          </PropertyBack>
-        );
-      })}
-    </Carousel>
+    <>
+      {' '}
+      <h2>Recommended Properties </h2>
+      <Carousel
+        vertical
+        autoplay
+        infinite
+        speed={1000}
+        autoplayInterval={10000}
+        resetAutoplay={false}
+      >
+        {properties.map((property, index) => {
+          return (
+            <PropertyBack key={index}>
+              <PropertyContainer key={index} style={{ backgroundColor: 'white' }}>
+                <SlideCard PropertyInfo={property} key={index} style={{}}></SlideCard>
+              </PropertyContainer>
+            </PropertyBack>
+          );
+        })}
+      </Carousel>
+    </>
   );
 };
 

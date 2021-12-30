@@ -208,7 +208,7 @@ class JoinPage extends React.Component {
                 size="400px"
                 name="password"
                 id="password"
-                type="string"
+                type="password"
                 value={data.password.value}
                 defaultText="Password"
                 iconleft={passwordIcon}
