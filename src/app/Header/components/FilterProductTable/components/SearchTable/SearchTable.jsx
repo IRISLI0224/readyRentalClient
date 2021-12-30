@@ -129,7 +129,17 @@ class SearchTable extends React.Component {
     return (
       <Container>
         <h1>Search properties for sale</h1>
-        <form>
+        <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              const query= new URLSearchParams();
+              filterText && query.set('input', filterText); 
+              bedMin && query.set('bedMin', bedMin);
+              bedMax && query.set('bedMax', bedMax);
+              priceMin && query.set('rentMin', priceMin);
+              priceMax && query.set('rentMax', priceMax);
+              window.location.href = `/search?${query.toString()}`;
+              }}>
           <SearchPanel>
             <SearchOutlined
               style={{
@@ -157,7 +167,7 @@ class SearchTable extends React.Component {
                 color: '#808080',
               }}
             />
-            <Button primary size="130px" height="4.03rem" type="submit" onClick={getAllProperties}>
+            <Button primary size="130px" height="4.03rem" type="submit"onClick={getAllProperties} >
               Search
             </Button>
           </SearchPanel>
