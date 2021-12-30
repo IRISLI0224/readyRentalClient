@@ -1,8 +1,9 @@
+//All API about properties
+
 import axios from 'axios';
 import { post, get, put } from './auth';
 import { getToken } from '../utils/authentication';
 const devURL = 'http://localhost:8080/api/v1';
-//All API about properties
 
 //Get all property
 const API_GET_ALL_PROPERTIES = '/properties';
@@ -10,11 +11,8 @@ const API_GET_ALL_PROPERTIES = '/properties';
 export const getAllProperties = async () => {
   const url = devURL + API_GET_ALL_PROPERTIES;
   const response = await axios.get(url);
-  //console.log(response.data);
   return response.data;
 };
-
-//Get a property by ID
 const API_GET_PROPERTIES_BY_ID = '/properties/';
 
 export const getPropertiesById = async (Id) => {
@@ -28,11 +26,16 @@ const API_POST_PROPERTY = '/properties';
 
 export const PostProperty = async (propertyInfo) => {
   const json = JSON.stringify(propertyInfo);
-  const token =getToken();
+  const token = getToken();
   const config = {
-    headers: {  'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+  };
+  const res = axios.post(`${devURL}` + API_POST_PROPERTY, json, config);
+  return res;
 };
-  const res =axios.post(`${devURL}`+API_POST_PROPERTY, json, config)
-  //console.log(res)
-  return res 
+
+export const getPropertiesBySearch = async (search) => {
+  const url = devURL + `/properties${search}`;
+  const response = await axios.get(url);
+  return response.data;
 };

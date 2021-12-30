@@ -16,7 +16,7 @@ import {
 import { CodeSandboxCircleFilled, InboxOutlined } from '@ant-design/icons';
 import { storePropety } from '../../api/postProperties';
 import styled from 'styled-components';
-import { PostProperty } from '../../config/properties';
+import { PostProperty } from '../../config/Properties';
 import validate from '../../hoc/Form/validate';
 
 const ManageListPage = 'http://localhost:3000/property/manage-listings';
