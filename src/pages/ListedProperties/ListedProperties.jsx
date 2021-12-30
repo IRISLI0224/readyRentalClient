@@ -15,7 +15,7 @@ class ListedProperties extends React.Component {
       <Container>
         <NoShadowWrapper>
           <h1>My Listings</h1>
-          <Button as="a" href="https://www.google.com/" size="140px" height="50px" primary>
+          <Button as="a" href="/property/post" size="140px" height="50px" primary>
             +Create Listing
           </Button>
         </NoShadowWrapper>
