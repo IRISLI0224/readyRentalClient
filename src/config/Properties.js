@@ -18,8 +18,7 @@ export const getPropertiesById = async (Id) => {
 };
 
 export const getPropertiesBySearch = async (search) => {
-    const  url = `http://localhost:8080/api/v1/properties/${search}`;
+    const  url = `http://localhost:8080/api/v1/properties${search}`;
     const response = await axios.get(url);
-    console.log(url)
     return response.data;
 }

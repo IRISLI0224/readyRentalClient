@@ -1,5 +1,5 @@
-import React, {useEffect, useState } from 'react';
-import { useLocation} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { SliderData } from '../../components/ListCard/SliderData';
 import styled from 'styled-components';
 import Card from '../../components/ListCard';
@@ -11,68 +11,54 @@ import Pagination from '../../components/Pagination';
 import { getPropertiesBySearch } from '../../config/Properties';
 
 const Container = styled.div`
-    margin-left: 30vw;
-    margin-top: 20px;
-`
+  margin-left: 30vw;
+  margin-top: 20px;
+`;
 const FlexWrapSearch = styled(FlexWrap)`
-    margin-bottom: 8px;
-`
+  margin-bottom: 8px;
+`;
 const SearchResult = () => {
   const location = useLocation();
-  // use location.search to get the query string
-  const [properties, setProperties]=useState([]);
-
+  const [properties, setProperties] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await getPropertiesBySearch(location.search);
       setProperties(data);
-    }
+    };
     fetchData();
-  },[location.search])
-
-
-  const totalPage = {totalPage: 2};
-
-
+  }, [location.search]);
+  const addressObjectToString = ({ streetNumber, streetName, city, state, postcode }) => {
+    return `${streetNumber} ${streetName}, ${city}, ${state}`;
+  };
+  const totalPage = { totalPage: 2 };
+  const query = new URLSearchParams(location.search);
+  const SearchInput = query.get('input');
   return (
     <Container>
-      <FlexWrapSearch direction="row" >
-        <TextStyle bold size="1rem">Real Estate & Property for sale in ACT</TextStyle>
+      <FlexWrapSearch direction="row">
+        <TextStyle bold size="1rem">
+          Real Estate & Property for sale in {SearchInput}
+        </TextStyle>
       </FlexWrapSearch>
-      <FlexWrapSearch direction="row" >
+      <FlexWrapSearch direction="row">
         <TextStyle>1-25 of 1040 results</TextStyle>
       </FlexWrapSearch>
-      {/* properties.map((property) => <Card />) */}
-      <FlexWrap direction="row" >
-        <Card brand={agent_brand} slides={SliderData}
-          agentName="Frank" bedNum="3" bathNum="5" carNum="2" price="800"
-          address="lawson ACT 2601" agentName="Frank" agentIcon={agent_icon}
-          types="House"></Card>
-      </FlexWrap>
-      <FlexWrap direction="row" >
-        <Card brand={agent_brand} slides={SliderData}
-          agentName="Frank" bedNum="3" bathNum="5" carNum="2" price="800"
-          address="lawson ACT 2601" agentName="Frank" agentIcon={agent_icon}
-          types="House"></Card>
-      </FlexWrap>
-      {properties.map((property, index) => (
-        <FlexWrap direction="row"
-          key={index} >
+      {properties.map((property) => (
+        <FlexWrap direction="row" key={property._id}>
           <Card
-            key={index}
-            price={property.price}
+            price={property.rent}
             slides={SliderData}
-            address={property.address}
+            address={addressObjectToString(property.address)}
             types={property.roomType}
-            brand={agent_brand} 
+            bed={property.numOfBed}
+            bath={property.numOfBath}
+            car={property.numOfCarSpace}
             agentName="Frank"
           />
-          </FlexWrap>
-        ))}
-      
-      <Pagination config={totalPage}/>
+        </FlexWrap>
+      ))}
+      <Pagination config={totalPage} />
     </Container>
-
-  )
-}
+  );
+};
 export default SearchResult;
