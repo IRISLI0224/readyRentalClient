@@ -1,7 +1,11 @@
-import axios from 'axios';
-import { post, get, put } from './auth';
-const devURL = 'http://localhost:8080/api/v1';
 //All API about properties
+
+import axios from 'axios';
+
+// will use them in the future
+// import { post, get, put } from './auth';
+
+const devURL = 'http://localhost:8080/api/v1';
 
 //Get all property
 const API_GET_ALL_PROPERTIES = '/properties';
@@ -9,7 +13,6 @@ const API_GET_ALL_PROPERTIES = '/properties';
 export const getAllProperties = async () => {
   const url = devURL + API_GET_ALL_PROPERTIES;
   const response = await axios.get(url);
-  //console.log(response.data);
   return response.data;
 };
 
@@ -23,7 +26,7 @@ export const getPropertiesById = async (Id) => {
 };
 
 //Post new property
-const API_POST_PROPERTY = '/properties';
+// const API_POST_PROPERTY = '/properties';
 
 export const UploadProperty = async (propertyInfo) => {
   const json = JSON.stringify(propertyInfo);
