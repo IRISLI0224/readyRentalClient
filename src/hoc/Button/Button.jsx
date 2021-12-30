@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export const ButtonStyle = styled.button`
   color: ${(props) => (props.primary ? '#ffff' : '#333f48')};
-  border: 2px solid #e5e8ec;
+  border: none;
   display: inline-block;
   text-decoration: none;
   width: ${(props) => props.size};

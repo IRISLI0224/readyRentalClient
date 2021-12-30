@@ -102,18 +102,24 @@ export const SearchTitle = styled.div`
 
 export const SearchBar = styled.div`
   width: 100%;
-  height: 50px;
+  height: 150px;
   margin: auto;
   margin-top: 1rem;
   margin-bottom: 0.2rem;
   text-align: center;
+  background-color: #f0fff0;
+  display: flex;
+  align-items: center;
+  position: relative;
 `;
 
 export const SearchText = styled.input`
-  width: 50%;
-  height: 100%;
+  width: 95%;
+  height: 50px;
   font-weight: 400;
   font-size: 1em;
+  margin: auto;
+  padding: 0px 15px 0px 35px;
 `;
 
 export const TypeFilter = styled.div`
@@ -165,6 +171,8 @@ export const RangeDropDown = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 1.5rem 0.8rem 0.6rem 0.8rem;
+  &#lastDrop {
+  }
 `;
 
 export const SubmitSearch = styled.div`
@@ -174,10 +182,10 @@ export const SubmitSearch = styled.div`
   bottom: 0;
   border-top: 0.1rem solid #808080;
   display: flex;
+  align-items: center;
   justify-content: space-around;
   background-color: white;
   Button {
-    margin-top: 0.5rem;
     height: 3rem;
   }
 `;

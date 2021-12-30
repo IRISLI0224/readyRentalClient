@@ -45,11 +45,15 @@ const ButtonwithoutBorder = styled(ButtonStyle)`
   color: #fff;
   border: none;
   height: 40px;
+  &:hover {
+    color: #fff;
+  }
 `;
 
 const ButtonWhitFont = styled(ButtonStyle)`
   color: #fff;
   height: 40px;
+  border: 2px solid #e5e8ec;
   &:hover {
     background-color: #fff;
   }
