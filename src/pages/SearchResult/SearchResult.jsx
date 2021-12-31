@@ -10,6 +10,7 @@ import FlexWrap from '../../hoc/FlexWrap';
 import {Pagination} from '../../components/Pagination';
 import { getPropertiesBySearch } from '../../config/Properties';
 import Sorting from '../../components/Sorting';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   margin-left: 30%;
@@ -21,6 +22,7 @@ const FlexWrapSearch = styled(FlexWrap)`
 const SearchResult = () => {
   const location = useLocation();
   const [properties, setProperties] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getPropertiesBySearch(location.search);
@@ -28,13 +30,15 @@ const SearchResult = () => {
     };
     fetchData();
   }, [location.search]);
+
   const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
     return `${streetNumber} ${streetName}, ${city}, ${state}`;
   };
 
-  
   const query = new URLSearchParams(location.search);
+
   const SearchInput = query.get('input');
+
   return (
     <Container>
       <FlexWrapSearch direction="row" >
@@ -46,6 +50,7 @@ const SearchResult = () => {
         <TextStyle>Sort <Sorting/></TextStyle>
       </FlexWrapSearch>
       {properties.map((property) => (
+      <Link to={`/property/${property._id}`} key={property._id}>
         <FlexWrap direction="row" key={property._id}>
           <Card
             price={property.rent}
@@ -58,6 +63,7 @@ const SearchResult = () => {
             agentName="Frank"
           />
         </FlexWrap>
+      </Link>
       ))}
       <FlexWrap direction="row" >
         <Pagination/>
