@@ -31,7 +31,7 @@ import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
 
 const Container = styled.div`
-  overflow: hidden;
+  //overflow: hidden;
   width: 60%;
   height: auto;
   margin: auto;
@@ -109,7 +109,7 @@ class Home extends React.Component {
             <PropertyCardTitle>
               <h2>Recommended Properties </h2>
             </PropertyCardTitle>
-            <SlideCardContainer properties={properties}/>
+            <SlideCardContainer properties={properties} />
             <br />
           </div>
         ) : null}

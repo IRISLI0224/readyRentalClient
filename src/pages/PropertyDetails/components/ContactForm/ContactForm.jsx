@@ -26,7 +26,9 @@ const CheckboxWrapper = styled.div`
   flex-shrink: 0;
 `;
 
-const ContactForm = () => (
+const ContactForm = ({property}) => {
+  const {address}= property;
+  return (
   <>
     <BodyContainer direction="column">
       <ContactContainer>
@@ -35,8 +37,11 @@ const ContactForm = () => (
             Email enquiry to the landlord
           </StyledText>
           <HeroContainer>
-            <StyledText bold="0.2rem">10 Quilan Court, Caroline Springs, VIC</StyledText>
-            <StyledText bold="0.2rem">Rent: $430 per week</StyledText>
+            <StyledText bold="0.2rem">
+            {address?`${address.streetNumber} ${address.streetName}, ${address.city}, ${address.state}, 
+        ${address.postCode}`:address}
+            </StyledText>
+            <StyledText bold="0.2rem">Rent: ${property.rent} per week</StyledText>
             <StyledText bold="0.2rem">Next open: Sat 18 Dec, 9:00am - 9:15am</StyledText>
           </HeroContainer>
         </DescItem>
@@ -98,5 +103,5 @@ const ContactForm = () => (
       </ContactContainer>
     </BodyContainer>
   </>
-);
+);}
 export default ContactForm;

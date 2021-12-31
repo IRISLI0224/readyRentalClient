@@ -12,6 +12,12 @@ import InputErrorMsg from '../../hoc/InputErrorMsg';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
 
+//API
+import { UserRegister } from '../../config/Users';
+import { setToken } from '../../utils/authentication';
+
+const HOMEPAGE = 'http://localhost:3000';
+
 const Container = styled.div`
   background-color: white;
   text-align: center;
@@ -65,9 +71,9 @@ const LinktoLogin = styled.div`
   margin-bottom: 20px;
 `;
 
-const LogoImg =styled.img`
-  width:200px;
-`
+const LogoImg = styled.img`
+  width: 200px;
+`;
 
 class JoinPage extends React.Component {
   constructor(props) {
@@ -91,6 +97,7 @@ class JoinPage extends React.Component {
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
     this.handleBlurredChange = this.handleBlurredChange.bind(this);
+    this.userRegister = this.userRegister.bind(this);
   }
 
   handleDataChange(event) {
@@ -144,6 +151,23 @@ class JoinPage extends React.Component {
     return error;
   }
 
+  userRegister() {
+    this.setState({ error: null, isLoading: true }, () => {
+      const { data } = this.state;
+      UserRegister(data.email.value, data.password.value)
+        .then((res) => {
+          this.setState({ isLoading: false }, () => {
+            setToken(res.token);
+            //back to home page
+            window.location.href = HOMEPAGE;
+          });
+        })
+        .catch((error) => {
+          this.setState({ error, isLoading: false });
+        });
+    });
+  }
+
   render() {
     const { data, error: authError, isLoading } = this.state;
     const error = this.getError(data);
@@ -151,8 +175,8 @@ class JoinPage extends React.Component {
       <Container>
         <MainBox>
           <LogoBox>
-            <a href='/'>
-            <LogoImg src={Logo} />
+            <a href="/">
+              <LogoImg src={Logo} />
             </a>
           </LogoBox>
           <CreateTitle>Create Account</CreateTitle>
@@ -194,11 +218,13 @@ class JoinPage extends React.Component {
               />
             </Form>
           </FormWrapper>
-          <Button primary size="400px" height="50px">
+          <Button primary size="400px" height="50px" onClick={this.userRegister}>
             Create Account
           </Button>
-          {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
-          {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
+          {authError && (
+            <ServerMsg status="error">Register failed, Please change and try again.</ServerMsg>
+          )}
+          {isLoading && <ServerMsg status="success">Register Success!</ServerMsg>}
           <LinktoLogin>
             <div>Already have an account?&nbsp;&nbsp;</div>
             <Link to="/login">Sign in</Link>
