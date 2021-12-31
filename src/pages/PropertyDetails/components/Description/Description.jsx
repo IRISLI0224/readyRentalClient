@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { BodyContainer, DescItem, VerticalMargin } from '../Container';
 import FlexWrap from '../../../../hoc/FlexWrap';
 import StyledText from '../../../../hoc/Text';
@@ -6,112 +7,113 @@ import StyledIcon from '../../../../hoc/Icon';
 import { MdOutlineGarage } from 'react-icons/md';
 import { FaBed } from 'react-icons/fa';
 import { FaBath } from 'react-icons/fa';
-import { FaHouseUser } from 'react-icons/fa';
-import { BsCoin } from 'react-icons/bs';
 import { GiCat } from 'react-icons/gi';
 import { MdSmokeFree } from 'react-icons/md';
 import { GiSofa } from 'react-icons/gi';
 import { BsSnow } from 'react-icons/bs';
 import { FaIntercom } from 'react-icons/fa';
 
-const Description = ({property}) => (
+const FeatureContainer = styled(FlexWrap)`
+  width: 30%;
+  @media screen and (max-width: 768px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
+`;
+
+const Description = ({ property }) => (
   <>
     <BodyContainer direction="column">
       <DescItem>
-        <StyledText bold size="1.1rem">
-          Ideal Family Home
-        </StyledText>
-        <StyledText>
-         {property.description}
-        </StyledText>
+        <StyledText>{property.description}</StyledText>
       </DescItem>
       <DescItem>
         <StyledText bold size="1.1rem">
           Property Features
         </StyledText>
-        <VerticalMargin margin="1rem">
+        <VerticalMargin margin="1rem 0 0 2rem">
           <FlexWrap direction="row">
-
-          {/* Number of beds */}          
-            <StyledIcon primary>
-              <FaBed  />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Bed Number: <b>{property.numOfBed}</b>
-            </StyledText>
+            {/* Number of beds */}
+            <FeatureContainer>
+              <StyledIcon primary>
+                <FaBed />
+              </StyledIcon>
+              <StyledText>
+                &nbsp;Bed Number: <b>{property.numOfBed}</b>
+              </StyledText>
+            </FeatureContainer>
 
             {/* Number of Bath */}
-            <StyledIcon primary>
-              <FaBath/>
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Bath: <b>{property.numOfBath}</b>
-            </StyledText>
+            <FeatureContainer>
+              <StyledIcon primary>
+                <FaBath />
+              </StyledIcon>
+              <StyledText>
+                &nbsp;Bath: <b>{property.numOfBath}</b>
+              </StyledText>
+            </FeatureContainer>
 
             {/* Number of Garage spaces */}
-            <StyledIcon primary>
-              <MdOutlineGarage />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Garage spaces: <b>{property.numOfCarSpace}</b>
-            </StyledText>
+            <FeatureContainer>
+              <StyledIcon primary>
+                <MdOutlineGarage />
+              </StyledIcon>
+              <StyledText>
+                &nbsp;Garage spaces: <b>{property.numOfCarSpace}</b>
+              </StyledText>
+            </FeatureContainer>
 
+            {/* Pet Allowed */}
+            {property.petAllowed && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <GiCat />
+                </StyledIcon>
+                <StyledText>&nbsp;Pet Allowed</StyledText>
+              </FeatureContainer>
+            )}
 
-          {/* Room Type */}
-            <StyledIcon primary>
-              <FaHouseUser />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Room Type: <b>{property.roomType}</b>
-            </StyledText>
+            {/* Smoke Allowed */}
+            {property.smokeAllowed && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <MdSmokeFree />
+                </StyledIcon>
+                <StyledText>&nbsp;Smoke Allowed</StyledText>
+              </FeatureContainer>
+            )}
 
-          {/* Rent */}
-            <StyledIcon primary>
-              <BsCoin />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Rent: <b>${property.rent}</b>
-            </StyledText>
+            {/* Furnished */}
+            {property.furnished && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <GiSofa />
+                </StyledIcon>
+                <StyledText>&nbsp;Furnished</StyledText>
+              </FeatureContainer>
+            )}
 
-          {/* Pet Allowed */}
-            <StyledIcon primary>
-              <GiCat />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Pet Allowed: <b>{property.petAllowed?'Yes':'No'}</b>
-            </StyledText>
+            {/* AirCon */}
+            {property.airCon && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <BsSnow />
+                </StyledIcon>
+                <StyledText>&nbsp;Air-Conditioning</StyledText>
+              </FeatureContainer>
+            )}
 
-          {/* Smoke Allowed */}
-            <StyledIcon primary>
-              <MdSmokeFree />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Smoke Allowed: <b>{property.smokeAllowed?'Yes':'No'}</b>
-            </StyledText>   
-
-          {/* Furnished */}
-            <StyledIcon primary>
-              <GiSofa />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Furnished: <b>{property.furnished?'Yes':'No'}</b>
-            </StyledText>
-
-          {/* AirCon */}
-            <StyledIcon primary>
-              <BsSnow />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Air-Conditioning: <b>{property.airCon?'Yes':'No'}</b>
-            </StyledText>
-
-          {/* Intercom */}
-            <StyledIcon primary>
-              <FaIntercom />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Intercom: <b>{property.intercom?'Yes':'No'}</b>
-            </StyledText>
+            {/* Intercom */}
+            {property.intercom && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <FaIntercom />
+                </StyledIcon>
+                <StyledText>&nbsp;Intercom</StyledText>
+              </FeatureContainer>
+            )}
           </FlexWrap>
         </VerticalMargin>
       </DescItem>
