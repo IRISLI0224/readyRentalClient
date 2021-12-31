@@ -4,8 +4,17 @@ import FlexWrap from '../../../../hoc/FlexWrap';
 import StyledText from '../../../../hoc/Text';
 import StyledIcon from '../../../../hoc/Icon';
 import { MdOutlineGarage } from 'react-icons/md';
+import { FaBed } from 'react-icons/fa';
+import { FaBath } from 'react-icons/fa';
+import { FaHouseUser } from 'react-icons/fa';
+import { BsCoin } from 'react-icons/bs';
+import { GiCat } from 'react-icons/gi';
+import { MdSmokeFree } from 'react-icons/md';
+import { GiSofa } from 'react-icons/gi';
+import { BsSnow } from 'react-icons/bs';
+import { FaIntercom } from 'react-icons/fa';
 
-const Description = () => (
+const Description = ({property}) => (
   <>
     <BodyContainer direction="column">
       <DescItem>
@@ -13,15 +22,7 @@ const Description = () => (
           Ideal Family Home
         </StyledText>
         <StyledText>
-          *DID YOU KNOW YOU CAN BOOK AN INSPECTION ONLINE NOW?* Simply click EMAIL AGENT and we'll
-          respond instantly with available appointment times. You must register to confirm your
-          chosen inspection time, and so that we can advise you of any changes. Don't miss out on
-          calling this property home, book your inspection now!!! This impressive home offers three
-          bedrooms, master with ensuite and walk-in robe, other bedrooms with built-in robes, open
-          plan kitchen/meals area, second living area, ducted heating, double lock-up garage with
-          internal access, and landscaped gardens, located in the heart of Caroline Springs and only
-          minutes away from schools, public transport, and all local amenities. This home would be
-          best suited for the potential applicant seeking a 6-month lease.
+         {property.description}
         </StyledText>
       </DescItem>
       <DescItem>
@@ -30,11 +31,86 @@ const Description = () => (
         </StyledText>
         <VerticalMargin margin="1rem">
           <FlexWrap direction="row">
+
+          {/* Number of beds */}          
+            <StyledIcon primary>
+              <FaBed  />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Bed Number: <b>{property.numOfBed}</b>
+            </StyledText>
+
+            {/* Number of Bath */}
+            <StyledIcon primary>
+              <FaBath/>
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Bath: <b>{property.numOfBath}</b>
+            </StyledText>
+
+            {/* Number of Garage spaces */}
             <StyledIcon primary>
               <MdOutlineGarage />
             </StyledIcon>
             <StyledText>
-              &nbsp;Garage spaces: <b>2</b>
+              &nbsp;Garage spaces: <b>{property.numOfCarSpace}</b>
+            </StyledText>
+
+
+          {/* Room Type */}
+            <StyledIcon primary>
+              <FaHouseUser />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Room Type: <b>{property.roomType}</b>
+            </StyledText>
+
+          {/* Rent */}
+            <StyledIcon primary>
+              <BsCoin />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Rent: <b>${property.rent}</b>
+            </StyledText>
+
+          {/* Pet Allowed */}
+            <StyledIcon primary>
+              <GiCat />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Pet Allowed: <b>{property.petAllowed?'Yes':'No'}</b>
+            </StyledText>
+
+          {/* Smoke Allowed */}
+            <StyledIcon primary>
+              <MdSmokeFree />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Smoke Allowed: <b>{property.smokeAllowed?'Yes':'No'}</b>
+            </StyledText>   
+
+          {/* Furnished */}
+            <StyledIcon primary>
+              <GiSofa />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Furnished: <b>{property.furnished?'Yes':'No'}</b>
+            </StyledText>
+
+          {/* AirCon */}
+            <StyledIcon primary>
+              <BsSnow />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Air-Conditioning: <b>{property.airCon?'Yes':'No'}</b>
+            </StyledText>
+
+          {/* Intercom */}
+            <StyledIcon primary>
+              <FaIntercom />
+            </StyledIcon>
+            <StyledText>
+              &nbsp;Intercom: <b>{property.intercom?'Yes':'No'}</b>
             </StyledText>
           </FlexWrap>
         </VerticalMargin>
