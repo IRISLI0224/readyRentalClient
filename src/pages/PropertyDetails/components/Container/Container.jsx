@@ -35,7 +35,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const VerticalMargin = styled.div`
-  margin: ${(props) => props.margin} 0;
+  margin: ${(props) => props.margin};
 `;
 
 export const BodyContainer = styled(FlexWrap)`
