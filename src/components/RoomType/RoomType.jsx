@@ -7,11 +7,14 @@ import { AiOutlineCar } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 const RoomType = ({ headerSize, property }) => {
-  const { streetNumber, streetName, city, state, postCode } = property.address;
+
+  const {address}= property;
+  
   return (
     <>
       <StyledText bold size={headerSize}>
-        {`${streetNumber} ${streetName}, ${city}, ${state}, ${postCode}`}
+        {address?`${address.streetNumber} ${address.streetName}, ${address.city}, ${address.state}, 
+        ${address.postCode}`:address}
       </StyledText>
       <FlexWrap direction="row">
         <StyledText>

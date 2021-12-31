@@ -8,7 +8,7 @@ import ContactForm from './components/ContactForm/ContactForm';
 const PropertyDetails = () => {
   const params = useParams();
   const id = params.id.toString();
-  const [Property,setProperty]=useState([]);
+  const [property,setProperty]=useState([]);
 
   useEffect(()=>{
     SetPropertiesById(id);
@@ -21,11 +21,10 @@ const PropertyDetails = () => {
 
   return (
     <>
-      <h1>{Property.city}</h1>
-      <BasicInfo />
-      <Description />
-      <ContactForm />
-
+      <h1>{property.city}</h1>
+      <BasicInfo property={property}/>
+      <Description property={property}/>
+      <ContactForm property={property}/>
     </>
   );
 };
