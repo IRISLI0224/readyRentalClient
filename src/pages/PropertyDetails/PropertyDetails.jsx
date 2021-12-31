@@ -14,6 +14,11 @@ const PropertyDetails = () => {
     SetPropertiesById(id);
   },[])
 
+  //Scroll to top after jump to detail page
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  },[])
+
   const SetPropertiesById=async(id)=>{
     const res = await getPropertiesById(id);
     if(res) setProperty(res);
