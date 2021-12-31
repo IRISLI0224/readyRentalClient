@@ -28,6 +28,7 @@ export const HeroContainer = styled.div`
 
 export const ImageContainer = styled.div`
   width: 60vw;
+  height: 300px;
   @media screen and (max-width: 1024px) {
     width: 100%;
     order: -1;
