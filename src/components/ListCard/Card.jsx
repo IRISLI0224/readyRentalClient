@@ -130,7 +130,7 @@ const Cards = (props) => (
                     <FlexWrap direction="row">
                         <ContentDetail>
                             <StyledText>
-                                <Price>{props.price}</Price>
+                                <Price>${props.price} per week</Price>
                                 <Address>{props.address}</Address>
                             </StyledText>
                         </ContentDetail>
@@ -143,15 +143,15 @@ const Cards = (props) => (
                                     <StyledIcon>
                                         <BiBed />
                                     </StyledIcon>
-                                    <StyledText>3&nbsp;&nbsp;</StyledText>
+                                    <StyledText>{props.bed}</StyledText>
                                     <StyledIcon>
                                         <BiBath />
                                     </StyledIcon>
-                                    <StyledText>2&nbsp;&nbsp;</StyledText>
+                                    <StyledText>{props.bath}</StyledText>
                                     <StyledIcon>
                                         <AiOutlineCar />
                                     </StyledIcon>
-                                    <StyledText>2&nbsp;&nbsp;</StyledText>
+                                    <StyledText>{props.car}</StyledText>
                                 </FlexWrap>
                             </StyledText>
                             <StyledText>{props.types}</StyledText>

@@ -7,7 +7,7 @@ import NavigationBar from './NavigationBar/Navigationbar';
 
 const Container = styled.div`
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
   width: 100%;
   text-align: center;
   color: white;

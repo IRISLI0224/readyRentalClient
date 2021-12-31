@@ -29,7 +29,8 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<JoinPage />} />
           <Route path="/property/:id" element={<PropertyDetails />} />
-          <Route path="/property/manage-listings" element={<ListedProperties />} />
+          <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
+          <Route path="/property/inspection" element={<ListedProperties isInspection />} />
           <Route path="/search" element={<SearchResult />} />
           <Route path="/property/post" element={<Post />} />
           <Route path="/account" element={<AccountSettings />} />

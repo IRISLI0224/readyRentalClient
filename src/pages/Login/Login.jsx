@@ -13,6 +13,12 @@ import InputErrorMsg from '../../hoc/InputErrorMsg';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
 
+//API
+import { UserLogin } from '../../config/Users';
+import { setToken } from '../../utils/authentication';
+
+const HOMEPAGE = 'http://localhost:3000';
+
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
   padding: 0;
@@ -50,6 +56,7 @@ const LoginTitle = styled.h1`
   line-height: 1.75rem;
 `;
 
+//temporally use url from real estate
 const ForgetPassword = styled.a.attrs({
   href: 'https://accounts.realestate.com.au/forgotPassword?client_id=2fb06dqab95hci46dgldph0382&redirect_uri=https%3A%2F%2Fwww.realestate.com.au%2Fauth&response_type=code&state=T_tHQg8yH1IWpJvs15fw2frG62KOCzpL5OiauqUXBVGIGQiNfZo-DscApd79t1mZsUKq5nGJS7JmOf0gPIfi9TEBbSF-ELOstA9oMoLt7LHd9UqyA2MC3GzVpVpaoO3XbUS2Kra-b-Br-r1gKrh-gLzW4-X1ufmMGkt_pS5al6Y4RgG2',
 })`
@@ -61,11 +68,65 @@ const ForgetPassword = styled.a.attrs({
   &:hover {
     color: #030fb1;
   }
-  margin-bottom:20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 `;
 
 const LogoImg = styled.img`
   width: 200px;
+`;
+
+const Container = styled.div`
+  background-color: white;
+  text-align: center;
+  display: flex;
+  line-height: 10px;
+`;
+
+const MainBox = styled.div`
+    padding: 1.5rem 3rem 0px;
+    border: 1;
+    margin: auto;
+    margin-top: 100px;
+    width: 500px;
+    height: 460px;
+    text-align: center;
+    position: relative;
+    border: 2px solid #e5e8ec;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: space-around;
+}
+   }
+ 
+`;
+
+const LogoBox = styled.div`
+  margin-left: 40px;
+  text-align: center;
+`;
+
+const CreateTitle = styled.div`
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: rgb(51, 63, 72);
+  text-align: center;
+  line-height: 1.75rem;
+`;
+
+const LinktoLogin = styled.div`
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 class Login extends React.Component {
@@ -90,6 +151,7 @@ class Login extends React.Component {
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
     this.handleBlurredChange = this.handleBlurredChange.bind(this);
+    this.userLogin = this.userLogin.bind(this);
   }
 
   handleDataChange(event) {
@@ -143,16 +205,33 @@ class Login extends React.Component {
     return error;
   }
 
+  userLogin() {
+    this.setState({ error: null, isLoading: true }, () => {
+      const { data } = this.state;
+      UserLogin(data.email.value, data.password.value)
+        .then((res) => {
+          this.setState({ isLoading: false }, () => {
+            setToken(res.token);
+            //back to home page
+            window.location.href = HOMEPAGE;
+          });
+        })
+        .catch((error) => this.setState({ error, isLoading: false }));
+    });
+  }
+
   render() {
     const { data, error: authError, isLoading } = this.state;
     const error = this.getError(data);
     return (
-      <>
-        <LoginForm>
-          <a href="/">
-            <LogoImg src={Logo} />
-          </a>
-          <LoginTitle>Sign in</LoginTitle>
+      <Container>
+        <MainBox>
+          <LogoBox>
+            <a href="/">
+              <LogoImg src={Logo} />
+            </a>
+          </LogoBox>
+          <CreateTitle>Sign in</CreateTitle>
           <FormWrapper
             onSubmit={(e) => {
               e.preventDefault();
@@ -174,12 +253,14 @@ class Login extends React.Component {
               />
             </Form>
             <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+            <br />
+            <br />
             <Form htmlFor="password">
               <Input
                 size="400px"
                 name="password"
                 id="password"
-                type="string"
+                type="password"
                 value={data.password.value}
                 defaultText="Password"
                 iconleft={passwordIcon}
@@ -189,15 +270,19 @@ class Login extends React.Component {
               />
             </Form>
           </FormWrapper>
-          <br/>
-          <Button primary size="400px" height="50px">
+          <Button primary size="400px" height="50px" onClick={this.userLogin}>
             Sign in
           </Button>
           <br/>
+          {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
+          {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
           <ForgetPassword>Forgot your password?</ForgetPassword>
-        </LoginForm>
-        <GlobalStyle />
-      </>
+          <ForgetPassword>
+            Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
+          </ForgetPassword>
+          <br />
+        </MainBox>
+      </Container>
     );
   }
 }

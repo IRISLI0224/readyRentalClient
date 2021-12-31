@@ -31,7 +31,7 @@ import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
 
 const Container = styled.div`
-  overflow: hidden;
+  //overflow: hidden;
   width: 60%;
   height: auto;
   margin: auto;
@@ -104,16 +104,6 @@ class Home extends React.Component {
     const { properties } = this.state;
     return (
       <Container>
-        {properties.length > 0 ? (
-          <div>
-            <PropertyCardTitle>
-              <h2>Recommended Properties </h2>
-            </PropertyCardTitle>
-            <SlideCardContainer properties={properties}/>
-            <br />
-          </div>
-        ) : null}
-
         <NewsContainer>
           <NewsCardTitle>
             <h2>Latest Property News</h2>
@@ -174,6 +164,12 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
+        {properties.length > 0 ? (
+          <div>
+            <SlideCardContainer properties={properties} />
+            <br />
+          </div>
+        ) : null}
         <Form>
           <SearchTitle>
             <h1>Search property for rent</h1>
