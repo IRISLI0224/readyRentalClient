@@ -13,6 +13,7 @@ import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 import Post from './pages/PostYourProperty/Post';
 import AccountSettings from './pages/AccountSettings';
+import UploadImage from './pages/UploadImage';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/search" element={<SearchResult />} />
           <Route path="/property/post" element={<Post />} />
           <Route path="/account" element={<AccountSettings />} />
+          <Route path="/uploadImage" element={<UploadImage />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Layout>
