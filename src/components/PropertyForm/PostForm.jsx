@@ -14,8 +14,12 @@ import {
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { storePropety } from '../../api/postProperties';
+import { PostProperty } from '../../config/Properties';
 
 const { Option } = Select;
+
+const ManageListPage = 'http://localhost:3000/property/manage-listings';
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -34,7 +38,7 @@ const formItemLayout = {
     },
   },
 };
-const normFile = (e: any) => {
+const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -42,18 +46,42 @@ const normFile = (e: any) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
-  handleFormSubmit = (values) => {
-    console.log(values);
-    storePropety(values).then(function (response) {
-      return;
-    });
+  handleFormSubmit = async (values) => {
+    //formart data
+    let newData = values;
+    const PF = values.propertyFeatures;
+    if (PF) {
+      if (PF.indexOf('Furnished') > -1) {
+        newData['furnished'] = true;
+      } else newData['furnished'] = false;
+    }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('Petsconsidered') > -1) {
+        newData['petAllowed'] = true;
+      } else newData['petAllowed'] = false;
+    }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
+        newData['Airconditioner'] = true;
+      } else newData['airCon'] = false;
+    }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
+        newData['Intercom'] = true;
+      } else newData['intercom'] = false;
+    }
+    const date = new Date();
+
+    newData['postDate'] = date.toLocaleDateString();
+
+    delete newData.propertyFeatures;
+
+    await PostProperty(newData);
+    //back to list page
+    window.alert('Add a new property to your list successfully');
+    window.location.href = ManageListPage;
   };
   render() {
-    const { data } = this.state;
-    const { isSubmitFail, submitError } = this.state;
-    const { date } = this.props;
-    const error = this.getError(data);
-    const hasError = Object.keys(error).length > 0;
     return (
       <Form
         name="validate_other"
@@ -68,7 +96,7 @@ class postForm extends React.Component {
       >
         <Form.Item
           style={{ height: 45 }}
-          name="propertytype"
+          name="roomType"
           label="Property Type"
           hasFeedback
           rules={[
@@ -84,7 +112,7 @@ class postForm extends React.Component {
             <Option value="studio">Studio</Option>
           </Select>
         </Form.Item>
-        <Form.Item name="property features" label="Property Features">
+        <Form.Item name="propertyFeatures" label="Property Features">
           <Checkbox.Group>
             <Row>
               <Col span={8}>
@@ -93,7 +121,7 @@ class postForm extends React.Component {
                 </Checkbox>
               </Col>
               <Col span={8}>
-                <Checkbox value="Pets considered" style={{ lineHeight: '32px' }}>
+                <Checkbox value="Petsconsidered" style={{ lineHeight: '32px' }}>
                   Pets considered
                 </Checkbox>
               </Col>
@@ -110,10 +138,10 @@ class postForm extends React.Component {
             </Row>
           </Checkbox.Group>
         </Form.Item>
-        <Form.Item label="Street Number" model="multiple" name="streetnumber">
+        <Form.Item label="Street Number" model="multiple" name="streetNumber">
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="Street" model="multiple" name="street">
+        <Form.Item label="Street" model="multiple" name="streetName">
           <Input style={{ height: 40 }} />
         </Form.Item>
         <Form.Item label="City" mode="multiple" name="city">
@@ -122,12 +150,12 @@ class postForm extends React.Component {
         <Form.Item label="State" mode="multiple" name="state">
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="Postcode" mode="multiple" name="postcode">
+        <Form.Item label="Postcode" mode="multiple" name="postCode">
           <Input style={{ height: 40 }} />
         </Form.Item>
         <Form.Item label="Bedrooms">
           <Form.Item
-            name="bedrooms"
+            name="numOfBed"
             noStyle
             rules={[
               {
@@ -142,7 +170,7 @@ class postForm extends React.Component {
         </Form.Item>
         <Form.Item label="Bathrooms">
           <Form.Item
-            name="bathrooms"
+            name="numOfBath"
             noStyle
             rules={[
               {
@@ -157,7 +185,7 @@ class postForm extends React.Component {
         </Form.Item>
         <Form.Item label="Parking spaces">
           <Form.Item
-            name="parkingspaces"
+            name="numOfCarSpace"
             noStyle
             rules={[
               {
@@ -169,9 +197,6 @@ class postForm extends React.Component {
           >
             <InputNumber min={1} max={10} style={{ height: 35 }} />
           </Form.Item>
-        </Form.Item>
-        <Form.Item label="Post Date" name="post Date">
-          <DatePicker picker="date" placeholder="Choose your date" />
         </Form.Item>
         <Form.Item
           label="Rent"
@@ -213,7 +238,7 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Button type="primary" htmlType="submit" size={'large'} onClick={this.handleSubmit}>
+          <Button type="primary" htmlType="submit" size={'large'} onClick={this.handleFormSubmit}>
             Submit
           </Button>
         </Form.Item>

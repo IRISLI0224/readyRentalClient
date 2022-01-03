@@ -68,6 +68,7 @@ const ForgetPassword = styled.a.attrs({
   &:hover {
     color: #030fb1;
   }
+  margin-top: 5px;
   margin-bottom: 20px;
 `;
 
@@ -259,7 +260,7 @@ class Login extends React.Component {
                 size="400px"
                 name="password"
                 id="password"
-                type="string"
+                type="password"
                 value={data.password.value}
                 defaultText="Password"
                 iconleft={passwordIcon}
@@ -272,9 +273,14 @@ class Login extends React.Component {
           <Button primary size="400px" height="50px" onClick={this.userLogin}>
             Sign in
           </Button>
+          <br/>
           {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
           {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
           <ForgetPassword>Forgot your password?</ForgetPassword>
+          <ForgetPassword>
+            Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
+          </ForgetPassword>
+          <br />
         </MainBox>
       </Container>
     );

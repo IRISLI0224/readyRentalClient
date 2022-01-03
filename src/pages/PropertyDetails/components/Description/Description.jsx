@@ -1,41 +1,119 @@
 import React from 'react';
+import styled from 'styled-components';
 import { BodyContainer, DescItem, VerticalMargin } from '../Container';
 import FlexWrap from '../../../../hoc/FlexWrap';
 import StyledText from '../../../../hoc/Text';
 import StyledIcon from '../../../../hoc/Icon';
 import { MdOutlineGarage } from 'react-icons/md';
+import { FaBed } from 'react-icons/fa';
+import { FaBath } from 'react-icons/fa';
+import { GiCat } from 'react-icons/gi';
+import { MdSmokeFree } from 'react-icons/md';
+import { GiSofa } from 'react-icons/gi';
+import { BsSnow } from 'react-icons/bs';
+import { FaIntercom } from 'react-icons/fa';
 
-const Description = () => (
+const FeatureContainer = styled(FlexWrap)`
+  width: 30%;
+  @media screen and (max-width: 768px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
+`;
+
+const Description = ({ property }) => (
   <>
     <BodyContainer direction="column">
       <DescItem>
-        <StyledText bold size="1.1rem">
-          Ideal Family Home
-        </StyledText>
-        <StyledText>
-          *DID YOU KNOW YOU CAN BOOK AN INSPECTION ONLINE NOW?* Simply click EMAIL AGENT and we'll
-          respond instantly with available appointment times. You must register to confirm your
-          chosen inspection time, and so that we can advise you of any changes. Don't miss out on
-          calling this property home, book your inspection now!!! This impressive home offers three
-          bedrooms, master with ensuite and walk-in robe, other bedrooms with built-in robes, open
-          plan kitchen/meals area, second living area, ducted heating, double lock-up garage with
-          internal access, and landscaped gardens, located in the heart of Caroline Springs and only
-          minutes away from schools, public transport, and all local amenities. This home would be
-          best suited for the potential applicant seeking a 6-month lease.
-        </StyledText>
+        <StyledText>{property.description}</StyledText>
       </DescItem>
       <DescItem>
         <StyledText bold size="1.1rem">
           Property Features
         </StyledText>
-        <VerticalMargin margin="1rem">
+        <VerticalMargin margin="1rem 0 0 2rem">
           <FlexWrap direction="row">
-            <StyledIcon primary>
-              <MdOutlineGarage />
-            </StyledIcon>
-            <StyledText>
-              &nbsp;Garage spaces: <b>2</b>
-            </StyledText>
+            {/* Number of beds */}
+            <FeatureContainer>
+              <StyledIcon primary>
+                <FaBed />
+              </StyledIcon>
+              <StyledText>
+                &nbsp;Bed Number: <b>{property.numOfBed}</b>
+              </StyledText>
+            </FeatureContainer>
+
+            {/* Number of Bath */}
+            <FeatureContainer>
+              <StyledIcon primary>
+                <FaBath />
+              </StyledIcon>
+              <StyledText>
+                &nbsp;Bath: <b>{property.numOfBath}</b>
+              </StyledText>
+            </FeatureContainer>
+
+            {/* Number of Garage spaces */}
+            <FeatureContainer>
+              <StyledIcon primary>
+                <MdOutlineGarage />
+              </StyledIcon>
+              <StyledText>
+                &nbsp;Garage spaces: <b>{property.numOfCarSpace}</b>
+              </StyledText>
+            </FeatureContainer>
+
+            {/* Pet Allowed */}
+            {property.petAllowed && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <GiCat />
+                </StyledIcon>
+                <StyledText>&nbsp;Pet Allowed</StyledText>
+              </FeatureContainer>
+            )}
+
+            {/* Smoke Allowed */}
+            {property.smokeAllowed && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <MdSmokeFree />
+                </StyledIcon>
+                <StyledText>&nbsp;Smoke Allowed</StyledText>
+              </FeatureContainer>
+            )}
+
+            {/* Furnished */}
+            {property.furnished && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <GiSofa />
+                </StyledIcon>
+                <StyledText>&nbsp;Furnished</StyledText>
+              </FeatureContainer>
+            )}
+
+            {/* AirCon */}
+            {property.airCon && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <BsSnow />
+                </StyledIcon>
+                <StyledText>&nbsp;Air-Conditioning</StyledText>
+              </FeatureContainer>
+            )}
+
+            {/* Intercom */}
+            {property.intercom && (
+              <FeatureContainer>
+                <StyledIcon primary>
+                  <FaIntercom />
+                </StyledIcon>
+                <StyledText>&nbsp;Intercom</StyledText>
+              </FeatureContainer>
+            )}
           </FlexWrap>
         </VerticalMargin>
       </DescItem>

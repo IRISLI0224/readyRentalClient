@@ -28,6 +28,7 @@ export const HeroContainer = styled.div`
 
 export const ImageContainer = styled.div`
   width: 60vw;
+  height: 300px;
   @media screen and (max-width: 1024px) {
     width: 100%;
     order: -1;
@@ -35,7 +36,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const VerticalMargin = styled.div`
-  margin: ${(props) => props.margin} 0;
+  margin: ${(props) => props.margin};
 `;
 
 export const BodyContainer = styled(FlexWrap)`

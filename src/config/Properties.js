@@ -1,10 +1,8 @@
 //All API about properties
 
 import axios from 'axios';
-
-// will use them in the future
-// import { post, get, put } from './auth';
-
+import { post, get, put } from './auth';
+import { getToken } from '../utils/authentication';
 const devURL = 'http://localhost:8080/api/v1';
 
 //Get all property
@@ -24,15 +22,21 @@ export const getPropertiesById = async (Id) => {
 };
 
 //Post new property
-// const API_POST_PROPERTY = '/properties';
+const API_POST_PROPERTY = '/properties';
 
-export const UploadProperty = async (propertyInfo) => {
-  const json = JSON.stringify(propertyInfo);
-  return axios.post(`${devURL}+API_POST_PROPERTY`, json, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+export const PostProperty = async (propertyInfo) => {
+  try {
+    var decycle = require('json-decycle').decycle;
+    const json_str = JSON.stringify(propertyInfo, decycle());
+    const token = getToken();
+    const config = {
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    };
+    const res = axios.post(`${devURL}` + API_POST_PROPERTY, json_str, config);
+    return res;
+  } catch (e) {
+    return;
+  }
 };
 
 export const getPropertiesBySearch = async (search) => {
