@@ -58,7 +58,7 @@ const LoginTitle = styled.h1`
 
 //temporally use url from real estate
 const ForgetPassword = styled.a.attrs({
-  href: 'https://accounts.realestate.com.au/forgotPassword?client_id=2fb06dqab95hci46dgldph0382&redirect_uri=https%3A%2F%2Fwww.realestate.com.au%2Fauth&response_type=code&state=T_tHQg8yH1IWpJvs15fw2frG62KOCzpL5OiauqUXBVGIGQiNfZo-DscApd79t1mZsUKq5nGJS7JmOf0gPIfi9TEBbSF-ELOstA9oMoLt7LHd9UqyA2MC3GzVpVpaoO3XbUS2Kra-b-Br-r1gKrh-gLzW4-X1ufmMGkt_pS5al6Y4RgG2',
+  href: '/join',
 })`
   text-decoration: none;
   color: #2b6ed2;
@@ -273,10 +273,13 @@ class Login extends React.Component {
           <Button primary size="400px" height="50px" onClick={this.userLogin}>
             Sign in
           </Button>
-          <br/>
+          <br />
           {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
           {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
-          <ForgetPassword>Forgot your password?</ForgetPassword>
+          <ForgetPassword>
+            {' '}
+            <Link to="/forgotPassword">Forgot your password?</Link>
+          </ForgetPassword>
           <ForgetPassword>
             Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
           </ForgetPassword>

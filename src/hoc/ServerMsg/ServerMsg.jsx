@@ -9,6 +9,7 @@ const ServerMsg = styled.div`
   margin: 0.25rem 10px;
   border-radius: 4px;
   font-size: 15px;
+  line-height: 1.2rem;
   ${(props) =>
     ({
       error: css`

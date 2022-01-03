@@ -14,6 +14,8 @@ import ListedProperties from './pages/ListedProperties';
 import Post from './pages/PostYourProperty/Post';
 import AccountSettings from './pages/AccountSettings';
 import UploadImage from './pages/UploadImage';
+import ForgetPassword from './pages/ForgotPasswordPage';
+import ResetPassword from './pages/ResetPasswordPage';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -27,7 +29,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/join" element={<JoinPage />} />    
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/forgotPassword" element={<ForgetPassword />} />
+          <Route path="/reset/:token" element={<ResetPassword />} />
           <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
           <Route path="/property/inspection" element={<ListedProperties isInspection />} />
           <Route path="/search" element={<SearchResult />} />
