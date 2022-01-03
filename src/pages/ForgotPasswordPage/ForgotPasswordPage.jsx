@@ -70,7 +70,7 @@ const ReminderMsg = styled(Title)`
   opacity: 0.6;
 `;
 
-class ForgetPasswordPage extends React.Component {
+class ForgotPasswordPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -173,4 +173,4 @@ class ForgetPasswordPage extends React.Component {
     );
   }
 }
-export default ForgetPasswordPage;
+export default ForgotPasswordPage;

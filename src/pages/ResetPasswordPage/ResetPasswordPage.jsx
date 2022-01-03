@@ -59,7 +59,7 @@ const Title = styled.div`
   font-weight: 700;
 `;
 
-class ResetPassword extends React.Component {
+class ResetPasswordPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -205,4 +205,4 @@ class ResetPassword extends React.Component {
     );
   }
 }
-export default ResetPassword;
+export default ResetPasswordPage;
