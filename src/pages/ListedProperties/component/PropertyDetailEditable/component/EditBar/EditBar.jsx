@@ -52,7 +52,7 @@ const EditBar = ({ property, onDelete }) => {
             <FaPencilAlt />
             <span>Edit</span>
           </StyledBtn>
-          <StyledBtn>
+          <StyledBtn as="a" href={`/property/${property._id}`}>
             <GrView />
             <span>View</span>
           </StyledBtn>

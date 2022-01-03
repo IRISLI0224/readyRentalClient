@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../../../hoc/Button';
-import { NoShadowWrapper, PopUpContainer, NoShadowWrapperSpaceAround } from '../Wrapper';
+import { PopUpContainer, NoShadowWrapperSpaceAround } from '../Wrapper';
 
 const StyledLink = styled.a`
   text-decoration: underline;

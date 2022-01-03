@@ -65,8 +65,10 @@ class postForm extends React.Component {
     super(props);
     this.state = {
       propertyData: {
-        streetNumber: initialData,
-        streetName: initialData,
+        // streetNumber: initialData,
+        streetNumber: '20',
+        // streetName: initialData,
+        streetName: 'forest',
         city: initialData,
         state: initialData,
         postCode: initialData,
@@ -87,7 +89,7 @@ class postForm extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
-      allfilled:false,
+      allfilled: false,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleDataChangeCheckbox = this.handleDataChangeCheckbox.bind(this);
@@ -426,7 +428,13 @@ class postForm extends React.Component {
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <SubmitWrapper>
-              <Button type="primary" htmlType="submit" size={'large'} onClick={this.handleSubmit} disabled={this.state.allfilled}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                size={'large'}
+                onClick={this.handleSubmit}
+                disabled={this.state.allfilled}
+              >
                 Submit
               </Button>
             </SubmitWrapper>

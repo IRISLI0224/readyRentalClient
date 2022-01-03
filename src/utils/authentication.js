@@ -21,3 +21,11 @@ export const isLoggedIn = () => {
   const isExpired = Date.now() - expirationTime > 0;
   return !isExpired;
 };
+
+export const getUserFromToken = () => {
+  const token = getToken();
+  if (!token) return false;
+
+  const decodedToken = jwt.decode(token);
+  return decodedToken.user;
+};

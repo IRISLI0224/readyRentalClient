@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropertyDetailEditable from './component/PropertyDetailEditable';
 import PropertyHeader from './component/PropertyHeader';
 import { NoShadowWrapper } from './component/Wrapper';
+import { getUserFromToken } from '../../utils/authentication';
 import { getUserById } from '../../config/Users';
 import { getPropertiesById, deletePropertyById } from '../../config/Properties';
 import DeletePopup from './component/DeletePopup';
@@ -34,8 +35,13 @@ class ListedProperties extends React.Component {
   }
 
   componentDidMount() {
-    //todo: Now I used a hard coded id, it should be a prop passing in in the future
-    const userId = '61d2258946a591726f008d4f';
+    //!is it right to get userId from token?
+    const user = getUserFromToken();
+
+    if (!user) throw 'please log in first';
+
+    const userId = user._id;
+
     const getProperties = async () => {
       const user = await getUserById(userId);
 
