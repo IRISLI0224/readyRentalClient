@@ -13,7 +13,6 @@ import {
   InputNumber,
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
-import { storePropety } from '../../api/postProperties';
 import { PostProperty } from '../../config/Properties';
 
 const { Option } = Select;
