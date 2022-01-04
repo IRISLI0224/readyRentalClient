@@ -74,6 +74,7 @@ class postForm extends React.Component {
     newData['postDate'] = date.toLocaleDateString();
 
     delete newData.propertyFeatures;
+    console.log(newData)
 
     await PostProperty(newData);
     //back to list page
@@ -105,7 +106,7 @@ class postForm extends React.Component {
             },
           ]}
         >
-          <Select placeholder="Please select a property type" size={'large'}>
+          <Select placeholder="Please select a property type" size={'large'} >
             <Option value="house">House</Option>
             <Option value="apartment">Apartment</Option>
             <Option value="studio">Studio</Option>
@@ -237,7 +238,7 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Button type="primary" htmlType="submit" size={'large'} onClick={this.handleFormSubmit}>
+          <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>
         </Form.Item>
