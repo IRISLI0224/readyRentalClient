@@ -1,1 +1,1 @@
-export {Sorting, selected} from './Sorting';
+export {Sorting} from './Sorting';

@@ -21,7 +21,7 @@ const Space = styled.div`
 `;
 
 const SpaceLogin = styled.div`
-  width:0%;
+  width: 0%;
 `;
 
 const ButtonwithoutBorder = styled(ButtonStyle)`
@@ -39,16 +39,18 @@ const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
   useEffect(() => {
     const token = getToken();
-    console.log(token)
+    //console.log(token)
     if (token) setLogin(true);
   }, []);
 
   return (
     <Container>
-      {Login?<SpaceLogin/>:<Space/>}
-      <LogoPanel>
-        <img src={Logo} style={{ height: '40px' }} />
-      </LogoPanel>
+      {Login ? <SpaceLogin /> : <Space />}
+      <a href="/">
+        <LogoPanel>
+          <img src={Logo} style={{ height: '40px' }} />
+        </LogoPanel>
+      </a>
       {Login ? (
         <>
           {' '}

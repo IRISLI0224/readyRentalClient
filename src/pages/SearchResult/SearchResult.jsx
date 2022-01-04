@@ -33,6 +33,7 @@ const SearchResult = () => {
   // };
 
   const query = new URLSearchParams(location.search);
+
   const SearchInput = query.get('input');
 
   return (

@@ -18,8 +18,7 @@ const options = [{ label: ``, value: `` }
     , { label: `Price(Lowest-Highest)`, value: `Price(Lowest-Highest)` }
     , { label: `Price(Highest-Lowest)`, value: `Price(Highest-Lowest)` }];
 
-let selected;//0: nothing; 1: low-high; 2 high to low
-
+let selected;
 const Sorting = () => {
     const [value, setValue] = useState({ selectValue: `` });
     const location = useLocation();
@@ -70,4 +69,4 @@ const Sorting = () => {
     )
 }
 
-export { Sorting, selected };
+export { Sorting };
