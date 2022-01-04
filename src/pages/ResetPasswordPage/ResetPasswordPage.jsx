@@ -1,4 +1,5 @@
 import React from 'react';
+import WithRouter from '../../hoc/WithRouter';
 import styled from 'styled-components';
 import axios from 'axios';
 import Logo from '../../assests/img/logo_red.svg';
@@ -66,14 +67,13 @@ class ResetPasswordPage extends React.Component {
       email: '',
       password: '',
       updated: false,
-      isLoading: true,
+      isLoading: false,
       error: false,
     };
   }
 
   async componentDidMount() {
-    const { match = {} } = this.props;
-    const { params = {} } = match;
+    const { params } = this.props.router;
     const token = params.token;
     try {
       const response = await axios.get('http://localhost:8080/api/v1/reset', {
@@ -82,6 +82,7 @@ class ResetPasswordPage extends React.Component {
         },
       });
       if (response.data.message === 'password reset link a-ok') {
+        console.log(response.data);
         this.setState({
           email: response.data.email,
           updated: false,
@@ -108,8 +109,7 @@ class ResetPasswordPage extends React.Component {
   updatePassword = async (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    const { match = {} } = this.props;
-    const { params = {} } = match;
+    const { params } = this.props.router;
     const token = params.token;
     try {
       const response = await axios.put('http://localhost:8080/api/v1/updatePasswordViaEmail', {
@@ -117,7 +117,6 @@ class ResetPasswordPage extends React.Component {
         password,
         resetPasswordToken: token,
       });
-      console.log(response.data);
       if (response.data.message === 'password updated') {
         this.setState({
           updated: true,
@@ -205,4 +204,4 @@ class ResetPasswordPage extends React.Component {
     );
   }
 }
-export default ResetPasswordPage;
+export default WithRouter(ResetPasswordPage);
