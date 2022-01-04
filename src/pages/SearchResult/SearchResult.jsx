@@ -7,9 +7,9 @@ import agent_icon from '../../assests/experimental_img/agent-pic.PNG';
 import agent_brand from '../../assests/experimental_img/brand.PNG';
 import TextStyle from '../../hoc/Text';
 import FlexWrap from '../../hoc/FlexWrap';
-import {Pagination} from '../../components/Pagination';
+import { Pagination } from '../../components/Pagination';
 import { getPropertiesBySearch } from '../../config/Properties';
-import Sorting from '../../components/Sorting';
+import { Sorting } from '../../components/Sorting';
 
 const Container = styled.div`
   margin-left: 30%;
@@ -34,6 +34,7 @@ const SearchResult = () => {
 
   const query = new URLSearchParams(location.search);
   const SearchInput = query.get('input');
+
   return (
     <Container>
       <FlexWrapSearch direction="row" >
@@ -41,26 +42,7 @@ const SearchResult = () => {
           Real Estate & Property for sale in {SearchInput}
         </TextStyle>
       </FlexWrapSearch>
-      <FlexWrapSearch direction="row" >
-        <TextStyle>Sort <Sorting/></TextStyle>
-      </FlexWrapSearch>
-      {/* {properties.map((property) => (
-        <FlexWrap direction="row" key={property._id}>
-          <Card
-            price={property.rent}
-            slides={SliderData}
-            address={addressObjectToString(property.address)}
-            types={property.roomType}
-            bed={property.numOfBed}
-            bath={property.numOfBath}
-            car={property.numOfCarSpace}
-            agentName="Frank"
-          />
-        </FlexWrap>
-      ))} */}
-      <FlexWrap direction="row" >
-        <Pagination/>
-      </FlexWrap>
+      <Sorting />
     </Container>
   );
 };

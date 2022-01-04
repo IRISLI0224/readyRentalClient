@@ -110,23 +110,28 @@ const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
 
 const Pagination = (props) => {
     //***fake data state */
-    // const [data, setData] = useState([]);//input data management, from ajax request
-    const location = useLocation();
-    const [properties, setProperties] = useState([]);
     const [currentPage, setcurrentPage] = useState(1);// selected current page management, from clicking by users
     const [itemsPerpage, setitemsPerpage] = useState(5);// the interval of displayed items in each page(e.g. item 1, item 2, item 3, item 4, item 5 in each page when useState(5))
-
+    // const [properties, setProperties] = useState([]);
     const [pageNumberLimit, setpageNumberLimit] = useState(5);// the interval of displayed pages(e.g. 1 2 3 4 5 ... =>when useState(5))
     const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);// max number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the max interval of each group is 5(10-5))
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);// min number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the min interval of each group is 5(6-1))
+    const location = useLocation();
+
     /******click handler */
     const handleClick = (event) => {
         setcurrentPage(Number(event.target.id));
     }
 
+    // useEffect(() => {
+    //     fetch(`http://localhost:8080/api/v1/properties${location.search}`)
+    //         .then((res) => res.json())
+    //         .then((json) => setProperties(json));
+    // }, []);
+    
     //***********total pages should have based on the volumn of data divided by interval(5 in this case)  */
     const pages = [];
-    for (let i = 1; i <= Math.ceil(properties.length / itemsPerpage); i++) {
+    for (let i = 1; i <= Math.ceil(props.properties.length / itemsPerpage); i++) {
         pages.push(i);
     }
     /**** rendering pages number based on total pages calculated by above division*/
@@ -144,14 +149,8 @@ const Pagination = (props) => {
     //***********items in each page should be displayed, slicing total data to allocate to each page*/
     const indexOfLastItem = currentPage * itemsPerpage;
     const indexOfFirstItem = indexOfLastItem - itemsPerpage;
-    const currentItems = properties.slice(indexOfFirstItem, indexOfLastItem);
-    //********data input************/可以提出去单独的js文件
-    useEffect(() => {
-        fetch(`http://localhost:8080/api/v1/properties${location.search}`)
-            .then((res) => res.json())
-            .then((json) => setProperties(json));
-    }, []);
-
+    const currentItems = props.properties.slice(indexOfFirstItem, indexOfLastItem);
+    
     // console.log(currentItems);
     //********next&prev************/
     const handleNextbtn = () => {
@@ -179,9 +178,6 @@ const Pagination = (props) => {
             setminPageNumberLimit(0);
         }
         
-        // console.log("current is"+currentPage);
-        // console.log("maxPageNumber is"+maxPageNumberLimit);
-        // console.log("minPageNumber is"+minPageNumberLimit);
     };
     //********incretment for ... right************/
     let pageIncrementBtn = null;
@@ -238,11 +234,10 @@ const Pagination = (props) => {
                     Next<BsChevronRight1 />
                 </PageList>
             </Page>
-            <Page> <Details>Viewing {(currentPage - 1) * itemsPerpage + 1}-{currentPage * itemsPerpage} of {properties.length} results</Details></Page>
+            <Page> <Details>Viewing {(currentPage - 1) * itemsPerpage + 1}-{currentPage * itemsPerpage} of {props.properties.length} results</Details></Page>
             
         </Main>
     )
 }
-
 
 export { Pagination };

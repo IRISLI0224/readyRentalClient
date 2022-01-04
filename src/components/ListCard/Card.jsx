@@ -27,7 +27,7 @@ const Row = styled.div`
 
 
 const RowTitle = styled.div`
-    background-color: black;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,7 +92,7 @@ const Price = styled.h2`
 
 const Address = styled.p`
     margin: 0px;
-    font-size: 0.5rem;
+    font-size: 1rem;
 `;
 
 const Structure = styled.div`
