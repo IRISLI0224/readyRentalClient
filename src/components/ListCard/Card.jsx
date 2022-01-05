@@ -8,6 +8,7 @@ import StyledIcon from '../../hoc/Icon';
 import StyledText from '../../hoc/Text';
 import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
+import Logo from '../../assests/img/logo_red.svg';
 
 const Card = styled.div`
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
@@ -26,7 +27,7 @@ const Row = styled.div`
 
 
 const RowTitle = styled.div`
-    background-color: black;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -91,7 +92,7 @@ const Price = styled.h2`
 
 const Address = styled.p`
     margin: 0px;
-    font-size: 0.5rem;
+    font-size: 1rem;
 `;
 
 const Structure = styled.div`
@@ -113,13 +114,13 @@ const Cards = (props) => (
         <Card>
             <Row>
                 <RowTitle>
-                    <BrandImage src={props.brand} alt="icon" />
-                    <div className="agent-name-and-photo">
+                    <BrandImage src={Logo} alt="icon" />
+                    {/* <div className="agent-name-and-photo">
                         <AgentName >{props.agentName}</AgentName>
                         <AgentIcon>
                             <AgentIconImg src={props.agentIcon} alt={props.agentName} />
                         </AgentIcon>
-                    </div>
+                    </div> */}
                 </RowTitle>
             </Row>
             <RowFrame>
