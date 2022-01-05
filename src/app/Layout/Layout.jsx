@@ -33,6 +33,8 @@ const Layout = ({ children }) => {
     '/': 'HomepageStyle',
     '/join': 'LoginStyle',
     '/login': 'LoginStyle',
+    '/forgotPassword': 'LoginStyle',
+    '/reset': 'LoginStyle',
     '/property': 'PropertyStyle',
     '/search': 'PropertyStyle',
   };

@@ -5,7 +5,6 @@ import PostForm from '../../components/PropertyForm/PostForm';
 import ProCard from '@ant-design/pro-card';
 import RcResizeObserver from 'rc-resize-observer';
 import '@ant-design/pro-card/dist/card.css';
-import EditForm from '../../components/PropertyForm/EditForm';
 
 const Title = styled.div`
   text-align: center;
@@ -60,7 +59,9 @@ const Post = ({ isPost }) => {
           </ProCard>
         </RcResizeObserver>
       </CardWrapper>
-      <DemoWrapper>{isPost ? <PostForm /> : <EditForm />}</DemoWrapper>
+      <DemoWrapper>
+        <PostForm />
+      </DemoWrapper>
     </>
   );
 };
