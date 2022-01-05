@@ -1,1 +1,7 @@
-export { Wrapper, WrapperColumnFlex, NoShadowWrapper } from './Wrapper';
+export {
+  Wrapper,
+  WrapperColumnFlex,
+  NoShadowWrapper,
+  PopUpContainer,
+  NoShadowWrapperSpaceAround,
+} from './Wrapper';

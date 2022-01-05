@@ -45,8 +45,7 @@ const normFile = (e) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
-
-  handleFormSubmit = async (values,error) => {
+  handleFormSubmit = async (values, error) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -93,9 +92,8 @@ class postForm extends React.Component {
           rent: 0,
         }}
         onFinish={(values) => this.handleFormSubmit(values)}
-        onFinishFailed={(error)=>{
-          console.log(error)
-
+        onFinishFailed={(error) => {
+          console.log(error);
         }}
       >
         <Form.Item
@@ -110,7 +108,7 @@ class postForm extends React.Component {
             },
           ]}
         >
-          <Select placeholder="Please select a property type" size={'large'} >
+          <Select placeholder="Please select a property type" size={'large'}>
             <Option value="House">House</Option>
             <Option value="Apartment">Apartment</Option>
             <Option value="Studio">Studio</Option>
@@ -242,7 +240,7 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Button type="primary" htmlType="submit"  size={'large'}>
+          <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>
         </Form.Item>
