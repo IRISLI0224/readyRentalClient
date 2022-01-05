@@ -33,7 +33,6 @@ export const PostProperty = async (propertyInfo) => {
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     };
     const res = axios.post(`${devURL}` + API_POST_PROPERTY, json_str, config);
-    console.log(res)
     return res;
   } catch (e) {
     return;

@@ -78,8 +78,8 @@ class postForm extends React.Component {
 
     await PostProperty(newData);
     //back to list page
-    window.alert('Add a new property to your list successfully');
-    window.location.href = ManageListPage;
+    //window.alert('Add a new property to your list successfully');
+    //window.location.href = ManageListPage;
   };
   render() {
     return (
