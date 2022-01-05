@@ -25,13 +25,19 @@ export const getPropertiesById = async (Id) => {
 const API_POST_PROPERTY = '/properties';
 
 export const PostProperty = async (propertyInfo) => {
-  const json = JSON.stringify(propertyInfo);
-  const token =getToken();
-  const config = {
-    headers: {  'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-};
-  const res =axios.post(`${devURL}`+API_POST_PROPERTY, json, config)
-  return res 
+  try {
+    var decycle = require('json-decycle').decycle;
+    const json_str = JSON.stringify(propertyInfo, decycle());
+    const token = getToken();
+    const config = {
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    };
+    const res = axios.post(`${devURL}` + API_POST_PROPERTY, json_str, config);
+    console.log(res)
+    return res;
+  } catch (e) {
+    return;
+  }
 };
 
 export const getPropertiesBySearch = async (search) => {
