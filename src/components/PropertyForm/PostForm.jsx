@@ -45,7 +45,8 @@ const normFile = (e) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
-  handleFormSubmit = async (values) => {
+
+  handleFormSubmit = async (values,error) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -74,7 +75,6 @@ class postForm extends React.Component {
     newData['postDate'] = date.toLocaleDateString();
 
     delete newData.propertyFeatures;
-    console.log(newData)
 
     await PostProperty(newData);
     //back to list page
@@ -93,6 +93,10 @@ class postForm extends React.Component {
           rent: 0,
         }}
         onFinish={(values) => this.handleFormSubmit(values)}
+        onFinishFailed={(error)=>{
+          console.log(error)
+
+        }}
       >
         <Form.Item
           style={{ height: 45 }}
@@ -107,9 +111,9 @@ class postForm extends React.Component {
           ]}
         >
           <Select placeholder="Please select a property type" size={'large'} >
-            <Option value="house">House</Option>
-            <Option value="apartment">Apartment</Option>
-            <Option value="studio">Studio</Option>
+            <Option value="House">House</Option>
+            <Option value="Apartment">Apartment</Option>
+            <Option value="Studio">Studio</Option>
           </Select>
         </Form.Item>
         <Form.Item name="propertyFeatures" label="Property Features">
@@ -238,7 +242,7 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Button type="primary" htmlType="submit" size={'large'}>
+          <Button type="primary" htmlType="submit"  size={'large'}>
             Submit
           </Button>
         </Form.Item>
