@@ -23,7 +23,7 @@ const DemoWrapper = styled.div`
   margin: 60px auto;
   width: 1100px;
 `;
-const Post = () => {
+const Post = ({ isPost }) => {
   const [responsive, setResponsive] = useState(false);
   return (
     <>
