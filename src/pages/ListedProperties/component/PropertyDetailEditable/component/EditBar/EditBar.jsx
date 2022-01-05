@@ -48,7 +48,7 @@ const EditBar = ({ property, onDelete }) => {
           <SpanText>{property.status}</SpanText>
         </div>
         <NoShadowWrapper>
-          <StyledBtn>
+          <StyledBtn as="a" href={`/property/edit/${property._id}`}>
             <FaPencilAlt />
             <span>Edit</span>
           </StyledBtn>

@@ -49,6 +49,21 @@ export const deletePropertyById = async (propertyId) => {
   };
   const url = `${devURL}${API_GET_ALL_PROPERTIES}/${propertyId}`;
   const response = await axios.delete(url, config);
-  console.log(response.data);
+  return response.data;
+};
+
+//update property by id
+
+export const updatePropertyById = async (propertyInfo, propertyId) => {
+  const json = JSON.stringify(propertyInfo);
+  const token = getToken();
+  const config = {
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+  };
+  const response = await axios.put(
+    `${devURL}${API_GET_ALL_PROPERTIES}/${propertyId}`,
+    json,
+    config,
+  );
   return response.data;
 };

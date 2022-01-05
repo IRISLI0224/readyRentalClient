@@ -14,10 +14,10 @@ import {
   message,
 } from 'antd';
 import { CodeSandboxCircleFilled, InboxOutlined } from '@ant-design/icons';
-import { storePropety } from '../../api/postProperties';
 import styled from 'styled-components';
 import { PostProperty } from '../../config/Properties';
 import validate from '../../hoc/Form/validate';
+import { MdTurnedInNot } from 'react-icons/md';
 
 const ManageListPage = 'http://localhost:3000/property/manage-listings';
 
@@ -47,7 +47,7 @@ const normFile = (e: any) => {
 const { TextArea } = Input;
 
 const initialData = {
-  value: '',
+  value: 'aaaaa',
   blurred: false,
 };
 
@@ -60,15 +60,13 @@ const initialDataBoolean = {
   value: false,
 };
 
-class postForm extends React.Component {
+class PropertyEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       propertyData: {
-        // streetNumber: initialData,
-        streetNumber: '20',
-        // streetName: initialData,
-        streetName: 'forest',
+        streetNumber: initialData,
+        streetName: initialData,
         city: initialData,
         state: initialData,
         postCode: initialData,
@@ -79,6 +77,7 @@ class postForm extends React.Component {
         petAllowed: initialDataBoolean,
         smokingAllowed: initialDataBoolean,
         furnished: initialDataBoolean,
+        furnished: true,
         description: initialData,
         status: 'open',
         airCon: initialDataBoolean,
@@ -181,10 +180,11 @@ class postForm extends React.Component {
   handleSubmit = async () => {
     const { propertyData } = this.state;
     const newData = propertyData;
+    console.log(newData, 1);
     Object.entries(newData).map(([key, value]) => {
       newData[key] = value.value;
     });
-    //console.log(newData);
+    console.log(newData, 2);
     await PostProperty(newData);
     //back to list page
     window.alert('Add a new property to your list successfully');
@@ -199,6 +199,9 @@ class postForm extends React.Component {
     return (
       <div>
         <Form
+          initialValues={{
+            furnished: true,
+          }}
           //name="validate_other"
           {...layout}
           {...formItemLayout}
@@ -444,4 +447,4 @@ class postForm extends React.Component {
     );
   }
 }
-export default postForm;
+export default PropertyEdit;

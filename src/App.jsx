@@ -27,11 +27,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/join" element={<JoinPage />} />    
+          <Route path="/join" element={<JoinPage />} />
           <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
           <Route path="/property/inspection" element={<ListedProperties isInspection />} />
           <Route path="/search" element={<SearchResult />} />
-          <Route path="/property/post" element={<Post />} />
+          <Route path="/property/post" element={<Post isPost />} />
+          <Route path="/property/edit/:id" element={<Post />} />
           <Route path="/account" element={<AccountSettings />} />
           <Route path="/uploadImage" element={<UploadImage />} />
           <Route path="*" element={<NoPage />} />
