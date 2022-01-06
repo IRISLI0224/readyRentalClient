@@ -60,7 +60,9 @@ const Post = ({ isPost }) => {
         </RcResizeObserver>
       </CardWrapper>
       <DemoWrapper>
-        <PostForm />
+        <DemoWrapper>
+          <PostForm />
+        </DemoWrapper>
       </DemoWrapper>
     </>
   );
