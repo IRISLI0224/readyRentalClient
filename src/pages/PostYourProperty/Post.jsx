@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
 import PostForm from '../../components/PropertyForm/PostForm';
+import EditForm from '../../components/PropertyForm/EditForm';
 import ProCard from '@ant-design/pro-card';
 import RcResizeObserver from 'rc-resize-observer';
 import '@ant-design/pro-card/dist/card.css';
@@ -60,7 +61,7 @@ const Post = ({ isPost }) => {
         </RcResizeObserver>
       </CardWrapper>
       <DemoWrapper>
-        <PostForm />
+        <DemoWrapper>{isPost ? <PostForm /> : <EditForm />}</DemoWrapper>
       </DemoWrapper>
     </>
   );
