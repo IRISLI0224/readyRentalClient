@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { post, get, put } from './auth';
 import { getToken } from '../utils/authentication';
-const devURL = 'http://localhost:8080/api/v1';
+const devURL = 'http://3.26.189.227:8000/api/v1';
 
 //Get all property
 //todo: need to delete one
@@ -42,7 +42,7 @@ export const PostProperty = async (propertyInfo) => {
 };
 
 export const getPropertiesBySearch = async (search) => {
-  const url = `http://localhost:8080/api/v1/properties${search}`;
+  const url = `http://3.26.189.227:8000/api/v1/properties${search}`;
   const response = await axios.get(url);
   return response.data;
 };

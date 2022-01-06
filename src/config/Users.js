@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { post } from './auth';
 
-const BASE_URL = 'http://localhost:8080/api/v1';
+const BASE_URL = 'http://3.26.189.227:8000/api/v1';
 const API_GET_USER = '/users/';
 const API_LOGIN_URL = '/login';
 
