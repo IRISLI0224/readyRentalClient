@@ -21,7 +21,7 @@ export const UserLogin = (email, password) => {
 };
 
 //export const signUp = (data) => data;
-const API_REGISTER_URL = '/register';
+const API_REGISTER_URL = 'http://3.26.189.227:8000/api/v1/register';
 export const UserRegister = (email, password) => {
   const data = {
     email,
