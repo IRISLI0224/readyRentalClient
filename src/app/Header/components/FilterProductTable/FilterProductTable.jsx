@@ -5,18 +5,14 @@ class FilterProductTable extends React.Component {
     super(props);
     this.state = {
       filterText: '',
-      isHouse: false,
-      isApartment: false,
-      isStudio: false,
+      type: '',
       bedMin: '',
       bedMax: '',
       priceMin: '',
       priceMax: '',
     };
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
-    this.onHouseChange = this.onHouseChange.bind(this);
-    this.onApartmentChange = this.onApartmentChange.bind(this);
-    this.onStudioChange = this.onStudioChange.bind(this);
+    this.onTypeChange = this.onTypeChange.bind(this);
     this.onBedMinChange = this.onBedMinChange.bind(this);
     this.onBedMaxChange = this.onBedMaxChange.bind(this);
     this.onPriceMinChange = this.onPriceMinChange.bind(this);
@@ -27,19 +23,9 @@ class FilterProductTable extends React.Component {
       filterText,
     });
   }
-  onHouseChange(isHouse) {
+  onTypeChange(type) {
     this.setState({
-      isHouse,
-    });
-  }
-  onApartmentChange(isApartment) {
-    this.setState({
-      isApartment,
-    });
-  }
-  onStudioChange(isStudio) {
-    this.setState({
-      isStudio,
+      type,
     });
   }
   onBedMinChange(bedMin) {
@@ -63,23 +49,18 @@ class FilterProductTable extends React.Component {
     });
   }
   render() {
-    const { filterText, isHouse, isApartment, isStudio, bedMin, bedMax, priceMin, priceMax } =
-      this.state;
+    const { filterText, type, bedMin, bedMax, priceMin, priceMax } = this.state;
     return (
       <div>
         <SearchTable
           filterText={filterText}
-          isHouse={isHouse}
-          isApartment={isApartment}
-          isStudio={isStudio}
+          type={type}
           bedMin={bedMin}
           bedMax={bedMax}
           priceMin={priceMin}
           priceMax={priceMax}
           onFilterTextChange={this.onFilterTextChange}
-          onHouseChange={this.onHouseChange}
-          onApartmentChange={this.onApartmentChange}
-          onStudioChange={this.onStudioChange}
+          onTypeChange={this.onTypeChange}
           onBedMinChange={this.onBedMinChange}
           onBedMaxChange={this.onBedMaxChange}
           onPriceMinChange={this.onPriceMinChange}
