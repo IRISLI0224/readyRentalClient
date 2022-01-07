@@ -38,7 +38,7 @@ class ListedProperties extends React.Component {
     //!is it right to get userId from token?
     const user = getUserFromToken();
 
-    if (!user) throw 'please log in first';
+    if (!user) window.location.href = '/login';
 
     const userId = user._id;
 
@@ -125,4 +125,4 @@ ListedProperties.propTypes = {
   isListing: PropTypes.object.isRequired,
 };
 
-export default ListedProperties;
+export default WithRouter(ListedProperties);

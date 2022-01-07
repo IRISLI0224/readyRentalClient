@@ -18,7 +18,7 @@ import moment from 'moment';
 
 const { Option } = Select;
 
-const ManageListPage = 'http://localhost:3000/property/manage-listings';
+const ManageListPage = '/property/manage-listings';
 
 const formItemLayout = {
   labelCol: {
