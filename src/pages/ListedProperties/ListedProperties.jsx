@@ -125,4 +125,4 @@ ListedProperties.propTypes = {
   isListing: PropTypes.object.isRequired,
 };
 
-export default WithRouter(ListedProperties);
+export default ListedProperties;
