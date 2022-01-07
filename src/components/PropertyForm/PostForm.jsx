@@ -14,6 +14,7 @@ import {
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
+import moment from 'moment';
 
 const { Option } = Select;
 
@@ -69,9 +70,18 @@ class postForm extends React.Component {
         newData['Intercom'] = true;
       } else newData['intercom'] = false;
     }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('smokingAllowed') > -1) {
+        newData['smokingAllowed'] = true;
+      } else newData['smokingAllowed'] = false;
+    }
     const date = new Date();
 
     newData['postDate'] = date.toLocaleDateString();
+
+    newData['availableDate'] = Date(values.availableDate);
+
+    //console.log(newData)
 
     delete newData.propertyFeatures;
 
@@ -137,23 +147,78 @@ class postForm extends React.Component {
                   Intercom
                 </Checkbox>
               </Col>
+              <Col span={8}>
+                <Checkbox value="smokingAllowed" style={{ lineHeight: '32px' }}>
+                  Smoking Allowed
+                </Checkbox>
+              </Col>
             </Row>
           </Checkbox.Group>
         </Form.Item>
-        <Form.Item label="Street Number" model="multiple" name="streetNumber">
+        <Form.Item
+          label="Street Number"
+          model="multiple"
+          name="streetNumber"
+          rules={[
+            {
+              required: true,
+              message: 'Please Input Steert number!',
+            },
+          ]}
+        >
+          <Input style={{ height: 40 }} type="number" />
+        </Form.Item>
+        <Form.Item
+          label="Street"
+          model="multiple"
+          name="streetName"
+          rules={[
+            {
+              required: true,
+              message: 'Please Input Street name!',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="Street" model="multiple" name="streetName">
+        <Form.Item
+          label="City"
+          mode="multiple"
+          name="city"
+          rules={[
+            {
+              required: true,
+              message: 'Please input city!',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="City" mode="multiple" name="city">
+        <Form.Item
+          label="State"
+          mode="multiple"
+          name="state"
+          rules={[
+            {
+              required: true,
+              message: 'Please input state',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="State" mode="multiple" name="state">
-          <Input style={{ height: 40 }} />
-        </Form.Item>
-        <Form.Item label="Postcode" mode="multiple" name="postCode">
-          <Input style={{ height: 40 }} />
+        <Form.Item
+          label="Postcode"
+          mode="multiple"
+          name="postCode"
+          rules={[
+            {
+              required: true,
+              message: 'Please input postcode!',
+            },
+          ]}
+        >
+          <Input style={{ height: 40 }} type='number' />
         </Form.Item>
         <Form.Item label="Bedrooms">
           <Form.Item
@@ -199,6 +264,9 @@ class postForm extends React.Component {
           >
             <InputNumber min={1} max={10} style={{ height: 35 }} />
           </Form.Item>
+        </Form.Item>
+        <Form.Item label="Available Since" name="availableDate">
+          <DatePicker picker="date" placeholder="Choose your date" />
         </Form.Item>
         <Form.Item
           label="Rent"
