@@ -62,12 +62,12 @@ class postForm extends React.Component {
     }
     if (PF) {
       if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-        newData['Airconditioner'] = true;
+        newData['airCon'] = true;
       } else newData['airCon'] = false;
     }
     if (PF) {
-      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-        newData['Intercom'] = true;
+      if (values.propertyFeatures.indexOf('Intercom') > -1) {
+        newData['intercom'] = true;
       } else newData['intercom'] = false;
     }
     if (PF) {
@@ -81,11 +81,10 @@ class postForm extends React.Component {
 
     newData['availableDate'] = Date(values.availableDate);
 
-    //console.log(newData)
-
     delete newData.propertyFeatures;
 
     await PostProperty(newData);
+
     //back to list page
     window.alert('Add a new property to your list successfully');
     window.location.href = ManageListPage;
@@ -218,7 +217,7 @@ class postForm extends React.Component {
             },
           ]}
         >
-          <Input style={{ height: 40 }} type='number' />
+          <Input style={{ height: 40 }} type="number" />
         </Form.Item>
         <Form.Item label="Bedrooms">
           <Form.Item
