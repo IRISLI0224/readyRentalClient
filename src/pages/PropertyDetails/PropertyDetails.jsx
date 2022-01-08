@@ -29,7 +29,7 @@ const PropertyDetails = () => {
       <h1>{property.city}</h1>
       <BasicInfo property={property}/>
       <Description property={property}/>
-      <ContactForm property={property}/>
+      <ContactForm id={id} property={property}/>
     </>
   );
 };
