@@ -42,11 +42,53 @@ const normFile = (e: any) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
-  handleFormSubmit = (values) => {
-    console.log(values);
-    storePropety(values).then(function (response) {
-      return;
-    });
+  handleFormSubmit = async (values, error) => {
+    //formart data
+    let newData = values;
+    const PF = values.propertyFeatures;
+    if (PF) {
+      if (PF.indexOf('Furnished') > -1) {
+        newData['furnished'] = true;
+      } else newData['furnished'] = false;
+    }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('Petsconsidered') > -1) {
+        newData['petAllowed'] = true;
+      } else newData['petAllowed'] = false;
+    }
+    // if (PF) {
+    //   if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
+    //     newData['Airconditioner'] = true;
+    //   } else newData['airCon'] = false;
+    // }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
+        newData['Intercom'] = true;
+      } else newData['intercom'] = false;
+    }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('smokingAllowed') > -1) {
+        newData['smokingAllowed'] = true;
+      } else newData['smokingAllowed'] = false;
+    }
+    const date = new Date();
+
+    newData['postDate'] = date.toLocaleDateString();
+
+    newData['availableDate'] = Date(values.availableDate);
+
+    //console.log(newData)
+    var res;
+    delete newData.propertyFeatures;
+    try{
+      res =await PostProperty(newData);
+      console.log(res)
+    }catch(e){
+      console.log(res)
+    }
+    //back to list page
+    //window.alert('Add a new property to your list successfully');
+    //window.location.href = ManageListPage;
   };
   render() {
     const { data } = this.state;
