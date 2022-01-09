@@ -14,7 +14,8 @@ import {
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
-import moment from 'moment';
+import axios from 'axios';
+import UploadImage from '../../utils/UploadImage';
 
 const { Option } = Select;
 
@@ -46,6 +47,16 @@ const normFile = (e) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: [],
+      images: [],
+      // imageInput:''
+    };
+    this.setFiles = this.setFiles.bind(this);
+  }
+
   handleFormSubmit = async (values, error) => {
     //formart data
     let newData = values;
@@ -81,7 +92,9 @@ class postForm extends React.Component {
 
     newData['availableDate'] = Date(values.availableDate);
 
-    //console.log(newData)
+    newData['propImage'] = this.state.file
+
+    //console.log(newData);
 
     delete newData.propertyFeatures;
 
@@ -90,6 +103,13 @@ class postForm extends React.Component {
     window.alert('Add a new property to your list successfully');
     window.location.href = ManageListPage;
   };
+
+
+  setFiles(url) {
+    this.state.file.push(url);
+    console.log(this.state.file);
+  }
+
   render() {
     return (
       <Form
@@ -218,7 +238,7 @@ class postForm extends React.Component {
             },
           ]}
         >
-          <Input style={{ height: 40 }} type='number' />
+          <Input style={{ height: 40 }} type="number" />
         </Form.Item>
         <Form.Item label="Bedrooms">
           <Form.Item
@@ -286,8 +306,8 @@ class postForm extends React.Component {
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
         <Form.Item label="Pictures">
-          <Form.Item name="pictures" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-            <Upload.Dragger name="files" action="/upload.do" style={{ width: 600 }}>
+          <Form.Item valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+            <Upload.Dragger name="files" onChange={this.uploadImage} style={{ width: 600 }}>
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
@@ -308,6 +328,9 @@ class postForm extends React.Component {
             },
           }}
         >
+          <Form.Item name="propImage">
+            <UploadImage setFiles={this.setFiles} />
+          </Form.Item>
           <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>
