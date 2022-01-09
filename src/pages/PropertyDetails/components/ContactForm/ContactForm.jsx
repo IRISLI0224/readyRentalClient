@@ -49,7 +49,6 @@ const FORM_FIELDS = [
       if (!data.name) {
         return 'Please input your name';
       }
-
       return '';
     },
   },
@@ -63,14 +62,17 @@ const validate = (data) =>
   });
 
 const ContactForm = ({ id, property }) => {
-  const { address } = property;
-
+  const { address, availableDate } = property;
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState();
 
   const [data, setData] = useState({
     phone: '',
     message: '',
+    isAvailableDate: false,
+    isLengthOfLease: false,
+    isInspection: false,
+    isRentalApplication: false,
   });
   const [touched, setTouched] = useState({
     email: false,
@@ -78,13 +80,6 @@ const ContactForm = ({ id, property }) => {
     message: false,
     phone: false,
   });
-
-  const [isAvailableDate, setIsAvailableDate] = useState('');
-
-  const handleChange = (event) => {
-    console.log(event.target.isAvailableDate);
-    setIsAvailableDate(event.target.isAvailableDate);
-  };
 
   return (
     <>
@@ -102,20 +97,17 @@ const ContactForm = ({ id, property }) => {
                   : address}
               </StyledText>
               <StyledText bold="0.2rem">Rent: ${property.rent} per week</StyledText>
-              <StyledText bold="0.2rem">Next open: Sat 18 Dec, 9:00am - 9:15am</StyledText>
+              <StyledText bold="0.2rem">Available Date: {availableDate}</StyledText>
             </HeroContainer>
           </DescItem>
           <form
             onSubmit={(event) => {
               event.preventDefault();
-
               if (!validate(data)) {
                 swal('Error', 'Please fill in all the required fields', 'error');
                 return;
               }
-
               setLoading(true);
-
               axios
                 .post('http://localhost:8080/api/v1/contact', {
                   name: data.name,
@@ -125,44 +117,51 @@ const ContactForm = ({ id, property }) => {
                   address: `${address.streetNumber} ${address.streetName}, ${address.city}, ${address.state}, 
                   ${address.postCode}`,
                   id: id,
+                  isAvailableDate: data.isAvailableDate,
+                  isLengthOfLease: data.isLengthOfLease,
+                  isInspection: data.isInspection,
+                  isRentalApplication: data.isRentalApplication,
                 })
                 .then(setResponse)
                 .catch((error) => {
                   setResponse(error.response);
                 })
                 .finally(() => setLoading(false));
-
-              console.log('button clicked', data);
+              swal('Success', 'Thank you for your enquiry', 'success');
             }}
           >
-            {response &&
-              {
-                200: () => swal('Email sent successfully'),
-                409: () => swal('Error'),
-              }[response.status]()}
             <DescItem>
               <StyledText bold size="1.1rem">
                 What's your enquiry about?
               </StyledText>
               <CheckboxContainer>
                 <CheckboxWrapper>
-                  <input
-                    type="checkbox"
-                    value="what's the availability date"
-                    onChange={handleChange}
-                  />
+                  <input type="checkbox" 
+                  value={data.isAvailableDate}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
+                  } />
                 </CheckboxWrapper>
                 <StyledText>Available date</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox"  />
+                  <input type="checkbox"  value={data.isLengthOfLease}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
+                  }/>
                 </CheckboxWrapper>
                 <StyledText>Length of lease</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox"  />
+                  <input type="checkbox" value={data.isInspection}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
+                  }/>
                 </CheckboxWrapper>
                 <StyledText>Inspection</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox" />
+                  <input type="checkbox" value={data.isRentalApplication}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isRentalApplication: event.target.value }))
+                  }/>
                 </CheckboxWrapper>
                 <StyledText>Rental application</StyledText>
               </CheckboxContainer>
