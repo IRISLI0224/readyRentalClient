@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
 import { getAllProperties } from '../../../../../../config/Properties';
-import CheckFilter from './components/CheckFilter';
-// this is for checkbox, if no longer to use it, then delete, but just leave it at the moment
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 
 const SearchText = styled.input`
@@ -90,9 +88,7 @@ class SearchTable extends React.Component {
   constructor(props) {
     super(props);
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleHouseChange = this.handleHouseChange.bind(this);
-    this.handleApartmentChange = this.handleApartmentChange.bind(this);
-    this.handleStudioChange = this.handleStudioChange.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleBedMinChange = this.handleBedMinChange.bind(this);
     this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
     this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
@@ -101,14 +97,8 @@ class SearchTable extends React.Component {
   handleFilterTextChange(e) {
     this.props.onFilterTextChange(e.target.value);
   }
-  handleHouseChange(e) {
-    this.props.onHouseChange(e.target.checked);
-  }
-  handleApartmentChange(e) {
-    this.props.onApartmentChange(e.target.checked);
-  }
-  handleStudioChange(e) {
-    this.props.onStudioChange(e.target.checked);
+  handleTypeChange(e) {
+    this.props.onTypeChange(e.target.value);
   }
   handleBedMinChange(e) {
     this.props.onBedMinChange(e.target.value);
@@ -123,23 +113,23 @@ class SearchTable extends React.Component {
     this.props.onPriceMaxChange(e.target.value);
   }
   render() {
-    const { filterText, isHouse, isApartment, isStudio, bedMin, bedMax, priceMin, priceMax } =
-      this.props;
-    // isHouse, isApartment, isStudio for checkbox, if no longer to use, then delete, but just leave it at the moment
+    const { filterText, type, bedMin, bedMax, priceMin, priceMax } = this.props;
     return (
       <Container>
         <h1>Search properties for sale</h1>
-        <form 
-            onSubmit={(e) => {
-              e.preventDefault();
-              const query= new URLSearchParams();
-              filterText && query.set('input', filterText); 
-              bedMin && query.set('bedMin', bedMin);
-              bedMax && query.set('bedMax', bedMax);
-              priceMin && query.set('rentMin', priceMin);
-              priceMax && query.set('rentMax', priceMax);
-              window.location.href = `/search?${query.toString()}`;
-              }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const query = new URLSearchParams();
+            filterText && query.set('input', filterText);
+            type && query.set('type', type);
+            bedMin && query.set('bedMin', bedMin);
+            bedMax && query.set('bedMax', bedMax);
+            priceMin && query.set('rentMin', priceMin);
+            priceMax && query.set('rentMax', priceMax);
+            window.location.href = `/search?${query.toString()}`;
+          }}
+        >
           <SearchPanel>
             <SearchOutlined
               style={{
@@ -167,16 +157,16 @@ class SearchTable extends React.Component {
                 color: '#808080',
               }}
             />
-            <Button primary size="130px" height="4.03rem" type="submit"onClick={getAllProperties} >
+            <Button primary size="130px" height="4.03rem" type="submit" onClick={getAllProperties}>
               Search
             </Button>
           </SearchPanel>
           <DropFilter>
-            <Selection name="type" id="">
-              <Option value="all" selected disabled hidden>
+            <Selection name="type" id="" onChange={this.handleTypeChange} value={type}>
+              <Option value="" selected disabled hidden>
                 All property types
               </Option>
-              <Option value="all">All property types</Option>
+              <Option value="">All property types</Option>
               <Option value="house">House</Option>
               <Option value="apartment">Apartment</Option>
               <Option value="studio">Studio</Option>
