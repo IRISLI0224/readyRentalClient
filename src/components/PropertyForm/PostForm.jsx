@@ -19,7 +19,7 @@ import UploadImage from '../../utils/UploadImage';
 
 const { Option } = Select;
 
-const ManageListPage = 'http://localhost:3000/property/manage-listings';
+const ManageListPage = '/property/manage-listings';
 
 const formItemLayout = {
   labelCol: {
@@ -51,13 +51,11 @@ class postForm extends React.Component {
     super(props);
     this.state = {
       file: [],
-      images: [],
-      // imageInput:''
     };
     this.setFiles = this.setFiles.bind(this);
   }
 
-  handleFormSubmit = async (values, error) => {
+  handleFormSubmit= async (values, error) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -73,12 +71,12 @@ class postForm extends React.Component {
     }
     if (PF) {
       if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-        newData['Airconditioner'] = true;
+        newData['airCon'] = true;
       } else newData['airCon'] = false;
     }
     if (PF) {
-      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-        newData['Intercom'] = true;
+      if (values.propertyFeatures.indexOf('Intercom') > -1) {
+        newData['intercom'] = true;
       } else newData['intercom'] = false;
     }
     if (PF) {
@@ -99,6 +97,7 @@ class postForm extends React.Component {
     delete newData.propertyFeatures;
 
     await PostProperty(newData);
+
     //back to list page
     window.alert('Add a new property to your list successfully');
     window.location.href = ManageListPage;
@@ -107,7 +106,7 @@ class postForm extends React.Component {
 
   setFiles(url) {
     this.state.file.push(url);
-    console.log(this.state.file);
+    //console.log(this.state.file);
   }
 
   render() {
@@ -305,17 +304,6 @@ class postForm extends React.Component {
         <Form.Item label="Description" name="description">
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
-        <Form.Item label="Pictures">
-          <Form.Item valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-            <Upload.Dragger name="files" onChange={this.uploadImage} style={{ width: 600 }}>
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-            </Upload.Dragger>
-          </Form.Item>
-        </Form.Item>
         <Form.Item
           wrapperCol={{
             xs: {
@@ -328,7 +316,7 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Form.Item name="propImage">
+          <Form.Item label="Pictures" name="propImage">
             <UploadImage setFiles={this.setFiles} />
           </Form.Item>
           <Button type="primary" htmlType="submit" size={'large'}>

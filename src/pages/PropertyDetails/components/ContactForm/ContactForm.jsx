@@ -1,9 +1,12 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BodyContainer, DescItem, HeroContainer, VerticalMargin } from '../Container';
 import StyledText from '../../../../hoc/Text';
 import EnquiryButton from '../EnquiryButton';
-import Input from '../../../../hoc/Input';
+import TextInput from './components/TextInput';
+import TextArea from './components/TextArea';
+import swal from 'sweetalert';
 
 const ContactContainer = styled.div`
   @media(min-width:641px) { 
@@ -21,13 +24,61 @@ const CheckboxWrapper = styled.div`
   position: relative;
   width: 1rem;
   height: 1rem;
-  margin-top: 0.25rem;
-  margin-left: 0.75rem;
   flex-shrink: 0;
+  margin: 5px;
 `;
 
-const ContactForm = ({ property }) => {
-  const { address } = property;
+const FORM_FIELDS = [
+  {
+    key: 'email',
+    label: 'Email',
+    type: 'text',
+    getErrorMessage: (data) => {
+      if (!data.email) {
+        return 'Please input your email';
+      }
+      return '';
+    },
+  },
+  {
+    key: 'name',
+    label: 'Name',
+    type: 'name',
+    getErrorMessage: (data) => {
+      if (!data.name) {
+        return 'Please input your name';
+      }
+      return '';
+    },
+  },
+];
+
+const validate = (data) =>
+  Object.keys(FORM_FIELDS).every((key) => {
+    const field = FORM_FIELDS[key];
+    return !field.getErrorMessage(data);
+  });
+
+const ContactForm = ({ id, property }) => {
+  const { address, availableDate } = property;
+  const [response, setResponse] = useState();
+  const [loading, setLoading] = useState();
+
+  const [data, setData] = useState({
+    phone: '',
+    message: '',
+    isAvailableDate: false,
+    isLengthOfLease: false,
+    isInspection: false,
+    isRentalApplication: false,
+  });
+  const [touched, setTouched] = useState({
+    email: false,
+    name: false,
+    message: false,
+    phone: false,
+  });
+
   return (
     <>
       <BodyContainer direction="column">
@@ -44,47 +95,126 @@ const ContactForm = ({ property }) => {
                   : address}
               </StyledText>
               <StyledText bold="0.2rem">Rent: ${property.rent} per week</StyledText>
-              <StyledText bold="0.2rem">Next open: Sat 18 Dec, 9:00am - 9:15am</StyledText>
+              <StyledText bold="0.2rem">Available Date: {availableDate}</StyledText>
             </HeroContainer>
           </DescItem>
-          <DescItem>
-            <VerticalMargin margin="0.5rem">
-              <StyledText bold="0.2rem">What's your enquiry about?</StyledText>
-            </VerticalMargin>
-            <CheckboxContainer>
-              <CheckboxWrapper>
-                <input type="checkbox" />
-              </CheckboxWrapper>
-              <StyledText>Available date</StyledText>
-              <CheckboxWrapper>
-                <input type="checkbox" />
-              </CheckboxWrapper>
-              <StyledText>Length of lease</StyledText>
-              <CheckboxWrapper>
-                <input type="checkbox" />
-              </CheckboxWrapper>
-              <StyledText>Inspection</StyledText>
-              <CheckboxWrapper>
-                <input type="checkbox" />
-              </CheckboxWrapper>
-              <StyledText>Rental application</StyledText>
-            </CheckboxContainer>
-            <VerticalMargin margin="1rem">
-              <StyledText bold="0.1rem">Message</StyledText>
-              <Input size="506px" height="80px" />
-              <StyledText bold="0.1rem">Name(required)</StyledText>
-              <Input id="Name" size="506px" />
-              <StyledText bold="0.1rem">Email address(required)</StyledText>
-              <Input name="email" id="email" type="email" size="506px" />
-              <StyledText bold="0.1rem">Phone number</StyledText>
-              <Input size="506px" />
-            </VerticalMargin>
-            <VerticalMargin margin="1rem">
-              <EnquiryButton size="507px" color="#fff" background="#a30000">
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              if (!validate(data)) {
+                swal('Error', 'Please fill in all the required fields', 'error');
+                return;
+              }
+              setLoading(true);
+              axios
+                .post('http://localhost:8080/api/v1/contact', {
+                  name: data.name,
+                  email: data.email,
+                  phone: data.phone,
+                  message: data.message,
+                  address: `${address.streetNumber} ${address.streetName}, ${address.city}, ${address.state}, 
+                  ${address.postCode}`,
+                  id: id,
+                  isAvailableDate: data.isAvailableDate,
+                  isLengthOfLease: data.isLengthOfLease,
+                  isInspection: data.isInspection,
+                  isRentalApplication: data.isRentalApplication,
+                })
+                .then(setResponse)
+                .catch((error) => {
+                  setResponse(error.response);
+                })
+                .finally(() => setLoading(false));
+              swal('Success', 'Thank you for your enquiry', 'success');
+            }}
+          >
+            <DescItem>
+              <StyledText bold size="1.1rem">
+                What's your enquiry about?
+              </StyledText>
+              <CheckboxContainer>
+                <CheckboxWrapper>
+                  <input type="checkbox" 
+                  value={data.isAvailableDate}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
+                  } />
+                </CheckboxWrapper>
+                <StyledText>Available date</StyledText>
+                <CheckboxWrapper>
+                  <input type="checkbox"  value={data.isLengthOfLease}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
+                  }/>
+                </CheckboxWrapper>
+                <StyledText>Length of lease</StyledText>
+                <CheckboxWrapper>
+                  <input type="checkbox" value={data.isInspection}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
+                  }/>
+                </CheckboxWrapper>
+                <StyledText>Inspection</StyledText>
+                <CheckboxWrapper>
+                  <input type="checkbox" value={data.isRentalApplication}
+                  onChange={(event) =>
+                    setData((prevData) => ({ ...prevData, isRentalApplication: event.target.value }))
+                  }/>
+                </CheckboxWrapper>
+                <StyledText>Rental application</StyledText>
+              </CheckboxContainer>
+              {FORM_FIELDS.map((field) => (
+                <TextInput
+                  key={field.key}
+                  label={field.label}
+                  type={field.type}
+                  error={touched[field.key] && field.getErrorMessage(data)}
+                  value={data[field.key]}
+                  onChange={(event) =>
+                    setData((prevData) => ({
+                      ...prevData,
+                      [field.key]: event.target.value,
+                    }))
+                  }
+                  onBlur={() =>
+                    setTouched((prevTouched) => ({
+                      ...prevTouched,
+                      [field.key]: true,
+                    }))
+                  }
+                />
+              ))}
+              <TextInput
+                label="Phone number (optional)"
+                size="506px"
+                type="number"
+                value={data.phone}
+                onChange={(event) =>
+                  setData((prevData) => ({ ...prevData, phone: event.target.value }))
+                }
+              />
+              <TextArea
+                label="Message"
+                type="text"
+                value={data.message}
+                onChange={(event) =>
+                  setData((prevData) => ({
+                    ...prevData,
+                    message: event.target.value,
+                  }))
+                }
+              />
+              <EnquiryButton
+                size="507px"
+                margin="5px"
+                color="#fff"
+                background="#a30000"
+                type="submit"
+              >
                 Send enquiry
               </EnquiryButton>
-            </VerticalMargin>
-          </DescItem>
+            </DescItem>
+          </form>
           <DescItem>
             <StyledText size="0.7rem">Personal Information Collection Statement</StyledText>
             <StyledText size="0.7rem">
