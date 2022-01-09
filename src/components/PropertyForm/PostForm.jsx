@@ -14,7 +14,8 @@ import {
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
-import moment from 'moment';
+import axios from 'axios';
+import UploadImage from '../../utils/UploadImage';
 
 const { Option } = Select;
 
@@ -46,7 +47,15 @@ const normFile = (e) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
-  handleFormSubmit = async (values, error) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: [],
+    };
+    this.setFiles = this.setFiles.bind(this);
+  }
+
+  handleFormSubmit= async (values, error) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -81,6 +90,10 @@ class postForm extends React.Component {
 
     newData['availableDate'] = Date(values.availableDate);
 
+    newData['propImage'] = this.state.file
+
+    //console.log(newData);
+
     delete newData.propertyFeatures;
 
     await PostProperty(newData);
@@ -89,6 +102,13 @@ class postForm extends React.Component {
     window.alert('Add a new property to your list successfully');
     window.location.href = ManageListPage;
   };
+
+
+  setFiles(url) {
+    this.state.file.push(url);
+    //console.log(this.state.file);
+  }
+
   render() {
     return (
       <Form
@@ -284,17 +304,6 @@ class postForm extends React.Component {
         <Form.Item label="Description" name="description">
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
-        <Form.Item label="Pictures">
-          <Form.Item name="pictures" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-            <Upload.Dragger name="files" action="/upload.do" style={{ width: 600 }}>
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-            </Upload.Dragger>
-          </Form.Item>
-        </Form.Item>
         <Form.Item
           wrapperCol={{
             xs: {
@@ -307,6 +316,9 @@ class postForm extends React.Component {
             },
           }}
         >
+          <Form.Item label="Pictures" name="propImage">
+            <UploadImage setFiles={this.setFiles} />
+          </Form.Item>
           <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>

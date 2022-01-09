@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PagenotfoundImage from '../../assests/img/pagenotfound.png';
-import Submit from './components/Sumbit';
+import Submit from './components/Submit';
 
 const Container = styled.div`
   background: url(${PagenotfoundImage}) no-repeat,
