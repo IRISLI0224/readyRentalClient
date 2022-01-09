@@ -37,7 +37,6 @@ const FORM_FIELDS = [
       if (!data.email) {
         return 'Please input your email';
       }
-
       return '';
     },
   },
@@ -57,7 +56,6 @@ const FORM_FIELDS = [
 const validate = (data) =>
   Object.keys(FORM_FIELDS).every((key) => {
     const field = FORM_FIELDS[key];
-
     return !field.getErrorMessage(data);
   });
 
