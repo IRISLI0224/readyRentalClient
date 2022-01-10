@@ -67,7 +67,6 @@ export const updatePropertyById = async (id, data) => {
   };
   const response = await axios.put(
     `${devURL}${UPDATE_PROPERTY}/${id}`,
-    data,
     json,
     config,
   );
