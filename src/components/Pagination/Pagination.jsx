@@ -7,6 +7,7 @@ import FlexWrap from '../../hoc/FlexWrap';
 import Card from '../../components/ListCard';
 import { SliderData } from '../../components/ListCard/SliderData';
 import { BiCloudUpload } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 //solution from:https://www.youtube.com/watch?v=6DtBw3PaeHs
 const Main = styled.div`
@@ -85,7 +86,7 @@ const renderData = (property) => {
         <>
             {property.map((item, index) => {
                 return (
-                    
+                    <Link to={`/property/${item._id}`} key={index}>
                         <Card key={index}
                             price={item.rent}
                             slides={SliderData}
@@ -95,7 +96,7 @@ const renderData = (property) => {
                             bath={item.numOfBath}
                             car={item.numOfCarSpace}
                             agentName="Frank"/>
-                    
+                    </Link>
                 )
             })}  
         </>
