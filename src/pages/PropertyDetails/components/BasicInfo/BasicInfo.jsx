@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import RoomType from '../../../../components/RoomType';
 import PropButton from '../PropButton';
 import { HeroContainer, BasicInfoContainer, VerticalMargin, ImageContainer } from '../Container';
@@ -16,7 +16,14 @@ const BasicInfo = ({ property }) => {
         </StyledText>
         <StyledText>Bond ${property.rent * 4}</StyledText>
         <VerticalMargin margin="1rem 0">
-          <PropButton size="200px">Request an inspection</PropButton>
+          <PropButton
+            size="200px"
+            onClick={() => {
+              window.scrollTo(0, 630);
+            }}
+          >
+            Request an inspection
+          </PropButton>
         </VerticalMargin>
         <StyledText>Available 07 Dec 2021</StyledText>
       </HeroContainer>
