@@ -14,7 +14,6 @@ import {
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { updatePropertyById } from '../../config/Properties';
-import axios from 'axios';
 import UploadImage from '../../utils/UploadImage';
 import { getPropertiesById } from '../../config/Properties';
 import moment from 'moment';
@@ -52,10 +51,6 @@ const EditForm = () => {
     const ids = window.location.pathname.split('/');
     const id = ids[3];
     const res = await getPropertiesById(id);
-    // this.setState({
-    //   values: await getPropertiesById(id),
-    // });
-    //this.valueRef.current.setFieldsValue({values:res})
     const PF = [];
     if (res.airCon) {
       PF.push('Airconditioner');
@@ -126,7 +121,6 @@ const EditForm = () => {
     newData['availableDate'] = Date(values.availableDate);
 
     newData['propImage'] = file;
-    console.log(newData)
 
     delete newData.propertyFeatures;
 
@@ -141,9 +135,7 @@ const EditForm = () => {
   };
 
   const setFiles = ({ url }) => {
-    console.log(url)
-    var files=file;
-    console.log(files)
+     var files=file;
     files.push(url)
     setFile(files)
     //console.log(this.state.file);
