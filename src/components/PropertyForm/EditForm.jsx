@@ -45,7 +45,7 @@ const formItemLayout = {
 const { TextArea } = Input;
 
 const EditForm = () => {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState([]);
   const [form] = Form.useForm();
  
   React.useEffect(async () => {
@@ -136,12 +136,14 @@ const EditForm = () => {
     await updatePropertyById(id,newData);
 
     //back to list page
-    window.alert('Add a new property to your list successfully');
+    window.alert('Update your property successfully');
     window.location.href = ManageListPage;
   };
 
   const setFiles = ({ url }) => {
+    console.log(url)
     var files=file;
+    console.log(files)
     files.push(url)
     setFile(files)
     //console.log(this.state.file);
@@ -358,9 +360,9 @@ const EditForm = () => {
           },
         }}
       >
-        <Form.Item label="Pictures" name="propImage">
+        {/* <Form.Item label="Pictures" name="propImage">
           <UploadImage setFiles={setFiles} />
-        </Form.Item>
+        </Form.Item> */}
         <Button type="primary" htmlType="submit" size={'large'}>
           Submit
         </Button>
