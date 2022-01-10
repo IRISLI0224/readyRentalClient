@@ -22,7 +22,6 @@ const UploadImage = ({ setFiles }) => {
       const result = await postImage({ image: file });
       setImages([result.image, ...images]);
       setFiles(result.Location);
-      console.log(result.location)
     }
   };
 
@@ -35,7 +34,6 @@ const UploadImage = ({ setFiles }) => {
       const result = await postImage({ image: file });
       setImages([result.image, ...images]);
       setFiles(result.Location);
-      console.log(result.Location)
     }
   };
 
