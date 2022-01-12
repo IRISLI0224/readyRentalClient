@@ -164,12 +164,7 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
-        {properties.length > 0 ? (
-          <div>
-            <SlideCardContainer properties={properties} />
-            <br />
-          </div>
-        ) : null}
+
         <Form>
           <SearchTitle>
             <h1>Search property for rent</h1>
