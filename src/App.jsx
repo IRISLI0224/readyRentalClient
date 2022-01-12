@@ -26,6 +26,9 @@ const App = () => (
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       <Layout>
+        <div>{process.env.REACT_APP_API_KEY}</div>
+        <div>{process.env.NODE_ENV}</div>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

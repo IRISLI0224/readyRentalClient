@@ -1,4 +1,4 @@
-import axios from 'axios';
+import backendApi from '../../../../api/backendApi';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BodyContainer, DescItem, HeroContainer, VerticalMargin } from '../Container';
@@ -9,16 +9,18 @@ import TextArea from './components/TextArea';
 import swal from 'sweetalert';
 
 const ContactContainer = styled.div`
-  @media(min-width:641px) { 
-    border-radius:0.1875rem;
-  `;
+  @media (min-width: 641px) {
+    border-radius: 0.1875rem;
+  }
+`;
 
 const CheckboxContainer = styled.div`
-  @media(min-width:501px) {
+  @media (min-width: 501px) {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-  `;
+  }
+`;
 
 const CheckboxWrapper = styled.div`
   position: relative;
@@ -106,8 +108,8 @@ const ContactForm = ({ id, property }) => {
                 return;
               }
               setLoading(true);
-              axios
-                .post('http://localhost:8080/api/v1/contact', {
+              backendApi
+                .post('/contact', {
                   name: data.name,
                   email: data.email,
                   phone: data.phone,
@@ -134,32 +136,46 @@ const ContactForm = ({ id, property }) => {
               </StyledText>
               <CheckboxContainer>
                 <CheckboxWrapper>
-                  <input type="checkbox" 
-                  value={data.isAvailableDate}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
-                  } />
+                  <input
+                    type="checkbox"
+                    value={data.isAvailableDate}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Available date</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox"  value={data.isLengthOfLease}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isLengthOfLease}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Length of lease</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox" value={data.isInspection}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isInspection}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Inspection</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox" value={data.isRentalApplication}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isRentalApplication: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isRentalApplication}
+                    onChange={(event) =>
+                      setData((prevData) => ({
+                        ...prevData,
+                        isRentalApplication: event.target.value,
+                      }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Rental application</StyledText>
               </CheckboxContainer>

@@ -17,7 +17,7 @@ import ServerMsg from '../../hoc/ServerMsg';
 import { UserLogin } from '../../config/Users';
 import { setToken } from '../../utils/authentication';
 
-const HOMEPAGE = 'http://localhost:3000';
+const HOMEPAGE = '/';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
