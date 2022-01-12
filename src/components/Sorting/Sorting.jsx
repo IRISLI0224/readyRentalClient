@@ -4,15 +4,23 @@ import FlexWrap from '../../hoc/FlexWrap';
 import { Pagination } from '../../components/Pagination';
 import TextStyle from '../../hoc/Text';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios'
 
 const Selection = styled.select`
     width: 15vw;
     padding: 5px 2px;
     margin-left: 5px;
+    margin-bottom: 16px;
+    @media screen and (max-width: 1024px) {
+        width: 80%;
+    }
 `
 const FlexWrapSearch = styled(FlexWrap)`
-  margin-bottom: 8px;
+  @media screen and (max-width: 1024px) {
+    margin: 0px 16px;
+    }
 `;
+
 
 const options = [{ label: ``, value: `` }
     , { label: `Price(Lowest-Highest)`, value: `Price(Lowest-Highest)` }
@@ -27,7 +35,6 @@ const Sorting = () => {
     const _handleChange = (e) => {
         setValue({ selectValue: e.target.value });
         options.forEach((items, index) => { if (items.value === e.target.value) selected = index });
-        console.log(selected);
         let sorted;
         switch (selected) {
             case 0:
@@ -46,12 +53,10 @@ const Sorting = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/v1/properties${location.search}`)
-            .then((res) => res.json())
-            .then((json) => setProperties(json));
+        axios.get(`http://localhost:8080/api/v1/properties${location.search}`)
+        .then((res) => setProperties(res.data));
     }, []);
 
-    // console.log(properties);
     return (
         <>
             <FlexWrapSearch direction="row" >
@@ -62,9 +67,9 @@ const Sorting = () => {
                     ))}
                 </Selection>
             </FlexWrapSearch>
-            <FlexWrap direction="row" >
+            <FlexWrapSearch direction="row" >
                 <Pagination properties={properties} />
-            </FlexWrap>
+            </FlexWrapSearch>
         </>
     )
 }
