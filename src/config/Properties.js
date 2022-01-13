@@ -1,5 +1,4 @@
 //All API about properties
-
 import backendApi from '../api/backendApi';
 import { getToken } from '../utils/authentication';
 
