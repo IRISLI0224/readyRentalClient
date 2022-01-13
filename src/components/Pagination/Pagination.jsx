@@ -19,9 +19,11 @@ const Main = styled.div`
 
 const Page = styled.ul`
     display: flex;
+    max-width: 100%;
     list-style: none;
     padding: 0px;
     margin: 0px;
+    flex-wrap: wrap;
 `
 const BsChevronLeft1 = styled(BsChevronLeft)`
     font-size: 1.2rem;
@@ -45,7 +47,7 @@ const PageList = styled.li`
     // justify-content: center;
     line-height: 2.25rem;
     border-radius: 5%;
-    margin: 0px 8px;
+    margin: 8px 8px 0px 8px;
     display: ${props => props.status === 'end' ? `none` : `inline-block`};
     color: ${props => props.active === 'true' ? `#fff` : `#333`};
     border-color: ${props => props.active === 'true' ? `#a30000` : `#e6e6e6`};
@@ -110,10 +112,8 @@ const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
 
 
 const Pagination = (props) => {
-    //***fake data state */
     const [currentPage, setcurrentPage] = useState(1);// selected current page management, from clicking by users
     const [itemsPerpage, setitemsPerpage] = useState(5);// the interval of displayed items in each page(e.g. item 1, item 2, item 3, item 4, item 5 in each page when useState(5))
-    // const [properties, setProperties] = useState([]);
     const [pageNumberLimit, setpageNumberLimit] = useState(5);// the interval of displayed pages(e.g. 1 2 3 4 5 ... =>when useState(5))
     const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);// max number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the max interval of each group is 5(10-5))
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);// min number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the min interval of each group is 5(6-1))
@@ -123,12 +123,6 @@ const Pagination = (props) => {
     const handleClick = (event) => {
         setcurrentPage(Number(event.target.id));
     }
-
-    // useEffect(() => {
-    //     fetch(`http://localhost:8080/api/v1/properties${location.search}`)
-    //         .then((res) => res.json())
-    //         .then((json) => setProperties(json));
-    // }, []);
     
     //***********total pages should have based on the volumn of data divided by interval(5 in this case)  */
     const pages = [];
@@ -152,7 +146,6 @@ const Pagination = (props) => {
     const indexOfFirstItem = indexOfLastItem - itemsPerpage;
     const currentItems = props.properties.slice(indexOfFirstItem, indexOfLastItem);
     
-    // console.log(currentItems);
     //********next&prev************/
     const handleNextbtn = () => {
         setcurrentPage(currentPage + 1);
@@ -164,9 +157,6 @@ const Pagination = (props) => {
             setmaxPageNumberLimit(pages.length+1);
             setminPageNumberLimit(pages.length - pageNumberLimit);
         }
-        // console.log("current is"+currentPage);
-        // console.log("maxPageNumber is"+maxPageNumberLimit);
-        // console.log("minPageNumber is"+minPageNumberLimit);
     };
     const handlePrevbtn = () => {
         setcurrentPage(currentPage - 1);
@@ -207,18 +197,13 @@ const Pagination = (props) => {
         setcurrentPage(pages.length);
         setmaxPageNumberLimit(pages.length+pageNumberLimit-1);
         setminPageNumberLimit(pages.length-1);
-        // console.log("current is"+currentPage);
-        // console.log("maxPageNumber is"+maxPageNumberLimit);
-        // console.log("minPageNumber is"+minPageNumberLimit);
-        // console.log(pages.length);
     }
 
-    
     let pageLastNumber = <PageList key={pages.length} id={pages.length} onClick={handleLastbtn} active={currentPage === pages.length ? 'true' : ''}>{pages.length}</PageList>;
     if (maxPageNumberLimit > pages.length) {
         pageLastNumber = null;
     }
-    // dataOut(currentPage,itemsPerpage,data.length);
+
     return (
         <Main>
             {renderData(currentItems)}
