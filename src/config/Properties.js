@@ -34,7 +34,6 @@ export const PostProperty = async (propertyInfo) => {
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     };
     const res = axios.post(`${devURL}` + API_POST_PROPERTY, json_str, config);
-    console.log(res);
     return res;
   } catch (e) {
     return;
@@ -59,15 +58,15 @@ export const deletePropertyById = async (propertyId) => {
 };
 
 //update property by id
-
-export const updatePropertyById = async (propertyInfo, propertyId) => {
-  const json = JSON.stringify(propertyInfo);
+const UPDATE_PROPERTY ='/properties';
+export const updatePropertyById = async (id, data) => {
+  const json = JSON.stringify(data);
   const token = getToken();
   const config = {
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
   };
   const response = await axios.put(
-    `${devURL}${API_GET_ALL_PROPERTIES}/${propertyId}`,
+    `${devURL}${UPDATE_PROPERTY}/${id}`,
     json,
     config,
   );

@@ -14,10 +14,12 @@ import {
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
+import axios from 'axios';
+import UploadImage from '../../utils/UploadImage';
 
 const { Option } = Select;
 
-const ManageListPage = 'http://localhost:3000/property/manage-listings';
+const ManageListPage = '/property/manage-listings';
 
 const formItemLayout = {
   labelCol: {
@@ -45,7 +47,15 @@ const normFile = (e) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
-  handleFormSubmit = async (values, error) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: [],
+    };
+    this.setFiles = this.setFiles.bind(this);
+  }
+
+  handleFormSubmit= async (values, error) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -61,25 +71,44 @@ class postForm extends React.Component {
     }
     if (PF) {
       if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-        newData['Airconditioner'] = true;
+        newData['airCon'] = true;
       } else newData['airCon'] = false;
     }
     if (PF) {
-      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-        newData['Intercom'] = true;
+      if (values.propertyFeatures.indexOf('Intercom') > -1) {
+        newData['intercom'] = true;
       } else newData['intercom'] = false;
+    }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('smokingAllowed') > -1) {
+        newData['smokingAllowed'] = true;
+      } else newData['smokingAllowed'] = false;
     }
     const date = new Date();
 
     newData['postDate'] = date.toLocaleDateString();
 
+    newData['availableDate'] = Date(values.availableDate);
+
+    newData['propImage'] = this.state.file
+
+    //console.log(newData);
+
     delete newData.propertyFeatures;
 
     await PostProperty(newData);
+
     //back to list page
     window.alert('Add a new property to your list successfully');
     window.location.href = ManageListPage;
   };
+
+
+  setFiles(url) {
+    this.state.file.push(url);
+    //console.log(this.state.file);
+  }
+
   render() {
     return (
       <Form
@@ -137,23 +166,78 @@ class postForm extends React.Component {
                   Intercom
                 </Checkbox>
               </Col>
+              <Col span={8}>
+                <Checkbox value="smokingAllowed" style={{ lineHeight: '32px' }}>
+                  Smoking Allowed
+                </Checkbox>
+              </Col>
             </Row>
           </Checkbox.Group>
         </Form.Item>
-        <Form.Item label="Street Number" model="multiple" name="streetNumber">
+        <Form.Item
+          label="Street Number"
+          model="multiple"
+          name="streetNumber"
+          rules={[
+            {
+              required: true,
+              message: 'Please Input Steert number!',
+            },
+          ]}
+        >
+          <Input style={{ height: 40 }} type="number" />
+        </Form.Item>
+        <Form.Item
+          label="Street"
+          model="multiple"
+          name="streetName"
+          rules={[
+            {
+              required: true,
+              message: 'Please Input Street name!',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="Street" model="multiple" name="streetName">
+        <Form.Item
+          label="City"
+          mode="multiple"
+          name="city"
+          rules={[
+            {
+              required: true,
+              message: 'Please input city!',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="City" mode="multiple" name="city">
+        <Form.Item
+          label="State"
+          mode="multiple"
+          name="state"
+          rules={[
+            {
+              required: true,
+              message: 'Please input state',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="State" mode="multiple" name="state">
-          <Input style={{ height: 40 }} />
-        </Form.Item>
-        <Form.Item label="Postcode" mode="multiple" name="postCode">
-          <Input style={{ height: 40 }} />
+        <Form.Item
+          label="Postcode"
+          mode="multiple"
+          name="postCode"
+          rules={[
+            {
+              required: true,
+              message: 'Please input postcode!',
+            },
+          ]}
+        >
+          <Input style={{ height: 40 }} type="number" />
         </Form.Item>
         <Form.Item label="Bedrooms">
           <Form.Item
@@ -200,6 +284,9 @@ class postForm extends React.Component {
             <InputNumber min={1} max={10} style={{ height: 35 }} />
           </Form.Item>
         </Form.Item>
+        <Form.Item label="Available Since" name="availableDate">
+          <DatePicker picker="date" placeholder="Choose your date" />
+        </Form.Item>
         <Form.Item
           label="Rent"
           name="rent"
@@ -217,17 +304,6 @@ class postForm extends React.Component {
         <Form.Item label="Description" name="description">
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
-        <Form.Item label="Pictures">
-          <Form.Item name="pictures" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-            <Upload.Dragger name="files" action="/upload.do" style={{ width: 600 }}>
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-            </Upload.Dragger>
-          </Form.Item>
-        </Form.Item>
         <Form.Item
           wrapperCol={{
             xs: {
@@ -240,6 +316,9 @@ class postForm extends React.Component {
             },
           }}
         >
+          <Form.Item label="Pictures" name="propImage">
+            <UploadImage setFiles={this.setFiles} />
+          </Form.Item>
           <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>
