@@ -17,7 +17,7 @@ const FlexWrapSearch = styled(FlexWrap)`
   margin-bottom: 8px;
   @media screen and (max-width: 1024px) {
     margin: 0px 16px;
-    }
+  }
 `;
 const SearchResult = () => {
   const location = useLocation();
@@ -26,10 +26,12 @@ const SearchResult = () => {
 
   return (
     <Container>
-      <FlexWrapSearch direction="row" >
-        <TextStyle bold size="1rem">
-          Real Estate & Property for sale in {SearchInput}
-        </TextStyle>
+      <FlexWrapSearch direction="row">
+        {SearchInput ? (
+          <TextStyle bold size="1rem">
+            Ready Rental & Property for sale in {SearchInput}
+          </TextStyle>
+        ) : null}
       </FlexWrapSearch>
       <Sorting />
     </Container>

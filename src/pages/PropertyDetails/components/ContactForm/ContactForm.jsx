@@ -9,16 +9,18 @@ import TextArea from './components/TextArea';
 import swal from 'sweetalert';
 
 const ContactContainer = styled.div`
-  @media(min-width:641px) { 
-    border-radius:0.1875rem;
-  `;
+  @media (min-width: 641px) {
+    border-radius: 0.1875rem;
+  }
+`;
 
 const CheckboxContainer = styled.div`
-  @media(min-width:501px) {
+  @media (min-width: 501px) {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-  `;
+  }
+`;
 
 const CheckboxWrapper = styled.div`
   position: relative;
@@ -53,10 +55,9 @@ const FORM_FIELDS = [
   },
 ];
 
-
 function getAvailableDate(date) {
   const newDate = new Date(String(date).split('T')[0]);
-  return  date ? newDate.toDateString() : "Now";
+  return date ? newDate.toDateString() : 'Now';
 }
 
 const validate = (data) =>
@@ -101,7 +102,9 @@ const ContactForm = ({ id, property }) => {
                   : address}
               </StyledText>
               <StyledText bold="0.2rem">Rent: ${property.rent} per week</StyledText>
-              <StyledText bold="0.2rem">Available Date: {getAvailableDate(availableDate)}</StyledText>
+              <StyledText bold="0.2rem">
+                Available Date: {getAvailableDate(availableDate)}
+              </StyledText>
             </HeroContainer>
           </DescItem>
           <form
@@ -140,32 +143,46 @@ const ContactForm = ({ id, property }) => {
               </StyledText>
               <CheckboxContainer>
                 <CheckboxWrapper>
-                  <input type="checkbox" 
-                  value={data.isAvailableDate}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
-                  } />
+                  <input
+                    type="checkbox"
+                    value={data.isAvailableDate}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Available date</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox"  value={data.isLengthOfLease}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isLengthOfLease}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Length of lease</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox" value={data.isInspection}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isInspection}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Inspection</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox" value={data.isRentalApplication}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isRentalApplication: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isRentalApplication}
+                    onChange={(event) =>
+                      setData((prevData) => ({
+                        ...prevData,
+                        isRentalApplication: event.target.value,
+                      }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Rental application</StyledText>
               </CheckboxContainer>

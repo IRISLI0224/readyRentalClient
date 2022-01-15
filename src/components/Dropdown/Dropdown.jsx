@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg';
 import { ReactComponent as IconBlack } from '../../assests/img/iconBefore_black.svg';
 import { removeToken } from '../../utils/authentication';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const DropdownContainer = styled.div`
   position: absolute;
@@ -70,7 +70,7 @@ const MenuLi = styled.li`
   &:hover {
     background-color: #f0f0f0;
   }
-  z-index:99;
+  z-index: 99;
 `;
 
 const MenuLink = styled.a`
@@ -106,9 +106,11 @@ const Dropdown = () => {
   let location = useLocation();
   const wholeUrl = location.pathname;
   const home = wholeUrl == '/' ? true : false;
+  const navigate = useNavigate();
 
   const Logout = () => {
     removeToken();
+    navigate('', { replace: true })
   };
 
   return (
