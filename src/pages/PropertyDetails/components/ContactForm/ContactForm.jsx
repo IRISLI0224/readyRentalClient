@@ -8,6 +8,7 @@ import EnquiryButton from '../EnquiryButton';
 import TextInput from './components/TextInput';
 import TextArea from './components/TextArea';
 import swal from 'sweetalert';
+import CardAds from '../../../../components/ListCardAds/CardAds';
 
 const ContactContainer = styled.div`
   @media (min-width: 641px) {
@@ -244,22 +245,6 @@ const ContactForm = ({ id, property }) => {
               </EnquiryButton>
             </DescItem>
           </form>
-          <DescItem>
-            <StyledText size="0.7rem">Personal Information Collection Statement</StyledText>
-            <StyledText size="0.7rem">
-              Your personal information and associated behavioural data related to search activities
-              will be passed to the Agency and/or its authorised service provider to assist the
-              Agency to contact you about your property enquiry. They are required not to use your
-              information for any other purpose. Our Privacy policy explains how we store personal
-              information and how you may access, correct or complain about the handling of personal
-              information.
-            </StyledText>
-            <StyledText size="0.7rem">
-              This form is only to be used for sending genuine email enquiries to the Agent. We
-              reserves its right to take any legal or other appropriate action in relation to misuse
-              of this service.
-            </StyledText>
-          </DescItem>
         </ContactContainer>
       </BodyContainer>
     </>
