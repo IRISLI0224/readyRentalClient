@@ -55,6 +55,12 @@ const FORM_FIELDS = [
   },
 ];
 
+
+function getAvailableDate(date) {
+  const newDate = new Date(String(date).split('T')[0]);
+  return  date ? newDate.toDateString() : "Now";
+}
+
 const validate = (data) =>
   Object.keys(FORM_FIELDS).every((key) => {
     const field = FORM_FIELDS[key];
@@ -97,7 +103,7 @@ const ContactForm = ({ id, property }) => {
                   : address}
               </StyledText>
               <StyledText bold="0.2rem">Rent: ${property.rent} per week</StyledText>
-              <StyledText bold="0.2rem">Available Date: {availableDate}</StyledText>
+              <StyledText bold="0.2rem">Available Date: {getAvailableDate(availableDate)}</StyledText>
             </HeroContainer>
           </DescItem>
           <form

@@ -115,12 +115,6 @@ const Cards = (props) => (
             <Row>
                 <RowTitle>
                     <BrandImage src={Logo} alt="icon" />
-                    {/* <div className="agent-name-and-photo">
-                        <AgentName >{props.agentName}</AgentName>
-                        <AgentIcon>
-                            <AgentIconImg src={props.agentIcon} alt={props.agentName} />
-                        </AgentIcon>
-                    </div> */}
                 </RowTitle>
             </Row>
             <RowFrame>

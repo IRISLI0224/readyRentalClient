@@ -27,6 +27,7 @@ export const PostProperty = async (propertyInfo) => {
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     };
     const res = backendApi.post(API_PROPERTIES, json_str, config);
+    console.log(res);
     return res;
   } catch (e) {
     return;
