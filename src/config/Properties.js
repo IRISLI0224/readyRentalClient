@@ -9,6 +9,7 @@ const devURL = 'http://localhost:8080/api/v1';
 //todo: need to delete one
 const API_GET_ALL_PROPERTIES = '/properties';
 const API_GET_PROPERTIES_BY_ID = '/properties/';
+const API_GET_PROPERTIES_ADS = '/propertiesads';
 
 export const getAllProperties = async () => {
   const url = devURL + API_GET_ALL_PROPERTIES;
@@ -21,6 +22,14 @@ export const getPropertiesById = async (Id) => {
   const response = await axios.get(url);
   return response.data;
 };
+
+//get property ads
+export const getPropertiesAds = async () => {
+  const url = devURL + API_GET_PROPERTIES_ADS;
+  const response = await axios.get(url);
+  return response.data;
+};
+
 
 //Post new property
 const API_POST_PROPERTY = '/properties';
