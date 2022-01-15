@@ -23,8 +23,8 @@ export const getPropertiesById = async (id) => {
 
 //get property ads
 export const getPropertiesAds = async () => {
-  const url = devURL + API_GET_PROPERTIES_ADS;
-  const response = await axios.get(url);
+  const url = API_GET_PROPERTIES_ADS;
+  const response = await backendApi.get(url);
   return response.data;
 };
 
