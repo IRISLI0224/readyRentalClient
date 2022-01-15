@@ -116,7 +116,7 @@ const EditForm = () => {
     }
     const date = new Date();
 
-    newData['postDate'] = date.toLocaleDateString();
+    newData['postDate'] = date;
 
     newData['availableDate'] = Date(values.availableDate);
 
