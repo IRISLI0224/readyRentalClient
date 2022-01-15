@@ -1,4 +1,4 @@
-import axios from 'axios';
+import backendApi from '../../../../api/backendApi';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BodyContainer, DescItem, HeroContainer, VerticalMargin } from '../Container';
@@ -118,8 +118,8 @@ const ContactForm = ({ id, property }) => {
                 return;
               }
               setLoading(true);
-              axios
-                .post('http://localhost:8080/api/v1/contact', {
+              backendApi
+                .post('/contact', {
                   name: data.name,
                   email: data.email,
                   phone: data.phone,

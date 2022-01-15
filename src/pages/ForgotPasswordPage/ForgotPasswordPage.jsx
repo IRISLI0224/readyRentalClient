@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import emailIcon from '../../assests/img/email.png';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
-import axios from 'axios';
+import backendApi from '../../api/backendApi';
 
 const LogoImg = styled.img`
   width: 200px;
@@ -98,7 +98,7 @@ class ForgotPasswordPage extends React.Component {
       });
     } else {
       try {
-        const response = await axios.post('http://localhost:8080/api/v1/forgotPassword', {
+        const response = await backendApi.post('/forgotPassword', {
           email,
         });
         console.log(response.data);
