@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BodyContainer, DescItem, HeroContainer, VerticalMargin } from '../Container';
+import { getUserFromToken } from '../../../../utils/authentication';
 import StyledText from '../../../../hoc/Text';
 import EnquiryButton from '../EnquiryButton';
 import TextInput from './components/TextInput';
@@ -70,6 +71,7 @@ const ContactForm = ({ id, property }) => {
   const { address, availableDate } = property;
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState();
+  const contactUser = getUserFromToken();
 
   const [data, setData] = useState({
     phone: '',
@@ -79,11 +81,12 @@ const ContactForm = ({ id, property }) => {
     isInspection: false,
     isRentalApplication: false,
   });
+  
   const [touched, setTouched] = useState({
-    email: false,
-    name: false,
-    message: false,
-    phone: false,
+    email: '',
+    name: '',
+    message: '',
+    phone: '',
   });
 
   return (
@@ -128,10 +131,13 @@ const ContactForm = ({ id, property }) => {
                   isLengthOfLease: data.isLengthOfLease,
                   isInspection: data.isInspection,
                   isRentalApplication: data.isRentalApplication,
+                  contactUser: contactUser,
                 })
                 .then(setResponse)
                 .catch((error) => {
                   setResponse(error.response);
+                  swal('Error', 'error');
+                  return;
                 })
                 .finally(() => setLoading(false));
               swal('Success', 'Thank you for your enquiry', 'success');
