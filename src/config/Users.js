@@ -1,6 +1,5 @@
 //All API about user
 import backendApi from '../api/backendApi';
-import { post } from './auth';
 
 const API_GET_USER = '/users';
 const API_LOGIN_URL = '/login';
@@ -12,18 +11,30 @@ export const getUserById = async (id) => {
   return response.data;
 };
 
-export const UserLogin = (email, password) => {
+export const UserLogin = async (email, password) => {
   const data = {
     email,
     password,
   };
-  return post(API_LOGIN_URL, data).then((res) => res.data);
+
+  const res = await backendApi.post(API_LOGIN_URL, data).catch(function (e) {
+    if (e.response) {
+      return e.response;
+    }
+  });
+  return res;
 };
 
-export const UserRegister = (email, password) => {
+export const UserRegister = async (email, password) => {
   const data = {
     email,
     password,
   };
-  return post(API_REGISTER_URL, data).then((res) => res.data);
+
+  const res = await backendApi.post(API_REGISTER_URL, data).catch(function (e) {
+    if (e.response) {
+      return e.response;
+    }
+  });
+  return res;
 };

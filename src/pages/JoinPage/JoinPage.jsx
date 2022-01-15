@@ -93,6 +93,7 @@ class JoinPage extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
+      authErrors:null
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
@@ -157,9 +158,13 @@ class JoinPage extends React.Component {
       UserRegister(data.email.value, data.password.value)
         .then((res) => {
           this.setState({ isLoading: false }, () => {
-            setToken(res.token);
+            if (res.data?.token) {setToken(res.data.token);
             //back to home page
             window.location.href = HOMEPAGE;
+            }
+            else{
+              this.state.authErrors =res.data;
+            }
           });
         })
         .catch((error) => {
@@ -169,7 +174,7 @@ class JoinPage extends React.Component {
   }
 
   render() {
-    const { data, error: authError, isLoading } = this.state;
+    const { data, error: authError, isLoading,authErrors } = this.state;
     const error = this.getError(data);
     return (
       <Container>
@@ -215,14 +220,15 @@ class JoinPage extends React.Component {
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
                 hidden="true"
+                error={this.getErrorMessage(error, 'password')}
               />
             </Form>
           </FormWrapper>
           <Button primary size="400px" height="50px" onClick={this.userRegister}>
             Create Account
           </Button>
-          {authError && (
-            <ServerMsg status="error">Register failed, Please change and try again.</ServerMsg>
+          {authErrors && (
+            <ServerMsg status="error">{authErrors}</ServerMsg>
           )}
           {isLoading && <ServerMsg status="success">Register Success!</ServerMsg>}
           <LinktoLogin>
