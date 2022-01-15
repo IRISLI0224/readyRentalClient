@@ -12,12 +12,18 @@ export const getUserById = async (id) => {
   return response.data;
 };
 
-export const UserLogin = (email, password) => {
+export const UserLogin = async(email, password) => {
   const data = {
     email,
     password,
   };
-  return post(API_LOGIN_URL, data).then((res) => res.data);
+  //return post(API_LOGIN_URL, data).then((res) => res.data);
+  const res = await axios.post(API_LOGIN_URL, data).catch(function (e) {
+    if (e.response) {
+      return e.response;
+    }
+  });
+  return res;
 };
 
 //export const signUp = (data) => data;
