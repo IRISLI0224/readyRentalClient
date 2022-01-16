@@ -14,22 +14,14 @@ const UploadImage = ({ setFiles }) => {
   const [images, setImages] = useState([]);
   const imageInput = useRef();
 
-  const submitImage = async (event) => {
-    event.preventDefault();
-    let newArr = imageInput.current.files;
-    for (let i = 0; i < newArr.length; i++) {
-      const result = await postImage({ image: file });
-      setImages([result.image, ...images]);
-      setFiles(result.Location);
-    }
-  };
-
   const fileSelected = async (event) => {
+    event.preventDefault();
+    
     const file = event.target.files[0];
     setFile(file);
-    event.preventDefault();
-    let newArr = imageInput.current.files;
-    for (let i = 0; i < newArr.length; i++) {
+    
+    let imgSelected = imageInput.current.files;
+    for (let i = 0; i < imgSelected.length; i++) {
       const result = await postImage({ image: file });
       setImages([result.image, ...images]);
       setFiles(result.Location);

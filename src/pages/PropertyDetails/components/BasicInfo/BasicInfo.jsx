@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import RoomType from '../../../../components/RoomType';
 import PropButton from '../PropButton';
 import { HeroContainer, BasicInfoContainer, VerticalMargin, ImageContainer } from '../Container';
@@ -8,11 +8,22 @@ import { Images } from './images.js';
 
 function getAvailableDate(date) {
   const newDate = new Date(String(date).split('T')[0]);
-  return  date ? newDate.toDateString() : "Now";
+  return date ? newDate.toDateString() : 'Now';
 }
 
 const BasicInfo = ({ property }) => {
-  const { availableDate } = property;
+  const { availableDate, propImage } = property;
+
+  console.log(property);
+
+  if (propImage == undefined) {
+    return null;
+  } else {
+    var newArr = propImage.map((i) => {
+      return { image: i };
+    });
+  }
+
   return (
     <BasicInfoContainer>
       <HeroContainer>
@@ -31,10 +42,10 @@ const BasicInfo = ({ property }) => {
             Request an inspection
           </PropButton>
         </VerticalMargin>
-        <StyledText>Available Date: {getAvailableDate(availableDate)}</StyledText> 
+        <StyledText>Available Date: {getAvailableDate(availableDate)}</StyledText>
       </HeroContainer>
       <ImageContainer>
-        <ImageSlider slides={Images} width="500px" height="350px" />
+        <ImageSlider slides={newArr} width="500px" height="350px" />
       </ImageContainer>
     </BasicInfoContainer>
   );

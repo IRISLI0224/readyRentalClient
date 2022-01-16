@@ -15,7 +15,7 @@ import {
 import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
 import axios from 'axios';
-import UploadImage from '../../utils/UploadImage';
+import UploadImage from '../ImageUpload/UploadImage';
 
 const { Option } = Select;
 
@@ -304,6 +304,9 @@ class postForm extends React.Component {
         <Form.Item label="Description" name="description">
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
+        <Form.Item label="Pictures" name="propImage">
+            <UploadImage setFiles={this.setFiles} />
+          </Form.Item>
         <Form.Item
           wrapperCol={{
             xs: {
@@ -316,9 +319,6 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Form.Item label="Pictures" name="propImage">
-            <UploadImage setFiles={this.setFiles} />
-          </Form.Item>
           <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>
