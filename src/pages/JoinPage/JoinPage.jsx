@@ -11,6 +11,8 @@ import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
+import { connect } from 'react-redux';
+import { appendData } from '../../redux/action';
 
 //API
 import { UserRegister } from '../../config/Users';
@@ -93,7 +95,7 @@ class JoinPage extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
-      authErrors:null
+      authErrors: null,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
@@ -158,12 +160,16 @@ class JoinPage extends React.Component {
       UserRegister(data.email.value, data.password.value)
         .then((res) => {
           this.setState({ isLoading: false }, () => {
-            if (res.data?.token) {setToken(res.data.token);
-            //back to home page
-            window.location.href = HOMEPAGE;
-            }
-            else{
-              this.state.authErrors =res.data;
+            if (res.data?.token) {
+              setToken(res.data.token);
+              this.props.appendData({
+                id: res.data?.user._id,
+                email: res.data.user.email,
+              });
+              //back to home page
+              window.location.href = HOMEPAGE;
+            } else {
+              this.state.authErrors = res.data;
             }
           });
         })
@@ -174,7 +180,7 @@ class JoinPage extends React.Component {
   }
 
   render() {
-    const { data, error: authError, isLoading,authErrors } = this.state;
+    const { data, error: authError, isLoading, authErrors } = this.state;
     const error = this.getError(data);
     return (
       <Container>
@@ -227,9 +233,7 @@ class JoinPage extends React.Component {
           <Button primary size="400px" height="50px" onClick={this.userRegister}>
             Create Account
           </Button>
-          {authErrors && (
-            <ServerMsg status="error">{authErrors}</ServerMsg>
-          )}
+          {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
           {isLoading && <ServerMsg status="success">Register Success!</ServerMsg>}
           <LinktoLogin>
             <div>Already have an account?&nbsp;&nbsp;</div>
@@ -241,4 +245,13 @@ class JoinPage extends React.Component {
   }
 }
 
-export default JoinPage;
+const mapDispatchToProps = {
+  appendData,
+};
+
+const mapStateToProps = (state) => ({
+  email: state.email,
+  id: state.id,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(JoinPage);

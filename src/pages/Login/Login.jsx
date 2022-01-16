@@ -12,6 +12,8 @@ import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
+import { connect } from 'react-redux';
+import { appendData } from '../../redux/action';
 
 //API
 import { UserLogin } from '../../config/Users';
@@ -206,6 +208,22 @@ class Login extends React.Component {
     return error;
   }
 
+  mapStateToProps = (store, ownProps) => {
+    return {
+      user: store.user,
+    };
+  };
+  mapDispatchToProps = (dispatch) => {
+    return {
+      setUserInfo(userInfo) {
+        dispatch({
+          type: 'SET_USER_INFO',
+          payload: userInfo,
+        });
+      },
+    };
+  };
+
   userLogin() {
     this.setState({ error: null, isLoading: true }, () => {
       const { data } = this.state;
@@ -214,6 +232,10 @@ class Login extends React.Component {
           this.setState({ isLoading: false }, () => {
             if (res.data?.token) {
               setToken(res.data.token);
+              this.props.appendData({
+                id: res.data?.user._id,
+                email: res.data.user.email,
+              });
               //back to home page
               window.location.href = HOMEPAGE;
             } else {
@@ -222,9 +244,7 @@ class Login extends React.Component {
             }
           });
         })
-        .catch((error) => 
-        this.setState({ error, isLoading: false })
-        );
+        .catch((error) => this.setState({ error, isLoading: false }));
     });
   }
 
@@ -284,7 +304,7 @@ class Login extends React.Component {
           </Button>
           <br />
           {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
-          <br/>
+          <br />
           {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
           <ForgetPassword>
             {' '}
@@ -299,4 +319,14 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+
+const mapDispatchToProps = {
+  appendData,
+};
+
+const mapStateToProps = (state) => ({
+  email: state.email,
+  id: state.id,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

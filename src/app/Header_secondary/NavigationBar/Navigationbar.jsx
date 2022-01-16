@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../../../assests/img/logo_red.svg';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   word-wrap: break-word;
@@ -35,8 +36,21 @@ const LogoPanel = styled.div`
   width: 800px;
 `;
 
+const IconEmail = styled.div`
+  display:flex;
+  margin-left:-20px;
+  //width: 55.5%;
+`;
+
+const Email = styled.div`
+  margin-left:40%;
+  color: gray;
+  margin-top:20px;
+`;
+
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
+  const user = useSelector((state) => state);
   useEffect(() => {
     const token = getToken();
     //console.log(token)
@@ -54,7 +68,10 @@ const NavigationBar = () => {
       {Login ? (
         <>
           {' '}
-          <Dropdown />
+          <IconEmail>
+            <Email>{user.email}</Email>
+            <Dropdown />{' '}
+          </IconEmail>
         </>
       ) : (
         <>
