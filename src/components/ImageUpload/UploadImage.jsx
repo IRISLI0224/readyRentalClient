@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import backendApi from '../../api/backendApi'
 
 async function postImage({ image }) {
   const formData = new FormData();
   formData.append('image', image);
 
-  const result = await axios.post('/images', formData);
+  const result = await backendApi.post('/images', formData);
   return result.data;
 }
 
