@@ -169,7 +169,12 @@ class JoinPage extends React.Component {
               //back to home page
               window.location.href = HOMEPAGE;
             } else {
-              this.state.authErrors = res.data;
+              const authErrors = res.data
+              const isLoading = true;
+              this.setState({
+                authErrors,
+                isLoading
+              })
             }
           });
         })
@@ -234,7 +239,7 @@ class JoinPage extends React.Component {
             Create Account
           </Button>
           {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
-          {isLoading && <ServerMsg status="success">Register Success!</ServerMsg>}
+          {!authError || isLoading && <ServerMsg status="success">Register Success!</ServerMsg>}
           <LinktoLogin>
             <div>Already have an account?&nbsp;&nbsp;</div>
             <Link to="/login">Sign in</Link>

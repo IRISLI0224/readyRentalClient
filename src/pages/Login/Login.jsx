@@ -239,8 +239,12 @@ class Login extends React.Component {
               //back to home page
               window.location.href = HOMEPAGE;
             } else {
-              this.state.authErrors = res.data;
-              this.state.isLoading = true;
+              const authErrors = res.data
+              const isLoading = true;
+              this.setState({
+                authErrors,
+                isLoading
+              })
             }
           });
         })
@@ -305,7 +309,7 @@ class Login extends React.Component {
           <br />
           {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
           <br />
-          {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
+          {!authError || (isLoading && <ServerMsg status="success">Login Success!</ServerMsg>)}
           <ForgetPassword>
             {' '}
             <Link to="/forgotPassword">Forgot your password?</Link>
