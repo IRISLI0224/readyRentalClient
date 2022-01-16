@@ -27,8 +27,8 @@ export const HeroContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 700px;
-  height: 550px;
+  max-width: 700px;
+  max-height: 550px;
   @media screen and (max-width: 1024px) {
     width: 100%;
     order: -1;
@@ -49,7 +49,6 @@ export const DescItem = styled.div`
   width: 50vw;
   text-align: left;
 `;
-
 
 export const DescItem_re = styled.div`
   width: 50vw;
