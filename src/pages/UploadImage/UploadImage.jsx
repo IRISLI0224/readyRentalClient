@@ -30,7 +30,7 @@ function UploadImage() {
 	}
 
   return (
-    <div className="App">
+    <div>
       <form onSubmit={submit}>
         <input onChange={fileSelected} type="file" accept="image/*"></input>
         <input value={description} onChange={e => setDescription(e.target.value)} type="text"></input>
