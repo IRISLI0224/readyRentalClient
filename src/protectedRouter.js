@@ -1,6 +1,5 @@
 import {Outlet, Navigate} from "react-router";
 import React from 'react';
-import Login from './pages/Login';
 import { getUserFromToken} from './utils/authentication';
 
 const useAuth = ()=>{
