@@ -190,11 +190,9 @@ const CardAds = (props) => {
             </StyledIcon>
           </LastFrame>
         </RowResidencial>
-        <Link to={link}>
-          <Button primary size="100%">
+          <Button primary size="100%" as="a" href={link}>
             View Property
           </Button>
-        </Link>
       </Card>
     </>
   );
