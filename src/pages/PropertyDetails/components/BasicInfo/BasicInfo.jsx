@@ -6,7 +6,13 @@ import StyledText from '../../../../hoc/Text';
 import ImageSlider from '../../../../components/Slider';
 import { Images } from './images.js';
 
+function getAvailableDate(date) {
+  const newDate = new Date(String(date).split('T')[0]);
+  return  date ? newDate.toDateString() : "Now";
+}
+
 const BasicInfo = ({ property }) => {
+  const { availableDate } = property;
   return (
     <BasicInfoContainer>
       <HeroContainer>
@@ -25,7 +31,7 @@ const BasicInfo = ({ property }) => {
             Request an inspection
           </PropButton>
         </VerticalMargin>
-        <StyledText>Available 07 Dec 2021</StyledText>
+        <StyledText>Available Date: {getAvailableDate(availableDate)}</StyledText> 
       </HeroContainer>
       <ImageContainer>
         <ImageSlider slides={Images} width="500px" height="350px" />

@@ -6,28 +6,28 @@ import { Carousel } from 'antd';
 import SlideCard from './SlideCard';
 
 const PropertyBack = styled.div`
-  height: 15rem;
-  margin: 2rem auto;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  background-image: linear-gradient(#f8f8f8, #ffffff);
-  text-align: center;
-  padding: 40px 0;
-  width: 100%;
-`;
-
-const PropertyContainer = styled.div`
-  height: 15rem;
-  margin: 2rem auto;
+  height: 12rem;
+  margin: auto;
   text-align: center;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   background-image: linear-gradient(#ffffff, #ffffff);
   text-align: center;
-  padding: 40px 0;
+  //padding: 40px 0;
+  width: 100%;
+`;
+
+const PropertyContainer = styled.div`
+  height: 12rem;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-image: linear-gradient(#ffffff, #ffffff);
+  text-align: center;
+  //padding: 40px 0;
   width: 60%;
   opacity: 80%;
 `;

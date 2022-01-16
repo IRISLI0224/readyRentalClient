@@ -1,7 +1,7 @@
 import React from 'react';
 import WithRouter from '../../hoc/WithRouter';
 import styled from 'styled-components';
-import axios from 'axios';
+import backendApi from '../../api/backendApi';
 import Logo from '../../assests/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
@@ -86,7 +86,7 @@ class ResetPasswordPage extends React.Component {
     const { params } = this.props.router;
     const token = params.token;
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/reset', {
+      const response = await backendApi.get('/reset', {
         params: {
           resetPasswordToken: token,
         },
@@ -122,7 +122,7 @@ class ResetPasswordPage extends React.Component {
     const { params } = this.props.router;
     const token = params.token;
     try {
-      const response = await axios.put('http://localhost:8080/api/v1/updatePasswordViaEmail', {
+      const response = await backendApi.put('/updatePasswordViaEmail', {
         email,
         password,
         resetPasswordToken: token,

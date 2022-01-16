@@ -46,6 +46,13 @@ export const BodyContainer = styled(FlexWrap)`
 export const DescItem = styled.div`
   border-top: 1px solid #bdbdbd;
   padding: 1rem 0;
-  width: 70vw;
+  width: 50vw;
   text-align: left;
+`;
+
+
+export const DescItem_re = styled.div`
+  width: 50vw;
+  text-align: left;
+  margin: auto;
 `;

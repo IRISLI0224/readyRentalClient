@@ -17,7 +17,7 @@ import ServerMsg from '../../hoc/ServerMsg';
 import { UserLogin } from '../../config/Users';
 import { setToken } from '../../utils/authentication';
 
-const HOMEPAGE = 'http://localhost:3000';
+const HOMEPAGE = '/';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
@@ -147,6 +147,7 @@ class Login extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
+      authErrors: null,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
@@ -211,17 +212,24 @@ class Login extends React.Component {
       UserLogin(data.email.value, data.password.value)
         .then((res) => {
           this.setState({ isLoading: false }, () => {
-            setToken(res.token);
-            //back to home page
-            window.location.href = HOMEPAGE;
+            if (res.data?.token) {
+              setToken(res.data.token);
+              //back to home page
+              window.location.href = HOMEPAGE;
+            } else {
+              this.state.authErrors = res.data;
+              this.state.isLoading = true;
+            }
           });
         })
-        .catch((error) => this.setState({ error, isLoading: false }));
+        .catch((error) => 
+        this.setState({ error, isLoading: false })
+        );
     });
   }
 
   render() {
-    const { data, error: authError, isLoading } = this.state;
+    const { data, error: authError, isLoading, authErrors } = this.state;
     const error = this.getError(data);
     return (
       <Container>
@@ -267,6 +275,7 @@ class Login extends React.Component {
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
                 hidden="true"
+                error={this.getErrorMessage(error, 'password')}
               />
             </Form>
           </FormWrapper>
@@ -274,7 +283,8 @@ class Login extends React.Component {
             Sign in
           </Button>
           <br />
-          {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
+          {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
+          <br/>
           {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
           <ForgetPassword>
             {' '}

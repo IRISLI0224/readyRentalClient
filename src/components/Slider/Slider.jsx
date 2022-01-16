@@ -91,7 +91,7 @@ const ImageSlider = ({slides, width}) => {
             {slides.map((slide, index) =>{
                     return(
                         <div className={index === current ? 'slide active' : 'slide'} key = {index}>
-                            {index === current && (<Propi src={slide.image} alt="properties"/>)} 
+                            {index === current && (<Propi src={slide} alt="properties"/>)} 
                         </div>
                     )
                 })
