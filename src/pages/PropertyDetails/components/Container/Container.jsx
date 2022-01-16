@@ -14,7 +14,7 @@ export const BasicInfoContainer = styled.div`
 export const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   width: 30vw;
   @media screen and (max-width: 1024px) {
     width: 100%;
@@ -27,8 +27,8 @@ export const HeroContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 60vw;
-  height: 300px;
+  width: 700px;
+  height: 550px;
   @media screen and (max-width: 1024px) {
     width: 100%;
     order: -1;
