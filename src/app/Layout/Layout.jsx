@@ -6,6 +6,7 @@ import Footer from '../Footer';
 import Footer_secondary from '../Footer_secondary';
 import Header_secondary from '../Header_secondary/Header';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Main = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ const Layout = ({ children }) => {
   const wholeUrl = location.pathname;
   const split = wholeUrl.split('/');
   const url = '/' + split[1];
+  const user =useSelector(state=>state)
   const specialCases = {
     '/': 'HomepageStyle',
     '/join': 'LoginStyle',

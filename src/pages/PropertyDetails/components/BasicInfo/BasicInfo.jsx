@@ -20,7 +20,7 @@ const BasicInfo = ({ property }) => {
     return null;
   } else {
     var newArr = propImage.map((i) => {
-      return { image: i };
+      return { i };
     });
   }
 
@@ -45,7 +45,7 @@ const BasicInfo = ({ property }) => {
         <StyledText>Available Date: {getAvailableDate(availableDate)}</StyledText>
       </HeroContainer>
       <ImageContainer>
-        <ImageSlider slides={newArr} width="500px" height="350px" />
+        <ImageSlider slides={propImage} width="500px" height="350px" />
       </ImageContainer>
     </BasicInfoContainer>
   );
