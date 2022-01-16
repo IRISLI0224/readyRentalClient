@@ -16,6 +16,7 @@ import AccountSettings from './pages/AccountSettings';
 import UploadImage from './pages/UploadImage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import ProtectedRouter from './protectedRouter';
 
 const theme = {
   primaryColor: '#e4002b',
@@ -32,15 +33,17 @@ const App = () => (
           <Route path="/join" element={<JoinPage />} />
           <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
           <Route path="/reset/:token" element={<ResetPasswordPage />} />
-          <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
-          <Route path="/property/inspection" element={<ListedProperties isInspection />} />
           <Route path="/search" element={<SearchResult />} />
-          <Route path="/property/post" element={<Post isPost />} />
-          <Route path="/property/edit/:id" element={<Post />} />
-          <Route path="/account" element={<AccountSettings />} />
-          <Route path="/uploadImage" element={<UploadImage />} />
           <Route path="*" element={<NoPage />} />
-          <Route path="/property/:id" element={<PropertyDetails />} />
+          <Route element={<ProtectedRouter />}>
+            <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
+            <Route path="/property/inspection" element={<ListedProperties isInspection />} />
+            <Route path="/property/post" element={<Post isPost />} />
+            <Route path="/property/edit/:id" element={<Post />} />
+            <Route path="/account" element={<AccountSettings />} />
+            <Route path="/uploadImage" element={<UploadImage />} />
+            <Route path="/property/:id" element={<PropertyDetails />} />
+          </Route>
         </Routes>
       </Layout>
     </ThemeProvider>
