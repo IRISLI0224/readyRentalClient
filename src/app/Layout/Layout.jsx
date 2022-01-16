@@ -31,8 +31,6 @@ const Layout = ({ children }) => {
   const split = wholeUrl.split('/');
   const url = '/' + split[1];
   const user =useSelector(state=>state)
-  //test console
-  console.log(user)
   const specialCases = {
     '/': 'HomepageStyle',
     '/join': 'LoginStyle',
