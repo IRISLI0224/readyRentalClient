@@ -6,8 +6,6 @@ import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
 import SlideCardContainer from '../../components/SlideCardContainer';
-import { Button } from '../../hoc/Button';
-import { SearchOutlined } from '@ant-design/icons';
 import {
   NewsContainer,
   NewsCardTitle,
@@ -15,16 +13,9 @@ import {
   NewsCardImg,
   Img,
   NewsCardContent,
-  SearchTitle,
-  SearchBar,
-  SearchText,
-  TypeFilter,
-  TypeFilterTitle,
-  TypeFilterItem,
-  RangeDropDown,
-  SubmitSearch,
 } from './components/Container';
-import Form from 'antd/lib/form/Form';
+import SearchForm from './components/SearchForm';
+
 import SmallPropertyCard from '../../components/SmallPropertyCard';
 //import SlideCard from '../../components/SlideCard';
 import 'antd/dist/antd.css';
@@ -87,8 +78,62 @@ class Home extends React.Component {
     super(props);
     this.state = {
       properties: [],
+      filterText: '',
+      type: '',
+      bedMin: '',
+      bedMax: '',
+      priceMin: '',
+      priceMax: '',
     };
+    this.onFilterTextChange = this.onFilterTextChange.bind(this);
+    this.onTypeChange = this.onTypeChange.bind(this);
+    this.onBedMinChange = this.onBedMinChange.bind(this);
+    this.onBedMaxChange = this.onBedMaxChange.bind(this);
+    this.onPriceMinChange = this.onPriceMinChange.bind(this);
+    this.onPriceMaxChange = this.onPriceMaxChange.bind(this);
+    this.clearInput = this.clearInput.bind(this);
   }
+  onFilterTextChange(filterText) {
+    this.setState({
+      filterText,
+    });
+  }
+  onTypeChange(type) {
+    this.setState({
+      type,
+    });
+  }
+  onBedMinChange(bedMin) {
+    this.setState({
+      bedMin,
+    });
+  }
+  onBedMaxChange(bedMax) {
+    this.setState({
+      bedMax,
+    });
+  }
+  onPriceMinChange(priceMin) {
+    this.setState({
+      priceMin,
+    });
+  }
+  onPriceMaxChange(priceMax) {
+    this.setState({
+      priceMax,
+    });
+  }
+
+  clearInput = () => {
+    this.setState({
+      filterText: '',
+      type: '',
+      bedMin: '',
+      bedMax: '',
+      priceMin: '',
+      priceMax: '',
+    });
+  };
 
   componentDidMount() {
     this.getPropertiesInfo();
@@ -101,7 +146,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { properties } = this.state;
+    const { properties, filterText, type, bedMin, bedMax, priceMin, priceMax } = this.state;
     return (
       <Container>
         <NewsContainer>
@@ -170,146 +215,21 @@ class Home extends React.Component {
             <br />
           </div>
         ) : null}
-        <Form>
-          <SearchTitle>
-            <h1>Search property for rent</h1>
-          </SearchTitle>
-          <SearchBar>
-            <SearchOutlined
-              style={{
-                fontSize: '1.4rem',
-                position: 'absolute',
-                left: '4.2%',
-                zIndex: '1',
-                color: '#808080',
-              }}
-            />
-            <SearchText type="text" placeholder="Search by state, suburb or postcode" />
-          </SearchBar>
-          <TypeFilter>
-            <TypeFilterTitle>
-              <h2>Property type</h2>
-            </TypeFilterTitle>
-            <TypeFilterItem>
-              <input type="checkbox" id="allType" />
-              <label htmlFor="allType">&nbsp;All Type</label>
-            </TypeFilterItem>
-            <TypeFilterItem>
-              <input type="checkbox" id="house" />
-              <label htmlFor="house">&nbsp;House</label>
-            </TypeFilterItem>
-            <TypeFilterItem>
-              <input type="checkbox" id="apartment" />
-              <label htmlFor="apartment">&nbsp;Apartment Unit</label>
-            </TypeFilterItem>
-            <TypeFilterItem>
-              <input type="checkbox" id="studio" />
-              <label htmlFor="townHouse">&nbsp;Studio</label>
-            </TypeFilterItem>
-          </TypeFilter>
-          <hr />
-          <RangeDropDown>
-            <TypeFilterTitle>
-              <h2>Price</h2>
-            </TypeFilterTitle>
-            <TypeFilterItem className="range">
-              <label htmlFor="priceMin">Min</label>
-              <br />
-              <select name="priceMin" id="priceMin">
-                <option value="">Any</option>
-                <option value="50">$50</option>
-                <option value="75">$75</option>
-                <option value="100">$100</option>
-                <option value="125">$125</option>
-                <option value="150">$150</option>
-                <option value="175">$175</option>
-                <option value="200">$200</option>
-              </select>
-            </TypeFilterItem>
-            <TypeFilterItem className="range">
-              <label htmlFor="priceMax">Max</label>
-              <br />
-              <select name="priceMax" id="priceMax">
-                <option value="">Any</option>
-                <option value="50">$50</option>
-                <option value="75">$75</option>
-                <option value="100">$100</option>
-                <option value="125">$125</option>
-                <option value="150">$150</option>
-                <option value="175">$175</option>
-                <option value="200">$200</option>
-              </select>
-            </TypeFilterItem>
-          </RangeDropDown>
-          <hr />
-          <RangeDropDown>
-            <TypeFilterTitle>
-              <h2>Bedrooms</h2>
-            </TypeFilterTitle>
-            <TypeFilterItem className="range">
-              <label htmlFor="bedMin">Min</label>
-              <br />
-              <select name="bedMin" id="bedMin">
-                <option value="">Any</option>
-                <option value="studio">Studio</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </TypeFilterItem>
-            <TypeFilterItem className="range">
-              <label htmlFor="bedMax">Max</label>
-              <br />
-              <select name="bedMax" id="bedMax">
-                <option value="">Any</option>
-                <option value="studio">Studio</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </TypeFilterItem>
-          </RangeDropDown>
-          <hr />
-          <RangeDropDown>
-            <TypeFilterTitle>
-              <h2>Bathrooms</h2>
-            </TypeFilterTitle>
-            <TypeFilterItem className="oneDrop">
-              <select name="bathroom" id="bathroom">
-                <option value="">Any</option>
-                <option value="1+">1+</option>
-                <option value="2+">2+</option>
-                <option value="3+">3+</option>
-                <option value="4+">4+</option>
-                <option value="5+">5+</option>
-                <option value="6+">6+</option>
-              </select>
-            </TypeFilterItem>
-          </RangeDropDown>
-          <hr />
-          <RangeDropDown id="lastDrop">
-            <TypeFilterTitle>
-              <h2>Available Date</h2>
-            </TypeFilterTitle>
-            <TypeFilterItem className="oneDrop">
-              <select name="date" id="date">
-                <option value="">Any</option>
-              </select>
-            </TypeFilterItem>
-          </RangeDropDown>
-          <SubmitSearch>
-            <Button>Clear Filter</Button>
-            <Button primary type="submit">
-              Search
-            </Button>
-          </SubmitSearch>
-        </Form>
+        <SearchForm
+          filterText={filterText}
+          type={type}
+          bedMin={bedMin}
+          bedMax={bedMax}
+          priceMin={priceMin}
+          priceMax={priceMax}
+          onFilterTextChange={this.onFilterTextChange}
+          onTypeChange={this.onTypeChange}
+          onBedMinChange={this.onBedMinChange}
+          onBedMaxChange={this.onBedMaxChange}
+          onPriceMinChange={this.onPriceMinChange}
+          onPriceMaxChange={this.onPriceMaxChange}
+          clearInput={this.clearInput}
+        ></SearchForm>
       </Container>
     );
   }
