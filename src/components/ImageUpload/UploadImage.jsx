@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
-import backendApi from '../../api/backendApi'
+import backendApi from '../../api/backendApi';
 
 async function postImage({ image }) {
   const formData = new FormData();
@@ -17,12 +16,11 @@ const UploadImage = ({ setFiles }) => {
 
   const fileSelected = async (event) => {
     event.preventDefault();
-    
-    const file = event.target.files[0];
-    setFile(file);
-    
+
     let imgSelected = imageInput.current.files;
     for (let i = 0; i < imgSelected.length; i++) {
+      const file = event.target.files[i];
+      setFile(file);
       const result = await postImage({ image: file });
       setImages([result.image, ...images]);
       setFiles(result.Location);
