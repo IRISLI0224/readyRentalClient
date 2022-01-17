@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import RoomType from '../../../../components/RoomType';
 import PropButton from '../PropButton';
 import { HeroContainer, BasicInfoContainer, VerticalMargin, ImageContainer } from '../Container';
 import StyledText from '../../../../hoc/Text';
 import ImageSlider from '../../../../components/Slider';
-import { Images } from './images.js';
 
 function getAvailableDate(date) {
   const newDate = new Date(String(date).split('T')[0]);
-  return  date ? newDate.toDateString() : "Now";
+  return date ? newDate.toDateString() : 'Now';
 }
 
 const BasicInfo = ({ property }) => {
-  const { availableDate } = property;
+  const { availableDate, propImage } = property;
+
   return (
     <BasicInfoContainer>
       <HeroContainer>
@@ -31,10 +31,10 @@ const BasicInfo = ({ property }) => {
             Request an inspection
           </PropButton>
         </VerticalMargin>
-        <StyledText>Available Date: {getAvailableDate(availableDate)}</StyledText> 
+        <StyledText>Available Date: {getAvailableDate(availableDate)}</StyledText>
       </HeroContainer>
       <ImageContainer>
-        <ImageSlider slides={Images} width="500px" height="350px" />
+        <ImageSlider slides={propImage} width="700px" height="550px" />
       </ImageContainer>
     </BasicInfoContainer>
   );

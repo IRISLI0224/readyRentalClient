@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
-import FlexWrap from '../hoc/FlexWrap';
-import backendApi from '../api/backendApi'
+import backendApi from '../../api/backendApi';
 
 async function postImage({ image }) {
   const formData = new FormData();
@@ -16,22 +14,13 @@ const UploadImage = ({ setFiles }) => {
   const [images, setImages] = useState([]);
   const imageInput = useRef();
 
-  const submitImage = async (event) => {
-    event.preventDefault();
-    let newArr = imageInput.current.files;
-    for (let i = 0; i < newArr.length; i++) {
-      const result = await postImage({ image: file });
-      setImages([result.image, ...images]);
-      setFiles(result.Location);
-    }
-  };
-
   const fileSelected = async (event) => {
-    const file = event.target.files[0];
-    setFile(file);
     event.preventDefault();
-    let newArr = imageInput.current.files;
-    for (let i = 0; i < newArr.length; i++) {
+
+    let imgSelected = imageInput.current.files;
+    for (let i = 0; i < imgSelected.length; i++) {
+      const file = event.target.files[i];
+      setFile(file);
       const result = await postImage({ image: file });
       setImages([result.image, ...images]);
       setFiles(result.Location);

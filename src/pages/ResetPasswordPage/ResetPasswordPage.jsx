@@ -1,7 +1,7 @@
 import React from 'react';
 import WithRouter from '../../hoc/WithRouter';
 import styled from 'styled-components';
-import axios from 'axios';
+import backendApi from '../../api/backendApi';
 import Logo from '../../assests/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
@@ -45,6 +45,15 @@ const MainBox = styled.div`
   -ms-flex-align: center;
   align-items: center;
   justify-content: space-around;
+
+  Button {
+    &:disabled {
+      cursor: not-allowed;
+      color: #00000040;
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+    }
+  }
 `;
 
 const LogoBox = styled.div`
@@ -69,6 +78,7 @@ class ResetPasswordPage extends React.Component {
       updated: false,
       isLoading: false,
       error: false,
+      blur: false,
     };
   }
 
@@ -76,7 +86,7 @@ class ResetPasswordPage extends React.Component {
     const { params } = this.props.router;
     const token = params.token;
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/reset', {
+      const response = await backendApi.get('/reset', {
         params: {
           resetPasswordToken: token,
         },
@@ -112,7 +122,7 @@ class ResetPasswordPage extends React.Component {
     const { params } = this.props.router;
     const token = params.token;
     try {
-      const response = await axios.put('http://localhost:8080/api/v1/updatePasswordViaEmail', {
+      const response = await backendApi.put('/updatePasswordViaEmail', {
         email,
         password,
         resetPasswordToken: token,
@@ -133,8 +143,20 @@ class ResetPasswordPage extends React.Component {
     }
   };
 
+  getError(password) {
+    const PASSWORD_REGEXP = /^[0-9A-Za-z]{6,}$/;
+    if (!password) {
+      return 'Please input your new password';
+    }
+    if (!PASSWORD_REGEXP.test(password)) {
+      return 'Your password must be longer than 6 characters';
+    }
+    return '';
+  }
+
   render() {
-    const { password, error, isLoading, updated } = this.state;
+    const { password, error, isLoading, updated, blur } = this.state;
+    const authError = this.getError(this.state.password);
     if (error) {
       return (
         <Container>
@@ -180,6 +202,7 @@ class ResetPasswordPage extends React.Component {
                 id="password"
                 label="password"
                 onChange={this.handleChange('password')}
+                onBlur={() => this.setState({ blur: true })}
                 value={password}
                 type="password"
                 defaultText="New Password"
@@ -188,10 +211,11 @@ class ResetPasswordPage extends React.Component {
               />
             </Form>
             <br />
-            <Button primary type="submit" size="400px" height="50px">
+            <Button primary type="submit" size="400px" height="50px" disabled={authError}>
               Update Password
             </Button>
           </FormWrapper>
+          {blur && authError && <ServerMsg status="error">{authError}</ServerMsg>}
           {updated && (
             <ServerMsg status="success">
               Your password has been successfully reset, please try logging in again.

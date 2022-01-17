@@ -13,7 +13,6 @@ import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 import Post from './pages/PostYourProperty/Post';
 import AccountSettings from './pages/AccountSettings';
-import UploadImage from './pages/UploadImage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 
@@ -36,11 +35,10 @@ const App = () => (
           <Route path="/property/inspection" element={<ListedProperties isInspection />} />
           <Route path="/search" element={<SearchResult />} />
           <Route path="/property/post" element={<Post isPost />} />
+          <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/property/edit/:id" element={<Post />} />
           <Route path="/account" element={<AccountSettings />} />
-          <Route path="/uploadImage" element={<UploadImage />} />
           <Route path="*" element={<NoPage />} />
-          <Route path="/property/:id" element={<PropertyDetails />} />
         </Routes>
       </Layout>
     </ThemeProvider>
