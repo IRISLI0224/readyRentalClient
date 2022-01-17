@@ -6,10 +6,12 @@ import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
 import Item from './component/Item/';
 import FlexWrap from '../../hoc/FlexWrap';
+import { RRColors } from '../../utils/constants';
+
 
 const Container = styled.div`
   width: 100vw;
-  background-color: #333f48;
+  background-color:  ${(props) => ( props.theme.footerBlue)};
   color: #fff;
   @media (max-width: 768px) {
     display: none;

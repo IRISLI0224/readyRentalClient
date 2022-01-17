@@ -30,8 +30,8 @@ const Container = styled.div`
     border: 2px solid #e5e8ec;
     background-color: transparent;
     &:hover {
-      background-color: #ff0000;
-      border: 2px solid #ff0000;
+      background-color:  ${(props) => props.theme.primaryColor };
+      border: 2px solid  ${(props) => props.theme.primaryColor };
     }
   }
   @media (max-width: 1200px) {

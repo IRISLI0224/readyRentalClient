@@ -50,8 +50,8 @@ const PageList = styled.li`
   margin: 8px 8px 0px 8px;
   display: ${(props) => (props.status === 'end' ? `none` : `inline-block`)};
   color: ${(props) => (props.active === 'true' ? `#fff` : `#333`)};
-  border-color: ${(props) => (props.active === 'true' ? `#a30000` : `#e6e6e6`)};
-  background: ${(props) => (props.active === 'true' ? `#a30000` : `#fff`)};
+  border-color: ${(props) => (props.active === 'true' ? props.theme.primaryColor : `#e6e6e6`)};
+  background: ${(props) => (props.active === 'true' ? props.theme.primaryColor : `#fff`)};
   cursor: pointer;
 
   &:first-of-type,

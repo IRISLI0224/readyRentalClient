@@ -38,7 +38,7 @@ const Protect = styled.h2`
 `;
 const Content = styled.p`
   font-size: 18px;
-  color: #333f48;
+  color: props.theme.footerBlue;
 `;
 const linkOut = {
   fontSize: '22px',

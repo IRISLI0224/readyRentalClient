@@ -14,6 +14,7 @@ import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
 import { connect } from 'react-redux';
 import { appendData } from '../../redux/action';
+import title from '../../assests/img/title2.png'
 
 //API
 import { UserLogin } from '../../config/Users';
@@ -75,8 +76,14 @@ const ForgetPassword = styled.a.attrs({
 `;
 
 const LogoImg = styled.img`
-  width: 200px;
+  width: 50px;
 `;
+
+const TitleImg = styled.img`
+  width: 200px;
+  margin-left:10px;
+`;
+
 
 const Container = styled.div`
   background-color: white;
@@ -261,6 +268,7 @@ class Login extends React.Component {
           <LogoBox>
             <a href="/">
               <LogoImg src={Logo} />
+              <TitleImg src={title}/>
             </a>
           </LogoBox>
           <CreateTitle>Sign in</CreateTitle>
