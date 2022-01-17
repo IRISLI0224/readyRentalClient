@@ -13,11 +13,11 @@ const NewsCardTitle = styled.div`
   height: 10px;
   text-align: left;
   font-size: 1.3rem;
-  color: #333f48;
+  color: props.theme.footerBlue;
 `;
 
 const NewsCard = styled.div`
-  height:150px;
+  height: 150px;
   width: 400px;
   display: flex;
   text-align: left;
@@ -93,8 +93,8 @@ const SmallPropertyCard = ({ PropertyInfo }, { key }) => {
             <Img src={img_first}></Img>
           </NewsCardImg>
           <NewsCardContent>
-          <NewsCardTitle>{PropertyInfo.city}</NewsCardTitle>
-          <br/>
+            <NewsCardTitle>{PropertyInfo.city}</NewsCardTitle>
+            <br />
             <h3>{PropertyInfo.address}</h3>
             <span>{PropertyInfo.postCode}</span>
             <p>{PropertyInfo.description}</p>

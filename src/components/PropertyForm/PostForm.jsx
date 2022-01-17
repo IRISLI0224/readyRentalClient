@@ -47,9 +47,6 @@ const normFile = (e) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
-<<<<<<< HEAD
-  handleFormSubmit = async (values, error) => {
-=======
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +56,6 @@ class postForm extends React.Component {
   }
 
   handleFormSubmit= async (values, error) => {
->>>>>>> cfc1d52ed2dcbeff453abbb695324ad5486093fd
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -73,16 +69,6 @@ class postForm extends React.Component {
         newData['petAllowed'] = true;
       } else newData['petAllowed'] = false;
     }
-<<<<<<< HEAD
-    // if (PF) {
-    //   if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-    //     newData['Airconditioner'] = true;
-    //   } else newData['airCon'] = false;
-    // }
-    if (PF) {
-      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
-        newData['Intercom'] = true;
-=======
     if (PF) {
       if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
         newData['airCon'] = true;
@@ -91,7 +77,6 @@ class postForm extends React.Component {
     if (PF) {
       if (values.propertyFeatures.indexOf('Intercom') > -1) {
         newData['intercom'] = true;
->>>>>>> cfc1d52ed2dcbeff453abbb695324ad5486093fd
       } else newData['intercom'] = false;
     }
     if (PF) {
@@ -101,24 +86,6 @@ class postForm extends React.Component {
     }
     const date = new Date();
 
-<<<<<<< HEAD
-    newData['postDate'] = date.toLocaleDateString();
-
-    newData['availableDate'] = Date(values.availableDate);
-
-    //console.log(newData)
-    var res;
-    delete newData.propertyFeatures;
-    try{
-      res =await PostProperty(newData);
-      console.log(res)
-    }catch(e){
-      console.log(res)
-    }
-    //back to list page
-    //window.alert('Add a new property to your list successfully');
-    //window.location.href = ManageListPage;
-=======
     newData['postDate'] = date;
 
     newData['availableDate'] = Date(values.availableDate);
@@ -134,7 +101,6 @@ class postForm extends React.Component {
     //back to list page
     window.alert('Add a new property to your list successfully');
     window.location.href = ManageListPage;
->>>>>>> cfc1d52ed2dcbeff453abbb695324ad5486093fd
   };
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import backgrounImg from '../../assests/img/Homepage-background.jpg';
+import background from '../../assests/video/Dubrovnik.mp4';
 import NextSearchBar from '../../components/NextSearchBar';
 import SearchBar from '../../components/SearchBar';
 import NavigationBar from './NavigationBar/Navigationbar';
@@ -32,7 +33,26 @@ const SearchBarPanel = styled.div`
 `;
 
 const Header = () => (
-  <Container className="Header" height={5} img={backgrounImg}>
+  <Container className="Header" height={5}>
+    <video
+      source
+      src={background}
+      type="video/mp4"
+      muted
+      autoPlay={'autoplay'}
+      preLoad="auto"
+      loop
+      style={{
+        position: 'fixed',
+        right: '0px',
+        bottom: '0px',
+        minwidth: '100%',
+        minHeight: '100%',
+        height: 'auto',
+        width: '100%',
+        zIndex: '-11',
+      }}
+    ></video>
     <NavigationBar />
     <SearchBarPanel>
       <SearchBar />

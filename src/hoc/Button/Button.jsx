@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 export const ButtonStyle = styled.button`
-  color: ${(props) => (props.primary ? '#ffff' : '#333f48')};
+  color: ${(props) => (props.primary ? '#ffff' : props.theme.footerBlue)};
   border: none;
   display: inline-block;
   text-decoration: none;
@@ -25,9 +25,9 @@ export const ButtonStyle = styled.button`
   justify-content: space-around;
   /* margin-top: 30px; */
   &:hover {
-    border-color: ${(props) => (props.primary ? '#a30000' : '#333f48')};
-    color: ${(props) => (props.primary ? '#fff' : '#333f48')};
-    background: ${(props) => (props.primary ? '#a30000' : 'transparent')};
+    border-color: ${(props) => (props.primary ? props.theme.buttonDark : props.theme.footerBlue)};
+    color: ${(props) => (props.primary ? '#fff' : props.theme.footerBlue)};
+    background: ${(props) => (props.primary ? props.theme.buttonDark : 'transparent')};
   }
 `;
 

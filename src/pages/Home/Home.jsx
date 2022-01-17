@@ -6,6 +6,7 @@ import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
 import SlideCardContainer from '../../components/SlideCardContainer';
+import { RRColors } from '../../utils/constants';
 import {
   NewsContainer,
   NewsCardTitle,
@@ -69,7 +70,7 @@ const PropertyCardTitle = styled.div`
   height: 10%;
   text-align: left;
   font-size: 1.3rem;
-  color: #333f48;
+  color: props.theme.footerBlue;
   margin-left: 20%;
 `;
 
