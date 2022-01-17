@@ -20,11 +20,8 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-native-modal-dropdown": "^1.0.2",
-<<<<<<< HEAD
     "react-places-autocomplete": "^7.3.0",
-=======
     "react-redux": "^7.2.6",
->>>>>>> f4c104ff26321fdaf2cac606d7faf59898f45cec
     "react-router-dom": "^6.0.2",
     "react-scripts": "^3.4.4",
     "redux": "^4.1.2",
