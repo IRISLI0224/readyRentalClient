@@ -4,8 +4,12 @@ import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
 import { getAllProperties } from '../../../../../../config/Properties';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 const SearchText = styled.input`
+  &::-webkit-calendar-picker-indicator{
+    opacity: 0;
+  }
   width: 85%;
   height: 4rem;
   font-weight: 400;
@@ -70,6 +74,7 @@ const Option = styled.option`
   text-decoration: none;
   border: none;
   outline: none;
+  width:100%;
 `;
 
 const SearchPanel = styled.div`
@@ -87,13 +92,31 @@ const SearchPanel = styled.div`
 class SearchTable extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      address:"",
+      searchOptions: {
+        componentRestrictions: { country: 'au' },
+      },
+    };
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleBedMinChange = this.handleBedMinChange.bind(this);
     this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
     this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
     this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
+
+  handleSelect = (address) => {
+    geocodeByAddress(address)
+      .then((results) => getLatLng(results[0]))
+      .then((latLng) => {
+        this.setState({ mapCenter: latLng });
+        
+      })
+      .catch((error) => console.error('Error', error));
+  };
+
   handleFilterTextChange(e) {
     this.props.onFilterTextChange(e.target.value);
   }
@@ -140,14 +163,50 @@ class SearchTable extends React.Component {
                 color: '#808080',
               }}
             />
-            <SearchText
-              type="text"
-              placeholder="Search by state, suburb or postcode"
-              name="location"
-              id="location"
-              value={filterText}
-              onChange={this.handleFilterTextChange}
-            ></SearchText>
+            <PlacesAutocomplete
+              value={this.props.filterText}
+              onChange={this.props.onFilterTextChange}//Cannot be changed
+              searchOptions={this.state.searchOptions}
+              debounce={1500}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
+                suggestions === undefined ? (
+                  <div>undefined</div>
+                ) : (
+                  <>
+                    <SearchText
+                      type="text"
+                      placeholder="Search by state, suburb or postcode"
+                      name="location"
+                      id="location"
+                      list="searchList"
+                      onSelect={this.handleSelect}
+                      {...getInputProps(
+
+                      )}
+                     /> 
+                    <datalist id="searchList">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map((suggestion) => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                        return (
+                            <option value={suggestion.description}{...getSuggestionItemProps(suggestion, {
+                              className,
+                            })}>{suggestion.description}</option>                          
+                          
+                        );
+                      })}
+                      </datalist>
+                  </>
+                )
+              }
+            </PlacesAutocomplete>
             <CloseOutlined
               style={{
                 fontSize: '0.8rem',
