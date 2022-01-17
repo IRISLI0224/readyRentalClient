@@ -6,6 +6,7 @@ import Logo from '../../../assests/img/logo_red.svg';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
 import { useSelector } from 'react-redux';
+import title from '../../../assests/img/title2.png'
 
 const Container = styled.div`
   word-wrap: break-word;
@@ -63,6 +64,7 @@ const NavigationBar = () => {
       <a href="/">
         <LogoPanel>
           <img src={Logo} style={{ height: '40px' }} />
+          <img src={title} style={{ height: '30px', marginLeft:'10px' }}/>
         </LogoPanel>
       </a>
       {Login ? (
