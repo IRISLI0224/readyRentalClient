@@ -12,12 +12,14 @@ import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
+import { connect } from 'react-redux';
+import { appendData } from '../../redux/action';
 
 //API
 import { UserLogin } from '../../config/Users';
 import { setToken } from '../../utils/authentication';
 
-const HOMEPAGE = 'http://localhost:3000';
+const HOMEPAGE = '/';
 
 const GlobalStyle = createGlobalStyle`body {
   margin: 0;
@@ -58,7 +60,7 @@ const LoginTitle = styled.h1`
 
 //temporally use url from real estate
 const ForgetPassword = styled.a.attrs({
-  href: 'https://accounts.realestate.com.au/forgotPassword?client_id=2fb06dqab95hci46dgldph0382&redirect_uri=https%3A%2F%2Fwww.realestate.com.au%2Fauth&response_type=code&state=T_tHQg8yH1IWpJvs15fw2frG62KOCzpL5OiauqUXBVGIGQiNfZo-DscApd79t1mZsUKq5nGJS7JmOf0gPIfi9TEBbSF-ELOstA9oMoLt7LHd9UqyA2MC3GzVpVpaoO3XbUS2Kra-b-Br-r1gKrh-gLzW4-X1ufmMGkt_pS5al6Y4RgG2',
+  href: '/join',
 })`
   text-decoration: none;
   color: #2b6ed2;
@@ -68,6 +70,7 @@ const ForgetPassword = styled.a.attrs({
   &:hover {
     color: #030fb1;
   }
+  margin-top: 5px;
   margin-bottom: 20px;
 `;
 
@@ -146,6 +149,7 @@ class Login extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
+      authErrors: null,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
@@ -204,15 +208,44 @@ class Login extends React.Component {
     return error;
   }
 
+  mapStateToProps = (store, ownProps) => {
+    return {
+      user: store.user,
+    };
+  };
+  mapDispatchToProps = (dispatch) => {
+    return {
+      setUserInfo(userInfo) {
+        dispatch({
+          type: 'SET_USER_INFO',
+          payload: userInfo,
+        });
+      },
+    };
+  };
+
   userLogin() {
     this.setState({ error: null, isLoading: true }, () => {
       const { data } = this.state;
       UserLogin(data.email.value, data.password.value)
         .then((res) => {
           this.setState({ isLoading: false }, () => {
-            setToken(res.token);
-            //back to home page
-            window.location.href = HOMEPAGE;
+            if (res.data?.token) {
+              setToken(res.data.token);
+              this.props.appendData({
+                id: res.data?.user._id,
+                email: res.data.user.email,
+              });
+              //back to home page
+              window.location.href = HOMEPAGE;
+            } else {
+              const authErrors = res.data
+              const isLoading = true;
+              this.setState({
+                authErrors,
+                isLoading
+              })
+            }
           });
         })
         .catch((error) => this.setState({ error, isLoading: false }));
@@ -220,7 +253,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { data, error: authError, isLoading } = this.state;
+    const { data, error: authError, isLoading, authErrors } = this.state;
     const error = this.getError(data);
     return (
       <Container>
@@ -259,25 +292,45 @@ class Login extends React.Component {
                 size="400px"
                 name="password"
                 id="password"
-                type="string"
+                type="password"
                 value={data.password.value}
                 defaultText="Password"
                 iconleft={passwordIcon}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
                 hidden="true"
+                error={this.getErrorMessage(error, 'password')}
               />
             </Form>
           </FormWrapper>
           <Button primary size="400px" height="50px" onClick={this.userLogin}>
             Sign in
           </Button>
-          {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
-          {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
-          <ForgetPassword>Forgot your password?</ForgetPassword>
+          <br />
+          {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
+          <br />
+          {!authError || (isLoading && <ServerMsg status="success">Login Success!</ServerMsg>)}
+          <ForgetPassword>
+            {' '}
+            <Link to="/forgotPassword">Forgot your password?</Link>
+          </ForgetPassword>
+          <ForgetPassword>
+            Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
+          </ForgetPassword>
+          <br />
         </MainBox>
       </Container>
     );
   }
 }
-export default Login;
+
+const mapDispatchToProps = {
+  appendData,
+};
+
+const mapStateToProps = (state) => ({
+  email: state.email,
+  id: state.id,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

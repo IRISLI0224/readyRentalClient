@@ -13,9 +13,14 @@ import {
   InputNumber,
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
-import { storePropety } from '../../api/postProperties';
+import { PostProperty } from '../../config/Properties';
+import axios from 'axios';
+import UploadImage from '../ImageUpload/UploadImage';
 
 const { Option } = Select;
+
+const ManageListPage = '/property/manage-listings';
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -34,7 +39,7 @@ const formItemLayout = {
     },
   },
 };
-const normFile = (e: any) => {
+const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -42,7 +47,19 @@ const normFile = (e: any) => {
 };
 const { TextArea } = Input;
 class postForm extends React.Component {
+<<<<<<< HEAD
   handleFormSubmit = async (values, error) => {
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: [],
+    };
+    this.setFiles = this.setFiles.bind(this);
+  }
+
+  handleFormSubmit= async (values, error) => {
+>>>>>>> cfc1d52ed2dcbeff453abbb695324ad5486093fd
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -56,6 +73,7 @@ class postForm extends React.Component {
         newData['petAllowed'] = true;
       } else newData['petAllowed'] = false;
     }
+<<<<<<< HEAD
     // if (PF) {
     //   if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
     //     newData['Airconditioner'] = true;
@@ -64,6 +82,16 @@ class postForm extends React.Component {
     if (PF) {
       if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
         newData['Intercom'] = true;
+=======
+    if (PF) {
+      if (values.propertyFeatures.indexOf('Airconditioner') > -1) {
+        newData['airCon'] = true;
+      } else newData['airCon'] = false;
+    }
+    if (PF) {
+      if (values.propertyFeatures.indexOf('Intercom') > -1) {
+        newData['intercom'] = true;
+>>>>>>> cfc1d52ed2dcbeff453abbb695324ad5486093fd
       } else newData['intercom'] = false;
     }
     if (PF) {
@@ -73,6 +101,7 @@ class postForm extends React.Component {
     }
     const date = new Date();
 
+<<<<<<< HEAD
     newData['postDate'] = date.toLocaleDateString();
 
     newData['availableDate'] = Date(values.availableDate);
@@ -89,13 +118,32 @@ class postForm extends React.Component {
     //back to list page
     //window.alert('Add a new property to your list successfully');
     //window.location.href = ManageListPage;
+=======
+    newData['postDate'] = date;
+
+    newData['availableDate'] = Date(values.availableDate);
+
+    newData['propImage'] = this.state.file
+
+    //console.log(newData);
+
+    delete newData.propertyFeatures;
+
+    await PostProperty(newData);
+
+    //back to list page
+    window.alert('Add a new property to your list successfully');
+    window.location.href = ManageListPage;
+>>>>>>> cfc1d52ed2dcbeff453abbb695324ad5486093fd
   };
+
+
+  setFiles(url) {
+    this.state.file.push(url);
+    //console.log(this.state.file);
+  }
+
   render() {
-    const { data } = this.state;
-    const { isSubmitFail, submitError } = this.state;
-    const { date } = this.props;
-    const error = this.getError(data);
-    const hasError = Object.keys(error).length > 0;
     return (
       <Form
         name="validate_other"
@@ -107,10 +155,13 @@ class postForm extends React.Component {
           rent: 0,
         }}
         onFinish={(values) => this.handleFormSubmit(values)}
+        onFinishFailed={(error) => {
+          console.log(error);
+        }}
       >
         <Form.Item
           style={{ height: 45 }}
-          name="propertytype"
+          name="roomType"
           label="Property Type"
           hasFeedback
           rules={[
@@ -121,12 +172,12 @@ class postForm extends React.Component {
           ]}
         >
           <Select placeholder="Please select a property type" size={'large'}>
-            <Option value="house">House</Option>
-            <Option value="apartment">Apartment</Option>
-            <Option value="studio">Studio</Option>
+            <Option value="House">House</Option>
+            <Option value="Apartment">Apartment</Option>
+            <Option value="Studio">Studio</Option>
           </Select>
         </Form.Item>
-        <Form.Item name="property features" label="Property Features">
+        <Form.Item name="propertyFeatures" label="Property Features">
           <Checkbox.Group>
             <Row>
               <Col span={8}>
@@ -135,7 +186,7 @@ class postForm extends React.Component {
                 </Checkbox>
               </Col>
               <Col span={8}>
-                <Checkbox value="Pets considered" style={{ lineHeight: '32px' }}>
+                <Checkbox value="Petsconsidered" style={{ lineHeight: '32px' }}>
                   Pets considered
                 </Checkbox>
               </Col>
@@ -149,27 +200,82 @@ class postForm extends React.Component {
                   Intercom
                 </Checkbox>
               </Col>
+              <Col span={8}>
+                <Checkbox value="smokingAllowed" style={{ lineHeight: '32px' }}>
+                  Smoking Allowed
+                </Checkbox>
+              </Col>
             </Row>
           </Checkbox.Group>
         </Form.Item>
-        <Form.Item label="Street Number" model="multiple" name="streetnumber">
+        <Form.Item
+          label="Street Number"
+          model="multiple"
+          name="streetNumber"
+          rules={[
+            {
+              required: true,
+              message: 'Please Input Steert number!',
+            },
+          ]}
+        >
+          <Input style={{ height: 40 }} type="number" />
+        </Form.Item>
+        <Form.Item
+          label="Street"
+          model="multiple"
+          name="streetName"
+          rules={[
+            {
+              required: true,
+              message: 'Please Input Street name!',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="Street" model="multiple" name="street">
+        <Form.Item
+          label="City"
+          mode="multiple"
+          name="city"
+          rules={[
+            {
+              required: true,
+              message: 'Please input city!',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="City" mode="multiple" name="city">
+        <Form.Item
+          label="State"
+          mode="multiple"
+          name="state"
+          rules={[
+            {
+              required: true,
+              message: 'Please input state',
+            },
+          ]}
+        >
           <Input style={{ height: 40 }} />
         </Form.Item>
-        <Form.Item label="State" mode="multiple" name="state">
-          <Input style={{ height: 40 }} />
-        </Form.Item>
-        <Form.Item label="Postcode" mode="multiple" name="postcode">
-          <Input style={{ height: 40 }} />
+        <Form.Item
+          label="Postcode"
+          mode="multiple"
+          name="postCode"
+          rules={[
+            {
+              required: true,
+              message: 'Please input postcode!',
+            },
+          ]}
+        >
+          <Input style={{ height: 40 }} type="number" />
         </Form.Item>
         <Form.Item label="Bedrooms">
           <Form.Item
-            name="bedrooms"
+            name="numOfBed"
             noStyle
             rules={[
               {
@@ -184,7 +290,7 @@ class postForm extends React.Component {
         </Form.Item>
         <Form.Item label="Bathrooms">
           <Form.Item
-            name="bathrooms"
+            name="numOfBath"
             noStyle
             rules={[
               {
@@ -199,7 +305,7 @@ class postForm extends React.Component {
         </Form.Item>
         <Form.Item label="Parking spaces">
           <Form.Item
-            name="parkingspaces"
+            name="numOfCarSpace"
             noStyle
             rules={[
               {
@@ -212,7 +318,7 @@ class postForm extends React.Component {
             <InputNumber min={1} max={10} style={{ height: 35 }} />
           </Form.Item>
         </Form.Item>
-        <Form.Item label="Post Date" name="post Date">
+        <Form.Item label="Available Since" name="availableDate">
           <DatePicker picker="date" placeholder="Choose your date" />
         </Form.Item>
         <Form.Item
@@ -232,17 +338,9 @@ class postForm extends React.Component {
         <Form.Item label="Description" name="description">
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
-        <Form.Item label="Pictures">
-          <Form.Item name="pictures" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-            <Upload.Dragger name="files" action="/upload.do" style={{ width: 600 }}>
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-            </Upload.Dragger>
+        <Form.Item label="Pictures" name="propImage">
+            <UploadImage setFiles={this.setFiles} />
           </Form.Item>
-        </Form.Item>
         <Form.Item
           wrapperCol={{
             xs: {
@@ -255,7 +353,7 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Button type="primary" htmlType="submit" size={'large'} onClick={this.handleSubmit}>
+          <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>
         </Form.Item>

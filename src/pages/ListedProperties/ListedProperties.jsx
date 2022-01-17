@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import PropertyDetailEditable from './component/PropertyDetailEditable';
 import PropertyHeader from './component/PropertyHeader';
 import { NoShadowWrapper } from './component/Wrapper';
+import { getUserFromToken } from '../../utils/authentication';
 import { getUserById } from '../../config/Users';
-import { getPropertiesById } from '../../config/Properties';
+import { getPropertiesById, deletePropertyById } from '../../config/Properties';
+import DeletePopup from './component/DeletePopup';
 import PropTypes from 'prop-types';
 
 const Container = styled.div`
@@ -13,19 +15,35 @@ const Container = styled.div`
   margin: 0 auto;
   padding-bottom: 30px;
 `;
+
+const ControlledPopUp = styled(DeletePopup)`
+  display: ${(props) => (props.isPopUp ? 'block' : 'none')};
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+`;
 class ListedProperties extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { properties: [], title: '' };
+    this.state = { properties: [], title: '', isPopUp: false, deletingPropertyId: {} };
   }
 
   componentDidMount() {
-    // ! why I cannot use await like so as below? it worked in BE project
-    // const user = await getUserById('61bdc1ceb1a8d5e7b976f038');
+    //!is it right to get userId from token?
+    const user = getUserFromToken();
+
+    if (!user) window.location.href = '/login';
+
+    const userId = user._id;
 
     const getProperties = async () => {
-      //todo: Now I used a hard coded id, it should be a prop passing in in the future
-      const user = await getUserById('61bdc1ceb1a8d5e7b976f038');
+      const user = await getUserById(userId);
 
       const properties = user.properties;
       const inspections = user.inspections;
@@ -48,24 +66,57 @@ class ListedProperties extends React.Component {
     getProperties();
   }
 
+  //Delete property button
+  handleDelete = async (e, propertyId) => {
+    e.preventDefault();
+    this.setState({ isPopUp: true, deletingPropertyId: propertyId });
+  };
+
+  //Delete property truly at the pop up warning window
+  handleDeleteTrue = async (e) => {
+    const propertyId = this.state.deletingPropertyId;
+    e.preventDefault();
+    await deletePropertyById(propertyId);
+    const newProperties = this.state.properties.filter((property) => property._id !== propertyId);
+    this.setState({ properties: newProperties });
+    this.setState({ isPopUp: false });
+  };
+
+  handleCancel = () => {
+    this.setState({ isPopUp: false });
+  };
+
   render() {
     const properties = this.state.properties;
 
     if (!properties) return <div>Sorry we did not find any result</div>;
 
     return (
-      <Container>
-        <NoShadowWrapper>
-          <h1>My Listings</h1>
-          <Button as="a" href="/property/post" size="140px" height="50px" primary>
-            +Create Listing
-          </Button>
-        </NoShadowWrapper>
-        <PropertyHeader />
-        {properties.map((property) => {
-          return <PropertyDetailEditable key={property._id} property={property} />;
-        })}
-      </Container>
+      <>
+        <ControlledPopUp
+          isPopUp={this.state.isPopUp}
+          onDeleteTrue={this.handleDeleteTrue}
+          onCancel={this.handleCancel}
+        />
+        <Container>
+          <NoShadowWrapper>
+            <h1>{this.state.title}</h1>
+            <Button as="a" href="/property/post" size="140px" height="50px" primary>
+              +Create Listing
+            </Button>
+          </NoShadowWrapper>
+          <PropertyHeader />
+          {properties.map((property) => {
+            return (
+              <PropertyDetailEditable
+                key={property._id}
+                property={property}
+                onDelete={this.handleDelete}
+              />
+            );
+          })}
+        </Container>
+      </>
     );
   }
 }

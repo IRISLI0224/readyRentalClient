@@ -1,42 +1,75 @@
 //All API about properties
-
-import axios from 'axios';
-
-// will use them in the future
-// import { post, get, put } from './auth';
-
-const devURL = 'http://localhost:8080/api/v1';
+import backendApi from '../api/backendApi';
+import { getToken } from '../utils/authentication';
 
 //Get all property
+//todo: need to delete one
 const API_GET_ALL_PROPERTIES = '/properties';
+const API_GET_PROPERTIES_BY_ID = '/properties/';
+const API_GET_PROPERTIES_ADS = '/propertiesads';
+const API_PROPERTIES = '/properties';
 
 export const getAllProperties = async () => {
-  const url = devURL + API_GET_ALL_PROPERTIES;
-  const response = await axios.get(url);
+  const url = API_PROPERTIES;
+  const response = await backendApi.get(url);
   return response.data;
 };
-const API_GET_PROPERTIES_BY_ID = '/properties/';
 
-export const getPropertiesById = async (Id) => {
-  const url = devURL + API_GET_PROPERTIES_BY_ID + Id;
-  const response = await axios.get(url);
+export const getPropertiesById = async (id) => {
+  const url = `${API_PROPERTIES}/${id}`;
+  const response = await backendApi.get(url);
   return response.data;
 };
+
+//get property ads
+export const getPropertiesAds = async () => {
+  const url = API_GET_PROPERTIES_ADS;
+  const response = await backendApi.get(url);
+  return response.data;
+};
+
 
 //Post new property
-// const API_POST_PROPERTY = '/properties';
-
-export const UploadProperty = async (propertyInfo) => {
-  const json = JSON.stringify(propertyInfo);
-  return axios.post(`${devURL}+API_POST_PROPERTY`, json, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+export const PostProperty = async (propertyInfo) => {
+  try {
+    var decycle = require('json-decycle').decycle;
+    const json_str = JSON.stringify(propertyInfo, decycle());
+    const token = getToken();
+    const config = {
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    };
+    const res = backendApi.post(API_PROPERTIES, json_str, config);
+    console.log(res);
+    return res;
+  } catch (e) {
+    return;
+  }
 };
 
 export const getPropertiesBySearch = async (search) => {
-  const url = `http://localhost:8080/api/v1/properties${search}`;
-  const response = await axios.get(url);
+  const url = `${API_PROPERTIES}${search}`;
+  const response = await backendApi.get(url);
+  return response.data;
+};
+
+//Delete property by id
+export const deletePropertyById = async (propertyId) => {
+  const token = getToken();
+  const config = {
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+  };
+  const url = `${API_PROPERTIES}/${propertyId}`;
+  const response = await backendApi.delete(url, config);
+  return response.data;
+};
+
+//update property by id
+export const updatePropertyById = async (id, data) => {
+  const json = JSON.stringify(data);
+  const token = getToken();
+  const config = {
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+  };
+  const response = await backendApi.put(`${API_PROPERTIES}/${id}`, json, config);
   return response.data;
 };

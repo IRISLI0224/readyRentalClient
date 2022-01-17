@@ -71,7 +71,7 @@ const LeftArrow = styled(BsChevronLeft)`
 
 const ImageSlider = ({slides, width}) => {
     const [current, setCurrnt] = useState(0);
-    const length = slides.length;
+    const length = slides?.length;
     const nextSlide = () => {
         setCurrnt(current=== length-1 ? 0:current +1);
     }
@@ -91,7 +91,7 @@ const ImageSlider = ({slides, width}) => {
             {slides.map((slide, index) =>{
                     return(
                         <div className={index === current ? 'slide active' : 'slide'} key = {index}>
-                            {index === current && (<Propi src={slide.image} alt="propoerties"/>)} 
+                            {index === current && (<Propi src={slide} alt="properties"/>)} 
                         </div>
                     )
                 })

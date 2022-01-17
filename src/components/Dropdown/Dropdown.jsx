@@ -4,14 +4,17 @@ import styled from 'styled-components';
 import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg';
 import { ReactComponent as IconBlack } from '../../assests/img/iconBefore_black.svg';
 import { removeToken } from '../../utils/authentication';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/action';
 
 export const DropdownContainer = styled.div`
   position: absolute;
-  top: 20px;
-  right: 200px;
+  top: 35px;
+  right: 130px;
   width: 56px;
   height: 40px;
+  margin-right:50px;
 `; // end DropdownContainer
 
 const ProfileButton = styled.button`
@@ -70,7 +73,7 @@ const MenuLi = styled.li`
   &:hover {
     background-color: #f0f0f0;
   }
-  z-index:99;
+  z-index: 99;
 `;
 
 const MenuLink = styled.a`
@@ -86,7 +89,7 @@ const MenuLink = styled.a`
 `;
 
 const MenuSpan = styled.span` 
-  position: absolute;
+position: absolute;
 font-size: 18px;
 line-height: 48px;
 top: -1px;
@@ -106,9 +109,13 @@ const Dropdown = () => {
   let location = useLocation();
   const wholeUrl = location.pathname;
   const home = wholeUrl == '/' ? true : false;
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const Logout = () => {
     removeToken();
+    navigate('', { replace: true })
+    dispatch({ type: 'LOGOUT' })
   };
 
   return (

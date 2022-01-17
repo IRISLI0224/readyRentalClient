@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../../../assests/img/logo_red.svg';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   word-wrap: break-word;
@@ -21,7 +22,7 @@ const Space = styled.div`
 `;
 
 const SpaceLogin = styled.div`
-  width:0%;
+  width: 0%;
 `;
 
 const ButtonwithoutBorder = styled(ButtonStyle)`
@@ -35,24 +36,42 @@ const LogoPanel = styled.div`
   width: 800px;
 `;
 
+const IconEmail = styled.div`
+  display:flex;
+  margin-left:-20px;
+  //width: 55.5%;
+`;
+
+const Email = styled.div`
+  margin-left:40%;
+  color: gray;
+  margin-top:20px;
+`;
+
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
+  const user = useSelector((state) => state);
   useEffect(() => {
     const token = getToken();
-    console.log(token)
+    //console.log(token)
     if (token) setLogin(true);
   }, []);
 
   return (
     <Container>
-      {Login?<SpaceLogin/>:<Space/>}
-      <LogoPanel>
-        <img src={Logo} style={{ height: '40px' }} />
-      </LogoPanel>
+      {Login ? <SpaceLogin /> : <Space />}
+      <a href="/">
+        <LogoPanel>
+          <img src={Logo} style={{ height: '40px' }} />
+        </LogoPanel>
+      </a>
       {Login ? (
         <>
           {' '}
-          <Dropdown />
+          <IconEmail>
+            <Email>{user.email}</Email>
+            <Dropdown />{' '}
+          </IconEmail>
         </>
       ) : (
         <>

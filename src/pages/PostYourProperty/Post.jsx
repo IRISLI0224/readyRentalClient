@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
 import PostForm from '../../components/PropertyForm/PostForm';
+import EditForm from '../../components/PropertyForm/EditForm';
 import ProCard from '@ant-design/pro-card';
 import RcResizeObserver from 'rc-resize-observer';
 import '@ant-design/pro-card/dist/card.css';
@@ -23,12 +24,12 @@ const DemoWrapper = styled.div`
   margin: 60px auto;
   width: 1100px;
 `;
-const Post = () => {
+const Post = ({ isPost }) => {
   const [responsive, setResponsive] = useState(false);
   return (
     <>
       <Title>
-        <h1>Post Your Property</h1>
+        {isPost?<h1>Post Your Property</h1>:<h1>Edit Your Property</h1>}
       </Title>
       <CardWrapper>
         <RcResizeObserver
@@ -60,7 +61,9 @@ const Post = () => {
         </RcResizeObserver>
       </CardWrapper>
       <DemoWrapper>
-        <PostForm />
+        <DemoWrapper>
+          {isPost?<PostForm />:<EditForm/>}      
+        </DemoWrapper>
       </DemoWrapper>
     </>
   );

@@ -49,7 +49,7 @@ const Input = ({
   error,
   height,
 }) => {
-  const [Visible, setVisible] = useState(visibleIcon);
+  const [Visible, setVisible] = useState(notvisibleIcon);
   const [PasswordType, setPasswordType] = useState(type);
   return (
     <Container className="Input container" size={size} height={height}>

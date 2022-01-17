@@ -67,24 +67,6 @@ const MyAccount = () => {
     <div>
       <Container>
         <Subtitle>My Account</Subtitle>
-        <EmailWrapper>
-          <InfoChange>Email address</InfoChange>
-          <Info>
-            rachel@gmail.com
-            <Link to="/with-link" style={linkStyle}>
-              change
-            </Link>
-          </Info>
-        </EmailWrapper>
-        <PassWrapper>
-          <InfoChange>Password</InfoChange>
-          <Info>
-            123456
-            <Link to="/with-link" style={linkStyle}>
-              change
-            </Link>
-          </Info>
-        </PassWrapper>
         <Protect>Protecting your account</Protect>
         <ContentProperty>
           If you have lost a device or have recently used a public computer, the simplest way to
