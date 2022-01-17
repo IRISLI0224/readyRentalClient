@@ -39,10 +39,9 @@ const App = () => (
             <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
             <Route path="/property/inspection" element={<ListedProperties isInspection />} />
             <Route path="/property/post" element={<Post isPost />} />
+            <Route path="/property/:id" element={<PropertyDetails />} />
             <Route path="/property/edit/:id" element={<Post />} />
             <Route path="/account" element={<AccountSettings />} />
-            <Route path="/uploadImage" element={<UploadImage />} />
-            <Route path="/property/:id" element={<PropertyDetails />} />
           </Route>
         </Routes>
       </Layout>
