@@ -118,7 +118,7 @@ const Cards = (props) => (
                 </RowTitle>
             </Row>
             <RowFrame>
-                <Slider slides={SliderData}></Slider>
+                <Slider slides={props.slides} width="500px" height="200px"/>
             </RowFrame>
             <RowResidencial>
                 <div className="row-residencial-content">
