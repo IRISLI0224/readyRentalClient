@@ -15,6 +15,7 @@ import Post from './pages/PostYourProperty/Post';
 import AccountSettings from './pages/AccountSettings';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import ProtectedRouter from './protectedRouter';
 
 const theme = {
   primaryColor: '#0061df',
@@ -36,14 +37,16 @@ const App = () => (
           <Route path="/join" element={<JoinPage />} />
           <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
           <Route path="/reset/:token" element={<ResetPasswordPage />} />
-          <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
-          <Route path="/property/inspection" element={<ListedProperties isInspection />} />
           <Route path="/search" element={<SearchResult />} />
-          <Route path="/property/post" element={<Post isPost />} />
-          <Route path="/property/:id" element={<PropertyDetails />} />
-          <Route path="/property/edit/:id" element={<Post />} />
-          <Route path="/account" element={<AccountSettings />} />
           <Route path="*" element={<NoPage />} />
+          <Route element={<ProtectedRouter />}>
+            <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
+            <Route path="/property/inspection" element={<ListedProperties isInspection />} />
+            <Route path="/property/post" element={<Post isPost />} />
+            <Route path="/property/:id" element={<PropertyDetails />} />
+            <Route path="/property/edit/:id" element={<Post />} />
+            <Route path="/account" element={<AccountSettings />} />
+          </Route>
         </Routes>
       </Layout>
     </ThemeProvider>
