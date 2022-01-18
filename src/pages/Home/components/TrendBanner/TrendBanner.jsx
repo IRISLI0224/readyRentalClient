@@ -32,8 +32,8 @@ const TrendBanner = () => {
           <h1 style={{ color: 'white' }}>Find the most popular property in your area </h1>
           <h1 style={{ color: 'white' }}>Find a property manager to help</h1>
           <br />
-          <Button primary size="15%" height="50px">
-            Get Started
+          <Button primary size="15%" height="50px" as="a" href="/search?">
+            Search Now
           </Button>
         </DownloadAPP>
         <video
@@ -50,9 +50,6 @@ const TrendBanner = () => {
             height: 'auto',
             width: '100%',
             zIndex: '-11',
-            //opacity: '80%',
-            //filter: 'brightness(1.3) invert(0.17) saturate(2.6) sepia(0.25)',
-            //filter: 'brightness(0.9) contrast(1.1)'
           }}
         ></video>
       </Container>

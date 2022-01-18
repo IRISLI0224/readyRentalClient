@@ -43,7 +43,7 @@ const NextSearchBar = () => (
   <Container>
     <h2>Need a tenant?</h2>
     <p>Find a property manager to help, or list yourself</p>
-    <Button primary size="100%">
+    <Button primary size="100%" as="a" href="/property/manage-listings">
       Get Started
     </Button>
   </Container>

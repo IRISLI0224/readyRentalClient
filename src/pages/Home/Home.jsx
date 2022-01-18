@@ -21,6 +21,7 @@ import SmallPropertyCard from '../../components/SmallPropertyCard';
 import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
 import TrendBanner from './components/TrendBanner';
+import BottomBanner from './components/BottomBanner';
 
 const Container = styled.div`
   //overflow: hidden;
@@ -217,6 +218,7 @@ class Home extends React.Component {
             <br />
           </div>
         ) : null}
+        <BottomBanner/>
         <SearchForm
           filterText={filterText}
           type={type}

@@ -30,7 +30,6 @@ const Layout = ({ children }) => {
   const wholeUrl = location.pathname;
   const split = wholeUrl.split('/');
   const url = '/' + split[1];
-  const user =useSelector(state=>state)
   const specialCases = {
     '/': 'HomepageStyle',
     '/join': 'LoginStyle',
@@ -39,6 +38,7 @@ const Layout = ({ children }) => {
     '/reset': 'LoginStyle',
     '/property': 'PropertyStyle',
     '/search': 'PropertyStyle',
+    '/account' : 'PropertyStyle',
   };
 
   const specialCase = specialCases[url];
