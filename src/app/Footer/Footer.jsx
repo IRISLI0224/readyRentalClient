@@ -10,7 +10,7 @@ import { RRColors } from '../../utils/constants';
 
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color:  ${(props) => ( props.theme.footerBlue)};
   color: #fff;
   @media (max-width: 768px) {

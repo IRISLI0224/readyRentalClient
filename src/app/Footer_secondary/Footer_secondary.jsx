@@ -8,7 +8,7 @@ import Item from './component/Item';
 import FlexWrap from '../../hoc/FlexWrap';
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color: #f7f8f9;
   color: #d2d5da;
 `;

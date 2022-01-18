@@ -18,9 +18,9 @@ import {
 import SearchForm from './components/SearchForm';
 
 import SmallPropertyCard from '../../components/SmallPropertyCard';
-//import SlideCard from '../../components/SlideCard';
 import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
+import TrendBanner from './components/TrendBanner';
 
 const Container = styled.div`
   //overflow: hidden;
@@ -210,9 +210,10 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
+        <TrendBanner/>
         {properties.length > 0 ? (
           <div>
-            <SlideCardContainer properties={properties} />
+            {/* <SlideCardContainer properties={properties} /> */}
             <br />
           </div>
         ) : null}
