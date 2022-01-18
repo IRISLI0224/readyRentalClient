@@ -30,8 +30,8 @@ const Container = styled.div`
     border: 2px solid #e5e8ec;
     background-color: transparent;
     &:hover {
-      background-color:  ${(props) => props.theme.primaryColor };
-      border: 2px solid  ${(props) => props.theme.primaryColor };
+      background-color: ${(props) => props.theme.primaryColor};
+      border: 2px solid ${(props) => props.theme.primaryColor};
     }
   }
   @media (max-width: 1200px) {
@@ -42,8 +42,8 @@ const Container = styled.div`
 const NextSearchBar = () => (
   <Container>
     <h2>Need a tenant?</h2>
-    <p>Find a property manager to help, or list yourself</p>
-    <Button primary size="100%">
+    <p>List your properties here</p>
+    <Button as="a" href="/property/post" primary size="100%">
       Get Started
     </Button>
   </Container>
