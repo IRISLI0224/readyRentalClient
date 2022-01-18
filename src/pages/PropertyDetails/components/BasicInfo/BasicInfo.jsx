@@ -4,7 +4,6 @@ import PropButton from '../PropButton';
 import { HeroContainer, BasicInfoContainer, VerticalMargin, ImageContainer } from '../Container';
 import StyledText from '../../../../hoc/Text';
 import ImageSlider from '../../../../components/Slider';
-import { Images } from './images.js';
 
 function getAvailableDate(date) {
   const newDate = new Date(String(date).split('T')[0]);
@@ -13,16 +12,6 @@ function getAvailableDate(date) {
 
 const BasicInfo = ({ property }) => {
   const { availableDate, propImage } = property;
-
-  console.log(property);
-
-  if (propImage == undefined) {
-    return null;
-  } else {
-    var newArr = propImage.map((i) => {
-      return { image: i };
-    });
-  }
 
   return (
     <BasicInfoContainer>
@@ -45,7 +34,7 @@ const BasicInfo = ({ property }) => {
         <StyledText>Available Date: {getAvailableDate(availableDate)}</StyledText>
       </HeroContainer>
       <ImageContainer>
-        <ImageSlider slides={newArr} width="500px" height="350px" />
+        <ImageSlider slides={propImage} width="700px" height="550px" />
       </ImageContainer>
     </BasicInfoContainer>
   );

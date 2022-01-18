@@ -6,7 +6,6 @@ const validate = (name, data) => {
     /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/;
 
   switch (name) {
-
     case 'email': {
       if (!value) {
         return 'Please input your email';
@@ -16,7 +15,6 @@ const validate = (name, data) => {
       }
       return '';
     }
-
 
     case 'password': {
       if (!value) {

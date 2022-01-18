@@ -13,13 +13,17 @@ import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 import Post from './pages/PostYourProperty/Post';
 import AccountSettings from './pages/AccountSettings';
-import UploadImage from './pages/UploadImage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import ProtectedRouter from './protectedRouter';
 
 const theme = {
-  primaryColor: '#e4002b',
+  primaryColor: '#0061df',
+  themeBlue: '#0061df',
+  footerBlue: '#0d263b',
+  fontDark: '#0d2654',
+  fontGray: '#69697c',
+  buttonDark: '#0d263b',
 };
 
 const App = () => (
@@ -34,6 +38,7 @@ const App = () => (
           <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
           <Route path="/reset/:token" element={<ResetPasswordPage />} />
           <Route path="/search" element={<SearchResult />} />
+<<<<<<< HEAD
           <Route path="*" element={<NoPage />} />
           <Route element={<ProtectedRouter />}>
             <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
@@ -43,6 +48,13 @@ const App = () => (
             <Route path="/property/edit/:id" element={<Post />} />
             <Route path="/account" element={<AccountSettings />} />
           </Route>
+=======
+          <Route path="/property/post" element={<Post isPost />} />
+          <Route path="/property/:id" element={<PropertyDetails />} />
+          <Route path="/property/edit/:id" element={<Post />} />
+          <Route path="/account" element={<AccountSettings />} />
+          <Route path="*" element={<NoPage />} />
+>>>>>>> dev
         </Routes>
       </Layout>
     </ThemeProvider>

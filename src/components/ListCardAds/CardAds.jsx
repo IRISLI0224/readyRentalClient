@@ -11,6 +11,8 @@ import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
 import Logo from '../../assests/img/logo_red.svg';
 import { getPropertiesAds } from '../../config/Properties';
 import { Button } from '../../hoc/Button';
+import { Link } from 'react-router-dom';
+
 
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
@@ -132,6 +134,7 @@ const CardAds = (props) => {
     P.address?.state +
     P.address?.postCode;
   const slides = P.propImage?.length > 0 ? P.propImage : SliderData;
+  const link = '/property/' + P._id;
   return (
     <>
       <Card>
@@ -187,9 +190,9 @@ const CardAds = (props) => {
             </StyledIcon>
           </LastFrame>
         </RowResidencial>
-        <Button primary size="100%">
-          View Property
-        </Button>
+          <Button primary size="100%" as="a" href={link}>
+            View Property
+          </Button>
       </Card>
     </>
   );

@@ -20,7 +20,7 @@ export const NewsCardTitle = styled.div`
   height: 10%;
   text-align: left;
   font-size: 1.3rem;
-  color: #333f48;
+  color: props.theme.footerBlue;
 `;
 
 export const NewsCard = styled.div`

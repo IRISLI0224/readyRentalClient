@@ -71,7 +71,7 @@ const LeftArrow = styled(BsChevronLeft)`
 
 const ImageSlider = ({slides, width}) => {
     const [current, setCurrnt] = useState(0);
-    const length = slides.length;
+    const length = slides?.length;
     const nextSlide = () => {
         setCurrnt(current=== length-1 ? 0:current +1);
     }

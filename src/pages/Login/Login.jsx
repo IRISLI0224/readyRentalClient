@@ -12,6 +12,9 @@ import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
+import { connect } from 'react-redux';
+import { appendData } from '../../redux/action';
+import title from '../../assests/img/title2.png'
 
 //API
 import { UserLogin } from '../../config/Users';
@@ -73,8 +76,14 @@ const ForgetPassword = styled.a.attrs({
 `;
 
 const LogoImg = styled.img`
-  width: 200px;
+  width: 50px;
 `;
+
+const TitleImg = styled.img`
+  width: 200px;
+  margin-left:10px;
+`;
+
 
 const Container = styled.div`
   background-color: white;
@@ -206,6 +215,22 @@ class Login extends React.Component {
     return error;
   }
 
+  mapStateToProps = (store, ownProps) => {
+    return {
+      user: store.user,
+    };
+  };
+  mapDispatchToProps = (dispatch) => {
+    return {
+      setUserInfo(userInfo) {
+        dispatch({
+          type: 'SET_USER_INFO',
+          payload: userInfo,
+        });
+      },
+    };
+  };
+
   userLogin() {
     this.setState({ error: null, isLoading: true }, () => {
       const { data } = this.state;
@@ -214,17 +239,23 @@ class Login extends React.Component {
           this.setState({ isLoading: false }, () => {
             if (res.data?.token) {
               setToken(res.data.token);
+              this.props.appendData({
+                id: res.data?.user._id,
+                email: res.data.user.email,
+              });
               //back to home page
               window.location.href = HOMEPAGE;
             } else {
-              this.state.authErrors = res.data;
-              this.state.isLoading = true;
+              const authErrors = res.data
+              const isLoading = true;
+              this.setState({
+                authErrors,
+                isLoading
+              })
             }
           });
         })
-        .catch((error) => 
-        this.setState({ error, isLoading: false })
-        );
+        .catch((error) => this.setState({ error, isLoading: false }));
     });
   }
 
@@ -237,6 +268,7 @@ class Login extends React.Component {
           <LogoBox>
             <a href="/">
               <LogoImg src={Logo} />
+              <TitleImg src={title}/>
             </a>
           </LogoBox>
           <CreateTitle>Sign in</CreateTitle>
@@ -284,8 +316,8 @@ class Login extends React.Component {
           </Button>
           <br />
           {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
-          <br/>
-          {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
+          <br />
+          {!authError || (isLoading && <ServerMsg status="success">Login Success!</ServerMsg>)}
           <ForgetPassword>
             {' '}
             <Link to="/forgotPassword">Forgot your password?</Link>
@@ -299,4 +331,14 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+
+const mapDispatchToProps = {
+  appendData,
+};
+
+const mapStateToProps = (state) => ({
+  email: state.email,
+  id: state.id,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
