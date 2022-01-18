@@ -38,7 +38,6 @@ const App = () => (
           <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
           <Route path="/reset/:token" element={<ResetPasswordPage />} />
           <Route path="/search" element={<SearchResult />} />
-<<<<<<< HEAD
           <Route path="*" element={<NoPage />} />
           <Route element={<ProtectedRouter />}>
             <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
@@ -48,13 +47,6 @@ const App = () => (
             <Route path="/property/edit/:id" element={<Post />} />
             <Route path="/account" element={<AccountSettings />} />
           </Route>
-=======
-          <Route path="/property/post" element={<Post isPost />} />
-          <Route path="/property/:id" element={<PropertyDetails />} />
-          <Route path="/property/edit/:id" element={<Post />} />
-          <Route path="/account" element={<AccountSettings />} />
-          <Route path="*" element={<NoPage />} />
->>>>>>> dev
         </Routes>
       </Layout>
     </ThemeProvider>
