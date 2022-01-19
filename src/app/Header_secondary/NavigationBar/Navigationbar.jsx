@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
-import Logo from '../../../assests/img/logo_red.svg';
+import Logo from '../../../assests/img/logo2.png';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
 import { useSelector } from 'react-redux';
@@ -62,8 +62,8 @@ const NavigationBar = () => {
       {Login ? <SpaceLogin /> : <Space />}
       <a href="/">
         <LogoPanel>
-          <img src={Logo} style={{ height: '40px' }} />
-          <img src={title} style={{ height: '30px', marginLeft: '10px' }} />
+          <img src={Logo} style={{ height: '60px' }} />
+          <img src={title} style={{ height: '40px', marginLeft: '10px' }} />
         </LogoPanel>
       </a>
       {Login ? (

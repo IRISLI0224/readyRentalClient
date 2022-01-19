@@ -106,7 +106,7 @@ const PropertyDetails = () => {
       </FormContainer>
       <Divider style={{ background: '#bdbdbd' }} />
       <DescItem_re>
-        <StyledText size="0.7rem">Personal Information Collection Statement</StyledText>
+        <StyledText size="0.7rem" style={{ marginTop: 10 }}>Personal Information Collection Statement</StyledText>
         <StyledText size="0.7rem">
           Your personal information and associated behavioural data related to search activities
           will be passed to the Agency and/or its authorised service provider to assist the Agency
@@ -114,7 +114,7 @@ const PropertyDetails = () => {
           for any other purpose. Our Privacy policy explains how we store personal information and
           how you may access, correct or complain about the handling of personal information.
         </StyledText>
-        <StyledText size="0.7rem">
+        <StyledText size="0.7rem" style={{ marginBottom: 50 }}>
           This form is only to be used for sending genuine email enquiries to the Agent. We reserves
           its right to take any legal or other appropriate action in relation to misuse of this
           service.

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from '../../../../assests/img/logo.svg';
+import Img from '../../../../assests/img/logo1.png';
 import title from '../../../../assests/img/title1.png';
 
 const LogoP = styled.div`
@@ -11,7 +11,7 @@ const LogoP = styled.div`
   cursor: pointer; */
   background: url(${Img}) 0% 45% no-repeat;
   margin: 0px auto; 
-  width:50px;
+  width:70px;
   height:auto;
   @media (max-width: 768px) {
     width: 50px;
@@ -28,7 +28,7 @@ const Title = styled.div`
   margin: 0px auto; */
   background: url(${title}) 0% 45% no-repeat;
   margin-left:5px; 
-  width:200px;
+  width:250px;
   height:auto;
   @media (max-width: 768px) {
     width: 200px;
