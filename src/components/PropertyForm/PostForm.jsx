@@ -105,8 +105,9 @@ class postForm extends React.Component {
 
 
   setFiles(url) {
-    this.state.file.push(url);
+    // this.state.file.push(url);
     //console.log(this.state.file);
+    this.setState({file = this.state.file.push(url)})
   }
 
   render() {
@@ -306,6 +307,7 @@ class postForm extends React.Component {
         </Form.Item>
         <Form.Item label="Pictures" name="propImage">
             <UploadImage setFiles={this.setFiles} />
+            <p>{this.state.file.length} images uploaded</p>
           </Form.Item>
         <Form.Item
           wrapperCol={{
