@@ -55,7 +55,7 @@ class postForm extends React.Component {
     this.setFiles = this.setFiles.bind(this);
   }
 
-  handleFormSubmit= async (values, error) => {
+  handleFormSubmit = async (values, error) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -90,7 +90,7 @@ class postForm extends React.Component {
 
     newData['availableDate'] = Date(values.availableDate);
 
-    newData['propImage'] = this.state.file
+    newData['propImage'] = this.state.file;
 
     //console.log(newData);
 
@@ -103,11 +103,8 @@ class postForm extends React.Component {
     window.location.href = ManageListPage;
   };
 
-
   setFiles(url) {
-    // this.state.file.push(url);
-    //console.log(this.state.file);
-    this.setState({file = this.state.file.push(url)})
+    this.setState({ file: [...this.state.file, url] });
   }
 
   render() {
@@ -306,9 +303,9 @@ class postForm extends React.Component {
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
         <Form.Item label="Pictures" name="propImage">
-            <UploadImage setFiles={this.setFiles} />
-            <p>{this.state.file.length} images uploaded</p>
-          </Form.Item>
+          <UploadImage setFiles={this.setFiles} />
+          <p>{this.state.file.length} images uploaded</p>
+        </Form.Item>
         <Form.Item
           wrapperCol={{
             xs: {
