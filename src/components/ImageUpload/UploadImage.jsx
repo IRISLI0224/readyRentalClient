@@ -1,5 +1,10 @@
 import React, { useState, useRef } from 'react';
 import backendApi from '../../api/backendApi';
+import styled from 'styled-components';
+
+const StyledInput = styled.div`
+  margin-bottom: 1rem;
+`;
 
 async function postImage({ image }) {
   const formData = new FormData();
@@ -28,10 +33,10 @@ const UploadImage = ({ setFiles }) => {
   };
 
   return (
-    <>
+    <StyledInput>
       <div>Please select one or multiple images of the property</div>
       <input onChange={fileSelected} multiple type="file" ref={imageInput} accept="image/*"></input>
-    </>
+    </StyledInput>
   );
 };
 

@@ -304,7 +304,7 @@ class postForm extends React.Component {
         </Form.Item>
         <Form.Item label="Pictures" name="propImage">
           <UploadImage setFiles={this.setFiles} />
-          <p>{this.state.file.length} images uploaded</p>
+          {this.state.file.length > 0 ? `${this.state.file.length} images uploaded.` : '*** Please upload at least one image'}
         </Form.Item>
         <Form.Item
           wrapperCol={{
