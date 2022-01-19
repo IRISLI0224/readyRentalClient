@@ -61,13 +61,13 @@ const ButtonWhitFont = styled(ButtonStyle)`
 `;
 
 const IconEmail = styled.div`
-  display:flex;
+  display: flex;
   width: 55.5%;
 `;
 
 const Email = styled.div`
-  margin-left:40%;
-
+  margin-left: 40%;
+  margin-top: 1.2rem;
 `;
 
 const NavigationBar = () => {

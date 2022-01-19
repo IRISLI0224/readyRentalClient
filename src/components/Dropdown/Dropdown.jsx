@@ -9,13 +9,11 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/action';
 
 export const DropdownContainer = styled.div`
-  position: absolute;
-  top: 35px;
-  right: 130px;
-  width: 56px;
-  height: 40px;
-  margin-right:50px;
-`; // end DropdownContainer
+  position: relative;
+  margin-right: 5rem;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+`;
 
 const ProfileButton = styled.button`
   display: flex;
@@ -26,20 +24,6 @@ const ProfileButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-`;
-const ArrowUp = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 4px solid black;
-`;
-const ArrowDown = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid white;
 `;
 
 const MenuContainer = styled.div`
@@ -100,29 +84,25 @@ text-align: left;
 padding-left:25px;
 `;
 
-//hand tabbing accessibility to dropdown
-
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
-  //get icon color from url
   let location = useLocation();
   const wholeUrl = location.pathname;
   const home = wholeUrl == '/' ? true : false;
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const Logout = () => {
     removeToken();
-    navigate('', { replace: true })
-    dispatch({ type: 'LOGOUT' })
+    navigate('', { replace: true });
+    dispatch({ type: 'LOGOUT' });
   };
 
   return (
     <DropdownContainer>
       <ProfileButton type="button" onClick={toggleOpen}>
         {home ? <Icon /> : <IconBlack />}
-        <ArrowDown />
       </ProfileButton>
       <MenuContainer isOpen={!isOpen}>
         <MenuUl>
