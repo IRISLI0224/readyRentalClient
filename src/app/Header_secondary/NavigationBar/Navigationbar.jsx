@@ -6,6 +6,7 @@ import Logo from '../../../assests/img/logo_red.svg';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
 import { useSelector } from 'react-redux';
+import title from '../../../assests/img/title2.png';
 
 const Container = styled.div`
   word-wrap: break-word;
@@ -37,15 +38,14 @@ const LogoPanel = styled.div`
 `;
 
 const IconEmail = styled.div`
-  display:flex;
-  margin-left:-20px;
-  //width: 55.5%;
+  display: flex;
+  width: 55.5%;
 `;
 
 const Email = styled.div`
-  margin-left:40%;
+  margin-left: 40%;
   color: gray;
-  margin-top:20px;
+  margin-top: 1.2rem;
 `;
 
 const NavigationBar = () => {
@@ -63,6 +63,7 @@ const NavigationBar = () => {
       <a href="/">
         <LogoPanel>
           <img src={Logo} style={{ height: '40px' }} />
+          <img src={title} style={{ height: '30px', marginLeft: '10px' }} />
         </LogoPanel>
       </a>
       {Login ? (

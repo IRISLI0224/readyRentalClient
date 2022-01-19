@@ -6,6 +6,7 @@ import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
 import SlideCardContainer from '../../components/SlideCardContainer';
+import { RRColors } from '../../utils/constants';
 import {
   NewsContainer,
   NewsCardTitle,
@@ -17,9 +18,10 @@ import {
 import SearchForm from './components/SearchForm';
 
 import SmallPropertyCard from '../../components/SmallPropertyCard';
-//import SlideCard from '../../components/SlideCard';
 import 'antd/dist/antd.css';
 import { Carousel } from 'antd';
+import TrendBanner from './components/TrendBanner';
+import BottomBanner from './components/BottomBanner';
 
 const Container = styled.div`
   //overflow: hidden;
@@ -69,7 +71,7 @@ const PropertyCardTitle = styled.div`
   height: 10%;
   text-align: left;
   font-size: 1.3rem;
-  color: #333f48;
+  color: props.theme.footerBlue;
   margin-left: 20%;
 `;
 
@@ -209,12 +211,14 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
+        <TrendBanner/>
         {properties.length > 0 ? (
           <div>
-            <SlideCardContainer properties={properties} />
+            {/* <SlideCardContainer properties={properties} /> */}
             <br />
           </div>
         ) : null}
+        <BottomBanner/>
         <SearchForm
           filterText={filterText}
           type={type}

@@ -9,6 +9,7 @@ import TextInput from './components/TextInput';
 import TextArea from './components/TextArea';
 import swal from 'sweetalert';
 import CardAds from '../../../../components/ListCardAds/CardAds';
+import { RRColors } from '../../../../utils/constants';
 
 const ContactContainer = styled.div`
   @media (min-width: 641px) {
@@ -73,7 +74,8 @@ const ContactForm = ({ id, property }) => {
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState();
   const contactUser = getUserFromToken();
-
+  const blue =RRColors.themeBlue;
+  
   const [data, setData] = useState({
     phone: '',
     message: '',
@@ -238,7 +240,7 @@ const ContactForm = ({ id, property }) => {
                 size="507px"
                 margin="5px"
                 color="#fff"
-                background="#a30000"
+                background={blue}
                 type="submit"
               >
                 Send enquiry
