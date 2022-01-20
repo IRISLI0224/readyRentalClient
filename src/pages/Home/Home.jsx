@@ -19,11 +19,9 @@ import SearchForm from './components/SearchForm';
 import WhyChooseUs from './components/WhyChooseUs';
 import ExploreOurProperties from './components/ExploreOurProperties';
 
-import SmallPropertyCard from '../../components/SmallPropertyCard';
-import 'antd/dist/antd.css';
-import { Carousel } from 'antd';
 import TrendBanner from './components/TrendBanner';
 import BottomBanner from './components/BottomBanner';
+
 
 const Container = styled.div`
   //overflow: hidden;
@@ -216,12 +214,12 @@ class Home extends React.Component {
           </NewsCard>
         </NewsContainer>
         <TrendBanner />
-        {/* {properties.length > 0 ? (
+        {properties.length > 0 ? (
           <div>
             <SlideCardContainer properties={properties} />
             <br />
           </div>
-        ) : null} */}
+        ) : null}
         <BottomBanner />
         <SearchForm
           filterText={filterText}
