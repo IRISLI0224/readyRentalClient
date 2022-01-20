@@ -9,7 +9,6 @@ import { RRColors } from '../../../../utils/constants';
 const Container = styled.div`
   height: 300px;
   position: relative;
-  margin-top: 150px;
   background-image: url(${img});
 `;
 
@@ -23,45 +22,40 @@ const DownloadAPP = styled.div`
 `;
 
 const Title = styled.h1`
-    color: #ffffff;
-    font-weight: 600;
-    line-height: 2.375rem;
-    margin-bottom: 15px;
-    
-}
-
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 2.375rem;
+  margin-bottom: 15px;
 `;
 
 const ButtonWhite = styled(ButtonStyle)`
   color: ${RRColors.themeBlue};
-  background : #fff;
+  background: #fff;
   //border: none;
   height: 50px;
   &:hover {
     color: #fff;
-    background : transparent;
-    border-color:#fff;
-    border:1px solid;
+    background: transparent;
+    border-color: #fff;
+    border: 1px solid;
   }
 `;
 
 const BottomBanner = () => {
   return (
-    <div>
-      <Container>
-        <DownloadAPP>
-          <br />
-          <br />
-          <br />
-          <Title style={{ color: 'white' }}>Need a tenant?</Title>
-          <h1 style={{ color: 'white' }}>Find a property manager to help, or list yourself </h1>
-          <br />
-          <ButtonWhite primary size="15%" height="50px" as="a" href='/join'>
-            REGISTER NOW
-          </ButtonWhite>
-        </DownloadAPP>
-      </Container>
-    </div>
+    <Container>
+      <DownloadAPP>
+        <br />
+        <br />
+        <br />
+        <Title style={{ color: 'white' }}>Need a tenant?</Title>
+        <h1 style={{ color: 'white' }}>Find a property manager to help, or list yourself </h1>
+        <br />
+        <ButtonWhite primary size="15%" height="50px" as="a" href="/join">
+          REGISTER NOW
+        </ButtonWhite>
+      </DownloadAPP>
+    </Container>
   );
 };
 

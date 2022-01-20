@@ -215,14 +215,14 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
-        <TrendBanner/>
-        {properties.length > 0 ? (
+        <TrendBanner />
+        {/* {properties.length > 0 ? (
           <div>
-            {/* <SlideCardContainer properties={properties} /> */}
+            <SlideCardContainer properties={properties} />
             <br />
           </div>
-        ) : null}
-        <BottomBanner/>
+        ) : null} */}
+        <BottomBanner />
         <SearchForm
           filterText={filterText}
           type={type}

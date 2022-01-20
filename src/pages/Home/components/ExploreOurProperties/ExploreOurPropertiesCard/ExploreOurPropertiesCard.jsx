@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   cursor: pointer;
@@ -72,16 +73,18 @@ const Details = styled.div`
 
 const ExploreOurPropertiesCard = ({ icon, icon_alt, name, background, background_alt }) => {
   return (
-    <Container>
-      <BackgroundImg className="img" src={background} alt={background_alt} />
-      <Curtain />
-      <Details>
-        <Icon>
-          <PropertyImg src={icon} alt={icon_alt}></PropertyImg>
-        </Icon>
-        <IconName>{name}</IconName>
-      </Details>
-    </Container>
+    <Link to={`/search?type=${name.toLowerCase()}`}>
+      <Container>
+        <BackgroundImg className="img" src={background} alt={background_alt} />
+        <Curtain />
+        <Details>
+          <Icon>
+            <PropertyImg src={icon} alt={icon_alt}></PropertyImg>
+          </Icon>
+          <IconName>{name}</IconName>
+        </Details>
+      </Container>
+    </Link>
   );
 };
 
