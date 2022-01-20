@@ -23,9 +23,16 @@ const FormContainer = styled.div`
   }
 `;
 
+const Blank = styled.div`
+  width: 350px;
+  @media (min-width: 641px) {
+    border-radius: 0.1875rem;
+  }
+`;
+
 const Ads = styled.div` 
     margin-top :50px;
-    margin-left:10px;
+    margin-left:50px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -79,10 +86,7 @@ const PropertyDetails = () => {
       <BasicInfo property={property} />
       <FormContainer>
         <Description property={property} />
-        <Ads>
-          <StyledText size="1.5rem">Property Showcase</StyledText>
-          <CardAds props={property}></CardAds>
-        </Ads>
+        <Blank></Blank>
       </FormContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />
