@@ -17,7 +17,7 @@ import defaultImage from '../../assests/img/room.jpg';
 
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
-  max-width: 400px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -85,7 +85,7 @@ const TitleImg = styled.img`
 `;
 
 const IMG = styled.img`
-  width: 400px;
+  width: 100%;
   height: auto;
   max-height:200px;
 `;

@@ -39,7 +39,7 @@ const SlideCardContainer = ({ properties }) => {
       <Descriptions>Find a suitable property around your place to live</Descriptions>
       <br/>
       <br/>
-      <Carousel show={3.5} slide={3} swiping={true}  responsive={true}>
+      <Carousel show={4.5} slide={4} swiping={true}  responsive={true}>
         {properties.map((property, index) => {
           return (
             <PropertyBack key={index}>
