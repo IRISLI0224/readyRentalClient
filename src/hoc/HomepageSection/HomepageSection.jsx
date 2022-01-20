@@ -25,7 +25,7 @@ const Subtitle = styled.p`
 `;
 
 const CardContainer = styled.div`
-  padding: 50px 15px 30px;
+  padding: 50px 15px 0px;
   display: flex;
   flex-wrap: ${(props) => props.wrap};
   align-items: center;
