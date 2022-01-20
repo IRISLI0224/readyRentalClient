@@ -16,6 +16,7 @@ import AccountSettings from './pages/AccountSettings';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import ProtectedRouter from './protectedRouter';
+import SearchResultV2 from './pages/SearchResultV2';
 
 const theme = {
   primaryColor: '#0061df',
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
           <Route path="/reset/:token" element={<ResetPasswordPage />} />
           <Route path="/search" element={<SearchResult />} />
+          <Route path="/search/v2" element={<SearchResultV2 />} />
           <Route path="*" element={<NoPage />} />
           <Route element={<ProtectedRouter />}>
             <Route path="/property/manage-listings" element={<ListedProperties isListing />} />

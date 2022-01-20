@@ -14,7 +14,7 @@ const Container = styled.div`
   justify-content: center;
   padding: 1rem 0.5rem;
   height: 4.5rem;
-  border: 1px solid #a3a3a3;
+  //border: 1px solid #a3a3a3;
   padding: 1rem 0.5rem;
 `;
 
