@@ -12,6 +12,9 @@ const Container = styled.div`
   overflow: hidden;
   width: 295.75px;
   height: 351.812px;
+  @media (max-width: 1350px) {
+    width: 450px;
+  }
   .img {
     transition: 0.6s;
   }
@@ -71,9 +74,9 @@ const Details = styled.div`
   right: 0;
 `;
 
-const ExploreOurPropertiesCard = ({ icon, icon_alt, name, background, background_alt }) => {
+const ExploreOurPropertiesCard = ({ icon, icon_alt, name, type, background, background_alt }) => {
   return (
-    <Link to={`/search?type=${name.toLowerCase()}`}>
+    <Link to={`/search?type=${type}`}>
       <Container>
         <BackgroundImg className="img" src={background} alt={background_alt} />
         <Curtain />
@@ -91,6 +94,7 @@ const ExploreOurPropertiesCard = ({ icon, icon_alt, name, background, background
 ExploreOurPropertiesCard.propTypes = {
   icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   background: PropTypes.string.isRequired,
   background_alt: PropTypes.string.isRequired,
   icon_alt: PropTypes.string.isRequired,

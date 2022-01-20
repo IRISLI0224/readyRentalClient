@@ -16,9 +16,6 @@ const Container = styled.div`
   @media (max-width: 1350px) {
     width: 450px;
   }
-  @media (max-width: 1025px) {
-    width: 510px;
-  }
   .icon {
     transition: 0.6s;
   }
