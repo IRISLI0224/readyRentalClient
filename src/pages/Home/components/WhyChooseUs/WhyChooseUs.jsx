@@ -23,20 +23,20 @@ const WhyChooseUs = () => (
       wrap="wrap"
     >
       <WhyChooseUsCard title="Trusted By Thousands" src={Handshake}>
-        With over 1 million+ homes for sale available on the website, Trulia can match you with a
-        house you will want to call home.
+        With over 1 million+ homes for rent available on the website, Ready Rental can match you
+        with a house you will want to call home.
       </WhyChooseUsCard>
-      <WhyChooseUsCard title="Wide Renge Of Properties" src={HouseImg}>
-        With over 1 million+ homes for sale available on the website, Trulia can match you with a
-        house you will want to call home.
+      <WhyChooseUsCard title="Wide Range Of Properties" src={HouseImg}>
+        With over 1 million+ homes for rent available on the website, Ready Rental can match you
+        with a house you will want to call home.
       </WhyChooseUsCard>
       <WhyChooseUsCard title="Financing Made Easy" src={Calculator}>
-        With over 1 million+ homes for sale available on the website, Trulia can match you with a
-        house you will want to call home.
+        With over 1 million+ homes for rent available on the website, Ready Rental can match you
+        with a house you will want to call home.
       </WhyChooseUsCard>
-      <WhyChooseUsCard title="See Neighborhoods" src={Map}>
-        With over 1 million+ homes for sale available on the website, Trulia can match you with a
-        house you will want to call home.
+      <WhyChooseUsCard title="See Neighbourhoods" src={Map}>
+        With over 1 million+ homes for rent available on the website, Ready Rental can match you
+        with a house you will want to call home.
       </WhyChooseUsCard>
     </HomepageSection>
   </Container>
