@@ -13,7 +13,6 @@ import { getPropertiesAds } from '../../config/Properties';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
 
-
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
   max-width: 300px;
@@ -190,9 +189,9 @@ const CardAds = (props) => {
             </StyledIcon>
           </LastFrame>
         </RowResidencial>
-          <Button primary size="100%" as="a" href={link}>
-            View Property
-          </Button>
+        <Button primary size="100%" as="a" href={link}>
+          View Property
+        </Button>
       </Card>
     </>
   );
