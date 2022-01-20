@@ -7,6 +7,7 @@ export const NewsContainer = styled.div`
   margin: 5rem auto;
   background-color: #fff;
   text-align: center;
+  display: none;
   @media (max-width: 1200px) {
     width: 80%;
   }
