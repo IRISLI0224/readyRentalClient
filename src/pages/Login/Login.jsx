@@ -266,7 +266,7 @@ class Login extends React.Component {
               this.handleIsFormSubmitChange(true);
             }}
           >
-            <Form htmlFor="email" margin="1rem">
+            <Form htmlFor="email" margin_bottom="1rem">
               <Input
                 size="400px"
                 name="email"
