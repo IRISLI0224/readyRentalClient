@@ -32,7 +32,7 @@ const BackgroundImg = styled.img`
 `;
 
 const Curtain = styled.div`
-  background: rgba(13, 38, 59, 0.5);
+  background: rgba(62, 80, 97, 0.5);
   border-radius: 3px;
   bottom: 0;
   height: 100%;
