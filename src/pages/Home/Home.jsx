@@ -21,6 +21,7 @@ import ExploreOurProperties from './components/ExploreOurProperties';
 
 import TrendBanner from './components/TrendBanner';
 import BottomBanner from './components/BottomBanner';
+import ExploreCities from './components/ExploreCities';
 
 
 const Container = styled.div`
@@ -220,6 +221,7 @@ class Home extends React.Component {
             <br />
           </div>
         ) : null}
+        <ExploreCities/>
         <BottomBanner />
         <SearchForm
           filterText={filterText}
