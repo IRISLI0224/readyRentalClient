@@ -5,7 +5,7 @@ import background from '../../assests/video/night.mp4';
 import NextSearchBar from '../../components/NextSearchBar';
 import SearchBar from '../../components/SearchBar';
 import NavigationBar from './NavigationBar/Navigationbar';
-import phone from '../../assests/img/phone.png'
+import phone from '../../assests/img/phone.png';
 
 const Container = styled.div`
   position: relative;
@@ -34,9 +34,8 @@ const SearchBarPanel = styled.div`
 `;
 
 const DownloadAPP = styled.div`
-  margin-top:110px;
+  margin-top: 110px;
 `;
-
 
 const Header = () => (
   <Container className="Header" height={5}>
@@ -60,7 +59,6 @@ const Header = () => (
         //opacity: '80%',
         //filter: 'brightness(1.3) invert(0.17) saturate(2.6) sepia(0.25)',
         //filter: 'brightness(0.9) contrast(1.1)'
-        
       }}
     ></video>
     <NavigationBar />
@@ -69,10 +67,10 @@ const Header = () => (
       <NextSearchBar />
     </SearchBarPanel>
     <DownloadAPP>
-    <img src={phone}></img>
-    <br/>
-    <br/>
-    <h3 style={{color:'white'}}>Download Our App</h3>
+      <img src={phone}></img>
+      <br />
+      <br />
+      <h3 style={{ color: 'white' }}>Download Our App</h3>
     </DownloadAPP>
   </Container>
 );

@@ -23,7 +23,6 @@ import TrendBanner from './components/TrendBanner';
 import BottomBanner from './components/BottomBanner';
 import ExploreCities from './components/ExploreCities';
 
-
 const Container = styled.div`
   //overflow: hidden;
   width: 60%;
