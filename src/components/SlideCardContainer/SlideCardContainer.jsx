@@ -6,13 +6,15 @@ import SlideCard from './SlideCard';
 import { Carousel } from '@trendyol-js/react-carousel';
 import SmallCardAds from '../SmallCardAds/SmallCardAds';
 
-const PropertyBack = styled.div`
-
+const Container = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
-const PropertyContainer = styled.div`
+const PropertyBack = styled.div``;
 
-`;
+const PropertyContainer = styled.div``;
 
 const Title = styled.h1`
   color: #0d263b;
@@ -31,15 +33,15 @@ const Descriptions = styled.div`
 
 const SlideCardContainer = ({ properties }) => {
   return (
-    <>
+    <Container>
       {' '}
-      <br/>
-      <br/>
+      <br />
+      <br />
       <Title>Recent Properties for Rent </Title>
       <Descriptions>Find a suitable property around your place to live</Descriptions>
-      <br/>
-      <br/>
-      <Carousel show={4.5} slide={4} swiping={true}  responsive={true}>
+      <br />
+      <br />
+      <Carousel show={4.5} slide={4} swiping={true} responsive={true}>
         {properties.map((property, index) => {
           return (
             <PropertyBack key={index}>
@@ -50,7 +52,7 @@ const SlideCardContainer = ({ properties }) => {
           );
         })}
       </Carousel>
-    </>
+    </Container>
   );
 };
 

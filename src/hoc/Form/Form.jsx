@@ -11,6 +11,8 @@ const Item = styled.div`
     padding-top: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-top: ${(props) => props.margin};
+    margin-bottom: ${(props) => props.margin};
 }
 `;
 
@@ -18,18 +20,18 @@ const Label = styled.label`
   margin: 0 0 5px 5px;
 `;
 
-const Form = ({label,htmlFor,children}) => (
-  <Item>
+const Form = ({ label, htmlFor, margin, children }) => (
+  <Item margin={margin}>
     {label && <Label htmlFor={htmlFor}>{label}</Label>}
     {children}
   </Item>
- );
+);
 
- Form.propTypes = {
+Form.propTypes = {
   label: PropTypes.string,
   htmlFor: PropTypes.string.isRequired,
+  margin: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
-
 
 export default Form;
