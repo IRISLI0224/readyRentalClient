@@ -39,11 +39,12 @@ const App = () => (
           <Route path="/reset/:token" element={<ResetPasswordPage />} />
           <Route path="/search" element={<SearchResult />} />
           <Route path="*" element={<NoPage />} />
+          <Route path="/property/:id" element={<PropertyDetails />} />
           <Route element={<ProtectedRouter />}>
             <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
             <Route path="/property/inspection" element={<ListedProperties isInspection />} />
             <Route path="/property/post" element={<Post isPost />} />
-            <Route path="/property/:id" element={<PropertyDetails />} />
+            {/* <Route path="/property/:id" element={<PropertyDetails />} /> */}
             <Route path="/property/edit/:id" element={<Post />} />
             <Route path="/account" element={<AccountSettings />} />
           </Route>

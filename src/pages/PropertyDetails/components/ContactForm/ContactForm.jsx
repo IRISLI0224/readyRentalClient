@@ -17,6 +17,12 @@ const ContactContainer = styled.div`
   }
 `;
 
+const BodyContainers = styled(BodyContainer)`
+@media screen and (max-width: 1024px) {
+  min-width: 100%;
+}
+`
+
 const CheckboxContainer = styled.div`
   @media (min-width: 501px) {
     display: flex;
@@ -32,6 +38,17 @@ const CheckboxWrapper = styled.div`
   flex-shrink: 0;
   margin: 5px;
 `;
+
+const DescItems = styled(DescItem)`
+@media screen and (max-width: 1024px) {
+  width: 80vw;
+}
+`
+const EnquiryButtons = styled(EnquiryButton)`
+@media screen and (max-width: 1024px) {
+  width: 81vw;
+}
+`
 
 const FORM_FIELDS = [
   {
@@ -94,9 +111,9 @@ const ContactForm = ({ id, property }) => {
 
   return (
     <>
-      <BodyContainer direction="column">
+      <BodyContainers direction="column">
         <ContactContainer>
-          <DescItem>
+          <DescItems>
             <StyledText bold size="1.1rem">
               Email enquiry to the landlord
             </StyledText>
@@ -112,7 +129,7 @@ const ContactForm = ({ id, property }) => {
                 Available Date: {getAvailableDate(availableDate)}
               </StyledText>
             </HeroContainer>
-          </DescItem>
+          </DescItems>
           <form
             onSubmit={(event) => {
               event.preventDefault();
@@ -146,7 +163,7 @@ const ContactForm = ({ id, property }) => {
               swal('Success', 'Thank you for your enquiry', 'success');
             }}
           >
-            <DescItem>
+            <DescItems>
               <StyledText bold size="1.1rem">
                 What's your enquiry about?
               </StyledText>
@@ -236,7 +253,7 @@ const ContactForm = ({ id, property }) => {
                   }))
                 }
               />
-              <EnquiryButton
+              <EnquiryButtons
                 size="507px"
                 margin="5px"
                 color="#fff"
@@ -244,11 +261,11 @@ const ContactForm = ({ id, property }) => {
                 type="submit"
               >
                 Send enquiry
-              </EnquiryButton>
-            </DescItem>
+              </EnquiryButtons>
+            </DescItems>
           </form>
         </ContactContainer>
-      </BodyContainer>
+      </BodyContainers>
     </>
   );
 };
