@@ -280,19 +280,9 @@ class Login extends React.Component {
                 error={this.getErrorMessage(error, 'email')}
               />
             </Form>
-<<<<<<< HEAD
-            <InputErrorMsg className="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
-            <br />
-            <br />
-||||||| a067643
-            <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
-            <br />
-            <br />
-=======
             {this.state.data.email.blurred && (
               <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
             )}
->>>>>>> 179f0615cd015f1c7cc88a69421f966c71528e22
             <Form htmlFor="password">
               <Input
                 size="400px"

@@ -170,15 +170,7 @@ const Footer_secondary = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
-<<<<<<< HEAD
         <span className="rui-footer-site-links-large-screen-header" style={{color:'black'}}>Partner sites:</span>
-||||||| a067643
-        <span class="rui-footer-site-links-large-screen-header" style={{color:'black'}}>Partner sites:</span>
-=======
-        <span class="rui-footer-site-links-large-screen-header" style={{ color: 'black' }}>
-          Partner sites:
-        </span>
->>>>>>> 179f0615cd015f1c7cc88a69421f966c71528e22
         <br />
         <span className="list list-column">
           <a
