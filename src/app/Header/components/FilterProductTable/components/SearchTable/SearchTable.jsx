@@ -7,7 +7,7 @@ import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 const SearchText = styled.input`
-  &::-webkit-calendar-picker-indicator{
+  &::-webkit-calendar-picker-indicator {
     opacity: 0;
   }
   width: 85%;
@@ -74,7 +74,7 @@ const Option = styled.option`
   text-decoration: none;
   border: none;
   outline: none;
-  width:100%;
+  width: 100%;
 `;
 
 const SearchPanel = styled.div`
@@ -93,7 +93,7 @@ class SearchTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      address:"",
+      address: '',
       searchOptions: {
         componentRestrictions: { country: 'au' },
       },
@@ -112,7 +112,6 @@ class SearchTable extends React.Component {
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
         this.setState({ mapCenter: latLng });
-        
       })
       .catch((error) => console.error('Error', error));
   };
@@ -165,7 +164,7 @@ class SearchTable extends React.Component {
             />
             <PlacesAutocomplete
               value={this.props.filterText}
-              onChange={this.props.onFilterTextChange}//Cannot be changed
+              onChange={this.props.onFilterTextChange} //Cannot be changed
               searchOptions={this.state.searchOptions}
               debounce={1500}
             >
@@ -181,10 +180,8 @@ class SearchTable extends React.Component {
                       id="location"
                       list="searchList"
                       onSelect={this.handleSelect}
-                      {...getInputProps(
-
-                      )}
-                     /> 
+                      {...getInputProps()}
+                    />
                     <datalist id="searchList">
                       {loading && <div>Loading...</div>}
                       {suggestions.map((suggestion) => {
@@ -196,13 +193,17 @@ class SearchTable extends React.Component {
                           ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                           : { backgroundColor: '#ffffff', cursor: 'pointer' };
                         return (
-                            <option value={suggestion.description}{...getSuggestionItemProps(suggestion, {
+                          <option
+                            value={suggestion.description}
+                            {...getSuggestionItemProps(suggestion, {
                               className,
-                            })}>{suggestion.description}</option>                          
-                          
+                            })}
+                          >
+                            {suggestion.description}
+                          </option>
                         );
                       })}
-                      </datalist>
+                    </datalist>
                   </>
                 )
               }
@@ -221,8 +222,13 @@ class SearchTable extends React.Component {
             </Button>
           </SearchPanel>
           <DropFilter>
-            <Selection name="type" id="" onChange={this.handleTypeChange} value={type}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="type"
+              id=""
+              onChange={this.handleTypeChange}
+              value={type ? type : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 All property types
               </Option>
               <Option value="">All property types</Option>
@@ -230,8 +236,13 @@ class SearchTable extends React.Component {
               <Option value="apartment">Apartment</Option>
               <Option value="studio">Studio</Option>
             </Selection>
-            <Selection name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="bedMin"
+              id=""
+              onChange={this.handleBedMinChange}
+              value={bedMin ? bedMin : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Beds (min)
               </Option>
               <Option value="">Any</Option>
@@ -242,8 +253,13 @@ class SearchTable extends React.Component {
               <Option value="5">5 Beds</Option>
               <Option value="6">6 Beds</Option>
             </Selection>
-            <Selection name="bedMax" id="" onChange={this.handleBedMaxChange} value={bedMax}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="bedMax"
+              id=""
+              onChange={this.handleBedMaxChange}
+              value={bedMax ? bedMax : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Beds (max)
               </Option>
               <Option value="">Any</Option>
@@ -255,8 +271,13 @@ class SearchTable extends React.Component {
               <Option value="6">6 Beds</Option>
               <Option value="7">7 Beds</Option>
             </Selection>
-            <Selection name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="priceMin"
+              id=""
+              onChange={this.handlePriceMinChange}
+              value={priceMin ? priceMin : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Price pw (min)
               </Option>
               <Option value="">Any</Option>
@@ -267,8 +288,13 @@ class SearchTable extends React.Component {
               <Option value="150">$150pw</Option>
               <Option value="175">$175pw</Option>
             </Selection>
-            <Selection name="priceMax" id="" onChange={this.handlePriceMaxChange} value={priceMax}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="priceMax"
+              id=""
+              onChange={this.handlePriceMaxChange}
+              value={priceMax ? priceMax : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Price pw (max)
               </Option>
               <Option value="">Any</Option>

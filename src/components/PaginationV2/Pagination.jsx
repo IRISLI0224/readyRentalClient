@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useLocation } from 'react-router-dom';
@@ -66,7 +66,6 @@ const PageList = styled.li`
     opacity: 0.8;
   }
 `;
-
 
 const renderData = (property) => {
   return (

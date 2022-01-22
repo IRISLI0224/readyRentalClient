@@ -170,7 +170,7 @@ class ChangePasswordPage extends React.Component {
                 error={this.getErrorMessage(error, 'oldPassword')}
               />
       </Form>
-      <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'oldPassword')}</InputErrorMsg>
+      <InputErrorMsg className="ErrorMsg">{this.getErrorMessage(error, 'oldPassword')}</InputErrorMsg>
       <br/>
       <br/>
       <Form  htmlFor="password">

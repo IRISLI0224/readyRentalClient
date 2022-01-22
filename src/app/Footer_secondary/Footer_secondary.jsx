@@ -167,9 +167,9 @@ const Footer_secondary = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
-        <span class="rui-footer-site-links-large-screen-header" style={{color:'black'}}>Partner sites:</span>
+        <span className="rui-footer-site-links-large-screen-header" style={{color:'black'}}>Partner sites:</span>
         <br />
-        <span class="list list-column">
+        <span className="list list-column">
           <a
             href="https://www.news.com.au/"
             target="_blank"

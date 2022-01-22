@@ -292,7 +292,7 @@ class Login extends React.Component {
                 error={this.getErrorMessage(error, 'email')}
               />
             </Form>
-            <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+            <InputErrorMsg className="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
             <br />
             <br />
             <Form htmlFor="password">

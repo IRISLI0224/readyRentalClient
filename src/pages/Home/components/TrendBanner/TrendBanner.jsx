@@ -36,12 +36,10 @@ const TrendBanner = () => {
         </Button>
       </DownloadAPP>
       <video
-        source
         src={background}
         type="video/mp4"
         muted
         autoPlay={'autoplay'}
-        preLoad="auto"
         loop
         style={{
           minwidth: '100%',

@@ -47,7 +47,7 @@ const EditForm = () => {
   const [file, setFile] = useState([]);
   const [form] = Form.useForm();
  
-  React.useEffect(async () => {
+  useEffect(async () => {
     const ids = window.location.pathname.split('/');
     const id = ids[3];
     const res = await getPropertiesById(id);
