@@ -6,12 +6,10 @@ import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
 import Item from './component/Item/';
 import FlexWrap from '../../hoc/FlexWrap';
-import { RRColors } from '../../utils/constants';
-
 
 const Container = styled.div`
   width: 100%;
-  background-color:  ${(props) => ( props.theme.footerBlue)};
+  background-color: ${(props) => props.theme.footerBlue};
   color: #fff;
   @media (max-width: 768px) {
     display: none;
@@ -70,7 +68,7 @@ const FooterText = styled.div`
     &.stock-info {
       color: #666;
       font-size: 0.8125rem;
-      padding-bottom: 3rem;
+      padding-bottom: 2rem;
     }
   }
   &.international-site {
@@ -176,9 +174,21 @@ const Footer = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
+<<<<<<< HEAD
         <span className="rui-footer-site-links-large-screen-header">Partner sites:</span>
+||||||| a067643
+        <span class="rui-footer-site-links-large-screen-header">Partner sites:</span>
+=======
+        <span>Partner sites:</span>
+>>>>>>> 179f0615cd015f1c7cc88a69421f966c71528e22
         <br />
+<<<<<<< HEAD
         <span className="list list-column">
+||||||| a067643
+        <span class="list list-column">
+=======
+        <span>
+>>>>>>> 179f0615cd015f1c7cc88a69421f966c71528e22
           <a
             href="https://www.news.com.au/"
             target="_blank"

@@ -115,6 +115,10 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchText = styled.input`
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  color: black;
   width: 95%;
   height: 50px;
   font-weight: 400;

@@ -10,6 +10,9 @@ const Container = styled.div`
   height: 300px;
   position: relative;
   background-image: url(${img});
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const DownloadAPP = styled.div`

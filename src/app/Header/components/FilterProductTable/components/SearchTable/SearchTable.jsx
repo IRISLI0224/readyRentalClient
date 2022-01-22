@@ -208,16 +208,24 @@ class SearchTable extends React.Component {
                 )
               }
             </PlacesAutocomplete>
-            <CloseOutlined
-              style={{
-                fontSize: '0.8rem',
-                position: 'absolute',
-                right: '150px',
-                zIndex: '1',
-                color: '#808080',
-              }}
-            />
-            <Button primary size="130px" height="4.03rem" type="submit" onClick={getAllProperties}>
+            {filterText && (
+              <CloseOutlined
+                style={{
+                  fontSize: '0.8rem',
+                  position: 'absolute',
+                  right: '150px',
+                  zIndex: '1',
+                  color: '#808080',
+                  opacity: 0.5,
+                  cursor: 'pointer',
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.clearInput();
+                }}
+              />
+            )}
+            <Button primary size="130px" height="4rem" type="submit">
               Search
             </Button>
           </SearchPanel>

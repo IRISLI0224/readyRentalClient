@@ -22,7 +22,6 @@ import ExploreOurProperties from './components/ExploreOurProperties';
 import TrendBanner from './components/TrendBanner';
 import BottomBanner from './components/BottomBanner';
 
-
 const Container = styled.div`
   //overflow: hidden;
   width: 60%;

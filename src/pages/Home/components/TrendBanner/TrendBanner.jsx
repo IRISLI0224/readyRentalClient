@@ -9,6 +9,9 @@ const Container = styled.div`
   /* margin-bottom: 30px; */
   position: relative;
   margin-top: 150px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const DownloadAPP = styled.div`

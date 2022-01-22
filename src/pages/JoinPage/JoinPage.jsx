@@ -56,7 +56,9 @@ const MainBox = styled.div`
 `;
 
 const LogoBox = styled.div`
-  margin-left: 40px;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
   text-align: center;
 `;
 
@@ -80,7 +82,7 @@ const LogoImg = styled.img`
 
 const TitleImg = styled.img`
   width: 200px;
-  margin-left:10px;
+  margin-left: 10px;
 `;
 
 class JoinPage extends React.Component {

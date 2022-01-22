@@ -34,7 +34,7 @@ const Container = styled.div`
       border: 2px solid ${(props) => props.theme.primaryColor};
     }
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 1025px) {
     display: none;
   }
 `;
