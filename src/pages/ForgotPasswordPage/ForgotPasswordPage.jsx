@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../../assests/img/logo_red.svg';
+import title from '../../assests/img/title2.png';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
@@ -8,10 +9,15 @@ import { Link } from 'react-router-dom';
 import emailIcon from '../../assests/img/email.png';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
-import axios from 'axios';
+import backendApi from '../../api/backendApi';
 
 const LogoImg = styled.img`
+  width: 50px;
+`;
+
+const TitleImg = styled.img`
   width: 200px;
+  margin-left: 10px;
 `;
 
 const Container = styled.div`
@@ -48,7 +54,9 @@ const MainBox = styled.div`
 `;
 
 const LogoBox = styled.div`
-  margin-left: 40px;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
   text-align: center;
 `;
 
@@ -98,7 +106,7 @@ class ForgotPasswordPage extends React.Component {
       });
     } else {
       try {
-        const response = await axios.post('http://localhost:8080/api/v1/forgotPassword', {
+        const response = await backendApi.post('/forgotPassword', {
           email,
         });
         console.log(response.data);
@@ -130,6 +138,7 @@ class ForgotPasswordPage extends React.Component {
           <LogoBox>
             <a href="/">
               <LogoImg src={Logo} />
+              <TitleImg src={title} />
             </a>
           </LogoBox>
           <Title>Forgot your password?</Title>

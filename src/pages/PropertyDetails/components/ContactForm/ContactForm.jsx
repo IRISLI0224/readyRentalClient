@@ -1,24 +1,29 @@
-import axios from 'axios';
+import backendApi from '../../../../api/backendApi';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BodyContainer, DescItem, HeroContainer, VerticalMargin } from '../Container';
+import { getUserFromToken } from '../../../../utils/authentication';
 import StyledText from '../../../../hoc/Text';
 import EnquiryButton from '../EnquiryButton';
 import TextInput from './components/TextInput';
 import TextArea from './components/TextArea';
 import swal from 'sweetalert';
+import CardAds from '../../../../components/ListCardAds/CardAds';
+import { RRColors } from '../../../../utils/constants';
 
 const ContactContainer = styled.div`
-  @media(min-width:641px) { 
-    border-radius:0.1875rem;
-  `;
+  @media (min-width: 641px) {
+    border-radius: 0.1875rem;
+  }
+`;
 
 const CheckboxContainer = styled.div`
-  @media(min-width:501px) {
+  @media (min-width: 501px) {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-  `;
+  }
+`;
 
 const CheckboxWrapper = styled.div`
   position: relative;
@@ -53,6 +58,11 @@ const FORM_FIELDS = [
   },
 ];
 
+function getAvailableDate(date) {
+  const newDate = new Date(String(date).split('T')[0]);
+  return date ? newDate.toDateString() : 'Now';
+}
+
 const validate = (data) =>
   Object.keys(FORM_FIELDS).every((key) => {
     const field = FORM_FIELDS[key];
@@ -63,7 +73,9 @@ const ContactForm = ({ id, property }) => {
   const { address, availableDate } = property;
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState();
-
+  const contactUser = getUserFromToken();
+  const blue =RRColors.themeBlue;
+  
   const [data, setData] = useState({
     phone: '',
     message: '',
@@ -72,11 +84,12 @@ const ContactForm = ({ id, property }) => {
     isInspection: false,
     isRentalApplication: false,
   });
+  
   const [touched, setTouched] = useState({
-    email: false,
-    name: false,
-    message: false,
-    phone: false,
+    email: '',
+    name: '',
+    message: '',
+    phone: '',
   });
 
   return (
@@ -95,7 +108,9 @@ const ContactForm = ({ id, property }) => {
                   : address}
               </StyledText>
               <StyledText bold="0.2rem">Rent: ${property.rent} per week</StyledText>
-              <StyledText bold="0.2rem">Available Date: {availableDate}</StyledText>
+              <StyledText bold="0.2rem">
+                Available Date: {getAvailableDate(availableDate)}
+              </StyledText>
             </HeroContainer>
           </DescItem>
           <form
@@ -106,8 +121,8 @@ const ContactForm = ({ id, property }) => {
                 return;
               }
               setLoading(true);
-              axios
-                .post('http://localhost:8080/api/v1/contact', {
+              backendApi
+                .post('/contact', {
                   name: data.name,
                   email: data.email,
                   phone: data.phone,
@@ -119,10 +134,13 @@ const ContactForm = ({ id, property }) => {
                   isLengthOfLease: data.isLengthOfLease,
                   isInspection: data.isInspection,
                   isRentalApplication: data.isRentalApplication,
+                  contactUser: contactUser,
                 })
                 .then(setResponse)
                 .catch((error) => {
                   setResponse(error.response);
+                  swal('Error', 'error');
+                  return;
                 })
                 .finally(() => setLoading(false));
               swal('Success', 'Thank you for your enquiry', 'success');
@@ -134,32 +152,46 @@ const ContactForm = ({ id, property }) => {
               </StyledText>
               <CheckboxContainer>
                 <CheckboxWrapper>
-                  <input type="checkbox" 
-                  value={data.isAvailableDate}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
-                  } />
+                  <input
+                    type="checkbox"
+                    value={data.isAvailableDate}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isAvailableDate: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Available date</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox"  value={data.isLengthOfLease}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isLengthOfLease}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isLengthOfLease: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Length of lease</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox" value={data.isInspection}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isInspection}
+                    onChange={(event) =>
+                      setData((prevData) => ({ ...prevData, isInspection: event.target.value }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Inspection</StyledText>
                 <CheckboxWrapper>
-                  <input type="checkbox" value={data.isRentalApplication}
-                  onChange={(event) =>
-                    setData((prevData) => ({ ...prevData, isRentalApplication: event.target.value }))
-                  }/>
+                  <input
+                    type="checkbox"
+                    value={data.isRentalApplication}
+                    onChange={(event) =>
+                      setData((prevData) => ({
+                        ...prevData,
+                        isRentalApplication: event.target.value,
+                      }))
+                    }
+                  />
                 </CheckboxWrapper>
                 <StyledText>Rental application</StyledText>
               </CheckboxContainer>
@@ -208,29 +240,13 @@ const ContactForm = ({ id, property }) => {
                 size="507px"
                 margin="5px"
                 color="#fff"
-                background="#a30000"
+                background={blue}
                 type="submit"
               >
                 Send enquiry
               </EnquiryButton>
             </DescItem>
           </form>
-          <DescItem>
-            <StyledText size="0.7rem">Personal Information Collection Statement</StyledText>
-            <StyledText size="0.7rem">
-              Your personal information and associated behavioural data related to search activities
-              will be passed to the Agency and/or its authorised service provider to assist the
-              Agency to contact you about your property enquiry. They are required not to use your
-              information for any other purpose. Our Privacy policy explains how we store personal
-              information and how you may access, correct or complain about the handling of personal
-              information.
-            </StyledText>
-            <StyledText size="0.7rem">
-              This form is only to be used for sending genuine email enquiries to the Agent. We
-              reserves its right to take any legal or other appropriate action in relation to misuse
-              of this service.
-            </StyledText>
-          </DescItem>
         </ContactContainer>
       </BodyContainer>
     </>

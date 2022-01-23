@@ -5,7 +5,7 @@ const DropFilter = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3%;
   margin: auto;
 `;
 

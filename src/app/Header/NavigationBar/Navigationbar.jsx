@@ -5,6 +5,7 @@ import { ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   width: 100%;
@@ -30,7 +31,7 @@ const Container = styled.div`
       margin-left: 3px;
       size: 20%;
     }
-    border-bottom: 0.1rem solid red;
+   // border-bottom: 0.1rem solid red;
   }
 `;
 
@@ -38,7 +39,7 @@ const Space = styled.div`
   width: 55.5%;
 `;
 const SpaceLogin = styled.div`
-  width:68%;
+  width: 68%;
 `;
 
 const ButtonwithoutBorder = styled(ButtonStyle)`
@@ -59,8 +60,19 @@ const ButtonWhitFont = styled(ButtonStyle)`
   }
 `;
 
+const IconEmail = styled.div`
+  display: flex;
+  width: 55.5%;
+`;
+
+const Email = styled.div`
+  margin-left: 40%;
+  margin-top: 1.2rem;
+`;
+
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
+  const user = useSelector((state) => state);
 
   useEffect(() => {
     const token = getToken();
@@ -70,10 +82,13 @@ const NavigationBar = () => {
   return (
     <Container>
       <Logo className="Logo" />
-      {Login?<SpaceLogin/>:<Space/>}
+      {Login ? <SpaceLogin /> : <Space />}
       {Login ? (
         <>
-          <Dropdown />{' '}
+          <IconEmail>
+            <Email>{user.email}</Email>
+            <Dropdown />{' '}
+          </IconEmail>
         </>
       ) : (
         <>

@@ -11,12 +11,15 @@ import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg';
 import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
+import { connect } from 'react-redux';
+import { appendData } from '../../redux/action';
+import title from '../../assests/img/title2.png';
 
 //API
 import { UserRegister } from '../../config/Users';
 import { setToken } from '../../utils/authentication';
 
-const HOMEPAGE = 'http://localhost:3000';
+const HOMEPAGE = '/';
 
 const Container = styled.div`
   background-color: white;
@@ -53,7 +56,9 @@ const MainBox = styled.div`
 `;
 
 const LogoBox = styled.div`
-  margin-left: 40px;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
   text-align: center;
 `;
 
@@ -72,7 +77,12 @@ const LinktoLogin = styled.div`
 `;
 
 const LogoImg = styled.img`
+  width: 50px;
+`;
+
+const TitleImg = styled.img`
   width: 200px;
+  margin-left: 10px;
 `;
 
 class JoinPage extends React.Component {
@@ -93,6 +103,7 @@ class JoinPage extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
+      authErrors: null,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
@@ -157,9 +168,22 @@ class JoinPage extends React.Component {
       UserRegister(data.email.value, data.password.value)
         .then((res) => {
           this.setState({ isLoading: false }, () => {
-            setToken(res.token);
-            //back to home page
-            window.location.href = HOMEPAGE;
+            if (res.data?.token) {
+              setToken(res.data.token);
+              this.props.appendData({
+                id: res.data?.user._id,
+                email: res.data.user.email,
+              });
+              //back to home page
+              window.location.href = HOMEPAGE;
+            } else {
+              const authErrors = res.data;
+              const isLoading = true;
+              this.setState({
+                authErrors,
+                isLoading,
+              });
+            }
           });
         })
         .catch((error) => {
@@ -169,7 +193,7 @@ class JoinPage extends React.Component {
   }
 
   render() {
-    const { data, error: authError, isLoading } = this.state;
+    const { data, error: authError, isLoading, authErrors } = this.state;
     const error = this.getError(data);
     return (
       <Container>
@@ -177,6 +201,7 @@ class JoinPage extends React.Component {
           <LogoBox>
             <a href="/">
               <LogoImg src={Logo} />
+              <TitleImg src={title} />
             </a>
           </LogoBox>
           <CreateTitle>Create Account</CreateTitle>
@@ -215,16 +240,15 @@ class JoinPage extends React.Component {
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
                 hidden="true"
+                error={this.getErrorMessage(error, 'password')}
               />
             </Form>
           </FormWrapper>
           <Button primary size="400px" height="50px" onClick={this.userRegister}>
             Create Account
           </Button>
-          {authError && (
-            <ServerMsg status="error">Register failed, Please change and try again.</ServerMsg>
-          )}
-          {isLoading && <ServerMsg status="success">Register Success!</ServerMsg>}
+          {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
+          {!authError || (isLoading && <ServerMsg status="success">Register Success!</ServerMsg>)}
           <LinktoLogin>
             <div>Already have an account?&nbsp;&nbsp;</div>
             <Link to="/login">Sign in</Link>
@@ -235,4 +259,13 @@ class JoinPage extends React.Component {
   }
 }
 
-export default JoinPage;
+const mapDispatchToProps = {
+  appendData,
+};
+
+const mapStateToProps = (state) => ({
+  email: state.email,
+  id: state.id,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(JoinPage);

@@ -15,7 +15,7 @@ import {
 import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
 import axios from 'axios';
-import UploadImage from '../../utils/UploadImage';
+import UploadImage from '../ImageUpload/UploadImage';
 
 const { Option } = Select;
 
@@ -55,7 +55,7 @@ class postForm extends React.Component {
     this.setFiles = this.setFiles.bind(this);
   }
 
-  handleFormSubmit= async (values, error) => {
+  handleFormSubmit = async (values, error) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -86,11 +86,11 @@ class postForm extends React.Component {
     }
     const date = new Date();
 
-    newData['postDate'] = date.toLocaleDateString();
+    newData['postDate'] = date;
 
     newData['availableDate'] = Date(values.availableDate);
 
-    newData['propImage'] = this.state.file
+    newData['propImage'] = this.state.file;
 
     //console.log(newData);
 
@@ -103,10 +103,8 @@ class postForm extends React.Component {
     window.location.href = ManageListPage;
   };
 
-
   setFiles(url) {
-    this.state.file.push(url);
-    //console.log(this.state.file);
+    this.setState({ file: [...this.state.file, url] });
   }
 
   render() {
@@ -304,6 +302,10 @@ class postForm extends React.Component {
         <Form.Item label="Description" name="description">
           <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
         </Form.Item>
+        <Form.Item label="Pictures" name="propImage">
+          <UploadImage setFiles={this.setFiles} />
+          {this.state.file.length > 0 ? `${this.state.file.length} images uploaded.` : '*** Please upload at least one image'}
+        </Form.Item>
         <Form.Item
           wrapperCol={{
             xs: {
@@ -316,9 +318,6 @@ class postForm extends React.Component {
             },
           }}
         >
-          <Form.Item label="Pictures" name="propImage">
-            <UploadImage setFiles={this.setFiles} />
-          </Form.Item>
           <Button type="primary" htmlType="submit" size={'large'}>
             Submit
           </Button>

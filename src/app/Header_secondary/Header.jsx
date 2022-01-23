@@ -8,6 +8,7 @@ const Container = styled.div`
   width: 100%;
   text-align: center;
   color: white;
+  box-shadow: 0 8px 8px 0 rgba(34, 34, 34, 0.07);
 `;
 
 const Header_secondary = () => (

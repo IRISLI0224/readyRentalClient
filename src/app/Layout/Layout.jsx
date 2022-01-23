@@ -6,6 +6,7 @@ import Footer from '../Footer';
 import Footer_secondary from '../Footer_secondary';
 import Header_secondary from '../Header_secondary/Header';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Main = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ const Layout = ({ children }) => {
     '/reset': 'LoginStyle',
     '/property': 'PropertyStyle',
     '/search': 'PropertyStyle',
+    '/account' : 'PropertyStyle',
   };
 
   const specialCase = specialCases[url];

@@ -7,6 +7,7 @@ export const NewsContainer = styled.div`
   margin: 5rem auto;
   background-color: #fff;
   text-align: center;
+  display: none;
   @media (max-width: 1200px) {
     width: 80%;
   }
@@ -20,7 +21,7 @@ export const NewsCardTitle = styled.div`
   height: 10%;
   text-align: left;
   font-size: 1.3rem;
-  color: #333f48;
+  color: props.theme.footerBlue;
 `;
 
 export const NewsCard = styled.div`
@@ -114,6 +115,10 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchText = styled.input`
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  color: black;
   width: 95%;
   height: 50px;
   font-weight: 400;

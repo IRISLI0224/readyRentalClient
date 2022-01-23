@@ -14,7 +14,7 @@ export const BasicInfoContainer = styled.div`
 export const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   width: 30vw;
   @media screen and (max-width: 1024px) {
     width: 100%;
@@ -27,8 +27,8 @@ export const HeroContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 60vw;
-  height: 300px;
+  max-width: 700px;
+  max-height: 550px;
   @media screen and (max-width: 1024px) {
     width: 100%;
     order: -1;
@@ -46,6 +46,12 @@ export const BodyContainer = styled(FlexWrap)`
 export const DescItem = styled.div`
   border-top: 1px solid #bdbdbd;
   padding: 1rem 0;
-  width: 70vw;
+  width: 50vw;
   text-align: left;
+`;
+
+export const DescItem_re = styled.div`
+  width: 50vw;
+  text-align: left;
+  margin: auto;
 `;

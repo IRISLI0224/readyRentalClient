@@ -4,15 +4,16 @@ import styled from 'styled-components';
 import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg';
 import { ReactComponent as IconBlack } from '../../assests/img/iconBefore_black.svg';
 import { removeToken } from '../../utils/authentication';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/action';
 
 export const DropdownContainer = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 200px;
-  width: 56px;
-  height: 40px;
-`; // end DropdownContainer
+  position: relative;
+  margin-right: 5rem;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+`;
 
 const ProfileButton = styled.button`
   display: flex;
@@ -23,20 +24,6 @@ const ProfileButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-`;
-const ArrowUp = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 4px solid black;
-`;
-const ArrowDown = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid white;
 `;
 
 const MenuContainer = styled.div`
@@ -70,7 +57,7 @@ const MenuLi = styled.li`
   &:hover {
     background-color: #f0f0f0;
   }
-  z-index:99;
+  z-index: 99;
 `;
 
 const MenuLink = styled.a`
@@ -86,7 +73,7 @@ const MenuLink = styled.a`
 `;
 
 const MenuSpan = styled.span` 
-  position: absolute;
+position: absolute;
 font-size: 18px;
 line-height: 48px;
 top: -1px;
@@ -97,25 +84,25 @@ text-align: left;
 padding-left:25px;
 `;
 
-//hand tabbing accessibility to dropdown
-
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
-  //get icon color from url
   let location = useLocation();
   const wholeUrl = location.pathname;
   const home = wholeUrl == '/' ? true : false;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const Logout = () => {
     removeToken();
+    navigate('', { replace: true });
+    dispatch({ type: 'LOGOUT' });
   };
 
   return (
     <DropdownContainer>
       <ProfileButton type="button" onClick={toggleOpen}>
         {home ? <Icon /> : <IconBlack />}
-        <ArrowDown />
       </ProfileButton>
       <MenuContainer isOpen={!isOpen}>
         <MenuUl>
