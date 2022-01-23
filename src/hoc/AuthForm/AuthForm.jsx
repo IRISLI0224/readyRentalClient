@@ -33,7 +33,6 @@ const MainBox = styled.div`
   left: 50%;
   transform: translate(-50%, -15%);
   z-index: 999;
-  /* border: 2px solid #e5e8ec; */
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -47,13 +46,12 @@ const MainBox = styled.div`
   align-items: center;
   justify-content: space-around;
   background: #353333;
-  opacity: 0.7;
+  opacity: 0.8;
   Button {
     margin: 0.5rem 0 46px;
   }
 `;
 
-//temporally use url from real estate
 const ForgetPassword = styled.a.attrs({
   href: '/join',
 })`
@@ -70,7 +68,7 @@ const ForgetPassword = styled.a.attrs({
 
 const LogoBoxBackground = styled.div`
   width: 100%;
-  background-color: #430268;
+  background-color: white;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 `;
@@ -94,9 +92,7 @@ const TitleImg = styled.img`
 const Title = styled.div`
   margin: 3rem 0 1rem;
   font-size: 1.2rem;
-  /* color: black; */
   color: white;
-  /* color: rgb(51, 63, 72); */
   text-align: center;
   line-height: 1.75rem;
 `;

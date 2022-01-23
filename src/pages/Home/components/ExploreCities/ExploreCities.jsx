@@ -4,7 +4,7 @@ import HomepageSection from '../../../../hoc/HomepageSection';
 import Card from './Card';
 import Melbourne from '../../../../assests/img/cities/Melbourne.jpg';
 import Perth from '../../../../assests/img/cities/Perth.jpg';
-import Adelaide from '../../../../assests/img/cities/adelaide.jpg';
+import Adelaide from '../../../../assests/img/cities/Adelaide.jpg';
 import Brisbane from '../../../../assests/img/cities/Brisbane.jpeg';
 import Canberra from '../../../../assests/img/cities/Canberra.jpg';
 import Hobart from '../../../../assests/img/cities/Hobart.jpeg';
