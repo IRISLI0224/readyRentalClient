@@ -28,7 +28,6 @@ export const getPropertiesAds = async () => {
   return response.data;
 };
 
-
 //Post new property
 export const PostProperty = async (propertyInfo) => {
   try {
@@ -48,6 +47,14 @@ export const PostProperty = async (propertyInfo) => {
 
 export const getPropertiesBySearch = async (search) => {
   const url = `${API_PROPERTIES}${search}`;
+  const response = await backendApi.get(url);
+  return response.data;
+};
+
+//get property counts of 7 cities
+const GET_COUNT_CITIES = `property/citycount`;
+export const getPropertiesCountbyCity = async () => {
+  const url = GET_COUNT_CITIES;
   const response = await backendApi.get(url);
   return response.data;
 };

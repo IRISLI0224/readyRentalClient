@@ -11,6 +11,7 @@ import {
   Button,
   DatePicker,
   InputNumber,
+  Modal,
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
@@ -51,6 +52,7 @@ class postForm extends React.Component {
     super(props);
     this.state = {
       file: [],
+      modalVisible:false
     };
     this.setFiles = this.setFiles.bind(this);
   }
@@ -99,15 +101,23 @@ class postForm extends React.Component {
     await PostProperty(newData);
 
     //back to list page
-    window.alert('Add a new property to your list successfully');
-    window.location.href = ManageListPage;
+     this.setState({
+       modalVisible:true
+     })
+    //window.alert('Add a new property to your list successfully');
+    //window.location.href = ManageListPage;
   };
 
   setFiles(url) {
     this.setState({ file: [...this.state.file, url] });
   }
 
+  Redirection = () => {
+    window.location.href = ManageListPage;
+  };
+
   render() {
+    const {modalVisible} = this.state
     return (
       <Form
         name="validate_other"
@@ -123,6 +133,18 @@ class postForm extends React.Component {
           console.log(error);
         }}
       >
+        <Modal
+          visible={modalVisible}
+          footer={[
+            <Button key="OK" onClick={this.Redirection}>
+              OK
+            </Button>,
+          ]}
+        >
+          <p></p>
+          <p>Post your property successfully</p>
+          <p></p>
+        </Modal>
         <Form.Item
           style={{ height: 45 }}
           name="roomType"
@@ -304,7 +326,9 @@ class postForm extends React.Component {
         </Form.Item>
         <Form.Item label="Pictures" name="propImage">
           <UploadImage setFiles={this.setFiles} />
-          {this.state.file.length > 0 ? `${this.state.file.length} images uploaded.` : '*** Please upload at least one image'}
+          {this.state.file.length > 0
+            ? `${this.state.file.length} images uploaded.`
+            : '*** Please upload at least one image'}
         </Form.Item>
         <Form.Item
           wrapperCol={{
