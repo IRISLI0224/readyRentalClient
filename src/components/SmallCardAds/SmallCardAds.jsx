@@ -22,7 +22,7 @@ const Card = styled.div`
   flex-direction: column;
   position: relative;
   margin-bottom: 30px;
-  height: 400px;
+  height: 420px;
 `;
 
 const Row = styled.div`
@@ -31,22 +31,18 @@ const Row = styled.div`
   flex-direction: column;
 `;
 
-
-
 const RowFrame = styled.div`
   width: 100%;
   position: relative;
   height: 400 px;
 `;
 
-
-
 const RowResidencial = styled.div`
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   position: relative;
-  height : 500px;
+  height: 500px;
 `;
 
 const ContentDetail = styled.div`
@@ -85,9 +81,11 @@ const TitleImg = styled.img`
 `;
 
 const IMG = styled.img`
-  width: 100%;
-  height: auto;
-  max-height:200px;
+  height: 200px;
+  width: 300px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
 
 /*brand, agentName, agentIcon,price,slides,address.types */
