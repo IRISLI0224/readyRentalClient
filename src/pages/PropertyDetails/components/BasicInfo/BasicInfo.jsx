@@ -25,7 +25,7 @@ const BasicInfo = ({ property }) => {
           <PropButton
             size="200px"
             onClick={() => {
-              window.scrollTo(0, 630);
+              window.scrollTo(0, 1030);
             }}
           >
             Request an inspection
