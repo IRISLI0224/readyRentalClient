@@ -22,6 +22,11 @@ width: 506px;
 height: 150px;
 font-size: 1.25rem;
 padding: 12px 16px;
+
+@media screen and (max-width: 1024px) {
+  width: 100%;
+}
+
 `;
 
 const TextArea = function TextArea({

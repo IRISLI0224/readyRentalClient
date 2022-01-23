@@ -9,6 +9,7 @@ import StyledText from '../.../../../hoc/Text/';
 import { DescItem_re } from './components/Container/Container';
 import styled from 'styled-components';
 import { Divider } from 'antd';
+import Map from '../../components/Map';
 
 const FormContainer = styled.div`
     display: flex;
@@ -17,6 +18,14 @@ const FormContainer = styled.div`
     align-content: flex-end;
     flex-wrap: nowrap;
     flex-direction: row;
+}
+  @media (min-width: 641px) {
+    border-radius: 0.1875rem;
+  }
+`;
+
+const MapContainer = styled.div`
+    margin-left:200px;
 }
   @media (min-width: 641px) {
     border-radius: 0.1875rem;
@@ -59,7 +68,11 @@ const Ads = styled.div`
   @media (min-width: 641px) {
     border-radius: 0.1875rem;
   }
+  @media screen and (max-width: 1024px) {
+    display: none;
+}
 `;
+
 
 const PropertyDetails = () => {
   const params = useParams();
@@ -88,6 +101,9 @@ const PropertyDetails = () => {
         <Description property={property} />
         <Blank></Blank>
       </FormContainer>
+      <MapContainer>
+        <Map />
+      </MapContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />
         <Ads>
@@ -106,7 +122,9 @@ const PropertyDetails = () => {
       </FormContainer>
       <Divider style={{ background: '#bdbdbd' }} />
       <DescItem_re>
-        <StyledText size="0.7rem" style={{ marginTop: 10 }}>Personal Information Collection Statement</StyledText>
+        <StyledText size="0.7rem" style={{ marginTop: 10 }}>
+          Personal Information Collection Statement
+        </StyledText>
         <StyledText size="0.7rem">
           Your personal information and associated behavioural data related to search activities
           will be passed to the Agency and/or its authorised service provider to assist the Agency

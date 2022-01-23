@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from '../../../../assests/img/logo1.png';
+import Img from '../../../../assests/img/logo.svg';
 import title from '../../../../assests/img/title1.png';
 
 const LogoP = styled.div`
@@ -11,7 +11,7 @@ const LogoP = styled.div`
   cursor: pointer; */
   background: url(${Img}) 0% 45% no-repeat;
   margin: 0px auto; 
-  width:70px;
+  width:50px;
   height:auto;
   @media (max-width: 768px) {
     width: 50px;
@@ -31,7 +31,7 @@ const Title = styled.div`
   width:250px;
   height:auto;
   @media (max-width: 768px) {
-    width: 200px;
+    width: 250px;
     height: 50px;
   }
 `;
@@ -50,7 +50,7 @@ const Container = styled.div`
   margin: 0px auto;
   margin-left:20px;
   @media (max-width: 768px) {
-    width: 200px;
+    width: 280px;
     height: 50px;
   }
 `;

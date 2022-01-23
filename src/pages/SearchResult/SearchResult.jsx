@@ -7,11 +7,13 @@ import { getPropertiesBySearch } from '../../config/Properties';
 import { Sorting } from '../../components/Sorting';
 
 const Container = styled.div`
-  margin-left: 20vw;
-  margin-top: 16px;
+  /* margin-left: 20vw;
+  margin-top: 16px; */
+  margin: 1rem auto;
+  width: 800px;
   @media screen and (max-width: 1024px) {
     margin: 0px;
-  }
+}
 `;
 const FlexWrapSearch = styled(FlexWrap)`
   margin-bottom: 8px;
