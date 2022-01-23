@@ -9,7 +9,6 @@ import phone from '../../assests/img/phone.png';
 
 const Container = styled.div`
   position: relative;
-  //overflow: hidden;
   width: 100%;
   text-align: center;
   color: white;
@@ -18,6 +17,11 @@ const Container = styled.div`
   background: url(${({ img }) => img}) no-repeat center;
   @media (max-width: 768px) {
     height: ${({ height }) => height}rem;
+    width: 100%;
+    background: none;
+  }
+  @media (max-width: 576px) {
+    height: 60px;
     width: 100%;
     background: none;
   }

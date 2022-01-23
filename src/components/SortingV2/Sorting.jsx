@@ -4,6 +4,10 @@ import { Pagination } from '../../components/PaginationV2';
 import TextStyle from '../../hoc/Text';
 import { useLocation } from 'react-router-dom';
 import backendApi from '../../api/backendApi';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 const Listing = styled.div`
   display: inline-flex;
@@ -27,6 +31,7 @@ const ListingRight = styled.div`
   justify-content: flex-end;
   flex-direction: row;
   padding-right: 15px;
+  padding-top: 5px;
   position: relative;
   padding-left: 15px;
   width: 100%;
@@ -52,9 +57,9 @@ const Row = styled.div`
 `;
 
 const options = [
-  { label: ``, value: `` },
-  { label: `Price(Lowest-Highest)`, value: `Price(Lowest-Highest)` },
-  { label: `Price(Highest-Lowest)`, value: `Price(Highest-Lowest)` },
+  // { label: ``, value: `` },
+  { label: `Price (Low-High)`, value: `Price (Low-High)` },
+  { label: `Price (High-Low)`, value: `Price (High-Low)` },
 ];
 
 let selected;
@@ -71,21 +76,18 @@ const Sorting = () => {
     let sorted;
     switch (selected) {
       case 0:
-        break;
-      case 1:
         sorted = properties.sort((a, b) => {
           return a.rent - b.rent;
         });
         setProperties(sorted);
         break;
-      case 2:
+      case 1:
         sorted = properties.sort((a, b) => {
           return b.rent - a.rent;
         });
         setProperties(sorted);
         break;
       default:
-        //console.log('click problem');
     }
   };
 
@@ -103,12 +105,14 @@ const Sorting = () => {
             </Showing>
           </ListingLeft>
           <ListingRight>  
-            <TextStyle>Sort by</TextStyle>
-            <Selection value={value.selectValue} onChange={_handleChange}>
-              {options.map((i) => (
-                <option key= {i.value} value={i.value}>{i.label}</option>
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-label">Sort By Price</InputLabel>
+            <Select value={value.selectValue} label ="Sort By Price" onChange={_handleChange}>
+            {options.map((i) => (
+                <MenuItem key= {i.value} value={i.value}>{i.label}</MenuItem>
               ))}
-            </Selection>
+            </Select>
+            </FormControl>
           </ListingRight>
         </Listing>
       </Row>
