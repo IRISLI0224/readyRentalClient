@@ -28,7 +28,6 @@ pipeline {
                 echo '+++++++++++++++++++++++++++ building +++++++++++++++++++++++'
                 //Running a job
                 sh 'CI=false npm run build'
-                //sh 'npm run build'
             }
         }
         stage ('Install AWS CLI') {
