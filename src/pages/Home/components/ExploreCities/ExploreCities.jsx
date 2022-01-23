@@ -56,7 +56,7 @@ const ContainerThree = styled.div`
 const ContainerFour = styled.div`
   //padding: 0px 0 70px 0;
   margin-top: -130px;
-  @media (max-width: 768px) {
+  @media (max-width: 1300px) {
     display: none;
   }
 `;
