@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
 import Logo from '../../assests/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
@@ -15,108 +13,24 @@ import ServerMsg from '../../hoc/ServerMsg';
 import { connect } from 'react-redux';
 import { appendData } from '../../redux/action';
 import title from '../../assests/img/title2.png';
-import test from './Img/test.mp4';
+import {
+  Container,
+  MainBox,
+  ForgetPassword,
+  LogoBoxBackground,
+  LogoBox,
+  LogoImg,
+  TitleImg,
+  Title,
+  LinktoLogin,
+} from '../../hoc/AuthForm';
+import FormBackground from '../../assests/video/FormBackground.mp4';
 
 //API
 import { UserLogin } from '../../config/Users';
 import { setToken } from '../../utils/authentication';
 
 const HOMEPAGE = '/';
-
-//temporally use url from real estate
-const ForgetPassword = styled.a.attrs({
-  href: '/join',
-})`
-  text-decoration: none;
-  color: #2b6ed2;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s linear;
-  &:hover {
-    color: #030fb1;
-  }
-  margin-top: 5px;
-  margin-bottom: 20px;
-`;
-
-const LogoImg = styled.img`
-  width: 50px;
-`;
-
-const TitleImg = styled.img`
-  width: 200px;
-  margin-left: 10px;
-`;
-
-const Container = styled.div`
-  background-color: white;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 10px;
-  height: 100vh;
-  position: relative;
-  video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-  }
-`;
-
-const MainBox = styled.div`
-  padding: 1.5rem 3rem 0px;
-  border: 1;
-  border-radius: 5px;
-  margin: auto;
-  margin-top: 100px;
-  width: 500px;
-  height: auto;
-  text-align: center;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 999;
-  border: 2px solid #e5e8ec;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  justify-content: space-around;
-  background: white;
-  Form {
-    margin: 1rem;
-  }
-  Button {
-    margin: 1rem;
-  }
-`;
-
-const LogoBox = styled.div`
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 0;
-  text-align: center;
-`;
-
-const CreateTitle = styled.div`
-  margin: 10px;
-  font-size: 1.2rem;
-  color: rgb(51, 63, 72);
-  text-align: center;
-  line-height: 1.75rem;
-`;
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -245,7 +159,7 @@ class Login extends React.Component {
       <Container>
         <video
           source
-          src={test}
+          src={FormBackground}
           type="video/mp4"
           muted
           autoPlay={'autoplay'}
@@ -253,13 +167,15 @@ class Login extends React.Component {
           loop
         ></video>
         <MainBox>
-          <LogoBox>
-            <a href="/">
-              <LogoImg src={Logo} />
-              <TitleImg src={title} />
-            </a>
-          </LogoBox>
-          <CreateTitle>Sign in</CreateTitle>
+          <LogoBoxBackground>
+            <LogoBox>
+              <a href="/">
+                <LogoImg src={Logo} />
+                <TitleImg src={title} />
+              </a>
+            </LogoBox>
+          </LogoBoxBackground>
+          <Title>Sign in</Title>
           <FormWrapper
             onSubmit={(e) => {
               e.preventDefault();
@@ -280,10 +196,10 @@ class Login extends React.Component {
                 error={this.getErrorMessage(error, 'email')}
               />
             </Form>
-            {this.state.data.email.blurred && (
+            {this.state.data.email.blurred && this.getErrorMessage(error, 'email') && (
               <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
             )}
-            <Form htmlFor="password">
+            <Form htmlFor="password" margin_bottom="1rem">
               <Input
                 size="400px"
                 name="password"
@@ -298,6 +214,11 @@ class Login extends React.Component {
                 error={this.getErrorMessage(error, 'password')}
               />
             </Form>
+            {this.state.data.password.blurred && this.getErrorMessage(error, 'password') && (
+              <InputErrorMsg class="ErrorMsg">
+                {this.getErrorMessage(error, 'password')}
+              </InputErrorMsg>
+            )}
           </FormWrapper>
           <Button primary size="400px" height="50px" onClick={this.userLogin}>
             Sign in
@@ -308,10 +229,13 @@ class Login extends React.Component {
             {' '}
             <Link to="/forgotPassword">Forgot your password?</Link>
           </ForgetPassword>
-          <ForgetPassword>
+          <LinktoLogin>
+            Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
+          </LinktoLogin>
+          {/* <ForgetPassword>
             Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
           </ForgetPassword>
-          <br />
+          <br /> */}
         </MainBox>
       </Container>
     );
