@@ -4,7 +4,7 @@ import HomepageSection from '../../../../hoc/HomepageSection';
 import Card from './Card';
 import Melbourne from '../../../../assests/img/cities/Melbourne.jpg';
 import Perth from '../../../../assests/img/cities/Perth.jpg';
-import Adelaide from '../../../../assests/img/cities/Adelaide.jpg';
+import Adelaide from '../../../../assests/img/cities/adelaide.jpg';
 import Brisbane from '../../../../assests/img/cities/Brisbane.jpeg';
 import Canberra from '../../../../assests/img/cities/Canberra.jpg';
 import Hobart from '../../../../assests/img/cities/Hobart.jpeg';
@@ -70,12 +70,14 @@ const heightLarge = '630';
 const ExploreCities = () => {
   const [cityProperties, setCityProperties] = useState(['1', '2', '3', '4', '5', '6', '7']);
 
-  useEffect(() => {getPropetyCounts()}, []);
+  useEffect(() => {
+    getPropetyCounts();
+  }, []);
 
-  const getPropetyCounts= async()=>{
-     const counts = await getPropertiesCountbyCity();
-     setCityProperties(counts);
-  }
+  const getPropetyCounts = async () => {
+    const counts = await getPropertiesCountbyCity();
+    setCityProperties(counts);
+  };
 
   return (
     <Container>
