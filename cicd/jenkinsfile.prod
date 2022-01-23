@@ -5,11 +5,11 @@ pipeline {
         }
     }
     environment {
-        ENVIRONMENT    = 'UAT'
+        ENVIRONMENT    = 'PROD'
         S3_CREDENTIAL  = 'AWS-CRE'
         S3_REGION      = 'ap-southeast-2'
-        BUCKET_NAME    = 's3://homereadyrental.com'
-        WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-FE-uat/build'
+        BUCKET_NAME    = 's3://www.homereadyrental.com'
+        WORKSPACE_PATH = '/var/jenkins_home/workspace/Buggodie-Fe-prod/build'
     }
     options {
         disableConcurrentBuilds()

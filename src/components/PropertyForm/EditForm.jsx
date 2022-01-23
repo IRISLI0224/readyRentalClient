@@ -11,6 +11,7 @@ import {
   Button,
   DatePicker,
   InputNumber,
+  Modal,
 } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { updatePropertyById } from '../../config/Properties';
@@ -45,8 +46,9 @@ const { TextArea } = Input;
 
 const EditForm = () => {
   const [file, setFile] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   const [form] = Form.useForm();
- 
+
   useEffect(async () => {
     const ids = window.location.pathname.split('/');
     const id = ids[3];
@@ -67,7 +69,7 @@ const EditForm = () => {
     if (res.smokingAllowed) {
       PF.push('smokingAllowed');
     }
-    const date = res.availableDate?moment( res.availableDate):null;
+    const date = res.availableDate ? moment(res.availableDate) : null;
     form.setFieldsValue({
       streetNumber: res.address.streetNumber,
       roomType: res.roomType,
@@ -79,11 +81,15 @@ const EditForm = () => {
       numOfBath: res.numOfBath,
       numOfCarSpace: res.numOfCarSpace,
       rent: res.rent,
-      availableDate:date,
+      availableDate: date,
       description: res.description,
       propertyFeatures: PF,
     });
   }, []);
+
+  const Redirection = () => {
+    window.location.href = ManageListPage;
+  };
 
   const handleFormSubmit = async (values, error) => {
     //formart data
@@ -127,17 +133,19 @@ const EditForm = () => {
     const ids = window.location.pathname.split('/');
     const id = ids[3];
 
-    await updatePropertyById(id,newData);
+    await updatePropertyById(id, newData);
 
     //back to list page
-    window.alert('Update your property successfully');
-    window.location.href = ManageListPage;
+    setModalVisible(true);
+
+    //window.alert('Update your property successfully');
+    //window.location.href = ManageListPage;
   };
 
   const setFiles = ({ url }) => {
-     var files=file;
-    files.push(url)
-    setFile(files)
+    var files = file;
+    files.push(url);
+    setFile(files);
     //console.log(this.state.file);
   };
 
@@ -157,6 +165,18 @@ const EditForm = () => {
         console.log(error);
       }}
     >
+      <Modal
+        visible={modalVisible}
+        footer={[
+          <Button key="OK" onClick={Redirection}>
+            OK
+          </Button>,
+        ]}
+      >
+        <p></p>
+        <p>Edit your property successfully</p>
+        <p></p>
+      </Modal>
       <Form.Item
         style={{ height: 45 }}
         name="roomType"
