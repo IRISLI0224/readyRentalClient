@@ -28,10 +28,10 @@ const Title = styled.div`
   margin: 0px auto; */
   background: url(${title}) 0% 45% no-repeat;
   margin-left:5px; 
-  width:200px;
+  width:250px;
   height:auto;
   @media (max-width: 768px) {
-    width: 200px;
+    width: 250px;
     height: 50px;
   }
 `;
@@ -50,7 +50,7 @@ const Container = styled.div`
   margin: 0px auto;
   margin-left:20px;
   @media (max-width: 768px) {
-    width: 200px;
+    width: 280px;
     height: 50px;
   }
 `;

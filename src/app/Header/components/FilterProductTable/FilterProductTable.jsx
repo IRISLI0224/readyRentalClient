@@ -48,6 +48,11 @@ class FilterProductTable extends React.Component {
       priceMax,
     });
   }
+  clearInput = () => {
+    this.setState({
+      filterText: '',
+    });
+  };
   render() {
     const { filterText, type, bedMin, bedMax, priceMin, priceMax } = this.state;
     return (
@@ -65,6 +70,7 @@ class FilterProductTable extends React.Component {
           onBedMaxChange={this.onBedMaxChange}
           onPriceMinChange={this.onPriceMinChange}
           onPriceMaxChange={this.onPriceMaxChange}
+          clearInput={this.clearInput}
         />
       </div>
     );

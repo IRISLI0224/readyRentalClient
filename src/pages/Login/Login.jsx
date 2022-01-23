@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
 import Logo from '../../assests/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
@@ -14,130 +12,25 @@ import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
 import { connect } from 'react-redux';
 import { appendData } from '../../redux/action';
-import title from '../../assests/img/title2.png'
+import title from '../../assests/img/title2.png';
+import {
+  Container,
+  MainBox,
+  ForgetPassword,
+  LogoBoxBackground,
+  LogoBox,
+  LogoImg,
+  TitleImg,
+  Title,
+  LinktoLogin,
+} from '../../hoc/AuthForm';
+import FormBackground from '../../assests/video/FormBackground.mp4';
 
 //API
 import { UserLogin } from '../../config/Users';
 import { setToken } from '../../utils/authentication';
 
 const HOMEPAGE = '/';
-
-const GlobalStyle = createGlobalStyle`body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background: rgb(243, 244, 246);
-  letter-spacing: 1px;}`;
-
-const LoginForm = styled.form`
-width: 500px;
-    height: 460px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 0px;
-    padding-top: 50px;
-    -webkit-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    background: #fff;
-    text-align: center;
-    box-shadow: 1px 1px 3px 1px #95a5a6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-  
-`;
-
-const LoginTitle = styled.h1`
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: rgb(51, 63, 72);
-  text-align: center;
-  line-height: 1.75rem;
-`;
-
-//temporally use url from real estate
-const ForgetPassword = styled.a.attrs({
-  href: '/join',
-})`
-  text-decoration: none;
-  color: #2b6ed2;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s linear;
-  &:hover {
-    color: #030fb1;
-  }
-  margin-top: 5px;
-  margin-bottom: 20px;
-`;
-
-const LogoImg = styled.img`
-  width: 50px;
-`;
-
-const TitleImg = styled.img`
-  width: 200px;
-  margin-left:10px;
-`;
-
-
-const Container = styled.div`
-  background-color: white;
-  text-align: center;
-  display: flex;
-  line-height: 10px;
-`;
-
-const MainBox = styled.div`
-    padding: 1.5rem 3rem 0px;
-    border: 1;
-    margin: auto;
-    margin-top: 100px;
-    width: 500px;
-    height: 460px;
-    text-align: center;
-    position: relative;
-    border: 2px solid #e5e8ec;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-content: space-around;
-}
-   }
- 
-`;
-
-const LogoBox = styled.div`
-  margin-left: 40px;
-  text-align: center;
-`;
-
-const CreateTitle = styled.div`
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: rgb(51, 63, 72);
-  text-align: center;
-  line-height: 1.75rem;
-`;
-
-const LinktoLogin = styled.div`
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -246,12 +139,12 @@ class Login extends React.Component {
               //back to home page
               window.location.href = HOMEPAGE;
             } else {
-              const authErrors = res.data
+              const authErrors = res.data;
               const isLoading = true;
               this.setState({
                 authErrors,
-                isLoading
-              })
+                isLoading,
+              });
             }
           });
         })
@@ -264,21 +157,32 @@ class Login extends React.Component {
     const error = this.getError(data);
     return (
       <Container>
+        <video
+          source
+          src={FormBackground}
+          type="video/mp4"
+          muted
+          autoPlay={'autoplay'}
+          preLoad="auto"
+          loop
+        ></video>
         <MainBox>
-          <LogoBox>
-            <a href="/">
-              <LogoImg src={Logo} />
-              <TitleImg src={title}/>
-            </a>
-          </LogoBox>
-          <CreateTitle>Sign in</CreateTitle>
+          <LogoBoxBackground>
+            <LogoBox>
+              <a href="/">
+                <LogoImg src={Logo} />
+                <TitleImg src={title} />
+              </a>
+            </LogoBox>
+          </LogoBoxBackground>
+          <Title>Sign in</Title>
           <FormWrapper
             onSubmit={(e) => {
               e.preventDefault();
               this.handleIsFormSubmitChange(true);
             }}
           >
-            <Form htmlFor="email">
+            <Form htmlFor="email" margin_bottom="1rem">
               <Input
                 size="400px"
                 name="email"
@@ -292,10 +196,10 @@ class Login extends React.Component {
                 error={this.getErrorMessage(error, 'email')}
               />
             </Form>
-            <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
-            <br />
-            <br />
-            <Form htmlFor="password">
+            {this.state.data.email.blurred && this.getErrorMessage(error, 'email') && (
+              <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+            )}
+            <Form htmlFor="password" margin_bottom="1rem">
               <Input
                 size="400px"
                 name="password"
@@ -310,22 +214,28 @@ class Login extends React.Component {
                 error={this.getErrorMessage(error, 'password')}
               />
             </Form>
+            {this.state.data.password.blurred && this.getErrorMessage(error, 'password') && (
+              <InputErrorMsg class="ErrorMsg">
+                {this.getErrorMessage(error, 'password')}
+              </InputErrorMsg>
+            )}
           </FormWrapper>
           <Button primary size="400px" height="50px" onClick={this.userLogin}>
             Sign in
           </Button>
-          <br />
           {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
-          <br />
           {!authError || (isLoading && <ServerMsg status="success">Login Success!</ServerMsg>)}
           <ForgetPassword>
             {' '}
             <Link to="/forgotPassword">Forgot your password?</Link>
           </ForgetPassword>
-          <ForgetPassword>
+          <LinktoLogin>
+            Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
+          </LinktoLogin>
+          {/* <ForgetPassword>
             Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
           </ForgetPassword>
-          <br />
+          <br /> */}
         </MainBox>
       </Container>
     );

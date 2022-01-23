@@ -31,7 +31,7 @@ const Container = styled.div`
       margin-left: 3px;
       size: 20%;
     }
-    border-bottom: 0.1rem solid red;
+   // border-bottom: 0.1rem solid red;
   }
 `;
 

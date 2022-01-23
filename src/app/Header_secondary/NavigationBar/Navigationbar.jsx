@@ -11,10 +11,10 @@ import title from '../../../assests/img/title2.png';
 const Container = styled.div`
   word-wrap: break-word;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 1rem 0.5rem;
   height: 4.5rem;
-  border: 1px solid #a3a3a3;
+  //border: 1px solid #a3a3a3;
   padding: 1rem 0.5rem;
 `;
 
@@ -62,8 +62,8 @@ const NavigationBar = () => {
       {Login ? <SpaceLogin /> : <Space />}
       <a href="/">
         <LogoPanel>
-          <img src={Logo} style={{ height: '40px' }} />
-          <img src={title} style={{ height: '30px', marginLeft: '10px' }} />
+          <img src={Logo} style={{ height: '50px' }} />
+          <img src={title} style={{ height: '40px', marginLeft: '10px' }} />
         </LogoPanel>
       </a>
       {Login ? (
