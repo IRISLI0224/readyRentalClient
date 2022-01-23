@@ -52,7 +52,7 @@ class postForm extends React.Component {
     super(props);
     this.state = {
       file: [],
-      modalVisible:false
+      modalVisible: false,
     };
     this.setFiles = this.setFiles.bind(this);
   }
@@ -101,9 +101,9 @@ class postForm extends React.Component {
     await PostProperty(newData);
 
     //back to list page
-     this.setState({
-       modalVisible:true
-     })
+    this.setState({
+      modalVisible: true,
+    });
     //window.alert('Add a new property to your list successfully');
     //window.location.href = ManageListPage;
   };
@@ -117,7 +117,7 @@ class postForm extends React.Component {
   };
 
   render() {
-    const {modalVisible} = this.state
+    const { modalVisible } = this.state;
     return (
       <Form
         name="validate_other"
@@ -327,8 +327,8 @@ class postForm extends React.Component {
         <Form.Item label="Pictures" name="propImage">
           <UploadImage setFiles={this.setFiles} />
           {this.state.file.length > 0
-            ? `${this.state.file.length} images uploaded.`
-            : '*** Please upload at least one image'}
+            ? `${this.state.file.length} images uploaded successfully.`
+            : '*** Please upload at least one image and wait until all your images have finished uploading'}
         </Form.Item>
         <Form.Item
           wrapperCol={{
