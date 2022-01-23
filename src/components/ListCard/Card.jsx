@@ -9,6 +9,7 @@ import StyledText from '../../hoc/Text';
 import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
 import Logo from '../../assests/img/logo_red.svg';
+import title from '../../assests/img/title2.png';
 
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
@@ -28,8 +29,8 @@ const Row = styled.div`
 const RowTitle = styled.div`
   background-color: #fff;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  //justify-content: space-between;
+  //align-items: center;
   color: white;
 `;
 
@@ -105,6 +106,12 @@ const LastFrame = styled.div`
   min-width: 8%;
 `;
 
+const TitleImg = styled.img`
+  margin-top: 10px;
+  height: 25px;
+  margin-left: 10px;
+`;
+
 /*brand, agentName, agentIcon,price,slides,address.types */
 
 const Cards = (props) => (
@@ -113,6 +120,7 @@ const Cards = (props) => (
       <Row>
         <RowTitle>
           <BrandImage src={Logo} alt="icon" />
+          <TitleImg src={title} />
         </RowTitle>
       </Row>
       <RowFrame>

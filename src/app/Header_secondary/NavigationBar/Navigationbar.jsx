@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
-import Logo from '../../../assests/img/logo_red.svg';
+import Logo from '../../../assests/img/logo2.png';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
 import { useSelector } from 'react-redux';
-import title from '../../../assests/img/title2.png'
+import title from '../../../assests/img/title2.png';
 
 const Container = styled.div`
   word-wrap: break-word;
@@ -14,7 +14,7 @@ const Container = styled.div`
   justify-content: center;
   padding: 1rem 0.5rem;
   height: 4.5rem;
-  border: 1px solid #a3a3a3;
+  //border: 1px solid #a3a3a3;
   padding: 1rem 0.5rem;
 `;
 
@@ -38,15 +38,14 @@ const LogoPanel = styled.div`
 `;
 
 const IconEmail = styled.div`
-  display:flex;
-  margin-left:-20px;
-  //width: 55.5%;
+  display: flex;
+  width: 55.5%;
 `;
 
 const Email = styled.div`
-  margin-left:40%;
+  margin-left: 40%;
   color: gray;
-  margin-top:20px;
+  margin-top: 1.2rem;
 `;
 
 const NavigationBar = () => {
@@ -63,8 +62,8 @@ const NavigationBar = () => {
       {Login ? <SpaceLogin /> : <Space />}
       <a href="/">
         <LogoPanel>
-          <img src={Logo} style={{ height: '40px' }} />
-          <img src={title} style={{ height: '30px', marginLeft:'10px' }}/>
+          <img src={Logo} style={{ height: '60px' }} />
+          <img src={title} style={{ height: '40px', marginLeft: '10px' }} />
         </LogoPanel>
       </a>
       {Login ? (

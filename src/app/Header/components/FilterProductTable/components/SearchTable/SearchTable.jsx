@@ -7,7 +7,7 @@ import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 const SearchText = styled.input`
-  &::-webkit-calendar-picker-indicator{
+  &::-webkit-calendar-picker-indicator {
     opacity: 0;
   }
   width: 85%;
@@ -74,7 +74,7 @@ const Option = styled.option`
   text-decoration: none;
   border: none;
   outline: none;
-  width:100%;
+  width: 100%;
 `;
 
 const SearchPanel = styled.div`
@@ -93,7 +93,7 @@ class SearchTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      address:"",
+      address: '',
       searchOptions: {
         componentRestrictions: { country: 'au' },
       },
@@ -112,7 +112,6 @@ class SearchTable extends React.Component {
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
         this.setState({ mapCenter: latLng });
-        
       })
       .catch((error) => console.error('Error', error));
   };
@@ -165,7 +164,7 @@ class SearchTable extends React.Component {
             />
             <PlacesAutocomplete
               value={this.props.filterText}
-              onChange={this.props.onFilterTextChange}//Cannot be changed
+              onChange={this.props.onFilterTextChange} //Cannot be changed
               searchOptions={this.state.searchOptions}
               debounce={1500}
             >
@@ -181,10 +180,8 @@ class SearchTable extends React.Component {
                       id="location"
                       list="searchList"
                       onSelect={this.handleSelect}
-                      {...getInputProps(
-
-                      )}
-                     /> 
+                      {...getInputProps()}
+                    />
                     <datalist id="searchList">
                       {loading && <div>Loading...</div>}
                       {suggestions.map((suggestion) => {
@@ -196,27 +193,39 @@ class SearchTable extends React.Component {
                           ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                           : { backgroundColor: '#ffffff', cursor: 'pointer' };
                         return (
-                            <option value={suggestion.description}{...getSuggestionItemProps(suggestion, {
+                          <option
+                            value={suggestion.description}
+                            {...getSuggestionItemProps(suggestion, {
                               className,
-                            })}>{suggestion.description}</option>                          
-                          
+                            })}
+                          >
+                            {suggestion.description}
+                          </option>
                         );
                       })}
-                      </datalist>
+                    </datalist>
                   </>
                 )
               }
             </PlacesAutocomplete>
-            <CloseOutlined
-              style={{
-                fontSize: '0.8rem',
-                position: 'absolute',
-                right: '150px',
-                zIndex: '1',
-                color: '#808080',
-              }}
-            />
-            <Button primary size="130px" height="4.03rem" type="submit" onClick={getAllProperties}>
+            {filterText && (
+              <CloseOutlined
+                style={{
+                  fontSize: '0.8rem',
+                  position: 'absolute',
+                  right: '150px',
+                  zIndex: '1',
+                  color: '#808080',
+                  opacity: 0.5,
+                  cursor: 'pointer',
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.clearInput();
+                }}
+              />
+            )}
+            <Button primary size="130px" height="4rem" type="submit">
               Search
             </Button>
           </SearchPanel>

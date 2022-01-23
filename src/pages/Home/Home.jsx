@@ -16,11 +16,11 @@ import {
   NewsCardContent,
 } from './components/Container';
 import SearchForm from './components/SearchForm';
+import WhyChooseUs from './components/WhyChooseUs';
+import ExploreOurProperties from './components/ExploreOurProperties';
 
-import SmallPropertyCard from '../../components/SmallPropertyCard';
-//import SlideCard from '../../components/SlideCard';
-import 'antd/dist/antd.css';
-import { Carousel } from 'antd';
+import TrendBanner from './components/TrendBanner';
+import BottomBanner from './components/BottomBanner';
 
 const Container = styled.div`
   //overflow: hidden;
@@ -150,6 +150,8 @@ class Home extends React.Component {
     const { properties, filterText, type, bedMin, bedMax, priceMin, priceMax } = this.state;
     return (
       <Container>
+        <WhyChooseUs />
+        <ExploreOurProperties />
         <NewsContainer>
           <NewsCardTitle>
             <h2>Latest Property News</h2>
@@ -210,12 +212,14 @@ class Home extends React.Component {
             </a>
           </NewsCard>
         </NewsContainer>
+        <TrendBanner />
         {properties.length > 0 ? (
           <div>
             <SlideCardContainer properties={properties} />
             <br />
           </div>
         ) : null}
+        <BottomBanner />
         <SearchForm
           filterText={filterText}
           type={type}

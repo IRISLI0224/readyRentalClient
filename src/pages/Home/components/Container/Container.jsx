@@ -7,6 +7,7 @@ export const NewsContainer = styled.div`
   margin: 5rem auto;
   background-color: #fff;
   text-align: center;
+  display: none;
   @media (max-width: 1200px) {
     width: 80%;
   }
@@ -114,6 +115,10 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchText = styled.input`
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  color: black;
   width: 95%;
   height: 50px;
   font-weight: 400;

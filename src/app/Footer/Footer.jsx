@@ -6,12 +6,10 @@ import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
 import Item from './component/Item/';
 import FlexWrap from '../../hoc/FlexWrap';
-import { RRColors } from '../../utils/constants';
-
 
 const Container = styled.div`
-  width: 100vw;
-  background-color:  ${(props) => ( props.theme.footerBlue)};
+  width: 100%;
+  background-color: ${(props) => props.theme.footerBlue};
   color: #fff;
   @media (max-width: 768px) {
     display: none;
@@ -70,7 +68,7 @@ const FooterText = styled.div`
     &.stock-info {
       color: #666;
       font-size: 0.8125rem;
-      padding-bottom: 3rem;
+      padding-bottom: 2rem;
     }
   }
   &.international-site {
@@ -176,9 +174,9 @@ const Footer = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
-        <span class="rui-footer-site-links-large-screen-header">Partner sites:</span>
+        <span>Partner sites:</span>
         <br />
-        <span class="list list-column">
+        <span>
           <a
             href="https://www.news.com.au/"
             target="_blank"
