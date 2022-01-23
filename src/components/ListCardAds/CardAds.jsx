@@ -12,7 +12,7 @@ import Logo from '../../assests/img/logo_red.svg';
 import { getPropertiesAds } from '../../config/Properties';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
-
+import title from '../../assests/img/title2.png';
 
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
@@ -32,7 +32,7 @@ const Row = styled.div`
 const RowTitle = styled.div`
   background-color: #fff;
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   align-items: center;
   color: white;
 `;
@@ -90,11 +90,13 @@ const Price = styled.h2`
   margin-top: 0px;
   font-size: 1rem;
   text-align: left;
+  margin-left: 0px;
 `;
 
 const Address = styled.p`
   margin: 0px;
   font-size: 1rem;
+  text-align: left;
 `;
 
 const Structure = styled.div`
@@ -107,6 +109,11 @@ const LastFrame = styled.div`
   align-items: start;
   justify-content: space-between;
   min-width: 8%;
+`;
+
+const TitleImg = styled.img`
+  width: 120px;
+  margin-left: 10px;
 `;
 
 /*brand, agentName, agentIcon,price,slides,address.types */
@@ -132,6 +139,7 @@ const CardAds = (props) => {
     P.address?.city +
     ' ' +
     P.address?.state +
+    ' ' +
     P.address?.postCode;
   const slides = P.propImage?.length > 0 ? P.propImage : SliderData;
   const link = '/property/' + P._id;
@@ -141,6 +149,7 @@ const CardAds = (props) => {
         <Row>
           <RowTitle>
             <BrandImage src={Logo} alt="icon" />
+            <TitleImg src={title} />
           </RowTitle>
         </Row>
         <RowFrame>
@@ -190,9 +199,9 @@ const CardAds = (props) => {
             </StyledIcon>
           </LastFrame>
         </RowResidencial>
-          <Button primary size="100%" as="a" href={link}>
-            View Property
-          </Button>
+        <Button primary size="100%" as="a" href={link}>
+          View Property
+        </Button>
       </Card>
     </>
   );

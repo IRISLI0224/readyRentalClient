@@ -14,7 +14,11 @@ const PropertyDetail = ({ property }) => {
     <div>
       <Wrapper>
         <NoShadowWrapper>
-          <HouseIcon alt="house" />
+          {property.propImage[0] ? (
+            <img src={property.propImage[0]} alt="house1" style={{ height: '100px' }} />
+          ) : (
+            <HouseIcon alt="house" />
+          )}
           <WrapperColumnFlex>
             <RoomType property={property} />
           </WrapperColumnFlex>

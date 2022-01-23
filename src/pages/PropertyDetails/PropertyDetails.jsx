@@ -9,6 +9,7 @@ import StyledText from '../.../../../hoc/Text/';
 import { DescItem_re } from './components/Container/Container';
 import styled from 'styled-components';
 import { Divider } from 'antd';
+import Map from '../../components/Map';
 
 const FormContainer = styled.div`
     display: flex;
@@ -23,9 +24,24 @@ const FormContainer = styled.div`
   }
 `;
 
+const MapContainer = styled.div`
+    margin-left:200px;
+}
+  @media (min-width: 641px) {
+    border-radius: 0.1875rem;
+  }
+`;
+
+const Blank = styled.div`
+  width: 350px;
+  @media (min-width: 641px) {
+    border-radius: 0.1875rem;
+  }
+`;
+
 const Ads = styled.div` 
     margin-top :50px;
-    margin-left:10px;
+    margin-left:50px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -83,11 +99,11 @@ const PropertyDetails = () => {
       <BasicInfo property={property} />
       <FormContainer>
         <Description property={property} />
-        <Ads>
-          <StyledText size="1.5rem">Property Showcase</StyledText>
-          <CardAds props={property}></CardAds>
-        </Ads>
+        <Blank></Blank>
       </FormContainer>
+      <MapContainer>
+        <Map />
+      </MapContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />
         <Ads>
@@ -106,7 +122,9 @@ const PropertyDetails = () => {
       </FormContainer>
       <Divider style={{ background: '#bdbdbd' }} />
       <DescItem_re>
-        <StyledText size="0.7rem">Personal Information Collection Statement</StyledText>
+        <StyledText size="0.7rem" style={{ marginTop: 10 }}>
+          Personal Information Collection Statement
+        </StyledText>
         <StyledText size="0.7rem">
           Your personal information and associated behavioural data related to search activities
           will be passed to the Agency and/or its authorised service provider to assist the Agency
@@ -114,7 +132,7 @@ const PropertyDetails = () => {
           for any other purpose. Our Privacy policy explains how we store personal information and
           how you may access, correct or complain about the handling of personal information.
         </StyledText>
-        <StyledText size="0.7rem">
+        <StyledText size="0.7rem" style={{ marginBottom: 50 }}>
           This form is only to be used for sending genuine email enquiries to the Agent. We reserves
           its right to take any legal or other appropriate action in relation to misuse of this
           service.
