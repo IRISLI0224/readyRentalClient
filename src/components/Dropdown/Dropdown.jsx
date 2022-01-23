@@ -107,18 +107,13 @@ const Dropdown = () => {
       <MenuContainer isOpen={!isOpen}>
         <MenuUl>
           <MenuLi>
-            <MenuLink href="#">
-              <MenuSpan>Track your property</MenuSpan>
-            </MenuLink>
-          </MenuLi>
-          <MenuLi>
             <MenuLink href="/property/manage-listings">
               <MenuSpan>Manage rental listings</MenuSpan>
             </MenuLink>
           </MenuLi>
           <MenuLi>
-            <MenuLink href="#">
-              <MenuSpan>Rental applications</MenuSpan>
+            <MenuLink href="/property/inspection">
+              <MenuSpan>Inspection requests</MenuSpan>
             </MenuLink>
           </MenuLi>
           <MenuLi>

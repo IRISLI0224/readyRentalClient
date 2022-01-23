@@ -39,7 +39,7 @@ const MarginBottom = styled.div`
   margin-bottom: 30px;
 `;
 
-const EditBar = ({ property, onDelete }) => {
+const EditBar = ({ property, onDelete, isListing }) => {
   return (
     <MarginBottom>
       <Wrapper>
@@ -48,10 +48,12 @@ const EditBar = ({ property, onDelete }) => {
           <SpanText>{property.status}</SpanText>
         </div>
         <NoShadowWrapper>
-          <StyledBtn as="a" href={`/property/edit/${property._id}`}>
-            <FaPencilAlt />
-            <span>Edit</span>
-          </StyledBtn>
+          {isListing ? (
+            <StyledBtn as="a" href={`/property/edit/${property._id}`}>
+              <FaPencilAlt />
+              <span>Edit</span>
+            </StyledBtn>
+          ) : null}
           <StyledBtn as="a" href={`/property/${property._id}`}>
             <GrView />
             <span>View</span>
