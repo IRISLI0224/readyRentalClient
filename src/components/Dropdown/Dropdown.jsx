@@ -7,12 +7,16 @@ import { removeToken } from '../../utils/authentication';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/action';
+import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 
 export const DropdownContainer = styled.div`
   position: relative;
   margin-right: 5rem;
   margin-left: 0.5rem;
   margin-top: 1rem;
+  @media (max-width: 576px) {
+    margin: 0;
+  }
 `;
 
 const ProfileButton = styled.button`
@@ -24,6 +28,32 @@ const ProfileButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+  @media (max-width: 576px) {
+    display: none;
+  }
+`;
+const ProfileButtonMobile = styled.button`
+  display: none;
+  @media (max-width: 576px) {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    top: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000;
+  }
+`;
+const Cross = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 20px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
 `;
 
 const MenuContainer = styled.div`
@@ -38,6 +68,18 @@ const MenuContainer = styled.div`
     overflow: visible;
     height: 0px;
     z-index:99;
+    @media (max-width: 576px) {
+      background-color: rgba(0,0,0,0.8);
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 99;
+      transition: 0.5s;
+    }
 `;
 const MenuUl = styled.ul`
     background: #fff;
@@ -49,6 +91,11 @@ const MenuUl = styled.ul`
     padding: 0;
     list - style - type: none;
     z-index:99;
+    @media (max-width: 576px) {
+      margin-top: 30px;
+      background: none;
+      border: none;
+    }
 `;
 const MenuLi = styled.li`
   display: block;
@@ -58,6 +105,12 @@ const MenuLi = styled.li`
     background-color: #f0f0f0;
   }
   z-index: 99;
+  @media (max-width: 576px) {
+    height: 69px;
+    padding: 20px;
+    &:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
 `;
 
 const MenuLink = styled.a`
@@ -65,23 +118,32 @@ const MenuLink = styled.a`
     position: relative;
     background-color: #fff;
     line-height: 48px;
-    font-size: 16px;
     padding: 20px
     color: #3b3b3b;
     border-bottom: 1px solid #e3e3e3;
     transition-duration: .1s;
+    @media (max-width: 576px) {
+      border-bottom: none;
+      transition-duration: .3s;
+    }
 `;
 
-const MenuSpan = styled.span` 
-position: absolute;
-font-size: 18px;
-line-height: 48px;
-top: -1px;
-color: #3b3b3b;
-float: none;
-font-family: 
-text-align: left;
-padding-left:25px;
+const MenuSpan = styled.span`
+  position: absolute;
+  font-size: 18px;
+  line-height: 48px;
+  top: -1px;
+  color: #3b3b3b;
+  float: none;
+  text-align: left;
+  padding-left: 25px;
+  @media (max-width: 576px) {
+    font-size: 20px;
+    color: #f1f1f1;
+    &:hover {
+      color: #ccc;
+    }
+  }
 `;
 
 const Dropdown = () => {
@@ -104,10 +166,16 @@ const Dropdown = () => {
       <ProfileButton type="button" onClick={toggleOpen}>
         {home ? <Icon /> : <IconBlack />}
       </ProfileButton>
+      <ProfileButtonMobile type="button" onClick={toggleOpen}>
+        <MenuOutlined />
+      </ProfileButtonMobile>
       <MenuContainer isOpen={!isOpen}>
+        <Cross type="button" onClick={toggleOpen}>
+          <CloseOutlined />
+        </Cross>
         <MenuUl>
           <MenuLi>
-            <MenuLink href="#">
+            <MenuLink href="/">
               <MenuSpan>Track your property</MenuSpan>
             </MenuLink>
           </MenuLi>
@@ -127,10 +195,8 @@ const Dropdown = () => {
             </MenuLink>
           </MenuLi>
           <MenuLi>
-            <MenuLink href="">
-              <MenuSpan>
-                <div onClick={Logout}>Log out</div>
-              </MenuSpan>
+            <MenuLink href="/">
+              <MenuSpan onClick={Logout}>Log out</MenuSpan>
             </MenuLink>
           </MenuLi>
         </MenuUl>
