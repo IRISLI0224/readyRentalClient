@@ -8,7 +8,7 @@ import Item from './component/Item';
 import FlexWrap from '../../hoc/FlexWrap';
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color: #f7f8f9;
   color: #d2d5da;
 `;
@@ -62,6 +62,7 @@ const FooterText = styled.div`
     &.stock-info {
       color: #666;
       font-size: 0.8125rem;
+      padding-bottom: 2rem;
     }
   }
   &.international-site {
@@ -131,7 +132,9 @@ const Footer_secondary = () => (
       </FooterText>
       <FooterText className="international-site">
         <span>
-          <span className="title" style={{color:'black'}}>International sites:</span>
+          <span className="title" style={{ color: 'black' }}>
+            International sites:
+          </span>
           <br />
           <a title="Property for sale and rent in China" href="https://www.myfun.com/">
             China
@@ -167,7 +170,9 @@ const Footer_secondary = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
-        <span class="rui-footer-site-links-large-screen-header" style={{color:'black'}}>Partner sites:</span>
+        <span class="rui-footer-site-links-large-screen-header" style={{ color: 'black' }}>
+          Partner sites:
+        </span>
         <br />
         <span class="list list-column">
           <a

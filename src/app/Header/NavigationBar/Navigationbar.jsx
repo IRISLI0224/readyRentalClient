@@ -31,7 +31,7 @@ const Container = styled.div`
       margin-left: 3px;
       size: 20%;
     }
-    border-bottom: 0.1rem solid red;
+   // border-bottom: 0.1rem solid red;
   }
 `;
 
@@ -61,13 +61,13 @@ const ButtonWhitFont = styled(ButtonStyle)`
 `;
 
 const IconEmail = styled.div`
-  display:flex;
+  display: flex;
   width: 55.5%;
 `;
 
 const Email = styled.div`
-  margin-left:40%;
-
+  margin-left: 40%;
+  margin-top: 1.2rem;
 `;
 
 const NavigationBar = () => {

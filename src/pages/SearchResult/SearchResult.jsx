@@ -7,12 +7,10 @@ import { getPropertiesBySearch } from '../../config/Properties';
 import { Sorting } from '../../components/Sorting';
 
 const Container = styled.div`
-  // margin-left: 38vw;
-  width: 100%;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* margin-left: 20vw;
+  margin-top: 16px; */
+  margin: 1rem auto;
+  width: 800px;
   @media screen and (max-width: 1024px) {
     margin: 0px;
   }

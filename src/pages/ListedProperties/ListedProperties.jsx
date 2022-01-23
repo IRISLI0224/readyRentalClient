@@ -46,8 +46,19 @@ class ListedProperties extends React.Component {
       const user = await getUserById(userId);
 
       const properties = user.properties;
-      const inspections = user.inspections;
 
+      // console.log()
+
+      //sort properties by post time
+      const compare = (a, b) => {
+        if (a.postDate < b.postDate) return 1;
+        if (a.postDate > b.postDate) return -1;
+        return 0;
+      };
+
+      properties.sort(compare);
+
+      const inspections = user.inspections;
       //put all the properties in inspections into an array
       const inspectionProperties = await Promise.all(
         inspections.map(async (inspection) => {
@@ -55,6 +66,8 @@ class ListedProperties extends React.Component {
           return property;
         }),
       );
+
+      inspectionProperties.sort(compare);
 
       //check if it should be landlord's listing page or tenant's inspection list
       if (this.props.isListing) {
