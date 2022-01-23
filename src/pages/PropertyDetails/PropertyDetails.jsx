@@ -68,7 +68,11 @@ const Ads = styled.div`
   @media (min-width: 641px) {
     border-radius: 0.1875rem;
   }
+  @media screen and (max-width: 1024px) {
+    display: none;
+}
 `;
+
 
 const PropertyDetails = () => {
   const params = useParams();

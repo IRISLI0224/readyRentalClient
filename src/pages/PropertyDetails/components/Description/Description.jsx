@@ -23,13 +23,25 @@ const FeatureContainer = styled(FlexWrap)`
   }
 `;
 
+const BodyContainers = styled(BodyContainer)`
+@media screen and (max-width: 1024px) {
+  min-width: 100%;
+}
+`
+
+const DescItems = styled(DescItem)`
+@media screen and (max-width: 1024px) {
+  width: 80vw;
+}
+`
+
 const Description = ({ property }) => (
   <>
-    <BodyContainer direction="column">
-      <DescItem>
+    <BodyContainers direction="column">
+      <DescItems>
         <StyledText>{property.description}</StyledText>
-      </DescItem>
-      <DescItem>
+      </DescItems>
+      <DescItems>
         <StyledText bold size="1.1rem">
           Property Features
         </StyledText>
@@ -116,8 +128,8 @@ const Description = ({ property }) => (
             )}
           </FlexWrap>
         </VerticalMargin>
-      </DescItem>
-    </BodyContainer>
+      </DescItems>
+    </BodyContainers>
   </>
 );
 

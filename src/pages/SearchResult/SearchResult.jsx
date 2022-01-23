@@ -13,7 +13,7 @@ const Container = styled.div`
   width: 800px;
   @media screen and (max-width: 1024px) {
     margin: 0px;
-  }
+}
 `;
 const FlexWrapSearch = styled(FlexWrap)`
   margin-bottom: 8px;

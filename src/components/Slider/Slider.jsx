@@ -30,6 +30,10 @@ const Slider = styled.section`
     justify-content: center;
     align-items: center;
     width: ${(props)=> props.width};
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
 `;
 
 const Propi = styled.img`
