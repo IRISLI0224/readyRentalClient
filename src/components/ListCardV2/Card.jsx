@@ -112,7 +112,7 @@ const ContentFooter = styled.div`
 const Price = styled.h2`
   color: #0d263b;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   margin: 5px;
 `;
@@ -158,7 +158,8 @@ const Cards = (props) => (
       <Details>
         <ContentDetail>
           <WrapperFloat>
-            <Type>{props.types}</Type>
+            <Price>${props.price} per week</Price>
+            
             <Address>{props.address}</Address>
             <PropDetails>
               <PropDetail>
@@ -187,7 +188,7 @@ const Cards = (props) => (
           </WrapperCenter>
         </ContentDetail>
         <ContentFooter>
-          <Price>${props.price} per week</Price>
+          <Type>{props.types}</Type>
           <StyledIcon>
             {' '}
             <AiOutlineStar />{' '}
