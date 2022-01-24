@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
 import { Carousel } from '@trendyol-js/react-carousel';
@@ -28,8 +28,15 @@ const Descriptions = styled.div`
   line-height: 1.25rem;
   margin-bottom: 0;
 `;
-const cardNumber=window.innerWidth<=1300?3:4.5
+//const cardNumber = window.innerWidth <= 800 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
 const SlideCardContainer = ({ properties }) => {
+  const [cardNumber, setCardNumber] = useState(4);
+
+  useEffect(() => {
+    const number = window.innerWidth <= 1000 ? 2.5 : window.innerWidth <= 1500 ? 3.5 : 4;
+    setCardNumber(number);
+  }, [window.innerWidth]);
+
   return (
     <Container>
       {' '}
