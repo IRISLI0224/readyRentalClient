@@ -64,7 +64,7 @@ const PropertyNumber = styled.div`
 const ExploreCitiesCard = ({ name, city, background, background_alt, number, width, height }) => {
   const propertiesString = 'properties';
   const propertyString = 'property';
-  const property = number > 1 ? number + ' ' + {propertiesString} : number + ' ' + {propertyString};
+  const property = number > 1 ? number + ' ' + propertiesString : number + ' ' + propertyString;
   return (
     <Link to={`/search?input=${city}`}>
       <Container width={width} height={height}>

@@ -76,7 +76,7 @@ const Details = styled.div`
 
 const ExploreOurPropertiesCard = ({ icon, icon_alt, name, type, background, background_alt }) => {
   return (
-    <Link to={`/search/v2?type=${type}`}>
+    <Link to={`/search?type=${type}`}>
       <Container>
         <BackgroundImg className="img" src={background} alt={background_alt} />
         <Curtain />
