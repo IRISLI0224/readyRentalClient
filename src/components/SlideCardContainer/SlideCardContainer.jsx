@@ -30,12 +30,6 @@ const Descriptions = styled.div`
 `;
 //const cardNumber = window.innerWidth <= 800 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
 const SlideCardContainer = ({ properties }) => {
-  const [cardNumber, setCardNumber] = useState(4);
-
-  useEffect(() => {
-    const number = window.innerWidth <= 1200 ? 2.5 : window.innerWidth <= 1500 ? 3.5 : 4;
-    setCardNumber(number);
-  }, [window.innerWidth]);
 
   return (
     <Container>
