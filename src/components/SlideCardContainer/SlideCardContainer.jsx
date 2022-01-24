@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import SlideCard from './SlideCard';
 import { Carousel } from '@trendyol-js/react-carousel';
 import SmallCardAds from '../SmallCardAds/SmallCardAds';
 

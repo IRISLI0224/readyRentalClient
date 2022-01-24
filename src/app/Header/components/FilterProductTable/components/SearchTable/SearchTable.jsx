@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
-import { getAllProperties } from '../../../../../../config/Properties';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
@@ -36,30 +35,6 @@ const Container = styled.div`
     color: white;
   }
   position: relative;
-`;
-
-const CheckFilterItem = styled.div`
-  width: auto;
-  height: 1.5rem;
-  display: inline-block;
-`;
-const TypeLabel = styled.div`
-  border: none;
-  outline: none;
-  color: white;
-  background: transparent;
-  cursor: pointer;
-`;
-const TypeSelection = styled.div`
-  position: absolute;
-  z-index: 99;
-  bottom: -80px;
-  background-color: white;
-  width: 130px;
-  height: 6rem;
-  text-align: left;
-  color: black;
-  padding: 2px 2px 2px 2px;
 `;
 
 const Selection = styled.select`
@@ -188,10 +163,6 @@ class SearchTable extends React.Component {
                         const className = suggestion.active
                           ? 'suggestion-item--active'
                           : 'suggestion-item';
-                        // inline style for demonstration purpose
-                        const style = suggestion.active
-                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
                         return (
                           <option
                             value={suggestion.description}

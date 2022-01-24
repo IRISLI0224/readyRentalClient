@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import background from '../../../../assests/video/Street.mp4';
 import { ButtonStyle } from '../../../../hoc/Button';
 import img from '../../../../assests/img/bottembanner.png';
 import { RRColors } from '../../../../utils/constants';

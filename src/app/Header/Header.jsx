@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import backgrounImg from '../../assests/img/Homepage-background.jpg';
 import background from '../../assests/video/night.mp4';
 import NextSearchBar from '../../components/NextSearchBar';
 import SearchBar from '../../components/SearchBar';
@@ -67,7 +66,7 @@ const Header = () => (
       <NextSearchBar />
     </SearchBarPanel>
     <DownloadAPP>
-      <img src={phone}></img>
+      <img src={phone} alt="phone"></img>
       <br />
       <br />
       <h3 style={{ color: 'white' }}>Download Our App</h3>

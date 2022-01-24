@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Component } from 'react';
 import styled from 'styled-components';
-import Slider from '../Slider';
-import { SliderData } from './SliderData';
 import FlexWrap from '../../hoc/FlexWrap';
 import StyledIcon from '../../hoc/Icon';
 import StyledText from '../../hoc/Text';
 import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
-import Logo from '../../assests/img/logo_red.svg';
 import { getPropertiesAds } from '../../config/Properties';
 import { Button } from '../../hoc/Button';
-import { Link } from 'react-router-dom';
-import title from '../../assests/img/title2.png';
 import defaultImage from '../../assests/img/room.jpg';
 
 const Card = styled.div`
@@ -75,11 +69,6 @@ const LastFrame = styled.div`
   min-width: 8%;
 `;
 
-const TitleImg = styled.img`
-  width: 120px;
-  margin-left: 10px;
-`;
-
 const IMG = styled.img`
   height: 200px;
   width: 300px;
@@ -113,7 +102,6 @@ const SmallCardAds = (props) => {
     P.address?.state +
     ' ' +
     P.address?.postCode;
-  const slides = P.propImage?.length > 0 ? P.propImage : SliderData;
   const img = P.propImage?.length > 0 ? P.propImage[0] : defaultImage;
   const link = '/property/' + P._id;
   return (

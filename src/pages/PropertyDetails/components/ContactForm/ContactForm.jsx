@@ -1,14 +1,13 @@
 import backendApi from '../../../../api/backendApi';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BodyContainer, DescItem, HeroContainer, VerticalMargin } from '../Container';
+import { BodyContainer, DescItem, HeroContainer} from '../Container';
 import { getUserFromToken } from '../../../../utils/authentication';
 import StyledText from '../../../../hoc/Text';
 import EnquiryButton from '../EnquiryButton';
 import TextInput from './components/TextInput';
 import TextArea from './components/TextArea';
 import swal from 'sweetalert';
-import CardAds from '../../../../components/ListCardAds/CardAds';
 import { RRColors } from '../../../../utils/constants';
 
 const ContactContainer = styled.div`
@@ -88,8 +87,8 @@ const validate = (data) =>
 
 const ContactForm = ({ id, property }) => {
   const { address, availableDate } = property;
-  const [response, setResponse] = useState();
-  const [loading, setLoading] = useState();
+  const [setResponse] = useState();
+  const [setLoading] = useState();
   const contactUser = getUserFromToken();
   const blue =RRColors.themeBlue;
   

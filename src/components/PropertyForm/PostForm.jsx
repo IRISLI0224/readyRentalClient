@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import {
   Form,
   Select,
-  Upload,
   Checkbox,
   Row,
   Col,
@@ -13,9 +12,7 @@ import {
   InputNumber,
   Modal,
 } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
 import { PostProperty } from '../../config/Properties';
-import axios from 'axios';
 import UploadImage from '../ImageUpload/UploadImage';
 
 const { Option } = Select;
@@ -40,12 +37,7 @@ const formItemLayout = {
     },
   },
 };
-const normFile = (e) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e && e.fileList;
-};
+
 const { TextArea } = Input;
 class postForm extends React.Component {
   constructor(props) {

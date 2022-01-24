@@ -15,7 +15,7 @@ async function postImage({ image }) {
 }
 
 const UploadImage = ({ setFiles }) => {
-  const [file, setFile] = useState();
+  const [setFile] = useState();
   const [images, setImages] = useState([]);
   const imageInput = useRef();
 
