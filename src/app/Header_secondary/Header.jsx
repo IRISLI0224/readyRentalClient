@@ -11,10 +11,12 @@ const Container = styled.div`
   box-shadow: 0 8px 8px 0 rgba(34, 34, 34, 0.07);
 `;
 
-const Header_secondary = () => (
-  <Container className="Header" >
-    <NavigationBar />
-  </Container>
+const HeaderSecondary = () => (
+  <React.Fragment>
+    <Container className="Header" >
+      <NavigationBar />
+    </Container>
+  </React.Fragment>
 );
 
-export default Header_secondary;
+export default HeaderSecondary;

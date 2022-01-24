@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Pagination } from '../../components/PaginationV2';
-import TextStyle from '../../hoc/Text';
 import { useLocation } from 'react-router-dom';
 import backendApi from '../../api/backendApi';
 import MenuItem from '@mui/material/MenuItem';
@@ -41,12 +40,6 @@ const Showing = styled.p`
   margin-bottom: 0px !important;
   color: #696969;
   font-weight: 400;
-`;
-const Selection = styled.select`
-  // margin-bottom: 30px;
-  // @media screen and (max-width: 1024px) {
-  //   width: 80%;
-  }
 `;
 
 const Row = styled.div`
@@ -93,7 +86,7 @@ const Sorting = () => {
 
   useEffect(() => {
     backendApi.get(`/properties${location.search}`).then((res) => setProperties(res.data));
-  }, []);
+  }, );
 
   return (
     <>

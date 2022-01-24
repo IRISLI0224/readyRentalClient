@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropertyCard from '../../components/PropertyCard';
 import { getAllProperties } from '../../config/Properties';
 import img_first from '../../assests/img/Homepage__NewsCard-first.jpeg';
 import img_second from '../../assests/img/Homepage__NewsCard-second.png';
 import img_third from '../../assests/img/Homepage__NewsCard-third.jpeg';
 import SlideCardContainer from '../../components/SlideCardContainer';
-import { RRColors } from '../../utils/constants';
 import {
   NewsContainer,
   NewsCardTitle,
@@ -37,42 +35,6 @@ const Container = styled.div`
       display: none;
     }
   }
-`;
-
-const PropertyBack = styled.div`
-  height: 15rem;
-  margin: 2rem auto;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  background-image: linear-gradient(#f8f8f8, #ffffff);
-  text-align: center;
-  padding: 40px 0;
-  width: 100%;
-`;
-
-const PropertyContainer = styled.div`
-  height: 15rem;
-  margin: 2rem auto;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  background-image: linear-gradient(#ffffff, #ffffff);
-  text-align: center;
-  padding: 40px 0;
-  width: 60%;
-  opacity: 80%;
-`;
-
-const PropertyCardTitle = styled.div`
-  width: 100%;
-  height: 10%;
-  text-align: left;
-  font-size: 1.3rem;
-  color: props.theme.footerBlue;
-  margin-left: 20%;
 `;
 
 class Home extends React.Component {

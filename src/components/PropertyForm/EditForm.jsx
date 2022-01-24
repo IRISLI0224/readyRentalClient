@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import 'antd/dist/antd.css';
 import {
   Form,
   Select,
-  Upload,
   Checkbox,
   Row,
   Col,
@@ -13,9 +12,7 @@ import {
   InputNumber,
   Modal,
 } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
 import { updatePropertyById } from '../../config/Properties';
-import UploadImage from '../../utils/UploadImage';
 import { getPropertiesById } from '../../config/Properties';
 import moment from 'moment';
 
@@ -45,11 +42,12 @@ const formItemLayout = {
 const { TextArea } = Input;
 
 const EditForm = () => {
-  const [file, setFile] = useState([]);
+  const [file] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [form] = Form.useForm();
 
-  React.useEffect(async () => {
+  React.useEffect(()=>{
+    const fetchProperty = async () => {
     const ids = window.location.pathname.split('/');
     const id = ids[3];
     const res = await getPropertiesById(id);
@@ -84,8 +82,9 @@ const EditForm = () => {
       availableDate: date,
       description: res.description,
       propertyFeatures: PF,
-    });
-  }, []);
+    });}
+    fetchProperty()
+  }, );
 
   const Redirection = () => {
     window.location.href = ManageListPage;
@@ -140,13 +139,6 @@ const EditForm = () => {
 
     //window.alert('Update your property successfully');
     //window.location.href = ManageListPage;
-  };
-
-  const setFiles = ({ url }) => {
-    var files = file;
-    files.push(url);
-    setFile(files);
-    //console.log(this.state.file);
   };
 
   return (

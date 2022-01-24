@@ -80,96 +80,98 @@ const ExploreCities = () => {
   };
 
   return (
-    <Container>
-      <HomepageSection
-        title="Explore Cities"
-        subtitle="Explore your ideal properties in different cities around Australia "
-        wrap="wrap"
-      >
-        <ContainerOne>
-          <ContainerTwo>
+    <React.Fragment>
+      <Container>
+        <HomepageSection
+          title="Explore Cities"
+          subtitle="Explore your ideal properties in different cities around Australia "
+          wrap="wrap"
+        >
+          <ContainerOne>
+            <ContainerTwo>
+              <Card
+                name="Brisbane"
+                city="Brisbane"
+                background={Brisbane}
+                background_alt="all_types.jpg"
+                number={cityProperties[0]}
+                icon_alt="all_types.png"
+                width={widthSmall}
+                height={heightSmall}
+              ></Card>
+              <Card
+                name="Perth"
+                city="Perth"
+                background={Perth}
+                background_alt="house.jpg"
+                number={cityProperties[1]}
+                icon_alt="house.png"
+                width={widthSmall}
+                height={heightSmall}
+              ></Card>
+            </ContainerTwo>
+            <ContainerTwo>
+              <Card
+                name="Adelaide"
+                city="Adelaide"
+                background={Adelaide}
+                background_alt="apartment.jpg"
+                number={cityProperties[2]}
+                icon_alt="apartment.png"
+                width={widthSmall}
+                height={heightSmall}
+              ></Card>
+              <Card
+                name="Hobart"
+                city="Hobart"
+                background={Hobart}
+                background_alt="studio.jpg"
+                number={cityProperties[3]}
+                icon_alt="studio.png"
+                width={widthSmall}
+                height={heightSmall}
+              ></Card>
+            </ContainerTwo>
+          </ContainerOne>
+          <br />
+          <br />
+          <ContainerThree>
             <Card
-              name="Brisbane"
-              city="Brisbane"
-              background={Brisbane}
-              background_alt="all_types.jpg"
-              number={cityProperties[0]}
-              icon_alt="all_types.png"
-              width={widthSmall}
-              height={heightSmall}
-            ></Card>
-            <Card
-              name="Perth"
-              city="Perth"
-              background={Perth}
-              background_alt="house.jpg"
-              number={cityProperties[1]}
-              icon_alt="house.png"
-              width={widthSmall}
-              height={heightSmall}
-            ></Card>
-          </ContainerTwo>
-          <ContainerTwo>
-            <Card
-              name="Adelaide"
-              city="Adelaide"
-              background={Adelaide}
-              background_alt="apartment.jpg"
-              number={cityProperties[2]}
-              icon_alt="apartment.png"
-              width={widthSmall}
-              height={heightSmall}
-            ></Card>
-            <Card
-              name="Hobart"
-              city="Hobart"
-              background={Hobart}
+              name="Sydney"
+              city="Sydney"
+              background={Sydney}
               background_alt="studio.jpg"
-              number={cityProperties[3]}
+              number={cityProperties[4]}
+              icon_alt="studio.png"
+              width={widthLarge}
+              height={heightLarge}
+            ></Card>
+          </ContainerThree>
+          <ContainerFour>
+            <Card
+              name="Canberra"
+              city="Canberra"
+              background={Canberra}
+              background_alt="studio.jpg"
+              number={cityProperties[5]}
               icon_alt="studio.png"
               width={widthSmall}
               height={heightSmall}
             ></Card>
-          </ContainerTwo>
-        </ContainerOne>
-        <br />
-        <br />
-        <ContainerThree>
-          <Card
-            name="Sydney"
-            city="Sydney"
-            background={Sydney}
-            background_alt="studio.jpg"
-            number={cityProperties[4]}
-            icon_alt="studio.png"
-            width={widthLarge}
-            height={heightLarge}
-          ></Card>
-        </ContainerThree>
-        <ContainerFour>
-          <Card
-            name="Canberra"
-            city="Canberra"
-            background={Canberra}
-            background_alt="studio.jpg"
-            number={cityProperties[5]}
-            icon_alt="studio.png"
-            width={widthSmall}
-            height={heightSmall}
-          ></Card>
-          <Card
-            name="Melbourne"
-            city="Melbourne"
-            background={Melbourne}
-            background_alt="studio.jpg"
-            number={cityProperties[6]}
-            icon_alt="studio.png"
-            width={widthSmall}
-            height={heightSmall}
-          ></Card>
-        </ContainerFour>
-      </HomepageSection>
-    </Container>
+            <Card
+              name="Melbourne"
+              city="Melbourne"
+              background={Melbourne}
+              background_alt="studio.jpg"
+              number={cityProperties[6]}
+              icon_alt="studio.png"
+              width={widthSmall}
+              height={heightSmall}
+            ></Card>
+          </ContainerFour>
+        </HomepageSection>
+      </Container>
+    </React.Fragment>
   );
 };
 

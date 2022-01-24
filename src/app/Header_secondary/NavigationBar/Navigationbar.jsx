@@ -83,8 +83,8 @@ const NavigationBar = () => {
       {Login ? <SpaceLogin /> : <Space />}
       <a href="/">
         <LogoPanel>
-          <img src={Logo} style={{ height: '50px' }} />
-          <img src={title} style={{ height: '40px', marginLeft: '10px' }} />
+          <img src={Logo} style={{ height: '50px' }} alt="l0go"/>
+          <img src={title} style={{ height: '40px', marginLeft: '10px' }} alt="title"/>
         </LogoPanel>
       </a>
       {Login ? (

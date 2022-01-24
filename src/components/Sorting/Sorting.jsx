@@ -61,7 +61,7 @@ const Sorting = () => {
 
   useEffect(() => {
     backendApi.get(`/properties${location.search}`).then((res) => setProperties(res.data));
-  }, []);
+  });
 
   return (
     <>

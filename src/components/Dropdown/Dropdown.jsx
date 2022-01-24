@@ -6,7 +6,6 @@ import { ReactComponent as IconBlack } from '../../assests/img/iconBefore_black.
 import { removeToken } from '../../utils/authentication';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/action';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 
 export const DropdownContainer = styled.div`
@@ -151,7 +150,7 @@ const Dropdown = () => {
   const toggleOpen = () => setIsOpen(!isOpen);
   let location = useLocation();
   const wholeUrl = location.pathname;
-  const home = wholeUrl == '/' ? true : false;
+  const home = wholeUrl === '/' ? true : false;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
