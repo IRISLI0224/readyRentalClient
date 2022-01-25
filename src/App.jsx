@@ -7,7 +7,6 @@ import { Routes, Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
-import SearchResult from './pages/SearchResult';
 import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 import Post from './pages/PostYourProperty/Post';
@@ -27,7 +26,7 @@ const theme = {
 };
 
 const App = () => (
-  <>
+  <React.Fragment>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       <Layout>
@@ -44,7 +43,7 @@ const App = () => (
           <Route element={<ProtectedRouter />}>
             <Route path="/property/manage-listings" element={<ListedProperties isListing />} />
             <Route path="/property/inspection" element={<ListedProperties isInspection />} />
-            <Route path="/property/post" element={<Post isPost />} /> 
+            <Route path="/property/post" element={<Post isPost />} />
             <Route path="/property/edit/:id" element={<Post />} />
             <Route path="/account" element={<AccountSettings />} />
           </Route>
@@ -52,7 +51,7 @@ const App = () => (
       </Layout>
     </ThemeProvider>
     <GlobalStyle />
-  </>
+  </React.Fragment>
 );
 
 export default App;
