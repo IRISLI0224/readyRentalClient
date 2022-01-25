@@ -11,8 +11,8 @@ import { useSelector } from 'react-redux';
 
 export const DropdownContainer = styled.div`
   position: relative;
-  margin-right: 10rem;
-  margin-left: 0.5rem;
+  /* margin-right: 10rem;
+  margin-left: 0.5rem; */
   margin-top: 1rem;
   @media (max-width: 992px) {
     margin: 0;
@@ -47,15 +47,15 @@ const ProfileButtonMobile = styled.button`
   }
 `;
 const Cross = styled.button`
-  display: none; 
+  display: none;
   @media (max-width: 576px) {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 20px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
   }
 `;
 
@@ -181,7 +181,7 @@ const Dropdown = () => {
           <CloseOutlined />
         </Cross>
         <MenuUl>
-        <MenuLi>
+          <MenuLi>
             <MenuLink href="/property/manage-listings">
               <MenuSpan>{user.email}</MenuSpan>
             </MenuLink>

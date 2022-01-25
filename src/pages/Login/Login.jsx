@@ -232,10 +232,6 @@ class Login extends React.Component {
           <LinktoLogin>
             Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
           </LinktoLogin>
-          {/* <ForgetPassword>
-            Haven't got an account?&nbsp;&nbsp; <Link to="/join">Join</Link>
-          </ForgetPassword>
-          <br /> */}
         </MainBox>
       </Container>
     );

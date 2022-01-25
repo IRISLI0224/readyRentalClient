@@ -26,6 +26,13 @@ const Container = styled.div`
     background: none;
   }
   video {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -11;
     @media (max-width: 768px) {
       display: none;
     }
@@ -48,26 +55,7 @@ const DownloadAPP = styled.div`
 
 const Header = () => (
   <Container className="Header" height={5}>
-    <video
-      src={background}
-      type="video/mp4"
-      muted
-      autoPlay={'autoplay'}
-      loop
-      style={{
-        position: 'fixed',
-        right: '0px',
-        bottom: '0px',
-        minwidth: '100%',
-        minHeight: '100%',
-        height: 'auto',
-        width: '100%',
-        zIndex: '-11',
-        //opacity: '80%',
-        //filter: 'brightness(1.3) invert(0.17) saturate(2.6) sepia(0.25)',
-        //filter: 'brightness(0.9) contrast(1.1)'
-      }}
-    ></video>
+    <video src={background} type="video/mp4" muted autoPlay={'autoplay'} loop></video>
     <NavigationBar />
     <SearchBarPanel>
       <SearchBar />

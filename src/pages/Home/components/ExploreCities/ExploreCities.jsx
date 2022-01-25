@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import HomepageSection from '../../../../hoc/HomepageSection';
-import Card from './Card';
+import ExploreCitiesCard from './ExploreCitiesCard';
 import Melbourne from '../../../../assests/img/cities/Melbourne.jpg';
 import Perth from '../../../../assests/img/cities/Perth.jpg';
 import Adelaide from '../../../../assests/img/cities/Adelaide.jpg';
@@ -89,7 +89,7 @@ const ExploreCities = () => {
         >
           <ContainerOne>
             <ContainerTwo>
-              <Card
+              <ExploreCitiesCard
                 name="Brisbane"
                 city="Brisbane"
                 background={Brisbane}
@@ -98,8 +98,8 @@ const ExploreCities = () => {
                 icon_alt="all_types.png"
                 width={widthSmall}
                 height={heightSmall}
-              ></Card>
-              <Card
+              ></ExploreCitiesCard>
+              <ExploreCitiesCard
                 name="Perth"
                 city="Perth"
                 background={Perth}
@@ -108,10 +108,10 @@ const ExploreCities = () => {
                 icon_alt="house.png"
                 width={widthSmall}
                 height={heightSmall}
-              ></Card>
+              ></ExploreCitiesCard>
             </ContainerTwo>
             <ContainerTwo>
-              <Card
+              <ExploreCitiesCard
                 name="Adelaide"
                 city="Adelaide"
                 background={Adelaide}
@@ -120,8 +120,8 @@ const ExploreCities = () => {
                 icon_alt="apartment.png"
                 width={widthSmall}
                 height={heightSmall}
-              ></Card>
-              <Card
+              ></ExploreCitiesCard>
+              <ExploreCitiesCard
                 name="Hobart"
                 city="Hobart"
                 background={Hobart}
@@ -130,13 +130,13 @@ const ExploreCities = () => {
                 icon_alt="studio.png"
                 width={widthSmall}
                 height={heightSmall}
-              ></Card>
+              ></ExploreCitiesCard>
             </ContainerTwo>
           </ContainerOne>
           <br />
           <br />
           <ContainerThree>
-            <Card
+            <ExploreCitiesCard
               name="Sydney"
               city="Sydney"
               background={Sydney}
@@ -145,10 +145,10 @@ const ExploreCities = () => {
               icon_alt="studio.png"
               width={widthLarge}
               height={heightLarge}
-            ></Card>
+            ></ExploreCitiesCard>
           </ContainerThree>
           <ContainerFour>
-            <Card
+            <ExploreCitiesCard
               name="Canberra"
               city="Canberra"
               background={Canberra}
@@ -157,8 +157,8 @@ const ExploreCities = () => {
               icon_alt="studio.png"
               width={widthSmall}
               height={heightSmall}
-            ></Card>
-            <Card
+            ></ExploreCitiesCard>
+            <ExploreCitiesCard
               name="Melbourne"
               city="Melbourne"
               background={Melbourne}
@@ -167,7 +167,7 @@ const ExploreCities = () => {
               icon_alt="studio.png"
               width={widthSmall}
               height={heightSmall}
-            ></Card>
+            ></ExploreCitiesCard>
           </ContainerFour>
         </HomepageSection>
       </Container>
