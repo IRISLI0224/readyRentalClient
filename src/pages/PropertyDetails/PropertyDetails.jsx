@@ -6,7 +6,7 @@ import { getPropertiesById } from '../../config/Properties';
 import ContactForm from './components/ContactForm/ContactForm';
 import CardAds from '../../components/ListCardAds/CardAds';
 import StyledText from '../.../../../hoc/Text/';
-import { DescItem_re } from './components/Container/Container';
+import { DescItemRe } from './components/Container/Container';
 import styled from 'styled-components';
 import { Divider } from 'antd';
 import Map from '../../components/Map';
@@ -68,7 +68,11 @@ const Ads = styled.div`
   @media (min-width: 641px) {
     border-radius: 0.1875rem;
   }
+  @media screen and (max-width: 1024px) {
+    display: none;
+}
 `;
+
 
 const PropertyDetails = () => {
   const params = useParams();
@@ -77,7 +81,7 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     SetPropertiesById(id);
-  }, []);
+  });
 
   //Scroll to top after jump to detail page
   useEffect(() => {
@@ -117,7 +121,7 @@ const PropertyDetails = () => {
         </Ads>
       </FormContainer>
       <Divider style={{ background: '#bdbdbd' }} />
-      <DescItem_re>
+      <DescItemRe>
         <StyledText size="0.7rem" style={{ marginTop: 10 }}>
           Personal Information Collection Statement
         </StyledText>
@@ -133,7 +137,7 @@ const PropertyDetails = () => {
           its right to take any legal or other appropriate action in relation to misuse of this
           service.
         </StyledText>
-      </DescItem_re>
+      </DescItemRe>
     </>
   );
 };

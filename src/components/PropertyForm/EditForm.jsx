@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import {
   Form,
   Select,
-  Upload,
   Checkbox,
   Row,
   Col,
@@ -13,9 +12,7 @@ import {
   InputNumber,
   Modal,
 } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
 import { updatePropertyById } from '../../config/Properties';
-import UploadImage from '../../utils/UploadImage';
 import { getPropertiesById } from '../../config/Properties';
 import moment from 'moment';
 
@@ -45,47 +42,52 @@ const formItemLayout = {
 const { TextArea } = Input;
 
 const EditForm = () => {
-  const [file, setFile] = useState([]);
+  const [file] = useState([]);
+  const [images, setImages] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [form] = Form.useForm();
 
-  useEffect(async () => {
-    const ids = window.location.pathname.split('/');
-    const id = ids[3];
-    const res = await getPropertiesById(id);
-    const PF = [];
-    if (res.airCon) {
-      PF.push('Airconditioner');
-    }
-    if (res.furnished) {
-      PF.push('Furnished');
-    }
-    if (res.intercom) {
-      PF.push('Intercom');
-    }
-    if (res.petAllowed) {
-      PF.push('Petsconsidered');
-    }
-    if (res.smokingAllowed) {
-      PF.push('smokingAllowed');
-    }
-    const date = res.availableDate ? moment(res.availableDate) : null;
-    form.setFieldsValue({
-      streetNumber: res.address.streetNumber,
-      roomType: res.roomType,
-      streetName: res.address.streetName,
-      city: res.address.city,
-      state: res.address.state,
-      postCode: res.address.postCode,
-      numOfBed: res.numOfBed,
-      numOfBath: res.numOfBath,
-      numOfCarSpace: res.numOfCarSpace,
-      rent: res.rent,
-      availableDate: date,
-      description: res.description,
-      propertyFeatures: PF,
-    });
-  }, []);
+  React.useEffect(() => {
+    const fetchProperty = async () => {
+      const ids = window.location.pathname.split('/');
+      const id = ids[3];
+      const res = await getPropertiesById(id);
+      setImages(res.propImage);
+      const PF = [];
+      if (res.airCon) {
+        PF.push('Airconditioner');
+      }
+      if (res.furnished) {
+        PF.push('Furnished');
+      }
+      if (res.intercom) {
+        PF.push('Intercom');
+      }
+      if (res.petAllowed) {
+        PF.push('Petsconsidered');
+      }
+      if (res.smokingAllowed) {
+        PF.push('smokingAllowed');
+      }
+      const date = res.availableDate ? moment(res.availableDate) : null;
+      form.setFieldsValue({
+        streetNumber: res.address.streetNumber,
+        roomType: res.roomType,
+        streetName: res.address.streetName,
+        city: res.address.city,
+        state: res.address.state,
+        postCode: res.address.postCode,
+        numOfBed: res.numOfBed,
+        numOfBath: res.numOfBath,
+        numOfCarSpace: res.numOfCarSpace,
+        rent: res.rent,
+        availableDate: date,
+        description: res.description,
+        propertyFeatures: PF,
+      });
+    };
+    fetchProperty();
+  });
 
   const Redirection = () => {
     window.location.href = ManageListPage;
@@ -140,13 +142,6 @@ const EditForm = () => {
 
     //window.alert('Update your property successfully');
     //window.location.href = ManageListPage;
-  };
-
-  const setFiles = ({ url }) => {
-    var files = file;
-    files.push(url);
-    setFile(files);
-    //console.log(this.state.file);
   };
 
   return (
@@ -360,6 +355,13 @@ const EditForm = () => {
       <Form.Item label="Description" name="description">
         <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
       </Form.Item>
+      {images.length > 0 &&
+        images.map((img, index) => (
+          <img style={{ marginRight: 5 }} key={index} src={img} alt={index}></img>
+        ))}
+      {/* <Form.Item label="Pictures" name="propImage">
+          <UploadImage setFiles={setFiles} />
+        </Form.Item> */}
       <Form.Item
         wrapperCol={{
           xs: {
@@ -372,9 +374,6 @@ const EditForm = () => {
           },
         }}
       >
-        {/* <Form.Item label="Pictures" name="propImage">
-          <UploadImage setFiles={setFiles} />
-        </Form.Item> */}
         <Button type="primary" htmlType="submit" size={'large'}>
           Submit
         </Button>

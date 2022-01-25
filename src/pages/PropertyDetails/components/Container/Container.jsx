@@ -50,7 +50,7 @@ export const DescItem = styled.div`
   text-align: left;
 `;
 
-export const DescItem_re = styled.div`
+export const DescItemRe = styled.div`
   width: 50vw;
   text-align: left;
   margin: auto;

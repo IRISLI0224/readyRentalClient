@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import Logo from '../../assests/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
@@ -14,76 +13,23 @@ import ServerMsg from '../../hoc/ServerMsg';
 import { connect } from 'react-redux';
 import { appendData } from '../../redux/action';
 import title from '../../assests/img/title2.png';
+import FormBackground from '../../assests/video/FormBackground.mp4';
+import {
+  Container,
+  MainBox,
+  LogoBoxBackground,
+  LogoBox,
+  LogoImg,
+  TitleImg,
+  Title,
+  LinktoLogin,
+} from '../../hoc/AuthForm';
 
 //API
 import { UserRegister } from '../../config/Users';
 import { setToken } from '../../utils/authentication';
 
 const HOMEPAGE = '/';
-
-const Container = styled.div`
-  background-color: white;
-  text-align: center;
-  display: flex;
-  line-height: 10px;
-`;
-
-const MainBox = styled.div`
-    padding: 1.5rem 3rem 0px;
-    border: 1;
-    margin: auto;
-    margin-top: 100px;
-    width: 500px;
-    height: 460px;
-    text-align: center;
-    position: relative;
-    border: 2px solid #e5e8ec;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-content: space-around;
-}
-   }
- 
-`;
-
-const LogoBox = styled.div`
-  margin: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-align: center;
-`;
-
-const CreateTitle = styled.div`
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: rgb(51, 63, 72);
-  text-align: center;
-  line-height: 1.75rem;
-`;
-
-const LinktoLogin = styled.div`
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
-const LogoImg = styled.img`
-  width: 50px;
-`;
-
-const TitleImg = styled.img`
-  width: 200px;
-  margin-left: 10px;
-`;
 
 class JoinPage extends React.Component {
   constructor(props) {
@@ -197,21 +143,32 @@ class JoinPage extends React.Component {
     const error = this.getError(data);
     return (
       <Container>
+        <video
+          source
+          src={FormBackground}
+          type="video/mp4"
+          muted
+          autoPlay={'autoplay'}
+          preLoad="auto"
+          loop
+        ></video>
         <MainBox>
-          <LogoBox>
-            <a href="/">
-              <LogoImg src={Logo} />
-              <TitleImg src={title} />
-            </a>
-          </LogoBox>
-          <CreateTitle>Create Account</CreateTitle>
+          <LogoBoxBackground>
+            <LogoBox>
+              <a href="/">
+                <LogoImg src={Logo} />
+                <TitleImg src={title} />
+              </a>
+            </LogoBox>
+          </LogoBoxBackground>
+          <Title>Create Account</Title>
           <FormWrapper
             onSubmit={(e) => {
               e.preventDefault();
               this.handleIsFormSubmitChange(true);
             }}
           >
-            <Form htmlFor="email">
+            <Form htmlFor="email" margin_bottom="1rem">
               <Input
                 size="400px"
                 name="email"
@@ -225,10 +182,10 @@ class JoinPage extends React.Component {
                 error={this.getErrorMessage(error, 'email')}
               />
             </Form>
-            <InputErrorMsg className="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
-            <br />
-            <br />
-            <Form htmlFor="password">
+            {this.state.data.email.blurred && this.getErrorMessage(error, 'email') && (
+              <InputErrorMsg class="ErrorMsg">{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+            )}
+            <Form htmlFor="password" margin_bottom="1rem">
               <Input
                 size="400px"
                 name="password"
@@ -243,6 +200,11 @@ class JoinPage extends React.Component {
                 error={this.getErrorMessage(error, 'password')}
               />
             </Form>
+            {this.state.data.password.blurred && this.getErrorMessage(error, 'password') && (
+              <InputErrorMsg class="ErrorMsg">
+                {this.getErrorMessage(error, 'password')}
+              </InputErrorMsg>
+            )}
           </FormWrapper>
           <Button primary size="400px" height="50px" onClick={this.userRegister}>
             Create Account

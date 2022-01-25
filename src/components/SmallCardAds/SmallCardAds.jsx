@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Component } from 'react';
 import styled from 'styled-components';
-import Slider from '../Slider';
-import { SliderData } from './SliderData';
 import FlexWrap from '../../hoc/FlexWrap';
 import StyledIcon from '../../hoc/Icon';
 import StyledText from '../../hoc/Text';
 import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
-import Logo from '../../assests/img/logo_red.svg';
 import { getPropertiesAds } from '../../config/Properties';
 import { Button } from '../../hoc/Button';
-import { Link } from 'react-router-dom';
-import title from '../../assests/img/title2.png';
 import defaultImage from '../../assests/img/room.jpg';
 
 const Card = styled.div`
@@ -22,7 +16,7 @@ const Card = styled.div`
   flex-direction: column;
   position: relative;
   margin-bottom: 30px;
-  height: 400px;
+  height: 420px;
 `;
 
 const Row = styled.div`
@@ -31,22 +25,18 @@ const Row = styled.div`
   flex-direction: column;
 `;
 
-
-
 const RowFrame = styled.div`
   width: 100%;
   position: relative;
   height: 400 px;
 `;
 
-
-
 const RowResidencial = styled.div`
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   position: relative;
-  height : 500px;
+  height: 500px;
 `;
 
 const ContentDetail = styled.div`
@@ -79,15 +69,12 @@ const LastFrame = styled.div`
   min-width: 8%;
 `;
 
-const TitleImg = styled.img`
-  width: 120px;
-  margin-left: 10px;
-`;
-
 const IMG = styled.img`
-  width: 100%;
-  height: auto;
-  max-height:200px;
+  height: 200px;
+  width: 300px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
 
 /*brand, agentName, agentIcon,price,slides,address.types */
@@ -115,7 +102,6 @@ const SmallCardAds = (props) => {
     P.address?.state +
     ' ' +
     P.address?.postCode;
-  const slides = P.propImage?.length > 0 ? P.propImage : SliderData;
   const img = P.propImage?.length > 0 ? P.propImage[0] : defaultImage;
   const link = '/property/' + P._id;
   return (

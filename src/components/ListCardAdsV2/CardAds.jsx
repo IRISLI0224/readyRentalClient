@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Component } from 'react';
 import styled from 'styled-components';
 import Slider from '../Slider';
 import { SliderData } from './SliderData';

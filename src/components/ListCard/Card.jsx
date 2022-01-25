@@ -1,8 +1,6 @@
 import React from 'react';
-import { Component } from 'react';
 import styled from 'styled-components';
 import Slider from '../Slider';
-import { SliderData } from './SliderData';
 import FlexWrap from '../../hoc/FlexWrap';
 import StyledIcon from '../../hoc/Icon';
 import StyledText from '../../hoc/Text';
@@ -41,34 +39,9 @@ const BrandImage = styled.img`
   margin: 11px;
 `;
 
-const AgentName = styled.p`
-  margin-right: 80px;
-  padding-right: 12px;
-`;
-
-const AgentIcon = styled.span`
-  width: 78px;
-  height: 78px;
-  position: absolute;
-  border-radius: 50%;
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
-  display: inline-block;
-  top: 0.5rem;
-  right: 0.5rem;
-  z-index: 1;
-  overflow: hidden;
-`;
-
 const RowFrame = styled.div`
   width: 100%;
   position: relative;
-`;
-
-const AgentIconImg = styled.img`
-  vertical-align: top;
-  max-width: 100%;
 `;
 
 const RowResidencial = styled.div`

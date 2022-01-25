@@ -37,7 +37,7 @@ const App = () => (
           <Route path="/join" element={<JoinPage />} />
           <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
           <Route path="/reset/:token" element={<ResetPasswordPage />} />
-          <Route path="/search" element={<SearchResult />} />
+          <Route path="/search" element={<SearchResultV2 />} />
           <Route path="/search/v2" element={<SearchResultV2 />} />
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="*" element={<NoPage />} />

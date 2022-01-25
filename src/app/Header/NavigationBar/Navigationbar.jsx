@@ -31,7 +31,9 @@ const Container = styled.div`
       margin-left: 3px;
       size: 20%;
     }
-   // border-bottom: 0.1rem solid red;
+  }
+  @media (max-width: 576px) {
+    background-image: none;
   }
 `;
 
@@ -42,12 +44,17 @@ const SpaceLogin = styled.div`
   width: 68%;
 `;
 
-const ButtonwithoutBorder = styled(ButtonStyle)`
+const ButtonWithoutBorder = styled(ButtonStyle)`
   color: #fff;
   border: none;
   height: 40px;
   &:hover {
     color: #fff;
+  }
+  @media (max-width: 576px) {
+    color: rgba(0, 0, 0, 0.85);
+    padding: 0.3125rem 0.75rem;
+    font-weight: 500;
   }
 `;
 
@@ -57,6 +64,13 @@ const ButtonWhitFont = styled(ButtonStyle)`
   border: 2px solid #e5e8ec;
   &:hover {
     background-color: #fff;
+  }
+  @media (max-width: 576px) {
+    border: none;
+    background: #0061df;
+    padding: 0.3125rem 0.75rem;
+    font-weight: 500;
+    margin-right: 1rem;
   }
 `;
 
@@ -68,6 +82,9 @@ const IconEmail = styled.div`
 const Email = styled.div`
   margin-left: 40%;
   margin-top: 1.2rem;
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 
 const NavigationBar = () => {
@@ -92,12 +109,12 @@ const NavigationBar = () => {
         </>
       ) : (
         <>
-          <Link to="/login" style={{ color: '#fff', textDecoration: 'none' }}>
-            <ButtonwithoutBorder className="SigninButton" size="90px">
+          <Link to="/login">
+            <ButtonWithoutBorder className="SigninButton" size="90px">
               Sign in
-            </ButtonwithoutBorder>
+            </ButtonWithoutBorder>
           </Link>
-          <Link to="/join" style={{ color: 'white', textDecoration: 'none' }}>
+          <Link to="/join">
             <ButtonWhitFont className="JoinButton" size="90px">
               &nbsp;&nbsp;Join&nbsp;&nbsp;
             </ButtonWhitFont>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import background from '../../../../assests/video/Street.mp4';
 import { Button } from '../../../../hoc/Button';
 

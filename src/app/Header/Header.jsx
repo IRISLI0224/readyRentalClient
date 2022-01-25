@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import backgrounImg from '../../assests/img/Homepage-background.jpg';
 import background from '../../assests/video/night.mp4';
 import NextSearchBar from '../../components/NextSearchBar';
 import SearchBar from '../../components/SearchBar';
@@ -9,7 +8,6 @@ import phone from '../../assests/img/phone.png';
 
 const Container = styled.div`
   position: relative;
-  //overflow: hidden;
   width: 100%;
   text-align: center;
   color: white;
@@ -18,6 +16,11 @@ const Container = styled.div`
   background: url(${({ img }) => img}) no-repeat center;
   @media (max-width: 768px) {
     height: ${({ height }) => height}rem;
+    width: 100%;
+    background: none;
+  }
+  @media (max-width: 576px) {
+    height: 60px;
     width: 100%;
     background: none;
   }
@@ -65,7 +68,7 @@ const Header = () => (
       <NextSearchBar />
     </SearchBarPanel>
     <DownloadAPP>
-      <img src={phone}></img>
+      <img src={phone} alt="phone"></img>
       <br />
       <br />
       <h3 style={{ color: 'white' }}>Download Our App</h3>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-import { useLocation } from 'react-router-dom';
 import Card from '../../components/ListCardV2';
 import { Link } from 'react-router-dom';
 
@@ -96,11 +95,10 @@ const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
 
 const Pagination = (props) => {
   const [currentPage, setcurrentPage] = useState(1); // selected current page management, from clicking by users
-  const [itemsPerpage, setitemsPerpage] = useState(5); // the interval of displayed items in each page(e.g. item 1, item 2, item 3, item 4, item 5 in each page when useState(5))
-  const [pageNumberLimit, setpageNumberLimit] = useState(5); // the interval of displayed pages(e.g. 1 2 3 4 5 ... =>when useState(5))
+  const [itemsPerpage] = useState(5); // the interval of displayed items in each page(e.g. item 1, item 2, item 3, item 4, item 5 in each page when useState(5))
+  const [pageNumberLimit] = useState(5); // the interval of displayed pages(e.g. 1 2 3 4 5 ... =>when useState(5))
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5); // max number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the max interval of each group is 5(10-5))
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0); // min number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the min interval of each group is 5(6-1))
-  const location = useLocation();
 
   /******click handler */
   const handleClick = (event) => {

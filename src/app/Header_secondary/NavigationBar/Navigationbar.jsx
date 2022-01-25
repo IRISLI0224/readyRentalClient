@@ -16,6 +16,20 @@ const Container = styled.div`
   height: 4.5rem;
   //border: 1px solid #a3a3a3;
   padding: 1rem 0.5rem;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    padding-top: 1rem;
+    padding-left: 5%;
+    padding-bottom: 0;
+    Button {
+      margin-left: 3px;
+      size: 20%;
+    }
+  }
+  @media (max-width: 576px) {
+    background-image: none;
+  }
 `;
 
 const Space = styled.div`
@@ -30,6 +44,11 @@ const ButtonwithoutBorder = styled(ButtonStyle)`
   color: #3f3f3f;
   border: none;
   height: 40px;
+  @media (max-width: 576px) {
+    color: rgba(0, 0, 0, 0.85);
+    padding: 0.3125rem 0.75rem;
+    font-weight: 500;
+  }
 `;
 
 const LogoPanel = styled.div`
@@ -46,6 +65,9 @@ const Email = styled.div`
   margin-left: 40%;
   color: gray;
   margin-top: 1.2rem;
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 
 const NavigationBar = () => {
@@ -53,7 +75,6 @@ const NavigationBar = () => {
   const user = useSelector((state) => state);
   useEffect(() => {
     const token = getToken();
-    //console.log(token)
     if (token) setLogin(true);
   }, []);
 
@@ -62,8 +83,8 @@ const NavigationBar = () => {
       {Login ? <SpaceLogin /> : <Space />}
       <a href="/">
         <LogoPanel>
-          <img src={Logo} style={{ height: '50px' }} />
-          <img src={title} style={{ height: '40px', marginLeft: '10px' }} />
+          <img src={Logo} style={{ height: '50px' }} alt="l0go"/>
+          <img src={title} style={{ height: '40px', marginLeft: '10px' }} alt="title"/>
         </LogoPanel>
       </a>
       {Login ? (

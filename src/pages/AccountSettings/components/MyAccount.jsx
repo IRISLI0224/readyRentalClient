@@ -17,22 +17,7 @@ const InfoChange = styled.h3`
   padding-top: 5px;
   margin-bottom: 0;
 `;
-const Info = styled.span`
-  color: #000;
-  font-size: 22px;
-  padding-bottom: 200px;
-`;
-const linkStyle = {
-  paddingLeft: '20px',
-  color: '#e4022b',
-  textDecoration: 'underline',
-};
-const EmailWrapper = styled.div`
-  margin-bottom: 25px;
-`;
-const PassWrapper = styled.div`
-  margin-bottom: 25px;
-`;
+
 const Protect = styled.h2`
   margin-bottom: 20px;
 `;

@@ -4,8 +4,6 @@ import { getToken } from '../utils/authentication';
 
 //Get all property
 //todo: need to delete one
-const API_GET_ALL_PROPERTIES = '/properties';
-const API_GET_PROPERTIES_BY_ID = '/properties/';
 const API_GET_PROPERTIES_ADS = '/propertiesads';
 const API_PROPERTIES = '/properties';
 

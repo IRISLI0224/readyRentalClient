@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import TextStyle from '../../hoc/Text';
 import FlexWrap from '../../hoc/FlexWrap';
-import { getPropertiesBySearch } from '../../config/Properties';
 import { Sorting } from '../../components/Sorting';
 
 const Container = styled.div`
@@ -13,7 +12,7 @@ const Container = styled.div`
   width: 800px;
   @media screen and (max-width: 1024px) {
     margin: 0px;
-  }
+}
 `;
 const FlexWrapSearch = styled(FlexWrap)`
   margin-bottom: 8px;

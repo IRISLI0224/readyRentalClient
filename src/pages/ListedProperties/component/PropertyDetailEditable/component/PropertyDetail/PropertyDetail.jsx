@@ -15,7 +15,11 @@ const PropertyDetail = ({ property }) => {
       <Wrapper>
         <NoShadowWrapper>
           {property.propImage[0] ? (
-            <img src={property.propImage[0]} alt="house1" style={{ height: '100px' }} />
+            <img
+              src={property.propImage[0]}
+              alt="house"
+              style={{ height: '100px', width: '140px', objectFit: 'cover' }}
+            />
           ) : (
             <HouseIcon alt="house" />
           )}
