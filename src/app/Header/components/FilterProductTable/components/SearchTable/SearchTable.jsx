@@ -74,11 +74,7 @@ class SearchTable extends React.Component {
       },
     };
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
-    this.handleBedMinChange = this.handleBedMinChange.bind(this);
-    this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
-    this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
-    this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -92,22 +88,10 @@ class SearchTable extends React.Component {
   };
 
   handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
+    this.props.onFilterTextChange(e);
   }
-  handleTypeChange(e) {
-    this.props.onTypeChange(e.target.value);
-  }
-  handleBedMinChange(e) {
-    this.props.onBedMinChange(e.target.value);
-  }
-  handleBedMaxChange(e) {
-    this.props.onBedMaxChange(e.target.value);
-  }
-  handlePriceMinChange(e) {
-    this.props.onPriceMinChange(e.target.value);
-  }
-  handlePriceMaxChange(e) {
-    this.props.onPriceMaxChange(e.target.value);
+  handleChange(e) {
+    this.props.onChange(e);
   }
   render() {
     const { filterText, type, bedMin, bedMax, priceMin, priceMax } = this.props;
@@ -138,8 +122,8 @@ class SearchTable extends React.Component {
               }}
             />
             <PlacesAutocomplete
-              value={this.props.filterText}
-              onChange={this.props.onFilterTextChange} //Cannot be changed
+              value={filterText}
+              onChange={this.handleFilterTextChange} //Cannot be changed
               searchOptions={this.state.searchOptions}
               debounce={1500}
             >
@@ -204,7 +188,7 @@ class SearchTable extends React.Component {
             <Selection
               name="type"
               id=""
-              onChange={this.handleTypeChange}
+              onChange={this.handleChange}
               value={type ? type : 'DEFAULT'}
             >
               <Option value="DEFAULT" disabled hidden>
@@ -218,7 +202,7 @@ class SearchTable extends React.Component {
             <Selection
               name="bedMin"
               id=""
-              onChange={this.handleBedMinChange}
+              onChange={this.handleChange}
               value={bedMin ? bedMin : 'DEFAULT'}
             >
               <Option value="DEFAULT" disabled hidden>
@@ -235,7 +219,7 @@ class SearchTable extends React.Component {
             <Selection
               name="bedMax"
               id=""
-              onChange={this.handleBedMaxChange}
+              onChange={this.handleChange}
               value={bedMax ? bedMax : 'DEFAULT'}
             >
               <Option value="DEFAULT" disabled hidden>
@@ -253,7 +237,7 @@ class SearchTable extends React.Component {
             <Selection
               name="priceMin"
               id=""
-              onChange={this.handlePriceMinChange}
+              onChange={this.handleChange}
               value={priceMin ? priceMin : 'DEFAULT'}
             >
               <Option value="DEFAULT" disabled hidden>
@@ -270,7 +254,7 @@ class SearchTable extends React.Component {
             <Selection
               name="priceMax"
               id=""
-              onChange={this.handlePriceMaxChange}
+              onChange={this.handleChange}
               value={priceMax ? priceMax : 'DEFAULT'}
             >
               <Option value="DEFAULT" disabled hidden>

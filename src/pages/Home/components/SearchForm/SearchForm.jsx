@@ -21,12 +21,8 @@ class SearchForm extends React.Component {
         componentRestrictions: { country: 'au' },
       },
     };
+    this.handleChange = this.handleChange.bind(this);
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
-    this.handleBedMinChange = this.handleBedMinChange.bind(this);
-    this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
-    this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
-    this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -39,23 +35,12 @@ class SearchForm extends React.Component {
       .catch((error) => console.error('Error', error));
   };
 
+  handleChange(e) {
+    this.props.onChange(e);
+  }
+
   handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
-  }
-  handleTypeChange(e) {
-    this.props.onTypeChange(e.target.value);
-  }
-  handleBedMinChange(e) {
-    this.props.onBedMinChange(e.target.value);
-  }
-  handleBedMaxChange(e) {
-    this.props.onBedMaxChange(e.target.value);
-  }
-  handlePriceMinChange(e) {
-    this.props.onPriceMinChange(e.target.value);
-  }
-  handlePriceMaxChange(e) {
-    this.props.onPriceMaxChange(e.target.value);
+    this.props.onFilterTextChange(e);
   }
 
   render() {
@@ -88,8 +73,8 @@ class SearchForm extends React.Component {
             }}
           />
           <PlacesAutocomplete
-            value={this.props.filterText}
-            onChange={this.props.onFilterTextChange} //Cannot be changed
+            value={filterText}
+            onChange={this.handleFilterTextChange} //Cannot be changed
             searchOptions={this.state.searchOptions}
             debounce={1500}
           >
@@ -103,11 +88,11 @@ class SearchForm extends React.Component {
                     placeholder="Search by state, suburb or postcode"
                     name="location"
                     id="location"
-                    list="searchList"
+                    list="searchList_responsive"
                     onSelect={this.handleSelect}
                     {...getInputProps()}
                   />
-                  <datalist id="searchList">
+                  <datalist id="searchList_responsive">
                     {loading && <div>Loading...</div>}
                     {suggestions.map((suggestion) => {
                       const className = suggestion.active
@@ -136,7 +121,7 @@ class SearchForm extends React.Component {
             <h2>Property type</h2>
           </TypeFilterTitle>
           <TypeFilterItem className="oneDrop">
-            <select name="type" id="type" onChange={this.handleTypeChange} value={type}>
+            <select name="type" id="type" onChange={this.handleChange} value={type}>
               <option value="">All Types</option>
               <option value="house">House</option>
               <option value="apartment">Apartment</option>
@@ -152,12 +137,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="priceMin">Min</label>
             <br />
-            <select
-              name="priceMin"
-              id="priceMin"
-              onChange={this.handlePriceMinChange}
-              value={priceMin}
-            >
+            <select name="priceMin" id="priceMin" onChange={this.handleChange} value={priceMin}>
               <option value="">Any</option>
               <option value="50">$50</option>
               <option value="75">$75</option>
@@ -177,12 +157,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="priceMax">Max</label>
             <br />
-            <select
-              name="priceMax"
-              id="priceMax"
-              onChange={this.handlePriceMaxChange}
-              value={priceMax}
-            >
+            <select name="priceMax" id="priceMax" onChange={this.handleChange} value={priceMax}>
               <option value="">Any</option>
               <option value="50">$50</option>
               <option value="75">$75</option>
@@ -202,7 +177,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="bedMin">Min</label>
             <br />
-            <select name="bedMin" id="bedMin" onChange={this.handleBedMinChange} value={bedMin}>
+            <select name="bedMin" id="bedMin" onChange={this.handleChange} value={bedMin}>
               <option value="">Any</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -221,7 +196,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="bedMax">Max</label>
             <br />
-            <select name="bedMax" id="bedMax" onChange={this.handleBedMaxChange} value={bedMax}>
+            <select name="bedMax" id="bedMax" onChange={this.handleChange} value={bedMax}>
               <option value="">Any</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -258,12 +233,7 @@ SearchForm.propTypes = {
   bedMax: PropTypes.string.isRequired,
   priceMin: PropTypes.string.isRequired,
   priceMax: PropTypes.string.isRequired,
-  onFilterTextChange: PropTypes.func.isRequired,
-  onTypeChange: PropTypes.func.isRequired,
-  onBedMinChange: PropTypes.func.isRequired,
-  onBedMaxChange: PropTypes.func.isRequired,
-  onPriceMinChange: PropTypes.func.isRequired,
-  onPriceMaxChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   clearInput: PropTypes.func.isRequired,
 };
 

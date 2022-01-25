@@ -10,7 +10,6 @@ import BottomBanner from './components/BottomBanner';
 import ExploreCities from './components/ExploreCities';
 
 const Container = styled.div`
-  //overflow: hidden;
   width: 60%;
   height: auto;
   margin: auto;
@@ -37,42 +36,18 @@ class Home extends React.Component {
       priceMin: '',
       priceMax: '',
     };
+    this.onChange = this.onChange.bind(this);
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
-    this.onTypeChange = this.onTypeChange.bind(this);
-    this.onBedMinChange = this.onBedMinChange.bind(this);
-    this.onBedMaxChange = this.onBedMaxChange.bind(this);
-    this.onPriceMinChange = this.onPriceMinChange.bind(this);
-    this.onPriceMaxChange = this.onPriceMaxChange.bind(this);
     this.clearInput = this.clearInput.bind(this);
+  }
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
   onFilterTextChange(filterText) {
     this.setState({
       filterText,
-    });
-  }
-  onTypeChange(type) {
-    this.setState({
-      type,
-    });
-  }
-  onBedMinChange(bedMin) {
-    this.setState({
-      bedMin,
-    });
-  }
-  onBedMaxChange(bedMax) {
-    this.setState({
-      bedMax,
-    });
-  }
-  onPriceMinChange(priceMin) {
-    this.setState({
-      priceMin,
-    });
-  }
-  onPriceMaxChange(priceMax) {
-    this.setState({
-      priceMax,
     });
   }
 
@@ -119,12 +94,8 @@ class Home extends React.Component {
           bedMax={bedMax}
           priceMin={priceMin}
           priceMax={priceMax}
+          onChange={this.onChange}
           onFilterTextChange={this.onFilterTextChange}
-          onTypeChange={this.onTypeChange}
-          onBedMinChange={this.onBedMinChange}
-          onBedMaxChange={this.onBedMaxChange}
-          onPriceMinChange={this.onPriceMinChange}
-          onPriceMaxChange={this.onPriceMaxChange}
           clearInput={this.clearInput}
         ></SearchForm>
       </Container>
