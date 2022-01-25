@@ -61,7 +61,7 @@ const Cross = styled.button`
 
 const MenuContainer = styled.div`
     ${(props) => (props.isOpen ? `display: none;` : `display: inherit;`)}}   
-    width: 240px;
+    width: 300px;
     bottom: -1px;
     right: -15px;
     z-index: 1000;
@@ -104,6 +104,7 @@ const MenuLi = styled.li`
   display: block;
   height: 53px;
   cursor: pointer;
+  overflow: hidden;
   &:hover {
     background-color: #f0f0f0;
   }
@@ -121,7 +122,7 @@ const MenuLink = styled.a`
     position: relative;
     background-color: #fff;
     line-height: 48px;
-    padding: 20px
+    padding: 10px
     color: #3b3b3b;
     border-bottom: 1px solid #e3e3e3;
     transition-duration: .1s;
@@ -133,13 +134,15 @@ const MenuLink = styled.a`
 
 const MenuSpan = styled.span`
   position: absolute;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 48px;
   top: -1px;
   color: #3b3b3b;
   float: none;
   text-align: left;
-  padding-left: 25px;
+  padding-left: 15px;
+  
+  word-wrap: break-word;
   @media (max-width: 576px) {
     font-size: 20px;
     color: #f1f1f1;

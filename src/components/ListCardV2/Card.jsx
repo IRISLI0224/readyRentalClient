@@ -5,21 +5,8 @@ import StyledIcon from '../../hoc/IconV2';
 import StyledText from '../../hoc/Text';
 import { BiBed, BiBath } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
-
-const PropertyList = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
-  display: flex;
-  background-color: #fff;
-  border-radius: 3px;
-  border: 1px solid #e6e9ec;
-  margin-bottom: 30px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  margin-left: 30px;
-  &:hover {
-    box-shadow: rgba(34, 34, 34, 0.5) 0px 8px 8px 0px;
-  }
-`;
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 const Thumb = styled.div`
   border-radius: 3px 0 0 3px;
@@ -82,19 +69,6 @@ const CallNow = styled.div`
   margin-bottom: 30px;
 `;
 
-const Button = styled.button`
-  background-color: rgba(0, 97, 223, 0.1);
-  border: none;
-  border-radius: 3px;
-  color: #0061df;
-  font-size: 14px;
-  font-weight: 600;
-  height: 50px;
-  text-transform: uppercase;
-  width: 126px;
-  cursor: pointer;
-`;
-
 const ContentFooter = styled.div`
   padding: 6px 20px 10px;
   border-top: 1px solid #e6e9ec;
@@ -149,52 +123,62 @@ const Address = styled.p`
 `;
 
 const Cards = (props) => (
-  <>
-    <PropertyList>
-      <Thumb>
-        <Slider width="100%" slides={props.slides} />
-      </Thumb>
-      <Details>
-        <ContentDetail>
-          <WrapperFloat>
-            <Price>${props.price} per week</Price>
-            <Address>{props.address}</Address>
-            <PropDetails>
-              <PropDetail>
-                <StyledIcon>
-                  <BiBed />
-                </StyledIcon>
-                <StyledText>{props.bed} Beds</StyledText>
-              </PropDetail>
-              <PropDetail>
-                <StyledIcon>
-                  <BiBath />
-                </StyledIcon>
-                <StyledText>{props.bath} Bath</StyledText>
-              </PropDetail>
-              <PropDetail>
-                <StyledIcon>
-                  <AiOutlineCar />
-                </StyledIcon>
-                <StyledText>{props.car} Garage</StyledText>
-              </PropDetail>
-            </PropDetails>
-          </WrapperFloat>
-          <WrapperCenter>
-            <CallNow>Call: Ready Rental</CallNow>
-            <Button>Details</Button>
-          </WrapperCenter>
-        </ContentDetail>
-        <ContentFooter>
-          <Type>{props.types}</Type>
-          <StyledIcon>
-            {' '}
-            <AiOutlineStar />{' '}
-          </StyledIcon>
-        </ContentFooter>
-      </Details>
-    </PropertyList>
-  </>
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: { xs: 'column', md: 'row' },
+      alignItems: 'center',
+      bgcolor: 'background.paper',
+      overflow: 'hidden',
+      borderRadius: '12px',
+      boxShadow: 2,
+      fontWeight: 'bold',
+      mb: 2,
+    }}
+  >
+    <Thumb>
+      <Slider width="100%" slides={props.slides} />
+    </Thumb>
+    <Details>
+      <ContentDetail>
+        <WrapperFloat>
+          <Price>${props.price} per week</Price>
+          <Address>{props.address}</Address>
+          <PropDetails>
+            <PropDetail>
+              <StyledIcon>
+                <BiBed />
+              </StyledIcon>
+              <StyledText>{props.bed} Beds</StyledText>
+            </PropDetail>
+            <PropDetail>
+              <StyledIcon>
+                <BiBath />
+              </StyledIcon>
+              <StyledText>{props.bath} Bath</StyledText>
+            </PropDetail>
+            <PropDetail>
+              <StyledIcon>
+                <AiOutlineCar />
+              </StyledIcon>
+              <StyledText>{props.car} Garage</StyledText>
+            </PropDetail>
+          </PropDetails>
+        </WrapperFloat>
+        <WrapperCenter>
+          <CallNow>Call: Ready Rental</CallNow>
+          <Button variant="contained">Details</Button>
+        </WrapperCenter>
+      </ContentDetail>
+      <ContentFooter>
+        <Type>{props.types}</Type>
+        <StyledIcon>
+          {' '}
+          <AiOutlineStar />{' '}
+        </StyledIcon>
+      </ContentFooter>
+    </Details>
+  </Box>
 );
 
 export default Cards;
