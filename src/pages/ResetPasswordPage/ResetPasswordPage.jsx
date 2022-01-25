@@ -8,7 +8,6 @@ import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
 import passwordIcon from '../../assests/img/lock.png';
-import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
 import FormBackground from '../../assests/video/FormBackground.mp4';
 import {
@@ -20,6 +19,7 @@ import {
   TitleImg,
   Title,
   LinktoLogin,
+  FormWrapper,
 } from '../../hoc/AuthForm';
 
 class ResetPasswordPage extends React.Component {
@@ -200,7 +200,7 @@ class ResetPasswordPage extends React.Component {
               />
             </Form>
             <br />
-            <Button primary type="submit" size="400px" height="50px" disabled={authError}>
+            <Button primary type="submit" size="83.75%" height="50px" disabled={authError}>
               Update Password
             </Button>
           </FormWrapper>

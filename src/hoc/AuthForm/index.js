@@ -8,4 +8,5 @@ export {
   TitleImg,
   Title,
   LinktoLogin,
+  FormWrapper,
 } from './AuthForm';
