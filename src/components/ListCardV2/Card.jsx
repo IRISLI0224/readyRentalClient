@@ -61,8 +61,7 @@ const ContentDetail = styled.div`
 `;
 const WrapperFloat = styled.div`
   float: left !important;
-  text-transform: uppercase;
-  margin: 5px;
+  text-transform: capitalize;
 `;
 const WrapperCenter = styled.div`
   text-align: center;
@@ -153,13 +152,12 @@ const Cards = (props) => (
   <>
     <PropertyList>
       <Thumb>
-        <Slider width='100%' slides={props.slides} />
+        <Slider width="100%" slides={props.slides} />
       </Thumb>
       <Details>
         <ContentDetail>
           <WrapperFloat>
             <Price>${props.price} per week</Price>
-            
             <Address>{props.address}</Address>
             <PropDetails>
               <PropDetail>
@@ -183,7 +181,7 @@ const Cards = (props) => (
             </PropDetails>
           </WrapperFloat>
           <WrapperCenter>
-            <CallNow>Call: 202-555-0191</CallNow>
+            <CallNow>Call: Ready Rental</CallNow>
             <Button>Details</Button>
           </WrapperCenter>
         </ContentDetail>
