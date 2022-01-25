@@ -17,8 +17,8 @@ const Card = styled.div`
   position: relative;
   margin-bottom: 30px;
   height: 420px;
-  margin-right:2.5px;
-  margin-left:2.5px;
+  margin-right: 2.5px;
+  margin-left: 2.5px;
 `;
 
 const Row = styled.div`
