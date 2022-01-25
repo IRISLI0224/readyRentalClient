@@ -55,20 +55,6 @@ const LogoPanel = styled.div`
   width: 800px;
 `;
 
-// const IconEmail = styled.div`
-//   display: flex;
-//   width: 55.5%;
-// `;
-
-// const Email = styled.div`
-//   margin-left: 40%;
-//   color: gray;
-//   margin-top: 1.2rem;
-//   @media (max-width: 576px) {
-//     display: none;
-//   }
-// `;
-
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
 

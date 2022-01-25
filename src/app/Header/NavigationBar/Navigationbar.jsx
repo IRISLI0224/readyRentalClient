@@ -15,7 +15,6 @@ const Container = styled.div`
   height: 60px;
   display: flex;
   justify-content: space-between;
-  // align-items: center;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   height: 100px;
   @media (max-width: 992px) {
@@ -25,8 +24,6 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     padding: 2rem 1rem 0.5rem 1rem;
-    // padding-left: 5%;
-    // padding-bottom: 0;
     Button {
       margin-left: 3px;
       size: 20%;
@@ -73,19 +70,6 @@ const ButtonWhitFont = styled(ButtonStyle)`
     margin-right: 1rem;
   }
 `;
-
-// const IconEmail = styled.div`
-//   align-items: flex-end;
-//   width: 55.5%;
-// `;
-
-// const Email = styled.div`
-//   margin-left: 40%;
-//   margin-top: 1.2rem;
-//   @media (max-width: 576px) {
-//     display: none;
-//   }
-// `;
 
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
