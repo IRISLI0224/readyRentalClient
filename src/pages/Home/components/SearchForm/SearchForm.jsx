@@ -22,6 +22,7 @@ class SearchForm extends React.Component {
       },
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -36,6 +37,10 @@ class SearchForm extends React.Component {
 
   handleChange(e) {
     this.props.onChange(e);
+  }
+
+  handleFilterTextChange(e) {
+    this.props.onFilterTextChange(e);
   }
 
   render() {
@@ -69,7 +74,7 @@ class SearchForm extends React.Component {
           />
           <PlacesAutocomplete
             value={filterText}
-            onChange={this.props.onChange} //Cannot be changed
+            onChange={this.handleFilterTextChange} //Cannot be changed
             searchOptions={this.state.searchOptions}
             debounce={1500}
           >
@@ -83,11 +88,11 @@ class SearchForm extends React.Component {
                     placeholder="Search by state, suburb or postcode"
                     name="location"
                     id="location"
-                    list="searchList"
+                    list="searchList_responsive"
                     onSelect={this.handleSelect}
                     {...getInputProps()}
                   />
-                  <datalist id="searchList">
+                  <datalist id="searchList_responsive">
                     {loading && <div>Loading...</div>}
                     {suggestions.map((suggestion) => {
                       const className = suggestion.active

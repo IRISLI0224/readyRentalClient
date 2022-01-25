@@ -74,11 +74,7 @@ class SearchTable extends React.Component {
       },
     };
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
-    this.handleBedMinChange = this.handleBedMinChange.bind(this);
-    this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
-    this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
-    this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -92,22 +88,10 @@ class SearchTable extends React.Component {
   };
 
   handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
+    this.props.onFilterTextChange(e);
   }
-  handleTypeChange(e) {
-    this.props.onTypeChange(e.target.value);
-  }
-  handleBedMinChange(e) {
-    this.props.onBedMinChange(e.target.value);
-  }
-  handleBedMaxChange(e) {
-    this.props.onBedMaxChange(e.target.value);
-  }
-  handlePriceMinChange(e) {
-    this.props.onPriceMinChange(e.target.value);
-  }
-  handlePriceMaxChange(e) {
-    this.props.onPriceMaxChange(e.target.value);
+  handleChange(e) {
+    this.props.onChange(e);
   }
   render() {
     const { filterText, type, bedMin, bedMax, priceMin, priceMax } = this.props;
@@ -138,8 +122,8 @@ class SearchTable extends React.Component {
               }}
             />
             <PlacesAutocomplete
-              value={this.props.filterText}
-              onChange={this.props.onFilterTextChange} //Cannot be changed
+              value={filterText}
+              onChange={this.handleFilterTextChange} //Cannot be changed
               searchOptions={this.state.searchOptions}
               debounce={1500}
             >
@@ -201,7 +185,7 @@ class SearchTable extends React.Component {
             </Button>
           </SearchPanel>
           <DropFilter>
-            <Selection name="type" id="" onChange={this.handleTypeChange} value={type}>
+            <Selection name="type" id="" onChange={this.handleChange} value={type}>
               <Option value="" selected disabled hidden>
                 All property types
               </Option>
@@ -210,7 +194,7 @@ class SearchTable extends React.Component {
               <Option value="apartment">Apartment</Option>
               <Option value="studio">Studio</Option>
             </Selection>
-            <Selection name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
+            <Selection name="bedMin" id="" onChange={this.handleChange} value={bedMin}>
               <Option value="" selected disabled hidden>
                 Beds (min)
               </Option>
@@ -222,7 +206,7 @@ class SearchTable extends React.Component {
               <Option value="5">5 Beds</Option>
               <Option value="6">6 Beds</Option>
             </Selection>
-            <Selection name="bedMax" id="" onChange={this.handleBedMaxChange} value={bedMax}>
+            <Selection name="bedMax" id="" onChange={this.handleChange} value={bedMax}>
               <Option value="" selected disabled hidden>
                 Beds (max)
               </Option>
@@ -235,7 +219,7 @@ class SearchTable extends React.Component {
               <Option value="6">6 Beds</Option>
               <Option value="7">7 Beds</Option>
             </Selection>
-            <Selection name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
+            <Selection name="priceMin" id="" onChange={this.handleChange} value={priceMin}>
               <Option value="" selected disabled hidden>
                 Price pw (min)
               </Option>
@@ -247,7 +231,7 @@ class SearchTable extends React.Component {
               <Option value="150">$150pw</Option>
               <Option value="175">$175pw</Option>
             </Selection>
-            <Selection name="priceMax" id="" onChange={this.handlePriceMaxChange} value={priceMax}>
+            <Selection name="priceMax" id="" onChange={this.handleChange} value={priceMax}>
               <Option value="" selected disabled hidden>
                 Price pw (max)
               </Option>

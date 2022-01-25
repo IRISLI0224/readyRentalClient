@@ -22,7 +22,6 @@ import BottomBanner from './components/BottomBanner';
 import ExploreCities from './components/ExploreCities';
 
 const Container = styled.div`
-  //overflow: hidden;
   width: 60%;
   height: auto;
   margin: auto;
@@ -50,11 +49,17 @@ class Home extends React.Component {
       priceMax: '',
     };
     this.onChange = this.onChange.bind(this);
+    this.onFilterTextChange = this.onFilterTextChange.bind(this);
     this.clearInput = this.clearInput.bind(this);
   }
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
+    });
+  }
+  onFilterTextChange(filterText) {
+    this.setState({
+      filterText,
     });
   }
 
@@ -162,6 +167,7 @@ class Home extends React.Component {
           priceMin={priceMin}
           priceMax={priceMax}
           onChange={this.onChange}
+          onFilterTextChange={this.onFilterTextChange}
           clearInput={this.clearInput}
         ></SearchForm>
       </Container>
