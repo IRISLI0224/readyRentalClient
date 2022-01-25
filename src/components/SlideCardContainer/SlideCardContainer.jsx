@@ -30,12 +30,6 @@ const Descriptions = styled.div`
 `;
 //const cardNumber = window.innerWidth <= 800 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
 const SlideCardContainer = ({ properties }) => {
-  const [cardNumber, setCardNumber] = useState(4);
-
-  useEffect(() => {
-    const number = window.innerWidth <= 1000 ? 2.5 : window.innerWidth <= 1500 ? 3.5 : 4;
-    setCardNumber(number);
-  }, [window.innerWidth]);
 
   return (
     <Container>
@@ -46,7 +40,7 @@ const SlideCardContainer = ({ properties }) => {
       <Descriptions>Find a suitable property around your place to live</Descriptions>
       <br />
       <br />
-      <Carousel show={cardNumber} slide={4} swiping={true} responsive={true}>
+      <Carousel show={4.5} slide={4} swiping={true} rightArrow={false} leftArrow={true}>
         {properties.map((property, index) => {
           return (
             <PropertyBack key={index}>
