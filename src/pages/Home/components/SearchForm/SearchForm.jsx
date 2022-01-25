@@ -101,7 +101,7 @@ class SearchForm extends React.Component {
                   <SearchText
                     type="text"
                     placeholder="Search by state, suburb or postcode"
-                    // name="location"
+                    name="location"
                     id="location"
                     list="searchList"
                     onSelect={this.handleSelect}
