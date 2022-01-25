@@ -15,7 +15,7 @@ async function postImage({ image }) {
 }
 
 const UploadImage = ({ setFiles }) => {
-  const [files, setFile] = useState();
+  const [,setFile] = useState();
   const [images, setImages] = useState([]);
   const imageInput = useRef();
 
@@ -26,7 +26,7 @@ const UploadImage = ({ setFiles }) => {
     for (let i = 0; i < imgSelected.length; i++) {
       const file = event.target.files[i];
       setFile(file);
-      const result = await postImage({ image: files });
+      const result = await postImage({ image: file });
       setImages([result.image, ...images]);
       setFiles(result.Location);
     }
