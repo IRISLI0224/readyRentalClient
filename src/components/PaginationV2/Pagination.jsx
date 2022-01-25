@@ -66,7 +66,6 @@ const PageList = styled.li`
   }
 `;
 
-
 const renderData = (property) => {
   return (
     <>

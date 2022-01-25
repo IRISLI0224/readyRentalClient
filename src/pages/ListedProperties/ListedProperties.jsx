@@ -146,7 +146,7 @@ class ListedProperties extends React.Component {
 }
 
 ListedProperties.propTypes = {
-  isListing: PropTypes.object.isRequired,
+  isListing: PropTypes.bool,
 };
 
 export default ListedProperties;

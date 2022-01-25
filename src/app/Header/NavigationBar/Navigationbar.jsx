@@ -5,28 +5,25 @@ import { ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
-import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   width: 100%;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-  padding-left: 9%;
-  padding-right: 10%;
+  margin: 0 auto;
+  padding: 2rem 5rem 0.5rem 5rem;
   color: #fff;
   word-wrap: break-word;
   height: 60px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   height: 100px;
+  @media (max-width: 992px) {
+    padding: 2rem 5rem 0.5rem 5rem;
+  }
   @media (max-width: 768px) {
     width: 100%;
     height: 100%;
-    padding-top: 1rem;
-    padding-left: 5%;
-    padding-bottom: 0;
+    padding: 2rem 1rem 0.5rem 1rem;
     Button {
       margin-left: 3px;
       size: 20%;
@@ -41,7 +38,7 @@ const Space = styled.div`
   width: 55.5%;
 `;
 const SpaceLogin = styled.div`
-  width: 68%;
+  width: 50%;
 `;
 
 const ButtonWithoutBorder = styled(ButtonStyle)`
@@ -74,22 +71,8 @@ const ButtonWhitFont = styled(ButtonStyle)`
   }
 `;
 
-const IconEmail = styled.div`
-  display: flex;
-  width: 55.5%;
-`;
-
-const Email = styled.div`
-  margin-left: 40%;
-  margin-top: 1.2rem;
-  @media (max-width: 576px) {
-    display: none;
-  }
-`;
-
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
-  const user = useSelector((state) => state);
 
   useEffect(() => {
     const token = getToken();
@@ -102,10 +85,7 @@ const NavigationBar = () => {
       {Login ? <SpaceLogin /> : <Space />}
       {Login ? (
         <>
-          <IconEmail>
-            <Email>{user.email}</Email>
-            <Dropdown />{' '}
-          </IconEmail>
+          <Dropdown />{' '}
         </>
       ) : (
         <>

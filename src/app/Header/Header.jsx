@@ -13,6 +13,7 @@ const Container = styled.div`
   color: white;
   height: 600px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   background: url(${({ img }) => img}) no-repeat center;
   @media (max-width: 768px) {
     height: ${({ height }) => height}rem;
@@ -23,6 +24,11 @@ const Container = styled.div`
     height: 60px;
     width: 100%;
     background: none;
+  }
+  video {
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 
@@ -43,12 +49,10 @@ const DownloadAPP = styled.div`
 const Header = () => (
   <Container className="Header" height={5}>
     <video
-      source
       src={background}
       type="video/mp4"
       muted
       autoPlay={'autoplay'}
-      preLoad="auto"
       loop
       style={{
         position: 'fixed',

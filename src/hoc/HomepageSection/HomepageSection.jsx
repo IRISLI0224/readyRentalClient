@@ -47,7 +47,7 @@ HomepageSection.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   wrap: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.array.isRequired,
 };
 
 export default HomepageSection;

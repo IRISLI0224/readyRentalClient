@@ -7,13 +7,14 @@ import { removeToken } from '../../utils/authentication';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
 
 export const DropdownContainer = styled.div`
   position: relative;
-  margin-right: 5rem;
+  margin-right: 10rem;
   margin-left: 0.5rem;
   margin-top: 1rem;
-  @media (max-width: 576px) {
+  @media (max-width: 992px) {
     margin: 0;
   }
 `;
@@ -46,6 +47,8 @@ const ProfileButtonMobile = styled.button`
   }
 `;
 const Cross = styled.button`
+  display: none; 
+  @media (max-width: 576px) {
   position: absolute;
   top: 20px;
   right: 45px;
@@ -53,6 +56,7 @@ const Cross = styled.button`
   cursor: pointer;
   background: transparent;
   border: none;
+  }
 `;
 
 const MenuContainer = styled.div`
@@ -153,6 +157,7 @@ const Dropdown = () => {
   const home = wholeUrl === '/' ? true : false;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state);
 
   const Logout = () => {
     removeToken();
@@ -173,6 +178,11 @@ const Dropdown = () => {
           <CloseOutlined />
         </Cross>
         <MenuUl>
+        <MenuLi>
+            <MenuLink href="/property/manage-listings">
+              <MenuSpan>{user.email}</MenuSpan>
+            </MenuLink>
+          </MenuLi>
           <MenuLi>
             <MenuLink href="/property/manage-listings">
               <MenuSpan>Manage rental listings</MenuSpan>
