@@ -37,7 +37,6 @@ const Container = styled.div`
   }
 `;
 
-
 const Space = styled.div`
   width: 55.5%;
 `;
@@ -102,7 +101,7 @@ const NavigationBar = () => {
       {Login ? <SpaceLogin /> : <Space />}
       {Login ? (
         <>
-            <Dropdown />{' '}
+          <Dropdown />{' '}
         </>
       ) : (
         <>
