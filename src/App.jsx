@@ -7,7 +7,6 @@ import { Routes, Route } from 'react-router-dom';
 import NoPage from './pages/NoPage';
 import PropertyDetails from './pages/PropertyDetails';
 import JoinPage from './pages/JoinPage';
-import SearchResult from './pages/SearchResult';
 import Layout from './app/Layout';
 import ListedProperties from './pages/ListedProperties';
 import Post from './pages/PostYourProperty/Post';
