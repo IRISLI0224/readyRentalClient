@@ -9,11 +9,11 @@ import Dropdown from '../../../components/Dropdown';
 const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 5rem 0.5rem 5rem;
   color: #fff;
   word-wrap: break-word;
   height: 60px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   height: 100px;
@@ -35,10 +35,10 @@ const Container = styled.div`
 `;
 
 const Space = styled.div`
-  width: 55.5%;
+  width: 54%;
 `;
 const SpaceLogin = styled.div`
-  width: 50%;
+  width: 67%;
 `;
 
 const ButtonWithoutBorder = styled(ButtonStyle)`
@@ -71,6 +71,27 @@ const ButtonWhitFont = styled(ButtonStyle)`
   }
 `;
 
+const NavbarPanel = styled.div`
+  margin: auto;
+  width: 1177px;
+  max-width: 1177px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 1350px) {
+    width: 88%;
+    max-width: 88%;
+    margin: auto;
+  }
+`;
+
+const ButtonPanel = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+`;
+
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
 
@@ -81,26 +102,28 @@ const NavigationBar = () => {
 
   return (
     <Container>
-      <Logo className="Logo" />
-      {Login ? <SpaceLogin /> : <Space />}
-      {Login ? (
-        <>
-          <Dropdown />{' '}
-        </>
-      ) : (
-        <>
-          <Link to="/login">
-            <ButtonWithoutBorder className="SigninButton" size="90px">
-              Sign in
-            </ButtonWithoutBorder>
-          </Link>
-          <Link to="/join">
-            <ButtonWhitFont className="JoinButton" size="90px">
-              &nbsp;&nbsp;Join&nbsp;&nbsp;
-            </ButtonWhitFont>
-          </Link>
-        </>
-      )}
+      <NavbarPanel>
+        <Logo className="Logo" />
+        {Login ? <SpaceLogin /> : <Space />}
+        {Login ? (
+          <>
+            <Dropdown />{' '}
+          </>
+        ) : (
+          <ButtonPanel>
+            <Link to="/login">
+              <ButtonWithoutBorder className="SigninButton" size="90px">
+                Sign in
+              </ButtonWithoutBorder>
+            </Link>
+            <Link to="/join">
+              <ButtonWhitFont className="JoinButton" size="90px">
+                &nbsp;&nbsp;Join&nbsp;&nbsp;
+              </ButtonWhitFont>
+            </Link>
+          </ButtonPanel>
+        )}
+      </NavbarPanel>
     </Container>
   );
 };

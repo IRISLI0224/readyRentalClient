@@ -81,13 +81,12 @@ const ExploreCitiesCard = ({ name, city, background, background_alt, number, wid
 };
 
 ExploreCitiesCard.propTypes = {
-  icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   background: PropTypes.string.isRequired,
   background_alt: PropTypes.string.isRequired,
   icon_alt: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
+  number: PropTypes.string.isRequired,
 };
 
 export default ExploreCitiesCard;
