@@ -13,6 +13,7 @@ const Container = styled.div`
   color: white;
   height: 600px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   background: url(${({ img }) => img}) no-repeat center;
   @media (max-width: 768px) {
     height: ${({ height }) => height}rem;
