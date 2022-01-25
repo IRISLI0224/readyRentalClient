@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import {
   Form,
@@ -42,12 +42,11 @@ const formItemLayout = {
 const { TextArea } = Input;
 
 const EditForm = () => {
-  const [file] = useState([]);
   const [images, setImages] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [form] = Form.useForm();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchProperty = async () => {
       const ids = window.location.pathname.split('/');
       const id = ids[3];
@@ -87,10 +86,18 @@ const EditForm = () => {
       });
     };
     fetchProperty();
-  });
+  }, []);
 
   const Redirection = () => {
     window.location.href = ManageListPage;
+  };
+
+  const handleClick = (img) => {
+    const filterIndex = images.indexOf(img);
+    if (filterIndex > -1) {
+      images.splice(filterIndex, 1);
+      setImages(images.filter((img, i) => i !== img));
+    }
   };
 
   const handleFormSubmit = async (values, error) => {
@@ -128,7 +135,7 @@ const EditForm = () => {
 
     newData['availableDate'] = Date(values.availableDate);
 
-    newData['propImage'] = file;
+    newData['propImage'] = images;
 
     delete newData.propertyFeatures;
 
@@ -355,10 +362,21 @@ const EditForm = () => {
       <Form.Item label="Description" name="description">
         <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
       </Form.Item>
-      {images.length > 0 &&
-        images.map((img, index) => (
-          <img style={{ marginRight: 5 }} key={index} src={img} alt={index}></img>
-        ))}
+      <Form.Item label="Uploaded Images">
+        {images.length > 0 &&
+          images.map((img, index) => (
+            <img
+              onClick={() => {
+                handleClick(img);
+              }}
+              style={{ margin: 5, width: 200 }}
+              key={index}
+              src={img}
+              alt={index}
+            ></img>
+          ))}
+      </Form.Item>
+
       {/* <Form.Item label="Pictures" name="propImage">
           <UploadImage setFiles={setFiles} />
         </Form.Item> */}

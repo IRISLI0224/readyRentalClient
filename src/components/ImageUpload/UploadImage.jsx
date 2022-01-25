@@ -15,7 +15,7 @@ async function postImage({ image }) {
 }
 
 const UploadImage = ({ setFiles }) => {
-  const [,setFile] = useState();
+  const [, setFile] = useState();
   const [images, setImages] = useState([]);
   const imageInput = useRef();
 
@@ -35,7 +35,14 @@ const UploadImage = ({ setFiles }) => {
   return (
     <StyledInput>
       <div>Please select one or multiple images of the property</div>
-      <input className='form-control' onChange={fileSelected} multiple type="file" ref={imageInput} accept="image/*"></input>
+      <input
+        className="form-control"
+        onChange={fileSelected}
+        multiple
+        type="file"
+        ref={imageInput}
+        accept="image/*"
+      ></input>
     </StyledInput>
   );
 };
