@@ -16,6 +16,12 @@ const Container = styled.div`
     top: 0;
     left: 0;
     object-fit: cover;
+    @media (max-width: 550px) {
+      display: none;
+    }
+  }
+  @media (max-width: 550px) {
+    background-color: black;
   }
 `;
 
@@ -49,6 +55,13 @@ const MainBox = styled.div`
   opacity: 0.8;
   Button {
     margin: 0.5rem 0 46px;
+    @media (max-width: 550px) {
+      size: 95%;
+    }
+  }
+  @media (max-width: 550px) {
+    width: 95%;
+    opacity: 1;
   }
 `;
 
@@ -104,6 +117,18 @@ const LinktoLogin = styled.div`
   color: white;
 `;
 
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  width: 95%;
+  @media (max-width: 550px) {
+    width: 95%;
+  }
+`;
+
 export {
   Container,
   MainBox,
@@ -114,4 +139,5 @@ export {
   TitleImg,
   Title,
   LinktoLogin,
+  FormWrapper,
 };

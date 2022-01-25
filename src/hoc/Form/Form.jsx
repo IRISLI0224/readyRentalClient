@@ -6,11 +6,11 @@ const Item = styled.div`
   max-height: 100px;
   overflow: auto;
   display: flex;
-  align-items: flex-start;
-  width: 100%;
-  padding-top: 0.5rem;
+  align-items: center;
+  width: 85%;
+  /* padding-top: 0.5rem;
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 1rem; */
   margin-top: ${(props) => props.margin_top};
   margin-bottom: ${(props) => props.margin_bottom};
 `;

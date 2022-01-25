@@ -7,7 +7,6 @@ import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
 import emailIcon from '../../assests/img/email.png';
-import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
 import backendApi from '../../api/backendApi';
 import FormBackground from '../../assests/video/FormBackground.mp4';
@@ -20,11 +19,12 @@ import {
   TitleImg,
   Title,
   LinktoLogin,
+  FormWrapper,
 } from '../../hoc/AuthForm';
 
 const ReminderMsg = styled.div`
-  width: 400px;
-  max-width: 400px;
+  width: 90%;
+  max-width: 90%;
   margin: 0 0 20px;
   font-size: 0.9rem;
   font-family: Museo-Sans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -125,7 +125,7 @@ class ForgotPasswordPage extends React.Component {
                 onBlur={this.handleBlurredChange}
               />
             </Form>
-            <Button primary type="submit" size="400px" height="50px">
+            <Button primary type="submit" size="83.5%" height="50px">
               Reset my password
             </Button>
           </FormWrapper>

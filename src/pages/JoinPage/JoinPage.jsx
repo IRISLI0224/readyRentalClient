@@ -8,7 +8,6 @@ import emailIcon from '../../assests/img/email.png';
 import passwordIcon from '../../assests/img/lock.png';
 import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg';
-import FormWrapper from '../../hoc/FormWrapper';
 import ServerMsg from '../../hoc/ServerMsg';
 import { connect } from 'react-redux';
 import { appendData } from '../../redux/action';
@@ -23,6 +22,7 @@ import {
   TitleImg,
   Title,
   LinktoLogin,
+  FormWrapper,
 } from '../../hoc/AuthForm';
 
 //API
@@ -206,7 +206,7 @@ class JoinPage extends React.Component {
               </InputErrorMsg>
             )}
           </FormWrapper>
-          <Button primary size="400px" height="50px" onClick={this.userRegister}>
+          <Button primary size="80%" height="50px" onClick={this.userRegister}>
             Create Account
           </Button>
           {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}
