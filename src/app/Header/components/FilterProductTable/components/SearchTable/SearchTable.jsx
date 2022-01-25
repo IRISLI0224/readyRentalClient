@@ -201,8 +201,13 @@ class SearchTable extends React.Component {
             </Button>
           </SearchPanel>
           <DropFilter>
-            <Selection name="type" id="" onChange={this.handleTypeChange} value={type}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="type"
+              id=""
+              onChange={this.handleTypeChange}
+              value={type ? type : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 All property types
               </Option>
               <Option value="">All property types</Option>
@@ -210,8 +215,13 @@ class SearchTable extends React.Component {
               <Option value="apartment">Apartment</Option>
               <Option value="studio">Studio</Option>
             </Selection>
-            <Selection name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="bedMin"
+              id=""
+              onChange={this.handleBedMinChange}
+              value={bedMin ? bedMin : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Beds (min)
               </Option>
               <Option value="">Any</Option>
@@ -222,8 +232,13 @@ class SearchTable extends React.Component {
               <Option value="5">5 Beds</Option>
               <Option value="6">6 Beds</Option>
             </Selection>
-            <Selection name="bedMax" id="" onChange={this.handleBedMaxChange} value={bedMax}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="bedMax"
+              id=""
+              onChange={this.handleBedMaxChange}
+              value={bedMax ? bedMax : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Beds (max)
               </Option>
               <Option value="">Any</Option>
@@ -235,8 +250,13 @@ class SearchTable extends React.Component {
               <Option value="6">6 Beds</Option>
               <Option value="7">7 Beds</Option>
             </Selection>
-            <Selection name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="priceMin"
+              id=""
+              onChange={this.handlePriceMinChange}
+              value={priceMin ? priceMin : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Price pw (min)
               </Option>
               <Option value="">Any</Option>
@@ -247,8 +267,13 @@ class SearchTable extends React.Component {
               <Option value="150">$150pw</Option>
               <Option value="175">$175pw</Option>
             </Selection>
-            <Selection name="priceMax" id="" onChange={this.handlePriceMaxChange} value={priceMax}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="priceMax"
+              id=""
+              onChange={this.handlePriceMaxChange}
+              value={priceMax ? priceMax : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Price pw (max)
               </Option>
               <Option value="">Any</Option>

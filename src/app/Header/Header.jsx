@@ -43,12 +43,10 @@ const DownloadAPP = styled.div`
 const Header = () => (
   <Container className="Header" height={5}>
     <video
-      source
       src={background}
       type="video/mp4"
       muted
       autoPlay={'autoplay'}
-      preLoad="auto"
       loop
       style={{
         position: 'fixed',
