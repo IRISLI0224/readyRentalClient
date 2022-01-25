@@ -49,42 +49,12 @@ class Home extends React.Component {
       priceMin: '',
       priceMax: '',
     };
-    this.onFilterTextChange = this.onFilterTextChange.bind(this);
-    this.onTypeChange = this.onTypeChange.bind(this);
-    this.onBedMinChange = this.onBedMinChange.bind(this);
-    this.onBedMaxChange = this.onBedMaxChange.bind(this);
-    this.onPriceMinChange = this.onPriceMinChange.bind(this);
-    this.onPriceMaxChange = this.onPriceMaxChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.clearInput = this.clearInput.bind(this);
   }
-  onFilterTextChange(filterText) {
+  onChange(e) {
     this.setState({
-      filterText,
-    });
-  }
-  onTypeChange(type) {
-    this.setState({
-      type,
-    });
-  }
-  onBedMinChange(bedMin) {
-    this.setState({
-      bedMin,
-    });
-  }
-  onBedMaxChange(bedMax) {
-    this.setState({
-      bedMax,
-    });
-  }
-  onPriceMinChange(priceMin) {
-    this.setState({
-      priceMin,
-    });
-  }
-  onPriceMaxChange(priceMax) {
-    this.setState({
-      priceMax,
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -182,7 +152,7 @@ class Home extends React.Component {
             <br />
           </div>
         ) : null}
-        <ExploreCities/>
+        <ExploreCities />
         <BottomBanner />
         <SearchForm
           filterText={filterText}
@@ -191,12 +161,7 @@ class Home extends React.Component {
           bedMax={bedMax}
           priceMin={priceMin}
           priceMax={priceMax}
-          onFilterTextChange={this.onFilterTextChange}
-          onTypeChange={this.onTypeChange}
-          onBedMinChange={this.onBedMinChange}
-          onBedMaxChange={this.onBedMaxChange}
-          onPriceMinChange={this.onPriceMinChange}
-          onPriceMaxChange={this.onPriceMaxChange}
+          onChange={this.onChange}
           clearInput={this.clearInput}
         ></SearchForm>
       </Container>

@@ -24,6 +24,11 @@ const Container = styled.div`
     width: 100%;
     background: none;
   }
+  video {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 `;
 
 const SearchBarPanel = styled.div`
