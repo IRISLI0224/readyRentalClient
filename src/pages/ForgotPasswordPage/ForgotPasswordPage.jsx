@@ -53,6 +53,7 @@ class ForgotPasswordPage extends React.Component {
   sendEmail = async (e) => {
     e.preventDefault();
     const { email } = this.state;
+    console.log('123');
     if (email === '') {
       this.setState({
         showError: false,
@@ -61,6 +62,7 @@ class ForgotPasswordPage extends React.Component {
       });
     } else {
       try {
+        console.log('123');
         const response = await backendApi.post('/forgotPassword', {
           email,
         });

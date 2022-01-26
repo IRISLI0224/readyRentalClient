@@ -1,7 +1,7 @@
 import backendApi from '../../../../api/backendApi';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BodyContainer, DescItem, HeroContainer} from '../Container';
+import { BodyContainer, DescItem, HeroContainer } from '../Container';
 import { getUserFromToken } from '../../../../utils/authentication';
 import StyledText from '../../../../hoc/Text';
 import EnquiryButton from '../EnquiryButton';
@@ -17,10 +17,10 @@ const ContactContainer = styled.div`
 `;
 
 const BodyContainers = styled(BodyContainer)`
-@media screen and (max-width: 1024px) {
-  min-width: 100%;
-}
-`
+  @media screen and (max-width: 1024px) {
+    min-width: 100%;
+  }
+`;
 
 const CheckboxContainer = styled.div`
   @media (min-width: 501px) {
@@ -39,15 +39,15 @@ const CheckboxWrapper = styled.div`
 `;
 
 const DescItems = styled(DescItem)`
-@media screen and (max-width: 1024px) {
-  width: 80vw;
-}
-`
+  @media screen and (max-width: 1024px) {
+    width: 80vw;
+  }
+`;
 const EnquiryButtons = styled(EnquiryButton)`
-@media screen and (max-width: 1024px) {
-  width: 81vw;
-}
-`
+  @media screen and (max-width: 1024px) {
+    width: 81vw;
+  }
+`;
 
 const FORM_FIELDS = [
   {
@@ -87,11 +87,11 @@ const validate = (data) =>
 
 const ContactForm = ({ id, property }) => {
   const { address, availableDate } = property;
-  const [setResponse] = useState();
-  const [setLoading] = useState();
+  const [Response, setResponse] = useState();
+  const [Loading, setLoading] = useState();
   const contactUser = getUserFromToken();
-  const blue =RRColors.themeBlue;
-  
+  const blue = RRColors.themeBlue;
+
   const [data, setData] = useState({
     phone: '',
     message: '',
@@ -100,7 +100,7 @@ const ContactForm = ({ id, property }) => {
     isInspection: false,
     isRentalApplication: false,
   });
-  
+
   const [touched, setTouched] = useState({
     email: '',
     name: '',
