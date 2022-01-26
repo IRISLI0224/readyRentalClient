@@ -9,6 +9,7 @@ import StyledText from '../.../../../hoc/Text/';
 import { DescItem_re } from './components/Container/Container';
 import styled from 'styled-components';
 import { Divider } from 'antd';
+import Map from '../../components/Map'
 
 const FormContainer = styled.div`
     display: flex;
@@ -84,6 +85,7 @@ const PropertyDetails = () => {
     <>
       <h1>{property.city}</h1>
       <BasicInfo property={property} />
+      <Map/>
       <FormContainer>
         <Description property={property} />
         <Blank></Blank>

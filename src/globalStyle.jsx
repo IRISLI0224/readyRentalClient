@@ -11,6 +11,16 @@ body {
   ::after {
   box-sizing: border-box;
   }
+
+  .leaflet-container {
+  height: 600px;
+  width: 500px;
+}
+
+.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
 `;
 
 export default GlobalStyle;
