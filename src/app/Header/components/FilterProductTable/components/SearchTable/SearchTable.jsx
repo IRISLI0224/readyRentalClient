@@ -64,6 +64,13 @@ const SearchPanel = styled.div`
     font-size: 1.1rem;
   }
 `;
+
+const SearchIcon = styled.div`
+  width: 45px;
+  position: absolute;
+  left: 3px;
+`;
+
 class SearchTable extends React.Component {
   constructor(props) {
     super(props);
@@ -112,15 +119,15 @@ class SearchTable extends React.Component {
           }}
         >
           <SearchPanel>
-            <SearchOutlined
-              style={{
-                fontSize: '1.4rem',
-                position: 'absolute',
-                left: '1.8%',
-                zIndex: '1',
-                color: '#808080',
-              }}
-            />
+            <SearchIcon>
+              <SearchOutlined
+                style={{
+                  fontSize: '1.4rem',
+                  margin: 'auto',
+                  color: '#808080',
+                }}
+              />
+            </SearchIcon>
             <PlacesAutocomplete
               value={filterText}
               onChange={this.handleFilterTextChange} //Cannot be changed

@@ -24,6 +24,12 @@ const Container = styled.div`
   }
 `;
 
+const SlideCardContainerWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -80,10 +86,10 @@ class Home extends React.Component {
         <ExploreOurProperties />
         <TrendBanner />
         {properties.length > 0 ? (
-          <div>
+          <SlideCardContainerWrapper>
             <SlideCardContainer properties={properties} />
             <br />
-          </div>
+          </SlideCardContainerWrapper>
         ) : null}
         <ExploreCities />
         <BottomBanner />
