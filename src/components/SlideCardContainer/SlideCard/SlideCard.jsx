@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import img_1 from '../../../assests/img/property1.jpg';
+import img_1 from '../../../assets/img/property1.jpg';
 
 const Container = styled.div`
   margin: 0;
@@ -89,7 +89,7 @@ const NewsCardContent = styled.div`
 const SlideCard = ({ PropertyInfo }, { key }) => {
   const link = 'property/' + PropertyInfo._id;
   const img = PropertyInfo.propImage.length > 0 ? PropertyInfo.propImage[0] : img_1;
-  //const pic ='../../assests/img/property'+Math.floor(Math.random() * 3)+".jpg";
+  //const pic ='../../assets/img/property'+Math.floor(Math.random() * 3)+".jpg";
   return (
     <Container>
       <Link to={link}>

@@ -6,8 +6,8 @@ import StyledIcon from '../../hoc/Icon';
 import StyledText from '../../hoc/Text';
 import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
-import Logo from '../../assests/img/logo_red.svg';
-import title from '../../assests/img/title2.png';
+import Logo from '../../assets/img/logo_red.svg';
+import title from '../../assets/img/title2.png';
 
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;

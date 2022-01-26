@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import HomepageSection from '../../../../hoc/HomepageSection';
 import ExploreCitiesCard from './ExploreCitiesCard';
-import Melbourne from '../../../../assests/img/cities/Melbourne.jpg';
-import Perth from '../../../../assests/img/cities/Perth.jpg';
-import Adelaide from '../../../../assests/img/cities/Adelaide.jpg';
-import Brisbane from '../../../../assests/img/cities/Brisbane.jpeg';
-import Canberra from '../../../../assests/img/cities/Canberra.jpg';
-import Hobart from '../../../../assests/img/cities/Hobart.jpeg';
-import Sydney from '../../../../assests/img/cities/Sydney.jpg';
+import Melbourne from '../../../../assets/img/cities/Melbourne.jpg';
+import Perth from '../../../../assets/img/cities/Perth.jpg';
+import Adelaide from '../../../../assets/img/cities/Adelaide.jpg';
+import Brisbane from '../../../../assets/img/cities/Brisbane.jpeg';
+import Canberra from '../../../../assets/img/cities/Canberra.jpg';
+import Hobart from '../../../../assets/img/cities/Hobart.jpeg';
+import Sydney from '../../../../assets/img/cities/Sydney.jpg';
 import { getPropertiesCountbyCity } from '../../../../config/Properties';
 
 const Container = styled.div`

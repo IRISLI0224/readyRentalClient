@@ -14,6 +14,7 @@ import {
 } from 'antd';
 import { updatePropertyById } from '../../config/Properties';
 import { getPropertiesById } from '../../config/Properties';
+import UploadImage from '../ImageUpload/UploadImage';
 import moment from 'moment';
 
 const { Option } = Select;
@@ -92,6 +93,10 @@ const EditForm = () => {
     window.location.href = ManageListPage;
   };
 
+  const setNewImages = (url) => {
+    setImages([...images, url]);
+  };
+
   const handleClick = (img) => {
     const filterIndex = images.indexOf(img);
     if (filterIndex > -1) {
@@ -100,7 +105,7 @@ const EditForm = () => {
     }
   };
 
-  const handleFormSubmit = async (values, error) => {
+  const handleFormSubmit = async (values) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -146,9 +151,6 @@ const EditForm = () => {
 
     //back to list page
     setModalVisible(true);
-
-    //window.alert('Update your property successfully');
-    //window.location.href = ManageListPage;
   };
 
   return (
@@ -163,9 +165,6 @@ const EditForm = () => {
         rent: 0,
       }}
       onFinish={(values) => handleFormSubmit(values)}
-      onFinishFailed={(error) => {
-        console.log(error);
-      }}
     >
       <Modal
         visible={modalVisible}
@@ -376,10 +375,9 @@ const EditForm = () => {
             ></img>
           ))}
       </Form.Item>
-
-      {/* <Form.Item label="Pictures" name="propImage">
-          <UploadImage setFiles={setFiles} />
-        </Form.Item> */}
+      <Form.Item label="Upload New Images" name="propImage">
+        <UploadImage setFiles={setNewImages} />
+      </Form.Item>
       <Form.Item
         wrapperCol={{
           xs: {

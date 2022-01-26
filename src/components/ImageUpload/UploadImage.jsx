@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import backendApi from '../../api/backendApi';
 import styled from 'styled-components';
 
@@ -14,9 +14,7 @@ async function postImage({ image }) {
   return result.data;
 }
 
-const UploadImage = ({ setFiles }) => {
-  const [, setFile] = useState();
-  const [images, setImages] = useState([]);
+const UploadImage = (setFiles) => {
   const imageInput = useRef();
 
   const fileSelected = async (event) => {
@@ -25,9 +23,7 @@ const UploadImage = ({ setFiles }) => {
     let imgSelected = imageInput.current.files;
     for (let i = 0; i < imgSelected.length; i++) {
       const file = event.target.files[i];
-      setFile(file);
       const result = await postImage({ image: file });
-      setImages([result.image, ...images]);
       setFiles(result.Location);
     }
   };

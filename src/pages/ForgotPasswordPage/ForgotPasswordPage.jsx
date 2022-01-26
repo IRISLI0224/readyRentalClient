@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../assests/img/logo_red.svg';
-import title from '../../assests/img/title2.png';
+import Logo from '../../assets/img/logo_red.svg';
+import title from '../../assets/img/title2.png';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
-import emailIcon from '../../assests/img/email.png';
+import emailIcon from '../../assets/img/email.png';
 import ServerMsg from '../../hoc/ServerMsg';
 import backendApi from '../../api/backendApi';
-import FormBackground from '../../assests/video/FormBackground.mp4';
+import FormBackground from '../../assets/video/FormBackground.mp4';
 import {
   Container,
   MainBox,
