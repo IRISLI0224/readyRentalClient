@@ -103,7 +103,6 @@ const MenuUl = styled.ul`
 const MenuLi = styled.li`
   display: block;
   height: 53px;
-  
   overflow: hidden;
   &:hover {
     background-color: #f0f0f0;
