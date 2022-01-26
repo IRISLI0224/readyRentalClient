@@ -141,7 +141,6 @@ const MenuSpan = styled.span`
   float: none;
   text-align: left;
   padding-left: 15px;
-
   word-wrap: break-word;
   @media (max-width: 576px) {
     font-size: 20px;
