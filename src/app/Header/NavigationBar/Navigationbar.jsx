@@ -5,8 +5,8 @@ import { ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
-import LogoResponsive from '../../../assests/img/logo_red.svg';
-import TitleResponsive from '../../../assests/img/title2.png';
+import LogoResponsive from '../../../assets/img/logo_red.svg';
+import TitleResponsive from '../../../assets/img/title2.png';
 
 const Container = styled.div`
   width: 100%;
