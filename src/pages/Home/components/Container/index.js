@@ -6,6 +6,8 @@ export {
   Img,
   NewsCardContent,
   SearchTitle,
+  SearchIcon,
+  SearchBackground,
   SearchBar,
   SearchText,
   TypeFilter,

@@ -19,11 +19,7 @@ const Container = styled.div`
     height: ${({ height }) => height}rem;
     width: 100%;
     background: none;
-  }
-  @media (max-width: 576px) {
-    height: 60px;
-    width: 100%;
-    background: none;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   }
   video {
     position: absolute;
@@ -51,23 +47,28 @@ const SearchBarPanel = styled.div`
 
 const DownloadAPP = styled.div`
   margin-top: 110px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Header = () => (
-  <Container className="Header" height={5}>
-    <video src={background} type="video/mp4" muted autoPlay={'autoplay'} loop></video>
-    <NavigationBar />
-    <SearchBarPanel>
-      <SearchBar />
-      <NextSearchBar />
-    </SearchBarPanel>
-    <DownloadAPP>
-      <img src={phone} alt="phone"></img>
-      <br />
-      <br />
-      <h3 style={{ color: 'white' }}>Download Our App</h3>
-    </DownloadAPP>
-  </Container>
+  <React.Fragment>
+    <Container className="Header" height={5}>
+      <video src={background} type="video/mp4" muted autoPlay={'autoplay'} loop></video>
+      <NavigationBar />
+      <SearchBarPanel>
+        <SearchBar />
+        <NextSearchBar />
+      </SearchBarPanel>
+      <DownloadAPP>
+        <img src={phone} alt="phone"></img>
+        <br />
+        <br />
+        <h3 style={{ color: 'white' }}>Download Our App</h3>
+      </DownloadAPP>
+    </Container>
+  </React.Fragment>
 );
 
 export default Header;

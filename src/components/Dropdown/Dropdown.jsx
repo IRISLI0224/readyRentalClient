@@ -10,8 +10,6 @@ import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 
 export const DropdownContainer = styled.div`
   position: relative;
-  /* margin-right: 10rem;
-  margin-left: 0.5rem; */
   margin-top: 1rem;
   @media (max-width: 992px) {
     margin: 0;
@@ -27,26 +25,28 @@ const ProfileButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
 const ProfileButtonMobile = styled.button`
   display: none;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     display: block;
     top: 20px;
     font-size: 20px;
-    width: 80px;
+    width: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
     color: #000;
+    margin: 0;
+    padding: 0;
   }
 `;
 const Cross = styled.button`
   display: none;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     display: block;
     position: absolute;
     top: 20px;
@@ -59,45 +59,45 @@ const Cross = styled.button`
 `;
 
 const MenuContainer = styled.div`
-    ${(props) => (props.isOpen ? `display: none;` : `display: inherit;`)}}   
-    width: 300px;
-    bottom: -1px;
-    right: -15px;
-    z-index: 1000;
-    position: absolute;
-    box-sizing: border-box;
-    text-align: justify;
-    overflow: visible;
-    height: 0px;
-    z-index:99;
-    @media (max-width: 576px) {
-      background-color: rgba(0,0,0,0.8);
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 99;
-      transition: 0.5s;
-    }
+  ${(props) => (props.isOpen ? `display: none;` : `display: inherit;`)}
+  width: 300px;
+  bottom: -1px;
+  right: -15px;
+  z-index: 1000;
+  position: absolute;
+  box-sizing: border-box;
+  text-align: justify;
+  overflow: visible;
+  height: 0px;
+  z-index: 99;
+  @media (max-width: 768px) {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    transition: 0.5s;
+  }
 `;
 const MenuUl = styled.ul`
-    background: #fff;
-    border: 1px solid #ccc;
-    font-weight: 400;
-    box-shadow: rgb(0 0 0 / 10%) 0 4px 0;
-    border-radius: 4px;
-    margin: 0;
-    padding: 0;
-    list - style - type: none;
-    z-index:99;
-    @media (max-width: 576px) {
-      margin-top: 30px;
-      background: none;
-      border: none;
-    }
+  background: #fff;
+  border: 1px solid #ccc;
+  font-weight: 400;
+  box-shadow: rgb(0 0 0 / 10%) 0 4px 0;
+  border-radius: 4px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  z-index: 99;
+  @media (max-width: 768px) {
+    margin-top: 30px;
+    background: none;
+    border: none;
+  }
 `;
 const MenuLi = styled.li`
   display: block;
@@ -107,28 +107,28 @@ const MenuLi = styled.li`
     background-color: #f0f0f0;
   }
   z-index: 99;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     height: 69px;
     padding: 20px;
     &:hover {
-      background-color: rgba(0,0,0,0.8);
+      background-color: rgba(0, 0, 0, 0.8);
     }
+  }
 `;
 
 const MenuLink = styled.a`
-    display: block;
-    position: relative;
-    background-color: #fff;
-    line-height: 48px;
-    padding: 10px
-    color: #3b3b3b;
-    border-bottom: 1px solid #e3e3e3;
-    transition-duration: .1s;
-    cursor: pointer;
-    @media (max-width: 576px) {
-      border-bottom: none;
-      transition-duration: .3s;
-    }
+  display: block;
+  position: relative;
+  line-height: 48px;
+  padding: 0px;
+  color: #3b3b3b;
+  border-bottom: 1px solid #e3e3e3;
+  transition-duration: 0.1s;
+  @media (max-width: 768px) {
+    border-bottom: none;
+    transition-duration: 0.3s;
+    background: none;
+  }
 `;
 
 const MenuSpan = styled.span`
@@ -141,7 +141,7 @@ const MenuSpan = styled.span`
   text-align: left;
   padding-left: 15px;
   word-wrap: break-word;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     font-size: 20px;
     color: #f1f1f1;
     &:hover {
@@ -180,8 +180,8 @@ const Dropdown = () => {
         </Cross>
         <MenuUl>
           <MenuLi>
-            <MenuLink>
-            <MenuSpan>{user.email}</MenuSpan>
+            <MenuLink href="/account">
+              <MenuSpan>{user.email}</MenuSpan>
             </MenuLink>
           </MenuLi>
           <MenuLi>

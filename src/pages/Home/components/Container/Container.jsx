@@ -96,22 +96,43 @@ export const SearchTitle = styled.div`
   height: 1.5rem;
   text-align: center;
   margin: auto;
-  margin-top: 2.5rem;
   color: #808080;
   font-size: 0.7rem;
 `;
 
-export const SearchBar = styled.div`
-  width: 100%;
-  height: 150px;
+export const SearchIcon = styled.div`
+  position: absolute;
+  left: 5px;
+  width: 35px;
   margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 0.2rem;
-  text-align: center;
+`;
+
+export const SearchBackground = styled.div`
+  width: 100%;
   background-color: #f0fff0;
+  margin: 40px 0 20px 0;
+  padding: 1.5rem 0 1.5rem 0;
+`;
+
+export const SearchBar = styled.div`
+  position: relative;
+  height: 150px;
+  margin: 1.5rem 0rem 0.6rem 0rem;
+  text-align: center;
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  color: black;
+  height: 50px;
+  font-weight: 400;
+  font-size: 1em;
+  border: 2px solid gray;
+  border-radius: 3px;
 `;
 
 export const SearchText = styled.input`
@@ -119,12 +140,14 @@ export const SearchText = styled.input`
     opacity: 0;
   }
   color: black;
-  width: 95%;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   font-weight: 400;
   font-size: 1em;
   margin: auto;
-  padding: 0px 15px 0px 35px;
+  outline: none;
+  border: none;
+  padding: 0 15px 0 40px;
 `;
 
 export const TypeFilter = styled.div`
@@ -170,14 +193,12 @@ export const TypeFilterItem = styled.div`
 export const RangeDropDown = styled.div`
   width: 100%;
   height: 8rem;
-  padding-left: 1rem;
-  padding-right: 3rem;
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 1.5rem 0.8rem 0.6rem 0.8rem;
-  &#lastDrop {
-  }
+  margin: 1.5rem 0 0.6rem 0;
 `;
 
 export const SubmitSearch = styled.div`

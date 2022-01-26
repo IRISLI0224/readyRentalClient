@@ -1,6 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   SearchTitle,
+  SearchIcon,
+  SearchBackground,
   SearchBar,
   SearchText,
   TypeFilterTitle,
@@ -12,6 +15,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button } from '../../../../hoc/Button';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import PropTypes from 'prop-types';
+
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
@@ -59,63 +63,68 @@ class SearchForm extends React.Component {
           window.location.href = `/search?${query.toString()}`;
         }}
       >
-        <SearchTitle>
-          <h1>Search property for rent</h1>
-        </SearchTitle>
-        <SearchBar>
-          <SearchOutlined
-            style={{
-              fontSize: '1.4rem',
-              position: 'absolute',
-              left: '4.2%',
-              zIndex: '1',
-              color: '#808080',
-            }}
-          />
-          <PlacesAutocomplete
-            value={filterText}
-            onChange={this.handleFilterTextChange} //Cannot be changed
-            searchOptions={this.state.searchOptions}
-            debounce={1500}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
-              suggestions === undefined ? (
-                <div>undefined</div>
-              ) : (
-                <>
-                  <SearchText
-                    type="text"
-                    placeholder="Search by state, suburb or postcode"
-                    name="location"
-                    id="location"
-                    list="searchList_responsive"
-                    onSelect={this.handleSelect}
-                    {...getInputProps()}
-                  />
-                  <datalist id="searchList_responsive">
-                    {loading && <div>Loading...</div>}
-                    {suggestions.map((suggestion) => {
-                      const className = suggestion.active
-                        ? 'suggestion-item--active'
-                        : 'suggestion-item';
-                      // inline style for demonstration purpose
-                      return (
-                        <option
-                          value={suggestion.description}
-                          {...getSuggestionItemProps(suggestion, {
-                            className,
-                          })}
-                        >
-                          {suggestion.description}
-                        </option>
-                      );
-                    })}
-                  </datalist>
-                </>
-              )
-            }
-          </PlacesAutocomplete>
-        </SearchBar>
+        <SearchBackground>
+          <SearchTitle>
+            <h1>Search property for rent</h1>
+          </SearchTitle>
+          <SearchBar>
+            <SearchIcon>
+              <SearchOutlined
+                style={{
+                  fontSize: '1.4rem',
+                  margin: 'auto',
+                  // position: 'absolute',
+                  // left: '4.2%',
+                  // zIndex: '1',
+                  color: '#808080',
+                }}
+              />
+            </SearchIcon>
+            <PlacesAutocomplete
+              value={filterText}
+              onChange={this.handleFilterTextChange} //Cannot be changed
+              searchOptions={this.state.searchOptions}
+              debounce={1500}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
+                suggestions === undefined ? (
+                  <div>undefined</div>
+                ) : (
+                  <>
+                    <SearchText
+                      type="text"
+                      placeholder="Search by state, suburb or postcode"
+                      name="location"
+                      id="location"
+                      list="searchList_responsive"
+                      onSelect={this.handleSelect}
+                      {...getInputProps()}
+                    />
+                    <datalist id="searchList_responsive">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map((suggestion) => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        return (
+                          <option
+                            value={suggestion.description}
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                            })}
+                          >
+                            {suggestion.description}
+                          </option>
+                        );
+                      })}
+                    </datalist>
+                  </>
+                )
+              }
+            </PlacesAutocomplete>
+          </SearchBar>
+        </SearchBackground>
         <RangeDropDown>
           <TypeFilterTitle>
             <h2>Property type</h2>
