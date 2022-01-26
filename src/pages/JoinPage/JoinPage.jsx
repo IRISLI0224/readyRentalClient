@@ -1,18 +1,18 @@
 import React from 'react';
-import Logo from '../../assests/img/logo_red.svg';
+import Logo from '../../assets/img/logo_red.svg';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
-import emailIcon from '../../assests/img/email.png';
-import passwordIcon from '../../assests/img/lock.png';
+import emailIcon from '../../assets/img/email.png';
+import passwordIcon from '../../assets/img/lock.png';
 import validate from '../../hoc/Form/validate';
 import InputErrorMsg from '../../hoc/InputErrorMsg';
 import ServerMsg from '../../hoc/ServerMsg';
 import { connect } from 'react-redux';
 import { appendData } from '../../redux/action';
-import title from '../../assests/img/title2.png';
-import FormBackground from '../../assests/video/FormBackground.mp4';
+import title from '../../assets/img/title2.png';
+import FormBackground from '../../assets/video/FormBackground.mp4';
 import {
   Container,
   MainBox,

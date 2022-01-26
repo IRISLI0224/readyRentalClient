@@ -1,15 +1,15 @@
 import React from 'react';
 import WithRouter from '../../hoc/WithRouter';
 import backendApi from '../../api/backendApi';
-import Logo from '../../assests/img/logo_red.svg';
-import title from '../../assests/img/title2.png';
+import Logo from '../../assets/img/logo_red.svg';
+import title from '../../assets/img/title2.png';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
-import passwordIcon from '../../assests/img/lock.png';
+import passwordIcon from '../../assets/img/lock.png';
 import ServerMsg from '../../hoc/ServerMsg';
-import FormBackground from '../../assests/video/FormBackground.mp4';
+import FormBackground from '../../assets/video/FormBackground.mp4';
 import {
   Container,
   MainBox,

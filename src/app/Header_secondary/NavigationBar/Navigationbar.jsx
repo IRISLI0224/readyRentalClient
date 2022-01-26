@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
-import Logo from '../../../assests/img/logo_red.svg';
+import Logo from '../../../assets/img/logo_red.svg';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
-import title from '../../../assests/img/title2.png';
+import title from '../../../assets/img/title2.png';
 
 const Container = styled.div`
   word-wrap: break-word;

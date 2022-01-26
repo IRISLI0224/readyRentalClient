@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Wrapper, WrapperColumnFlex, NoShadowWrapper } from '../../../Wrapper';
 import RoomType from '../../../../../../components/RoomType';
-import { ReactComponent as HouseIcon } from '../../../../../../assests/img/iconHouse.svg';
+import { ReactComponent as HouseIcon } from '../../../../../../assets/img/iconHouse.svg';
 import PropTypes from 'prop-types';
 const StyledHr = styled.hr`
   margin: 0;

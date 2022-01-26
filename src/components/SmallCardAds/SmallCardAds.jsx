@@ -7,7 +7,7 @@ import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
 import { getPropertiesAds } from '../../config/Properties';
 import { Button } from '../../hoc/Button';
-import defaultImage from '../../assests/img/room.jpg';
+import defaultImage from '../../assets/img/room.jpg';
 
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
