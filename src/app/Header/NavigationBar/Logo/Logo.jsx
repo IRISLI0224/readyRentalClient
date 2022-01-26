@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from '../../../../assests/img/logo1.png';
-import title from '../../../../assests/img/title1.png';
+import Img from '../../../../assets/img/logo.svg';
+import title from '../../../../assets/img/title1.png';
 
 const LogoP = styled.div`
   /* width: 284px;
@@ -10,9 +10,9 @@ const LogoP = styled.div`
   background-size: 100% 100%;
   cursor: pointer; */
   background: url(${Img}) 0% 45% no-repeat;
-  margin: 0px auto; 
-  width:70px;
-  height:auto;
+  margin: 0px auto;
+  width: 50px;
+  height: auto;
   @media (max-width: 768px) {
     width: 50px;
     height: auto;
@@ -27,11 +27,11 @@ const Title = styled.div`
   cursor: pointer;
   margin: 0px auto; */
   background: url(${title}) 0% 45% no-repeat;
-  margin-left:5px; 
-  width:250px;
-  height:auto;
+  margin-left: 5px;
+  width: 250px;
+  height: auto;
   @media (max-width: 768px) {
-    width: 200px;
+    width: 250px;
     height: 50px;
   }
 `;
@@ -48,10 +48,11 @@ const Container = styled.div`
   background-size: 100% 100%;
   cursor: pointer;
   margin: 0px auto;
-  margin-left:20px;
+  margin-left: 20px;
   @media (max-width: 768px) {
-    width: 200px;
+    width: 280px;
     height: 50px;
+    display: none;
   }
 `;
 

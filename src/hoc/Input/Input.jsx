@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import notvisibleIcon from '../../assests/img/notvisibility.png';
-import visibleIcon from '../../assests/img/visibility.png';
+import styled from 'styled-components';
+import notvisibleIcon from '../../assets/img/notvisibility.png';
+import visibleIcon from '../../assets/img/visibility.png';
 
 const Container = styled.div`
   background-color: rgb(255, 255, 255);
@@ -69,7 +69,7 @@ const Input = ({
         <PasswordHidden
           src={Visible}
           onClick={() => {
-            if (Visible == visibleIcon) {
+            if (Visible === visibleIcon) {
               setVisible(notvisibleIcon);
               setPasswordType('password');
             } else {

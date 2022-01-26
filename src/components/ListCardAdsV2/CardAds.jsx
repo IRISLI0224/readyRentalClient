@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Component } from 'react';
 import styled from 'styled-components';
 import Slider from '../Slider';
 import { SliderData } from './SliderData';
@@ -8,11 +7,9 @@ import StyledIcon from '../../hoc/Icon';
 import StyledText from '../../hoc/Text';
 import { BiBed, BiBath, BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
-import Logo from '../../assests/img/logo_red.svg';
+import Logo from '../../assets/img/logo_red.svg';
 import { getPropertiesAds } from '../../config/Properties';
 import { Button } from '../../hoc/Button';
-
-
 
 const Card = styled.div`
   border: 5px solid #e6e6e6;

@@ -7,6 +7,7 @@ import { NoShadowWrapper } from './component/Wrapper';
 import { getUserFromToken } from '../../utils/authentication';
 import { getUserById } from '../../config/Users';
 import { getPropertiesById, deletePropertyById } from '../../config/Properties';
+import { deleteInspectionById } from '../../config/Inspections';
 import DeletePopup from './component/DeletePopup';
 import PropTypes from 'prop-types';
 
@@ -31,11 +32,10 @@ const ControlledPopUp = styled(DeletePopup)`
 class ListedProperties extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { properties: [], title: '', isPopUp: false, deletingPropertyId: {} };
+    this.state = { user: {}, properties: [], title: '', isPopUp: false, deletingPropertyId: {} };
   }
 
   componentDidMount() {
-    //!is it right to get userId from token?
     const user = getUserFromToken();
 
     if (!user) window.location.href = '/login';
@@ -44,10 +44,20 @@ class ListedProperties extends React.Component {
 
     const getProperties = async () => {
       const user = await getUserById(userId);
+      this.setState({ user });
 
       const properties = user.properties;
-      const inspections = user.inspections;
 
+      //sort properties by post time
+      const compare = (a, b) => {
+        if (a.postDate < b.postDate) return 1;
+        if (a.postDate > b.postDate) return -1;
+        return 0;
+      };
+
+      properties.sort(compare);
+
+      const inspections = user.inspections;
       //put all the properties in inspections into an array
       const inspectionProperties = await Promise.all(
         inspections.map(async (inspection) => {
@@ -55,6 +65,8 @@ class ListedProperties extends React.Component {
           return property;
         }),
       );
+
+      inspectionProperties.sort(compare);
 
       //check if it should be landlord's listing page or tenant's inspection list
       if (this.props.isListing) {
@@ -66,19 +78,29 @@ class ListedProperties extends React.Component {
     getProperties();
   }
 
-  //Delete property button
+  //Delete property/inspection button
   handleDelete = async (e, propertyId) => {
     e.preventDefault();
     this.setState({ isPopUp: true, deletingPropertyId: propertyId });
   };
 
-  //Delete property truly at the pop up warning window
+  //Delete property/inspection truly at the pop up warning window
   handleDeleteTrue = async (e) => {
-    const propertyId = this.state.deletingPropertyId;
     e.preventDefault();
-    await deletePropertyById(propertyId);
+    const propertyId = this.state.deletingPropertyId;
+
+    if (this.props.isListing) {
+      await deletePropertyById(propertyId);
+    } else if (this.props.isInspection) {
+      const user = this.state.user;
+      const inspections = user.inspections;
+      const inspection = inspections.find((inspection) => (inspection.property = propertyId));
+      await deleteInspectionById(inspection._id);
+    }
+
     const newProperties = this.state.properties.filter((property) => property._id !== propertyId);
     this.setState({ properties: newProperties });
+
     this.setState({ isPopUp: false });
   };
 
@@ -107,11 +129,13 @@ class ListedProperties extends React.Component {
           </NoShadowWrapper>
           <PropertyHeader />
           {properties.map((property) => {
+            if (!property) return null;
             return (
               <PropertyDetailEditable
                 key={property._id}
                 property={property}
                 onDelete={this.handleDelete}
+                isListing={this.props.isListing}
               />
             );
           })}
@@ -122,7 +146,7 @@ class ListedProperties extends React.Component {
 }
 
 ListedProperties.propTypes = {
-  isListing: PropTypes.object.isRequired,
+  isListing: PropTypes.bool,
 };
 
 export default ListedProperties;

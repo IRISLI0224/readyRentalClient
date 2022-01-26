@@ -21,6 +21,10 @@ width: 506px;
 font-size: 1.25rem;
 padding: 12px 16px;
 margin: 5px;
+
+@media screen and (max-width: 1024px) {
+  width: 100%;
+}
 `;
 
 const Error = styled.p`

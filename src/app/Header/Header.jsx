@@ -1,25 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
-import backgrounImg from '../../assests/img/Homepage-background.jpg';
-import background from '../../assests/video/night.mp4';
+import background from '../../assets/video/night.mp4';
 import NextSearchBar from '../../components/NextSearchBar';
 import SearchBar from '../../components/SearchBar';
 import NavigationBar from './NavigationBar/Navigationbar';
-import phone from '../../assests/img/phone.png';
+import phone from '../../assets/img/phone.png';
 
 const Container = styled.div`
   position: relative;
-  //overflow: hidden;
   width: 100%;
   text-align: center;
   color: white;
   height: 600px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   background: url(${({ img }) => img}) no-repeat center;
   @media (max-width: 768px) {
     height: ${({ height }) => height}rem;
     width: 100%;
     background: none;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  }
+  video {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -11;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 
@@ -35,44 +47,28 @@ const SearchBarPanel = styled.div`
 
 const DownloadAPP = styled.div`
   margin-top: 110px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Header = () => (
-  <Container className="Header" height={5}>
-    <video
-      source
-      src={background}
-      type="video/mp4"
-      muted
-      autoPlay={'autoplay'}
-      preLoad="auto"
-      loop
-      style={{
-        position: 'fixed',
-        right: '0px',
-        bottom: '0px',
-        minwidth: '100%',
-        minHeight: '100%',
-        height: 'auto',
-        width: '100%',
-        zIndex: '-11',
-        //opacity: '80%',
-        //filter: 'brightness(1.3) invert(0.17) saturate(2.6) sepia(0.25)',
-        //filter: 'brightness(0.9) contrast(1.1)'
-      }}
-    ></video>
-    <NavigationBar />
-    <SearchBarPanel>
-      <SearchBar />
-      <NextSearchBar />
-    </SearchBarPanel>
-    <DownloadAPP>
-      <img src={phone}></img>
-      <br />
-      <br />
-      <h3 style={{ color: 'white' }}>Download Our App</h3>
-    </DownloadAPP>
-  </Container>
+  <React.Fragment>
+    <Container className="Header" height={5}>
+      <video src={background} type="video/mp4" muted autoPlay={'autoplay'} loop></video>
+      <NavigationBar />
+      <SearchBarPanel>
+        <SearchBar />
+        <NextSearchBar />
+      </SearchBarPanel>
+      <DownloadAPP>
+        <img src={phone} alt="phone"></img>
+        <br />
+        <br />
+        <h3 style={{ color: 'white' }}>Download Our App</h3>
+      </DownloadAPP>
+    </Container>
+  </React.Fragment>
 );
 
 export default Header;

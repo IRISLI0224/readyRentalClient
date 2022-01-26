@@ -3,10 +3,9 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
-import Footer_secondary from '../Footer_secondary';
-import Header_secondary from '../Header_secondary/Header';
+import FooterSecondary from '../Footer_secondary';
+import HeaderSecondary from '../Header_secondary/Header';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const Main = styled.div`
   display: flex;
@@ -44,11 +43,11 @@ const Layout = ({ children }) => {
   const specialCase = specialCases[url];
   if (specialCase === 'HomepageStyle') {
     return (
-      <>
+      <React.Fragment>
         <Header />
         <Main>{children}</Main>
         <Footer />
-      </>
+      </React.Fragment>
     );
   }
   if (specialCase === 'LoginStyle') {
@@ -61,9 +60,9 @@ const Layout = ({ children }) => {
   if (specialCase === 'PropertyStyle') {
     return (
       <>
-        <Header_secondary />
+        <HeaderSecondary />
         <Main>{children}</Main>
-        <Footer_secondary />
+        <FooterSecondary />
       </>
     );
   }

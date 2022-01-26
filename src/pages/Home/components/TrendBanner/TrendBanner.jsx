@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import background from '../../../../assests/video/Street.mp4';
+import background from '../../../../assets/video/Street.mp4';
 import { Button } from '../../../../hoc/Button';
 
 const Container = styled.div`
@@ -39,12 +38,10 @@ const TrendBanner = () => {
         </Button>
       </DownloadAPP>
       <video
-        source
         src={background}
         type="video/mp4"
         muted
         autoPlay={'autoplay'}
-        preLoad="auto"
         loop
         style={{
           minwidth: '100%',

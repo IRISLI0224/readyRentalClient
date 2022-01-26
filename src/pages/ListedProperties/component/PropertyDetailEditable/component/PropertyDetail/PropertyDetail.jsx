@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Wrapper, WrapperColumnFlex, NoShadowWrapper } from '../../../Wrapper';
 import RoomType from '../../../../../../components/RoomType';
-import { ReactComponent as HouseIcon } from '../../../../../../assests/img/iconHouse.svg';
+import { ReactComponent as HouseIcon } from '../../../../../../assets/img/iconHouse.svg';
 import PropTypes from 'prop-types';
 const StyledHr = styled.hr`
   margin: 0;
@@ -14,7 +14,15 @@ const PropertyDetail = ({ property }) => {
     <div>
       <Wrapper>
         <NoShadowWrapper>
-          <HouseIcon alt="house" />
+          {property.propImage[0] ? (
+            <img
+              src={property.propImage[0]}
+              alt="house"
+              style={{ height: '100px', width: '140px', objectFit: 'cover' }}
+            />
+          ) : (
+            <HouseIcon alt="house" />
+          )}
           <WrapperColumnFlex>
             <RoomType property={property} />
           </WrapperColumnFlex>

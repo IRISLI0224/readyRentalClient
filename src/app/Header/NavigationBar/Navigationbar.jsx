@@ -5,49 +5,55 @@ import { ButtonStyle } from '../../../hoc/Button';
 import { Link } from 'react-router-dom';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
-import { useSelector } from 'react-redux';
+import LogoResponsive from '../../../assets/img/logo_red.svg';
+import TitleResponsive from '../../../assets/img/title2.png';
 
 const Container = styled.div`
   width: 100%;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-  padding-left: 9%;
-  padding-right: 10%;
+  margin: 0 auto;
   color: #fff;
   word-wrap: break-word;
   height: 60px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   height: 100px;
   @media (max-width: 768px) {
     width: 100%;
     height: 100%;
-    padding-top: 1rem;
-    padding-left: 5%;
-    padding-bottom: 0;
+    background-image: none;
     Button {
       margin-left: 3px;
       size: 20%;
     }
-   // border-bottom: 0.1rem solid red;
+    .Logo {
+      display: none;
+    }
+  }
+  @media (max-width: 576px) {
+    background-image: none;
   }
 `;
 
 const Space = styled.div`
-  width: 55.5%;
+  width: 54%;
 `;
 const SpaceLogin = styled.div`
-  width: 68%;
+  flex-grow: 1;
 `;
 
-const ButtonwithoutBorder = styled(ButtonStyle)`
+const ButtonWithoutBorder = styled(ButtonStyle)`
   color: #fff;
   border: none;
   height: 40px;
   &:hover {
     color: #fff;
+  }
+  @media (max-width: 768px) {
+    color: rgba(0, 0, 0, 0.85);
+    padding: 0.3125rem 0.75rem;
+    font-weight: 500;
   }
 `;
 
@@ -58,21 +64,63 @@ const ButtonWhitFont = styled(ButtonStyle)`
   &:hover {
     background-color: #fff;
   }
+  @media (max-width: 768px) {
+    border: none;
+    background: #0061df;
+    padding: 0.3125rem 0.75rem;
+    font-weight: 500;
+  }
 `;
 
-const IconEmail = styled.div`
+const NavbarPanel = styled.div`
+  width: 1177px;
+  max-width: 1177px;
   display: flex;
-  width: 55.5%;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 1350px) {
+    width: 88%;
+    max-width: 88%;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const Email = styled.div`
-  margin-left: 40%;
-  margin-top: 1.2rem;
+const ButtonPanel = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+`;
+
+const LogoResponsiveBox = styled.a`
+  display: flex;
+  flex-wrap: nowrap;
+  text-align: center;
+  justify-content: center;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const LogoImg = styled.img`
+  width: 40px;
+`;
+
+const TitleImg = styled.img`
+  width: 200px;
+  margin-left: 10px;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
-  const user = useSelector((state) => state);
 
   useEffect(() => {
     const token = getToken();
@@ -80,31 +128,38 @@ const NavigationBar = () => {
   }, []);
 
   return (
-    <Container>
-      <Logo className="Logo" />
-      {Login ? <SpaceLogin /> : <Space />}
-      {Login ? (
-        <>
-          <IconEmail>
-            <Email>{user.email}</Email>
-            <Dropdown />{' '}
-          </IconEmail>
-        </>
-      ) : (
-        <>
-          <Link to="/login" style={{ color: '#fff', textDecoration: 'none' }}>
-            <ButtonwithoutBorder className="SigninButton" size="90px">
-              Sign in
-            </ButtonwithoutBorder>
-          </Link>
-          <Link to="/join" style={{ color: 'white', textDecoration: 'none' }}>
-            <ButtonWhitFont className="JoinButton" size="90px">
-              &nbsp;&nbsp;Join&nbsp;&nbsp;
-            </ButtonWhitFont>
-          </Link>
-        </>
-      )}
-    </Container>
+    <React.Fragment>
+      <Container>
+        <NavbarPanel>
+          <Logo className="Logo" />
+          <a href="/">
+            <LogoResponsiveBox>
+              <LogoImg src={LogoResponsive} />
+              <TitleImg src={TitleResponsive} />
+            </LogoResponsiveBox>
+          </a>
+          {Login ? <SpaceLogin /> : <Space />}
+          {Login ? (
+            <>
+              <Dropdown />{' '}
+            </>
+          ) : (
+            <ButtonPanel>
+              <Link to="/login">
+                <ButtonWithoutBorder className="SigninButton" size="90px">
+                  Sign in
+                </ButtonWithoutBorder>
+              </Link>
+              <Link to="/join">
+                <ButtonWhitFont className="JoinButton" size="90px">
+                  &nbsp;&nbsp;Join&nbsp;&nbsp;
+                </ButtonWhitFont>
+              </Link>
+            </ButtonPanel>
+          )}
+        </NavbarPanel>
+      </Container>
+    </React.Fragment>
   );
 };
 

@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import SlideCard from './SlideCard';
 import { Carousel } from '@trendyol-js/react-carousel';
 import SmallCardAds from '../SmallCardAds/SmallCardAds';
 
@@ -30,7 +28,7 @@ const Descriptions = styled.div`
   line-height: 1.25rem;
   margin-bottom: 0;
 `;
-
+//const cardNumber = window.innerWidth <= 800 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
 const SlideCardContainer = ({ properties }) => {
   return (
     <Container>
@@ -41,7 +39,7 @@ const SlideCardContainer = ({ properties }) => {
       <Descriptions>Find a suitable property around your place to live</Descriptions>
       <br />
       <br />
-      <Carousel show={4.5} slide={4} swiping={true} responsive={true}>
+      <Carousel show={4.5} swiping={true} rightArrow={false} leftArrow={true}>
         {properties.map((property, index) => {
           return (
             <PropertyBack key={index}>

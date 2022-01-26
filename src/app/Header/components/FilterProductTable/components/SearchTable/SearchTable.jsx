@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../../../../../hoc/Button';
 import DropFilter from './components/DropFilter';
-import { getAllProperties } from '../../../../../../config/Properties';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
@@ -38,30 +37,6 @@ const Container = styled.div`
   position: relative;
 `;
 
-const CheckFilterItem = styled.div`
-  width: auto;
-  height: 1.5rem;
-  display: inline-block;
-`;
-const TypeLabel = styled.div`
-  border: none;
-  outline: none;
-  color: white;
-  background: transparent;
-  cursor: pointer;
-`;
-const TypeSelection = styled.div`
-  position: absolute;
-  z-index: 99;
-  bottom: -80px;
-  background-color: white;
-  width: 130px;
-  height: 6rem;
-  text-align: left;
-  color: black;
-  padding: 2px 2px 2px 2px;
-`;
-
 const Selection = styled.select`
   border: none;
   outline: none;
@@ -89,6 +64,13 @@ const SearchPanel = styled.div`
     font-size: 1.1rem;
   }
 `;
+
+const SearchIcon = styled.div`
+  width: 45px;
+  position: absolute;
+  left: 3px;
+`;
+
 class SearchTable extends React.Component {
   constructor(props) {
     super(props);
@@ -99,11 +81,7 @@ class SearchTable extends React.Component {
       },
     };
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
-    this.handleBedMinChange = this.handleBedMinChange.bind(this);
-    this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
-    this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
-    this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -117,22 +95,10 @@ class SearchTable extends React.Component {
   };
 
   handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
+    this.props.onFilterTextChange(e);
   }
-  handleTypeChange(e) {
-    this.props.onTypeChange(e.target.value);
-  }
-  handleBedMinChange(e) {
-    this.props.onBedMinChange(e.target.value);
-  }
-  handleBedMaxChange(e) {
-    this.props.onBedMaxChange(e.target.value);
-  }
-  handlePriceMinChange(e) {
-    this.props.onPriceMinChange(e.target.value);
-  }
-  handlePriceMaxChange(e) {
-    this.props.onPriceMaxChange(e.target.value);
+  handleChange(e) {
+    this.props.onChange(e);
   }
   render() {
     const { filterText, type, bedMin, bedMax, priceMin, priceMax } = this.props;
@@ -153,18 +119,18 @@ class SearchTable extends React.Component {
           }}
         >
           <SearchPanel>
-            <SearchOutlined
-              style={{
-                fontSize: '1.4rem',
-                position: 'absolute',
-                left: '1.8%',
-                zIndex: '1',
-                color: '#808080',
-              }}
-            />
+            <SearchIcon>
+              <SearchOutlined
+                style={{
+                  fontSize: '1.4rem',
+                  margin: 'auto',
+                  color: '#808080',
+                }}
+              />
+            </SearchIcon>
             <PlacesAutocomplete
-              value={this.props.filterText}
-              onChange={this.props.onFilterTextChange} //Cannot be changed
+              value={filterText}
+              onChange={this.handleFilterTextChange} //Cannot be changed
               searchOptions={this.state.searchOptions}
               debounce={1500}
             >
@@ -188,10 +154,6 @@ class SearchTable extends React.Component {
                         const className = suggestion.active
                           ? 'suggestion-item--active'
                           : 'suggestion-item';
-                        // inline style for demonstration purpose
-                        const style = suggestion.active
-                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
                         return (
                           <option
                             value={suggestion.description}
@@ -230,8 +192,13 @@ class SearchTable extends React.Component {
             </Button>
           </SearchPanel>
           <DropFilter>
-            <Selection name="type" id="" onChange={this.handleTypeChange} value={type}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="type"
+              id=""
+              onChange={this.handleChange}
+              value={type ? type : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 All property types
               </Option>
               <Option value="">All property types</Option>
@@ -239,8 +206,13 @@ class SearchTable extends React.Component {
               <Option value="apartment">Apartment</Option>
               <Option value="studio">Studio</Option>
             </Selection>
-            <Selection name="bedMin" id="" onChange={this.handleBedMinChange} value={bedMin}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="bedMin"
+              id=""
+              onChange={this.handleChange}
+              value={bedMin ? bedMin : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Beds (min)
               </Option>
               <Option value="">Any</Option>
@@ -251,8 +223,13 @@ class SearchTable extends React.Component {
               <Option value="5">5 Beds</Option>
               <Option value="6">6 Beds</Option>
             </Selection>
-            <Selection name="bedMax" id="" onChange={this.handleBedMaxChange} value={bedMax}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="bedMax"
+              id=""
+              onChange={this.handleChange}
+              value={bedMax ? bedMax : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Beds (max)
               </Option>
               <Option value="">Any</Option>
@@ -264,8 +241,13 @@ class SearchTable extends React.Component {
               <Option value="6">6 Beds</Option>
               <Option value="7">7 Beds</Option>
             </Selection>
-            <Selection name="priceMin" id="" onChange={this.handlePriceMinChange} value={priceMin}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="priceMin"
+              id=""
+              onChange={this.handleChange}
+              value={priceMin ? priceMin : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Price pw (min)
               </Option>
               <Option value="">Any</Option>
@@ -276,8 +258,13 @@ class SearchTable extends React.Component {
               <Option value="150">$150pw</Option>
               <Option value="175">$175pw</Option>
             </Selection>
-            <Selection name="priceMax" id="" onChange={this.handlePriceMaxChange} value={priceMax}>
-              <Option value="" selected disabled hidden>
+            <Selection
+              name="priceMax"
+              id=""
+              onChange={this.handleChange}
+              value={priceMax ? priceMax : 'DEFAULT'}
+            >
+              <Option value="DEFAULT" disabled hidden>
                 Price pw (max)
               </Option>
               <Option value="">Any</Option>

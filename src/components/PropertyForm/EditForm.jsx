@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import {
   Form,
   Select,
-  Upload,
   Checkbox,
   Row,
   Col,
@@ -11,11 +10,11 @@ import {
   Button,
   DatePicker,
   InputNumber,
+  Modal,
 } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
 import { updatePropertyById } from '../../config/Properties';
-import UploadImage from '../../utils/UploadImage';
 import { getPropertiesById } from '../../config/Properties';
+import UploadImage from '../ImageUpload/UploadImage';
 import moment from 'moment';
 
 const { Option } = Select;
@@ -44,48 +43,69 @@ const formItemLayout = {
 const { TextArea } = Input;
 
 const EditForm = () => {
-  const [file, setFile] = useState([]);
+  const [images, setImages] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   const [form] = Form.useForm();
- 
-  React.useEffect(async () => {
-    const ids = window.location.pathname.split('/');
-    const id = ids[3];
-    const res = await getPropertiesById(id);
-    const PF = [];
-    if (res.airCon) {
-      PF.push('Airconditioner');
-    }
-    if (res.furnished) {
-      PF.push('Furnished');
-    }
-    if (res.intercom) {
-      PF.push('Intercom');
-    }
-    if (res.petAllowed) {
-      PF.push('Petsconsidered');
-    }
-    if (res.smokingAllowed) {
-      PF.push('smokingAllowed');
-    }
-    const date = res.availableDate?moment( res.availableDate):null;
-    form.setFieldsValue({
-      streetNumber: res.address.streetNumber,
-      roomType: res.roomType,
-      streetName: res.address.streetName,
-      city: res.address.city,
-      state: res.address.state,
-      postCode: res.address.postCode,
-      numOfBed: res.numOfBed,
-      numOfBath: res.numOfBath,
-      numOfCarSpace: res.numOfCarSpace,
-      rent: res.rent,
-      availableDate:date,
-      description: res.description,
-      propertyFeatures: PF,
-    });
+
+  useEffect(() => {
+    const fetchProperty = async () => {
+      const ids = window.location.pathname.split('/');
+      const id = ids[3];
+      const res = await getPropertiesById(id);
+      setImages(res.propImage);
+      const PF = [];
+      if (res.airCon) {
+        PF.push('Airconditioner');
+      }
+      if (res.furnished) {
+        PF.push('Furnished');
+      }
+      if (res.intercom) {
+        PF.push('Intercom');
+      }
+      if (res.petAllowed) {
+        PF.push('Petsconsidered');
+      }
+      if (res.smokingAllowed) {
+        PF.push('smokingAllowed');
+      }
+      const date = res.availableDate ? moment(res.availableDate) : null;
+      form.setFieldsValue({
+        streetNumber: res.address.streetNumber,
+        roomType: res.roomType,
+        streetName: res.address.streetName,
+        city: res.address.city,
+        state: res.address.state,
+        postCode: res.address.postCode,
+        numOfBed: res.numOfBed,
+        numOfBath: res.numOfBath,
+        numOfCarSpace: res.numOfCarSpace,
+        rent: res.rent,
+        availableDate: date,
+        description: res.description,
+        propertyFeatures: PF,
+      });
+    };
+    fetchProperty();
   }, []);
 
-  const handleFormSubmit = async (values, error) => {
+  const Redirection = () => {
+    window.location.href = ManageListPage;
+  };
+
+  const setNewImages = (url) => {
+    setImages([...images, url]);
+  };
+
+  const handleClick = (img) => {
+    const filterIndex = images.indexOf(img);
+    if (filterIndex > -1) {
+      images.splice(filterIndex, 1);
+      setImages(images.filter((img, i) => i !== img));
+    }
+  };
+
+  const handleFormSubmit = async (values) => {
     //formart data
     let newData = values;
     const PF = values.propertyFeatures;
@@ -120,25 +140,17 @@ const EditForm = () => {
 
     newData['availableDate'] = Date(values.availableDate);
 
-    newData['propImage'] = file;
+    newData['propImage'] = images;
 
     delete newData.propertyFeatures;
 
     const ids = window.location.pathname.split('/');
     const id = ids[3];
 
-    await updatePropertyById(id,newData);
+    await updatePropertyById(id, newData);
 
     //back to list page
-    window.alert('Update your property successfully');
-    window.location.href = ManageListPage;
-  };
-
-  const setFiles = ({ url }) => {
-     var files=file;
-    files.push(url)
-    setFile(files)
-    //console.log(this.state.file);
+    setModalVisible(true);
   };
 
   return (
@@ -153,10 +165,19 @@ const EditForm = () => {
         rent: 0,
       }}
       onFinish={(values) => handleFormSubmit(values)}
-      onFinishFailed={(error) => {
-        console.log(error);
-      }}
     >
+      <Modal
+        visible={modalVisible}
+        footer={[
+          <Button key="OK" onClick={Redirection}>
+            OK
+          </Button>,
+        ]}
+      >
+        <p></p>
+        <p>Edit your property successfully</p>
+        <p></p>
+      </Modal>
       <Form.Item
         style={{ height: 45 }}
         name="roomType"
@@ -340,6 +361,23 @@ const EditForm = () => {
       <Form.Item label="Description" name="description">
         <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
       </Form.Item>
+      <Form.Item label="Uploaded Images">
+        {images.length > 0 &&
+          images.map((img, index) => (
+            <img
+              onClick={() => {
+                handleClick(img);
+              }}
+              style={{ margin: 5, width: 200 }}
+              key={index}
+              src={img}
+              alt={index}
+            ></img>
+          ))}
+      </Form.Item>
+      <Form.Item label="Upload New Images" name="propImage">
+        <UploadImage setFiles={setNewImages} />
+      </Form.Item>
       <Form.Item
         wrapperCol={{
           xs: {
@@ -352,9 +390,6 @@ const EditForm = () => {
           },
         }}
       >
-        {/* <Form.Item label="Pictures" name="propImage">
-          <UploadImage setFiles={setFiles} />
-        </Form.Item> */}
         <Button type="primary" htmlType="submit" size={'large'}>
           Submit
         </Button>

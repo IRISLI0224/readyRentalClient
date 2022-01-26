@@ -1,83 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../assests/img/logo_red.svg';
-import title from '../../assests/img/title2.png';
+import Logo from '../../assets/img/logo_red.svg';
+import title from '../../assets/img/title2.png';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
 import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
-import emailIcon from '../../assests/img/email.png';
-import FormWrapper from '../../hoc/FormWrapper';
+import emailIcon from '../../assets/img/email.png';
 import ServerMsg from '../../hoc/ServerMsg';
 import backendApi from '../../api/backendApi';
+import FormBackground from '../../assets/video/FormBackground.mp4';
+import {
+  Container,
+  MainBox,
+  LogoBoxBackground,
+  LogoBox,
+  LogoImg,
+  TitleImg,
+  Title,
+  LinktoLogin,
+  FormWrapper,
+} from '../../hoc/AuthForm';
 
-const LogoImg = styled.img`
-  width: 50px;
-`;
-
-const TitleImg = styled.img`
-  width: 200px;
-  margin-left: 10px;
-`;
-
-const Container = styled.div`
-  background-color: white;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  line-height: 10px;
-`;
-
-const MainBox = styled.div`
-  padding: 1.5rem 3rem 0px;
-  border: 1;
-  margin: auto;
-  margin-top: 100px;
-  width: 500px;
-  height: 460px;
-  text-align: center;
-  position: relative;
-  border: 2px solid #e5e8ec;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  justify-content: space-around;
-`;
-
-const LogoBox = styled.div`
-  margin: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-align: center;
-`;
-
-const Title = styled.div`
-  margin-top: 10px;
-  font-size: 1.5rem;
-  color: rgb(51, 63, 72);
-  text-align: center;
-  line-height: 1.75rem;
-  font-weight: 700;
-`;
-
-const ReminderMsg = styled(Title)`
+const ReminderMsg = styled.div`
+  width: 90%;
+  max-width: 90%;
+  margin: 0 0 20px;
   font-size: 0.9rem;
   font-family: Museo-Sans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.5rem;
   font-weight: 300;
-  color: #808080;
+  color: #b4b3b3;
   opacity: 0.6;
 `;
-
 class ForgotPasswordPage extends React.Component {
   constructor() {
     super();
@@ -134,19 +89,30 @@ class ForgotPasswordPage extends React.Component {
     const { email, messageFromServer, showNullError, showError } = this.state;
     return (
       <Container>
+        <video
+          source
+          src={FormBackground}
+          type="video/mp4"
+          muted
+          autoPlay={'autoplay'}
+          preLoad="auto"
+          loop
+        ></video>
         <MainBox>
-          <LogoBox>
-            <a href="/">
-              <LogoImg src={Logo} />
-              <TitleImg src={title} />
-            </a>
-          </LogoBox>
+          <LogoBoxBackground>
+            <LogoBox>
+              <a href="/">
+                <LogoImg src={Logo} />
+                <TitleImg src={title} />
+              </a>
+            </LogoBox>
+          </LogoBoxBackground>
           <Title>Forgot your password?</Title>
           <ReminderMsg>
             Enter your email and we’ll send you a code you can use to update your password.
           </ReminderMsg>
           <FormWrapper onSubmit={this.sendEmail}>
-            <Form htmlFor="email">
+            <Form htmlFor="email" margin_bottom="1rem">
               <Input
                 size="400px"
                 name="email"
@@ -159,8 +125,7 @@ class ForgotPasswordPage extends React.Component {
                 onBlur={this.handleBlurredChange}
               />
             </Form>
-            <br />
-            <Button primary type="submit" size="400px" height="50px">
+            <Button primary type="submit" size="83.5%" height="50px">
               Reset my password
             </Button>
           </FormWrapper>
@@ -174,9 +139,10 @@ class ForgotPasswordPage extends React.Component {
           {messageFromServer === 'recovery email sent' && (
             <ServerMsg status="success">Password Reset Email Successfully Sent!</ServerMsg>
           )}
-          <br />
-          <Link to="/login">Go back to sign in.</Link>
-          <br />
+          <LinktoLogin>
+            {' '}
+            <Link to="/login">Go back to sign in.</Link>
+          </LinktoLogin>
         </MainBox>
       </Container>
     );

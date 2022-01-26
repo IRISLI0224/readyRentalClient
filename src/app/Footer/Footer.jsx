@@ -174,9 +174,9 @@ const Footer = () => (
         </span>
       </FooterText>
       <FooterText className="international-site">
-        <span>Partner sites:</span>
+        <span className="rui-footer-site-links-large-screen-header">Partner sites:</span>
         <br />
-        <span>
+        <span className="list list-column">
           <a
             href="https://www.news.com.au/"
             target="_blank"

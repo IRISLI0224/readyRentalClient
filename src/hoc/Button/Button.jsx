@@ -46,7 +46,7 @@ export const Button = ({ children, size, onClick, primary, as, href, height, dis
 );
 
 Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  size: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  size: PropTypes.string,
   children: PropTypes.string.isRequired,
 };

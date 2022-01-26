@@ -1,6 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   SearchTitle,
+  SearchIcon,
+  SearchBackground,
   SearchBar,
   SearchText,
   TypeFilterTitle,
@@ -12,6 +15,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button } from '../../../../hoc/Button';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import PropTypes from 'prop-types';
+
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
@@ -21,12 +25,8 @@ class SearchForm extends React.Component {
         componentRestrictions: { country: 'au' },
       },
     };
+    this.handleChange = this.handleChange.bind(this);
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
-    this.handleBedMinChange = this.handleBedMinChange.bind(this);
-    this.handleBedMaxChange = this.handleBedMaxChange.bind(this);
-    this.handlePriceMinChange = this.handlePriceMinChange.bind(this);
-    this.handlePriceMaxChange = this.handlePriceMaxChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -39,23 +39,12 @@ class SearchForm extends React.Component {
       .catch((error) => console.error('Error', error));
   };
 
+  handleChange(e) {
+    this.props.onChange(e);
+  }
+
   handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
-  }
-  handleTypeChange(e) {
-    this.props.onTypeChange(e.target.value);
-  }
-  handleBedMinChange(e) {
-    this.props.onBedMinChange(e.target.value);
-  }
-  handleBedMaxChange(e) {
-    this.props.onBedMaxChange(e.target.value);
-  }
-  handlePriceMinChange(e) {
-    this.props.onPriceMinChange(e.target.value);
-  }
-  handlePriceMaxChange(e) {
-    this.props.onPriceMaxChange(e.target.value);
+    this.props.onFilterTextChange(e);
   }
 
   render() {
@@ -74,72 +63,74 @@ class SearchForm extends React.Component {
           window.location.href = `/search?${query.toString()}`;
         }}
       >
-        <SearchTitle>
-          <h1>Search property for rent</h1>
-        </SearchTitle>
-        <SearchBar>
-          <SearchOutlined
-            style={{
-              fontSize: '1.4rem',
-              position: 'absolute',
-              left: '4.2%',
-              zIndex: '1',
-              color: '#808080',
-            }}
-          />
-          <PlacesAutocomplete
-            value={this.props.filterText}
-            onChange={this.props.onFilterTextChange} //Cannot be changed
-            searchOptions={this.state.searchOptions}
-            debounce={1500}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
-              suggestions === undefined ? (
-                <div>undefined</div>
-              ) : (
-                <>
-                  <SearchText
-                    type="text"
-                    placeholder="Search by state, suburb or postcode"
-                    name="location"
-                    id="location"
-                    list="searchList"
-                    onSelect={this.handleSelect}
-                    {...getInputProps()}
-                  />
-                  <datalist id="searchList">
-                    {loading && <div>Loading...</div>}
-                    {suggestions.map((suggestion) => {
-                      const className = suggestion.active
-                        ? 'suggestion-item--active'
-                        : 'suggestion-item';
-                      // inline style for demonstration purpose
-                      const style = suggestion.active
-                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                      return (
-                        <option
-                          value={suggestion.description}
-                          {...getSuggestionItemProps(suggestion, {
-                            className,
-                          })}
-                        >
-                          {suggestion.description}
-                        </option>
-                      );
-                    })}
-                  </datalist>
-                </>
-              )
-            }
-          </PlacesAutocomplete>
-        </SearchBar>
+        <SearchBackground>
+          <SearchTitle>
+            <h1>Search property for rent</h1>
+          </SearchTitle>
+          <SearchBar>
+            <SearchIcon>
+              <SearchOutlined
+                style={{
+                  fontSize: '1.4rem',
+                  margin: 'auto',
+                  // position: 'absolute',
+                  // left: '4.2%',
+                  // zIndex: '1',
+                  color: '#808080',
+                }}
+              />
+            </SearchIcon>
+            <PlacesAutocomplete
+              value={filterText}
+              onChange={this.handleFilterTextChange} //Cannot be changed
+              searchOptions={this.state.searchOptions}
+              debounce={1500}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
+                suggestions === undefined ? (
+                  <div>undefined</div>
+                ) : (
+                  <>
+                    <SearchText
+                      type="text"
+                      placeholder="Search by state, suburb or postcode"
+                      name="location"
+                      id="location"
+                      list="searchList_responsive"
+                      onSelect={this.handleSelect}
+                      {...getInputProps()}
+                    />
+                    <datalist id="searchList_responsive">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map((suggestion) => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        return (
+                          <option
+                            value={suggestion.description}
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                            })}
+                          >
+                            {suggestion.description}
+                          </option>
+                        );
+                      })}
+                    </datalist>
+                  </>
+                )
+              }
+            </PlacesAutocomplete>
+          </SearchBar>
+        </SearchBackground>
         <RangeDropDown>
           <TypeFilterTitle>
             <h2>Property type</h2>
           </TypeFilterTitle>
           <TypeFilterItem className="oneDrop">
-            <select name="type" id="type" onChange={this.handleTypeChange} value={type}>
+            <select name="type" id="type" onChange={this.handleChange} value={type}>
               <option value="">All Types</option>
               <option value="house">House</option>
               <option value="apartment">Apartment</option>
@@ -155,12 +146,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="priceMin">Min</label>
             <br />
-            <select
-              name="priceMin"
-              id="priceMin"
-              onChange={this.handlePriceMinChange}
-              value={priceMin}
-            >
+            <select name="priceMin" id="priceMin" onChange={this.handleChange} value={priceMin}>
               <option value="">Any</option>
               <option value="50">$50</option>
               <option value="75">$75</option>
@@ -180,12 +166,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="priceMax">Max</label>
             <br />
-            <select
-              name="priceMax"
-              id="priceMax"
-              onChange={this.handlePriceMaxChange}
-              value={priceMax}
-            >
+            <select name="priceMax" id="priceMax" onChange={this.handleChange} value={priceMax}>
               <option value="">Any</option>
               <option value="50">$50</option>
               <option value="75">$75</option>
@@ -205,7 +186,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="bedMin">Min</label>
             <br />
-            <select name="bedMin" id="bedMin" onChange={this.handleBedMinChange} value={bedMin}>
+            <select name="bedMin" id="bedMin" onChange={this.handleChange} value={bedMin}>
               <option value="">Any</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -224,7 +205,7 @@ class SearchForm extends React.Component {
           <TypeFilterItem className="oneDrop">
             <label htmlFor="bedMax">Max</label>
             <br />
-            <select name="bedMax" id="bedMax" onChange={this.handleBedMaxChange} value={bedMax}>
+            <select name="bedMax" id="bedMax" onChange={this.handleChange} value={bedMax}>
               <option value="">Any</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -261,12 +242,7 @@ SearchForm.propTypes = {
   bedMax: PropTypes.string.isRequired,
   priceMin: PropTypes.string.isRequired,
   priceMax: PropTypes.string.isRequired,
-  onFilterTextChange: PropTypes.func.isRequired,
-  onTypeChange: PropTypes.func.isRequired,
-  onBedMinChange: PropTypes.func.isRequired,
-  onBedMaxChange: PropTypes.func.isRequired,
-  onPriceMinChange: PropTypes.func.isRequired,
-  onPriceMaxChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   clearInput: PropTypes.func.isRequired,
 };
 
