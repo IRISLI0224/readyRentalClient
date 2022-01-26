@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import notvisibleIcon from '../../assests/img/notvisibility.png';
-import visibleIcon from '../../assests/img/visibility.png';
+import notvisibleIcon from '../../assets/img/notvisibility.png';
+import visibleIcon from '../../assets/img/visibility.png';
 
 const Container = styled.div`
   background-color: rgb(255, 255, 255);

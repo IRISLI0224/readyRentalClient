@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from '../../../../assests/video/Street.mp4';
+import background from '../../../../assets/video/Street.mp4';
 import { Button } from '../../../../hoc/Button';
 
 const Container = styled.div`

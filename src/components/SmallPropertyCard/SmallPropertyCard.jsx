@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import img_first from '../../assests/img/property1.jpg';
+import img_first from '../../assets/img/property1.jpg';
 
 const Container = styled.div`
   background-color: var(--ck-backgroundPrimaryLow);

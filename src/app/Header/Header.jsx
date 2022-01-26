@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from '../../assests/video/night.mp4';
+import background from '../../assets/video/night.mp4';
 import NextSearchBar from '../../components/NextSearchBar';
 import SearchBar from '../../components/SearchBar';
 import NavigationBar from './NavigationBar/Navigationbar';
-import phone from '../../assests/img/phone.png';
+import phone from '../../assets/img/phone.png';
 
 const Container = styled.div`
   position: relative;

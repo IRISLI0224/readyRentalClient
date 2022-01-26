@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg';
-import { ReactComponent as IconBlack } from '../../assests/img/iconBefore_black.svg';
+import { ReactComponent as Icon } from '../../assets/img/iconBefore.svg';
+import { ReactComponent as IconBlack } from '../../assets/img/iconBefore_black.svg';
 import { removeToken } from '../../utils/authentication';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

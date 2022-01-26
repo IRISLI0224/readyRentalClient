@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ButtonStyle } from '../../../../hoc/Button';
-import img from '../../../../assests/img/bottembanner.png';
+import img from '../../../../assets/img/bottembanner.png';
 import { RRColors } from '../../../../utils/constants';
 
 const Container = styled.div`

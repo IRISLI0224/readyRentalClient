@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from '../../../../assests/img/logo.svg';
-import title from '../../../../assests/img/title1.png';
+import Img from '../../../../assets/img/logo.svg';
+import title from '../../../../assets/img/title1.png';
 
 const LogoP = styled.div`
   /* width: 284px;

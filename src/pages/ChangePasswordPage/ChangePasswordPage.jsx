@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import Logo from '../../app/Header/NavigationBar/Logo';
 import Form from '../../hoc/Form';
 import Input from '../../hoc/Input';
-import {Button} from '../../hoc/Button'
-import {Link} from 'react-router-dom'
-import passwordIcon from '../../assests/img/lock.png'
+import { Button } from '../../hoc/Button';
+import { Link } from 'react-router-dom';
+import passwordIcon from '../../assets/img/lock.png';
 import validate from '../../hoc/Form/validate';
-import InputErrorMsg from '../../hoc/InputErrorMsg'
-import FormWrapper from '../../hoc/FormWrapper'
-import ServerMsg  from '../../hoc/ServerMsg'
+import InputErrorMsg from '../../hoc/InputErrorMsg';
+import FormWrapper from '../../hoc/FormWrapper';
+import ServerMsg from '../../hoc/ServerMsg';
 
 const Container = styled.div`
   background-color: white;
@@ -43,30 +43,30 @@ const LogoBox = styled.div`
 const UpdatePasswordTitle = styled.div`
   margin-top: 10px;
   font-size: 1.2rem;
-  font-weight:bold;
+  font-weight: bold;
   color: rgb(51, 63, 72);
   text-align: center;
   line-height: 1.75rem;
 `;
 
 const PasswordRequirement = styled.div`
-   margin:1rem 0rem;
-   font-weight: light;
-   color: grey;
-`
+  margin: 1rem 0rem;
+  font-weight: light;
+  color: grey;
+`;
 
 const LinktoLogin = styled.div`
-    display: flex;
-    margin-top:20px;
+  display: flex;
+  margin-top: 20px;
 `;
 
 //TODO: change the error trigger and error information
 class ChangePasswordPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
-       passwordVisible: false,
-       data: {
+    this.state = {
+      passwordVisible: false,
+      data: {
         oldPassword: {
           value: '',
           blurred: false,
@@ -79,7 +79,7 @@ class ChangePasswordPage extends React.Component {
       isFormSubmit: false,
       error: null,
       isLoading: false,
-    }
+    };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
     this.handleBlurredChange = this.handleBlurredChange.bind(this);
@@ -136,26 +136,24 @@ class ChangePasswordPage extends React.Component {
     return error;
   }
 
- render(){
-  const { data, error: authError, isLoading } = this.state;
-  const error = this.getError(data);
-   return(
-     <Container >
-     <MainBox>
-      <LogoBox>
-       <Logo/>
-      </LogoBox>
-      <UpdatePasswordTitle>Update Password</UpdatePasswordTitle>
-      <PasswordRequirement>
-        Password must contain at least 8 characters.
-      </PasswordRequirement>
-      <FormWrapper
-          onSubmit={(e) => {
-            e.preventDefault();
-            this.handleIsFormSubmitChange(true);
-          }}
-         >
-      <Form  htmlFor="oldPassword">
+  render() {
+    const { data, error: authError, isLoading } = this.state;
+    const error = this.getError(data);
+    return (
+      <Container>
+        <MainBox>
+          <LogoBox>
+            <Logo />
+          </LogoBox>
+          <UpdatePasswordTitle>Update Password</UpdatePasswordTitle>
+          <PasswordRequirement>Password must contain at least 8 characters.</PasswordRequirement>
+          <FormWrapper
+            onSubmit={(e) => {
+              e.preventDefault();
+              this.handleIsFormSubmitChange(true);
+            }}
+          >
+            <Form htmlFor="oldPassword">
               <Input
                 size="400px"
                 name="oldPassword"
@@ -163,17 +161,19 @@ class ChangePasswordPage extends React.Component {
                 type="string"
                 value={data.oldPassword.value}
                 defaultText="Old Password"
-                iconleft ={passwordIcon}
+                iconleft={passwordIcon}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                hidden = "true"
+                hidden="true"
                 error={this.getErrorMessage(error, 'oldPassword')}
               />
-      </Form>
-      <InputErrorMsg className="ErrorMsg">{this.getErrorMessage(error, 'oldPassword')}</InputErrorMsg>
-      <br/>
-      <br/>
-      <Form  htmlFor="password">
+            </Form>
+            <InputErrorMsg className="ErrorMsg">
+              {this.getErrorMessage(error, 'oldPassword')}
+            </InputErrorMsg>
+            <br />
+            <br />
+            <Form htmlFor="password">
               <Input
                 size="400px"
                 name="password"
@@ -181,28 +181,27 @@ class ChangePasswordPage extends React.Component {
                 type="string"
                 value={data.password.value}
                 defaultText="New Password"
-                iconleft ={passwordIcon}
+                iconleft={passwordIcon}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                hidden = "true"
+                hidden="true"
               />
-      </Form>
-      </FormWrapper>
-      <br/>
-      <br/>
-      <Button primary size="400px">Update aassword</Button>
-      {/* {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
+            </Form>
+          </FormWrapper>
+          <br />
+          <br />
+          <Button primary size="400px">
+            Update aassword
+          </Button>
+          {/* {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
       {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>} */}
-      <LinktoLogin>
-      <Link to="/login">
-        Cancel
-      </Link>
-      </LinktoLogin>
-    </MainBox>
-    </Container>
-
-   )
- }
+          <LinktoLogin>
+            <Link to="/login">Cancel</Link>
+          </LinktoLogin>
+        </MainBox>
+      </Container>
+    );
+  }
 }
 
 export default ChangePasswordPage;
