@@ -5,9 +5,8 @@ import { ReactComponent as Icon } from '../../assests/img/iconBefore.svg';
 import { ReactComponent as IconBlack } from '../../assests/img/iconBefore_black.svg';
 import { removeToken } from '../../utils/authentication';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
 
 export const DropdownContainer = styled.div`
   position: relative;
@@ -33,11 +32,10 @@ const ProfileButton = styled.button`
 const ProfileButtonMobile = styled.button`
   display: none;
   @media (max-width: 768px) {
-    display: flex;
-    align-items: flex-end;
-    justify-content: end;
-    width: 14px;
-    top: 0;
+    display: block;
+    top: 20px;
+    font-size: 20px;
+    width: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -49,6 +47,7 @@ const ProfileButtonMobile = styled.button`
 const Cross = styled.button`
   display: none;
   @media (max-width: 768px) {
+    display: block;
     position: absolute;
     top: 20px;
     right: 45px;
