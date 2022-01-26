@@ -30,7 +30,6 @@ const Descriptions = styled.div`
 `;
 //const cardNumber = window.innerWidth <= 800 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
 const SlideCardContainer = ({ properties }) => {
-
   return (
     <Container>
       {' '}
@@ -40,7 +39,7 @@ const SlideCardContainer = ({ properties }) => {
       <Descriptions>Find a suitable property around your place to live</Descriptions>
       <br />
       <br />
-      <Carousel show={4.5}  swiping={true} rightArrow={false} leftArrow={true}>
+      <Carousel show={4.5} swiping={true} rightArrow={false} leftArrow={true}>
         {properties.map((property, index) => {
           return (
             <PropertyBack key={index}>

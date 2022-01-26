@@ -103,7 +103,6 @@ const MenuUl = styled.ul`
 const MenuLi = styled.li`
   display: block;
   height: 53px;
-  cursor: pointer;
   overflow: hidden;
   &:hover {
     background-color: #f0f0f0;
@@ -142,7 +141,6 @@ const MenuSpan = styled.span`
   float: none;
   text-align: left;
   padding-left: 15px;
-
   word-wrap: break-word;
   @media (max-width: 768px) {
     font-size: 20px;
@@ -183,7 +181,7 @@ const Dropdown = () => {
         </Cross>
         <MenuUl>
           <MenuLi>
-            <MenuLink href="/property/manage-listings">
+            <MenuLink href="/account">
               <MenuSpan>{user.email}</MenuSpan>
             </MenuLink>
           </MenuLi>
