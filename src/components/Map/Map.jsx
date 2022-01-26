@@ -1,84 +1,59 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MapContainer, Marker, TileLayer, Tooltip} from 'react-leaflet';
-import { customMarker } from "./constants";
-import "leaflet/dist/leaflet.css";
+import React, { useState, useEffect } from 'react';
+import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
+import { customMarker } from './constants';
+import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
 
-const myFunction=(arr)=>
-{
- var out = "<br />";
- var i;
 
- if(arr.length > 0)
- {
-  for(i = 0; i < arr.length; i++)
-  {
-   out += "<div class='address' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ");return false;'>" + arr[i].display_name + "</div>";
+const Map = (add) => {
+  const [lat, setLat] = useState(-33.86013359152855);
+  const [lan, setLan] = useState(151.24803202610013);
+  const address =add;
+  const [zoom, setZoom]=useState(14)
+
+  useEffect(() => {
+    add_search(add);
+  });
+
+  const add_search = async (add) => {
+    console.log(add)
+    if (add.add.indexOf('undefined') < 0) {
+      var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=3&q=' + add.add;
+      console.log(url)
+      const location = await axios.get(url);
+      if (location.status == '200') {
+        console.log(location.data[0].boundingbox[0]);
+        setLat(location.data[0].boundingbox[0]);
+        setLan(location.data[0].boundingbox[2]);
+      }
+    }
+  };
+
+  const handleClick=()=>{
+     setZoom(15)
   }
-  document.getElementById('results').innerHTML = out;
- }
- else
- {
-  document.getElementById('results').innerHTML = "Sorry, no results...";
- }
 
-}
-
-const addr_search=(addr)=>
-{
- var inp = document.getElementById("addr");
- var xmlhttp = new XMLHttpRequest();
- var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
- xmlhttp.onreadystatechange = function()
- {
-   if (this.readyState == 4 && this.status == 200)
-   {
-    var myArr = JSON.parse(this.responseText);
-    myFunction(myArr);
-   }
- };
- xmlhttp.open("GET", url, true);
- xmlhttp.send();
-}
-
-const Map = (property) => {
-  
-  // //const add = {...address}
-  // let add =address.address;
-  // let adds ='';
-  // if (add!=undefined){
-  //   address.map((a)=>{
-  //     console.log(a)
-  //     adds =adds+a;
-  //   })
-  // }
-  const P = property;
-  const add =
-    P.address?.streetNumber +
-    ' ' +
-    P.address?.streetName +
-    ' ' +
-    P.address?.city +
-    ' ' +
-    P.address?.state +
-    ' ' +
-    P.address?.postCode;
-  //const add = address.streetNumber+' '+address.streetName+' '+address.city+' '+address.state+' '+ address.postCode;
-  console.log(P.address?.streetNumber)
   return (
     <div>
       <MapContainer
-        style={{ height: '480px', width: '800px' }}
-        zoom='15'
-        center={[-33.86013359152855, 151.24803202610013]}
-        scrollWheelZoom={true}
+        style={{ height: '300px', width: '800px' }}
+        zoom={zoom}
+        center={[lat, lan]}
+        position={[lat, lan]}
       >
         <TileLayer url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      
-            <Marker style={{ color: 'red' }}  position={[-33.86013359152855, 151.24803202610013]} icon={customMarker} >
-              <Tooltip direction="top" offset={[10, 0]}>
-                <span style={{ fontSize: 14, fontWeight: 'bold' }}>Location</span>
-              </Tooltip>
-            </Marker>
+
+        <Marker
+          style={{ color: 'red' }}
+          position={[lat, lan]}
+          icon={customMarker}
+          onClick={handleClick}
+          visible ='false'
+        >
+          <Tooltip direction="top"  >
+            <span style={{ fontSize: 14, fontWeight: 'bold' }} >{address.add}</span>
+          </Tooltip>
+        </Marker>
       </MapContainer>
     </div>
   );

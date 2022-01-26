@@ -9,7 +9,7 @@ import StyledText from '../.../../../hoc/Text/';
 import { DescItem_re } from './components/Container/Container';
 import styled from 'styled-components';
 import { Divider } from 'antd';
-import Map from '../../components/Map'
+import Map from '../../components/Map';
 
 const FormContainer = styled.div`
     display: flex;
@@ -66,10 +66,26 @@ const PropertyDetails = () => {
   const params = useParams();
   const id = params.id.toString();
   const [property, setProperty] = useState([]);
+  const [add, setAdd] = useState();
 
   useEffect(() => {
     SetPropertiesById(id);
   }, []);
+
+  useEffect(() => {
+    const P = property;
+    const add =
+      P.address?.streetNumber +
+      ' ' +
+      P.address?.streetName +
+      ' ' +
+      P.address?.city +
+      ' ' +
+      P.address?.state +
+      ' ' +
+      P.address?.postCode;
+    setAdd(add);
+  }, [property]);
 
   //Scroll to top after jump to detail page
   useEffect(() => {
@@ -78,14 +94,17 @@ const PropertyDetails = () => {
 
   const SetPropertiesById = async (id) => {
     const res = await getPropertiesById(id);
-    if (res) setProperty(res);
+    if (res) {
+      setProperty(res);
+    }
   };
 
   return (
     <>
       <h1>{property.city}</h1>
       <BasicInfo property={property} />
-       <Map property={property}/>
+      {add ? <Map add={add} /> : null}
+
       <FormContainer>
         <Description property={property} />
         <Blank></Blank>
@@ -108,7 +127,9 @@ const PropertyDetails = () => {
       </FormContainer>
       <Divider style={{ background: '#bdbdbd' }} />
       <DescItem_re>
-        <StyledText size="0.7rem" style={{ marginTop: 10 }}>Personal Information Collection Statement</StyledText>
+        <StyledText size="0.7rem" style={{ marginTop: 10 }}>
+          Personal Information Collection Statement
+        </StyledText>
         <StyledText size="0.7rem">
           Your personal information and associated behavioural data related to search activities
           will be passed to the Agency and/or its authorised service provider to assist the Agency
