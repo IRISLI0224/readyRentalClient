@@ -4,9 +4,10 @@ import Slider from '../SliderV2';
 import StyledIcon from '../../hoc/IconV2';
 import StyledText from '../../hoc/Text';
 import { BiBed, BiBath } from 'react-icons/bi';
-import { AiOutlineCar, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineCar } from 'react-icons/ai';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import PropTypes from 'prop-types';
 
 const Thumb = styled.div`
   border-radius: 3px 0 0 3px;
@@ -70,7 +71,7 @@ const CallNow = styled.div`
 `;
 
 const ContentFooter = styled.div`
-  padding: 6px 20px 10px;
+  padding: 10px 20px 10px;
   border-top: 1px solid #e6e9ec;
   flex: 25%;
   display: flex;
@@ -134,6 +135,7 @@ const Cards = (props) => (
       boxShadow: 2,
       fontWeight: 'bold',
       mb: 2,
+      ml: 2,
     }}
   >
     <Thumb>
@@ -172,13 +174,18 @@ const Cards = (props) => (
       </ContentDetail>
       <ContentFooter>
         <Type>{props.types}</Type>
-        <StyledIcon>
-          {' '}
-          <AiOutlineStar />{' '}
-        </StyledIcon>
       </ContentFooter>
     </Details>
   </Box>
 );
 
+Cards.propTypes = {
+  price: PropTypes.number,
+  address: PropTypes.string,
+  bed: PropTypes.number,
+  bath: PropTypes.number,
+  car: PropTypes.number,
+  types: PropTypes.string,
+  slides: PropTypes.array,
+};
 export default Cards;
