@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import NavigationBar from './NavigationBar/Navigationbar';
+import SecondaryNavigationBar from './NavigationBar/Navigationbar';
+import NavigationBar from '../Header/NavigationBar/Navigationbar';
 
 const Container = styled.div`
   position: relative;
@@ -11,10 +12,25 @@ const Container = styled.div`
   box-shadow: 0 8px 8px 0 rgba(34, 34, 34, 0.07);
 `;
 
+const NavigationDiv = styled.div`
+@media (min-width:768.5px) {
+  display:none;
+}
+`
+const SecondaryNavigationDiv = styled.div`
+@media (max-width:768px) {
+  display:none;
+}
+`
 const HeaderSecondary = () => (
   <React.Fragment>
     <Container className="Header" >
-      <NavigationBar />
+      <NavigationDiv>
+        <NavigationBar />
+      </NavigationDiv>
+      <SecondaryNavigationDiv>
+         <SecondaryNavigationBar />
+      </SecondaryNavigationDiv>
     </Container>
   </React.Fragment>
 );

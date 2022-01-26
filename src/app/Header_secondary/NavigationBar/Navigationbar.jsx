@@ -22,12 +22,13 @@ const Container = styled.div`
     padding-left: 5%;
     padding-bottom: 0;
     Button {
-      margin-left: 3px;
+      // margin-left: 3px;
       size: 20%;
     }
   }
   @media (max-width: 576px) {
     background-image: none;
+    width: 100%;
   }
 `;
 
@@ -52,8 +53,18 @@ const ButtonwithoutBorder = styled(ButtonStyle)`
 
 const LogoPanel = styled.div`
   text-align: center;
-  width: 800px;
+  width: 100%;
 `;
+
+const AccountButtonGroup = styled.div`
+  display:flex;
+  @media (max-width: 576px) {
+    // flex-direction:column; 
+    button{
+        width:100%;
+    }
+  }
+`
 
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
@@ -80,6 +91,7 @@ const NavigationBar = () => {
       ) : (
         <>
           {' '}
+          <AccountButtonGroup>
           <Link to="/login" primary style={{ textDecoration: 'none' }}>
             <ButtonwithoutBorder className="SigninButton" size="90px">
               Sign in
@@ -90,6 +102,7 @@ const NavigationBar = () => {
               &nbsp;&nbsp;Join&nbsp;&nbsp;
             </Button>
           </Link>
+          </AccountButtonGroup>
         </>
       )}
     </Container>

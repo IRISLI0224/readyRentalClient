@@ -132,10 +132,12 @@ const NavigationBar = () => {
       <Container>
         <NavbarPanel>
           <Logo className="Logo" />
-          <LogoResponsiveBox>
-            <LogoImg src={LogoResponsive} />
-            <TitleImg src={TitleResponsive} />
-          </LogoResponsiveBox>
+          <a href="/">
+            <LogoResponsiveBox>
+              <LogoImg src={LogoResponsive} />
+              <TitleImg src={TitleResponsive} />
+            </LogoResponsiveBox>
+          </a>
           {Login ? <SpaceLogin /> : <Space />}
           {Login ? (
             <>
