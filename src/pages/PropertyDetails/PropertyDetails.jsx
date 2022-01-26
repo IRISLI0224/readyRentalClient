@@ -85,7 +85,7 @@ const PropertyDetails = () => {
     <>
       <h1>{property.city}</h1>
       <BasicInfo property={property} />
-      <Map/>
+       <Map property={property}/>
       <FormContainer>
         <Description property={property} />
         <Blank></Blank>
