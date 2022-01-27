@@ -180,7 +180,7 @@ const Dropdown = () => {
         </Cross>
         <MenuUl>
           <MenuLi>
-            <MenuLink href="/account">
+            <MenuLink href="/">
               <MenuSpan>{user.email}</MenuSpan>
             </MenuLink>
           </MenuLi>
