@@ -13,23 +13,23 @@ const Container = styled.div`
 `;
 
 const NavigationDiv = styled.div`
-@media (min-width:768.5px) {
-  display:none;
-}
-`
+  @media (min-width: 768.5px) {
+    display: none;
+  }
+`;
 const SecondaryNavigationDiv = styled.div`
-@media (max-width:768px) {
-  display:none;
-}
-`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 const HeaderSecondary = () => (
   <React.Fragment>
-    <Container className="Header" >
+    <Container className="Header">
       <NavigationDiv>
         <NavigationBar />
       </NavigationDiv>
       <SecondaryNavigationDiv>
-         <SecondaryNavigationBar />
+        <SecondaryNavigationBar />
       </SecondaryNavigationDiv>
     </Container>
   </React.Fragment>
