@@ -262,8 +262,8 @@ const Footer = () => (
       </FooterText>
       <FooterText>
         <p className="stock-info">
-          Real Rental is owned and operated by Real Rental
-          <span>© Real Rental.</span>
+          Ready Rental is owned and operated by Ready Rental
+          <span>© Ready Rental.</span>
         </p>
       </FooterText>
     </FooterContent>
