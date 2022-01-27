@@ -39,6 +39,14 @@ const Blank = styled.div`
   }
 `;
 
+const PropBody = styled.div`
+  display: flex;
+`;
+
+const LeftSection = styled.div`
+  width: 60%;
+`;
+
 const Ads = styled.div` 
     margin-top :50px;
     margin-left:50px;
@@ -72,7 +80,6 @@ const Ads = styled.div`
     display: none;
 }
 `;
-
 
 const PropertyDetails = () => {
   const params = useParams();
@@ -119,24 +126,9 @@ const PropertyDetails = () => {
         <Description property={property} />
         <Blank></Blank>
       </FormContainer>
-      <MapContainer>
-      {add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}
-      </MapContainer>
+      <MapContainer>{add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}</MapContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />
-        <Ads>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <StyledText size="1.5rem">Similar Properties</StyledText>
-          <br />
-          <CardAds props={property}></CardAds>
-          <br />
-          <CardAds props={property}></CardAds>
-        </Ads>
       </FormContainer>
       <Divider style={{ background: '#bdbdbd' }} />
       <DescItemRe>
@@ -156,6 +148,13 @@ const PropertyDetails = () => {
           service.
         </StyledText>
       </DescItemRe>
+      {/* <Ads>
+          <StyledText size="1.5rem">Similar Properties</StyledText>
+          <br />
+          <CardAds props={property}></CardAds>
+          <br />
+          <CardAds props={property}></CardAds>
+        </Ads> */}
     </>
   );
 };
