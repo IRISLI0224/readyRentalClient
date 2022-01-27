@@ -11,26 +11,7 @@ import styled from 'styled-components';
 import { Divider } from 'antd';
 import Map from '../../components/Map';
 
-const FormContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: flex-end;
-    flex-wrap: nowrap;
-    flex-direction: row;
-}
-  @media (min-width: 641px) {
-    border-radius: 0.1875rem;
-  }
-`;
-
-const MapContainer = styled.div`
-    margin-left:200px;
-}
-  @media (min-width: 641px) {
-    border-radius: 0.1875rem;
-  }
-`;
+const MapContainer = styled.div``;
 
 const Blank = styled.div`
   width: 350px;
@@ -41,44 +22,29 @@ const Blank = styled.div`
 
 const PropBody = styled.div`
   display: flex;
+  margin: 0 5%;
 `;
 
-const LeftSection = styled.div`
+const SectionLeft = styled.div`
   width: 60%;
 `;
+const SectionRight = styled.div`
+  margin-left: auto;
+`;
 
-const Ads = styled.div` 
-    margin-top :50px;
-    margin-left:50px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-content: flex-end;
-    -ms-flex-line-pack: end;
-    align-content: stretch;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: wrap;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    align-items: stretch;
-    flex-direction: column;
-}
-}
-  @media (min-width: 641px) {
-    border-radius: 0.1875rem;
-  }
+const Ads = styled.div`
+  margin-top: 50px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: stretch;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-direction: column;
+
   @media screen and (max-width: 1024px) {
     display: none;
-}
+  }
 `;
 
 const PropertyDetails = () => {
@@ -122,14 +88,24 @@ const PropertyDetails = () => {
     <>
       <h1>{property.city}</h1>
       <BasicInfo property={property} />
-      <FormContainer>
-        <Description property={property} />
-        <Blank></Blank>
-      </FormContainer>
-      <MapContainer>{add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}</MapContainer>
-      <FormContainer>
-        <ContactForm id={id} property={property} />
-      </FormContainer>
+      <PropBody>
+        <SectionLeft>
+          <Description property={property} />
+          <Blank></Blank>
+          <MapContainer>{add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}</MapContainer>
+          <ContactForm id={id} property={property} />
+        </SectionLeft>
+        <SectionRight>
+          <Ads>
+            <StyledText size="1.5rem">Similar Properties</StyledText>
+            <br />
+            <CardAds props={property}></CardAds>
+            <br />
+            <CardAds props={property}></CardAds>
+          </Ads>
+        </SectionRight>
+      </PropBody>
+
       <Divider style={{ background: '#bdbdbd' }} />
       <DescItemRe>
         <StyledText size="0.7rem" style={{ marginTop: 10 }}>
@@ -148,13 +124,6 @@ const PropertyDetails = () => {
           service.
         </StyledText>
       </DescItemRe>
-      {/* <Ads>
-          <StyledText size="1.5rem">Similar Properties</StyledText>
-          <br />
-          <CardAds props={property}></CardAds>
-          <br />
-          <CardAds props={property}></CardAds>
-        </Ads> */}
     </>
   );
 };
