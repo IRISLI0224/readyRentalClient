@@ -13,7 +13,7 @@ const Map = (add) => {
 
   useEffect(() => {
     //test console
-    console.log(add)
+    //console.log(add)
     add_search(add);
   },[]);
 
