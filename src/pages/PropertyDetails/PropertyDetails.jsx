@@ -78,10 +78,26 @@ const PropertyDetails = () => {
   const params = useParams();
   const id = params.id.toString();
   const [property, setProperty] = useState([]);
+  const [add, setAdd] = useState();
 
   useEffect(() => {
     SetPropertiesById(id);
   });
+
+  useEffect(() => {
+    const P = property;
+    const add =
+      P.address?.streetNumber +
+      ' ' +
+      P.address?.streetName +
+      ' ' +
+      P.address?.city +
+      ' ' +
+      P.address?.state +
+      ' ' +
+      P.address?.postCode;
+    setAdd(add);
+  }, [property]);
 
   //Scroll to top after jump to detail page
   useEffect(() => {
@@ -90,7 +106,9 @@ const PropertyDetails = () => {
 
   const SetPropertiesById = async (id) => {
     const res = await getPropertiesById(id);
-    if (res) setProperty(res);
+    if (res) {
+      setProperty(res);
+    }
   };
 
   return (
@@ -102,7 +120,7 @@ const PropertyDetails = () => {
         <Blank></Blank>
       </FormContainer>
       <MapContainer>
-        <Map />
+      {add ? <Map add={add} /> : null}
       </MapContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />

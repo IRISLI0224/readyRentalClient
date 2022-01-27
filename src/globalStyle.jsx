@@ -11,6 +11,8 @@ body {
   ::after {
   box-sizing: border-box;
   }
+
+
 `;
 
 export default GlobalStyle;
