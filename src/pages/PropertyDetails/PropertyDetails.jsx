@@ -55,7 +55,7 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     SetPropertiesById(id);
-  });
+  },[]);
 
   useEffect(() => {
     const P = property;

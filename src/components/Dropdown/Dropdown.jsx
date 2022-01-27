@@ -180,7 +180,7 @@ const Dropdown = () => {
         </Cross>
         <MenuUl>
           <MenuLi>
-            <MenuLink href="/account">
+            <MenuLink href="/">
               <MenuSpan>{user.email}</MenuSpan>
             </MenuLink>
           </MenuLi>
@@ -192,11 +192,6 @@ const Dropdown = () => {
           <MenuLi>
             <MenuLink href="/property/inspection">
               <MenuSpan>Inspection requests</MenuSpan>
-            </MenuLink>
-          </MenuLi>
-          <MenuLi>
-            <MenuLink href="/account">
-              <MenuSpan>Account settings</MenuSpan>
             </MenuLink>
           </MenuLi>
           <MenuLi>
