@@ -27,8 +27,9 @@ const FormContainer = styled.div`
 const MapContainer = styled.div`
     margin-left:200px;
 }
-  @media (min-width: 641px) {
+  @media (max-width: 768px) {
     border-radius: 0.1875rem;
+    display: none;
   }
 `;
 
@@ -72,7 +73,6 @@ const Ads = styled.div`
     display: none;
 }
 `;
-
 
 const PropertyDetails = () => {
   const params = useParams();
@@ -119,9 +119,7 @@ const PropertyDetails = () => {
         <Description property={property} />
         <Blank></Blank>
       </FormContainer>
-      <MapContainer>
-      {add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}
-      </MapContainer>
+      <MapContainer>{add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}</MapContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />
         <Ads>
