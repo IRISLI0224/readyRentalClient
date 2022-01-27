@@ -63,7 +63,7 @@ const ContainerFour = styled.div`
 
 //const cityProperties = ['1', '2', '3', '4', '5', '6', '7'];
 const widthSmall = '240';
-const widthLarge = '600';
+const widthLarge = '510';
 const heightSmall = '300';
 const heightLarge = '630';
 
