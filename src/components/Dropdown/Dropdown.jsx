@@ -195,11 +195,6 @@ const Dropdown = () => {
             </MenuLink>
           </MenuLi>
           <MenuLi>
-            <MenuLink href="/account">
-              <MenuSpan>Account settings</MenuSpan>
-            </MenuLink>
-          </MenuLi>
-          <MenuLi>
             <MenuLink href="/">
               <MenuSpan onClick={Logout}>Log out</MenuSpan>
             </MenuLink>

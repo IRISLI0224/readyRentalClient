@@ -123,22 +123,29 @@ class ListedProperties extends React.Component {
         <Container>
           <NoShadowWrapper>
             <h1>{this.state.title}</h1>
-            <Button as="a" href="/property/post" size="140px" height="50px" primary>
-              +Create Listing
-            </Button>
+            {this.props.isListing ? (
+              <Button as="a" href="/property/post" size="140px" height="50px" primary>
+                +Create Listing
+              </Button>
+            ) : null}
           </NoShadowWrapper>
-          <PropertyHeader />
-          {properties.map((property) => {
-            if (!property) return null;
-            return (
-              <PropertyDetailEditable
-                key={property._id}
-                property={property}
-                onDelete={this.handleDelete}
-                isListing={this.props.isListing}
-              />
-            );
-          })}
+          {properties?.length > 0 ? (
+            <>
+              <PropertyHeader />
+              {properties.map((property) => {
+                return (
+                  <PropertyDetailEditable
+                    key={property._id}
+                    property={property}
+                    onDelete={this.handleDelete}
+                    isListing={this.props.isListing}
+                  />
+                );
+              })}
+            </>
+          ) : (
+            <h3>You have no item for now</h3>
+          )}
         </Container>
       </>
     );
