@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import backendApi from '../../api/backendApi';
 import styled from 'styled-components';
 
@@ -14,9 +14,9 @@ async function postImage({ image }) {
   return result.data;
 }
 
-const UploadImage = (setFiles) => {
+const UploadImage = ({ setFiles }) => {
+  const [images, setImages] = useState([]);
   const imageInput = useRef();
-
   const fileSelected = async (event) => {
     event.preventDefault();
 
