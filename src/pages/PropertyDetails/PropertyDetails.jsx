@@ -11,7 +11,9 @@ import styled from 'styled-components';
 import { Divider } from 'antd';
 import Map from '../../components/Map';
 
-const MapContainer = styled.div``;
+const MapContainer = styled.div`
+  margin: 5px 0;
+`;
 
 const Blank = styled.div`
   width: 350px;
@@ -27,6 +29,9 @@ const PropBody = styled.div`
 
 const SectionLeft = styled.div`
   width: 60%;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 const SectionRight = styled.div`
   margin-left: auto;
@@ -55,7 +60,7 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     SetPropertiesById(id);
-  },[]);
+  }, []);
 
   useEffect(() => {
     const P = property;
@@ -92,7 +97,9 @@ const PropertyDetails = () => {
         <SectionLeft>
           <Description property={property} />
           <Blank></Blank>
-          <MapContainer>{add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}</MapContainer>
+          <MapContainer>
+            {add?.indexOf('undefined') < 0 ? <Map add={add} height="400px" width="100%" /> : null}
+          </MapContainer>
           <ContactForm id={id} property={property} />
         </SectionLeft>
         <SectionRight>
