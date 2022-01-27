@@ -33,7 +33,6 @@ const BsChevronRight1 = styled(BsChevronRight)`
 `;
 
 const PageList = styled.li`
-  // float: left;
   font-weight: 500;
   min-width: ${(props) => (props.pointer ? `6.5rem` : `2.5rem`)};
   height: 2.5rem;
@@ -66,10 +65,10 @@ const PageList = styled.li`
   }
 `;
 
-const renderData = (property) => {
+const renderData = (properties) => {
   return (
     <>
-      {property.map((item, index) => {
+      {properties.map((item, index) => {
         return (
           <Link to={`/property/${item._id}`} key={index}>
             <Card
@@ -93,24 +92,21 @@ const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
   return `${streetNumber} ${streetName} ${city} ${state}`;
 };
 
-const Pagination = (props) => {
-  const [currentPage, setcurrentPage] = useState(1); // selected current page management, from clicking by users
-  const [itemsPerpage] = useState(5); // the interval of displayed items in each page(e.g. item 1, item 2, item 3, item 4, item 5 in each page when useState(5))
-  const [pageNumberLimit] = useState(5); // the interval of displayed pages(e.g. 1 2 3 4 5 ... =>when useState(5))
-  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5); // max number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the max interval of each group is 5(10-5))
-  const [minPageNumberLimit, setminPageNumberLimit] = useState(0); // min number managent, for moving the pagination(e.g 1 2 3 4 5... => 6 7 8 9 10... the min interval of each group is 5(6-1))
+const Pagination = ({ properties }) => {
+  const [currentPage, setcurrentPage] = useState(1); 
+  const [itemsPerpage] = useState(5); 
+  const [pageNumberLimit] = useState(5); 
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5); 
+  const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
-  /******click handler */
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
   };
 
-  //***********total pages should have based on the volumn of data divided by interval(5 in this case)  */
   const pages = [];
-  for (let i = 1; i <= Math.ceil(props.properties.length / itemsPerpage); i++) {
+  for (let i = 1; i <= Math.ceil(properties.length / itemsPerpage); i++) {
     pages.push(i);
   }
-  /**** rendering pages number based on total pages calculated by above division*/
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -127,13 +123,10 @@ const Pagination = (props) => {
       return null;
     }
   });
-
-  //***********items in each page should be displayed, slicing total data to allocate to each page*/
   const indexOfLastItem = currentPage * itemsPerpage;
   const indexOfFirstItem = indexOfLastItem - itemsPerpage;
-  const currentItems = props.properties.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = properties.slice(indexOfFirstItem, indexOfLastItem);
 
-  //********next&prev************/
   const handleNextbtn = () => {
     setcurrentPage(currentPage + 1);
     if (currentPage + 1 > maxPageNumberLimit) {
@@ -156,17 +149,17 @@ const Pagination = (props) => {
       setminPageNumberLimit(0);
     }
   };
-  //********incretment for ... right************/
+
   let pageIncrementBtn = null;
   if (pages.length > maxPageNumberLimit) {
     pageIncrementBtn = <li onClick={handleNextbtn}> &hellip;</li>;
   }
-  //********incretment for ... left************/
+
   let pageDecrementBtn = null;
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip;</li>;
   }
-  /******The first number should be displayed when the group of pages are lager than the interval (5 in the case)**/
+  
   const handleFirstbtn = () => {
     setcurrentPage(1);
     setmaxPageNumberLimit(5);
@@ -182,7 +175,6 @@ const Pagination = (props) => {
     );
   }
 
-  /******The last number should be displayed when the group of pages are the largest group(pages.length)(40 in the case)**/
   const handleLastbtn = () => {
     setcurrentPage(pages.length);
     setmaxPageNumberLimit(pages.length + pageNumberLimit - 1);

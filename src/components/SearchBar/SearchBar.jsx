@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FilterProductTable from '../../app/Header/components/FilterProductTable';
+import FilterProductTable from '../../app/Header/FilterProductTable';
 
 const Container = styled.div`
   width: 915px;

@@ -4,7 +4,7 @@ import { FaceBook, Twitter, Pinterest, Linkedin, Youtube } from '../../hoc/Socia
 import { FaPinterestP, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { ImLinkedin2 } from 'react-icons/im';
 import { BsTwitter } from 'react-icons/bs';
-import Item from './component/Item';
+import Item from './Item';
 import FlexWrap from '../../hoc/FlexWrap';
 
 const Container = styled.div`
@@ -261,8 +261,8 @@ const FooterSecondary = () => (
         </FooterText>
         <FooterText>
           <p className="stock-info">
-            realestate.com.au is owned and operated by ASX-listed REA Group Ltd (REA:ASX){' '}
-            <span>© REA Group Ltd.</span>
+          Real Rental is owned and operated by Real Rental
+            <span>© Real Rental.</span>
           </p>
         </FooterText>
       </FooterContent>
