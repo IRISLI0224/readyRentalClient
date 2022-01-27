@@ -20,7 +20,6 @@ const Map = (add) => {
       var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=3&q=' + add.add;
       const location = await axios.get(url);
       if (location.data!=[]) {
-        console.log(location?.data[0]?.boundingbox[0]);
         if(location?.data[0]?.boundingbox[0]) setLat(location?.data[0]?.boundingbox[0]);
         if(location?.data[0]?.boundingbox[2]) setLan(location?.data[0]?.boundingbox[2]);
       }
