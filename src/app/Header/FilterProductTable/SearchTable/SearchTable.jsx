@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../../../../../../hoc/Button';
-import DropFilter from './components/DropFilter';
+import { Button } from '../../../../hoc/Button';
+import DropFilter from '../DropFilter';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 

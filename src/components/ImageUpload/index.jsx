@@ -1,1 +1,1 @@
-export {dafault} from './UploadImage'
+export {default} from './UploadImage'
