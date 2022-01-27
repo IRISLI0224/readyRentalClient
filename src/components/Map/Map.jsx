@@ -9,7 +9,7 @@ const Map = (add) => {
   const [lat, setLat] = useState(-33.86013359152855);
   const [lan, setLan] = useState(151.24803202610013);
   const address =add;
-  const [zoom, setZoom]=useState(10)
+  const [zoom, setZoom]=useState(12)
 
   useEffect(() => {
     //test console
