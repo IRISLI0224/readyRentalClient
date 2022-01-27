@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
-import FooterSecondary from '../Footer_secondary';
-import HeaderSecondary from '../Header_secondary/Header';
+import FooterSecondary from '../FooterSecondary';
+import HeaderSecondary from '../HeaderSecondary/Header';
 import { useLocation } from 'react-router-dom';
 
 const Main = styled.div`

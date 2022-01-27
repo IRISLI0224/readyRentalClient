@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../../../assets/img/logo_red.svg';
 import { getToken } from '../../../utils/authentication';
 import Dropdown from '../../../components/Dropdown';
-import title from '../../../assets/img/title2.png';
+import Title from '../../../assets/img/title2.png';
 
 const Container = styled.div`
   word-wrap: break-word;
@@ -13,8 +13,6 @@ const Container = styled.div`
   justify-content: space-between;
   padding: 1rem 0.5rem;
   height: 4.5rem;
-  //border: 1px solid #a3a3a3;
-  padding: 1rem 0.5rem;
   @media (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -80,7 +78,7 @@ const NavigationBar = () => {
       <a href="/">
         <LogoPanel>
           <img src={Logo} style={{ height: '50px' }} alt="l0go" />
-          <img src={title} style={{ height: '40px', marginLeft: '10px' }} alt="title" />
+          <img src={Title} style={{ height: '40px', marginLeft: '10px' }} alt="title" />
         </LogoPanel>
       </a>
       {Login ? (
