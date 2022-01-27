@@ -86,8 +86,6 @@ class postForm extends React.Component {
 
     newData['propImage'] = this.state.file;
 
-    //console.log(newData);
-
     delete newData.propertyFeatures;
 
     await PostProperty(newData);
@@ -96,8 +94,7 @@ class postForm extends React.Component {
     this.setState({
       modalVisible: true,
     });
-    //window.alert('Add a new property to your list successfully');
-    //window.location.href = ManageListPage;
+
   };
 
   setFiles(url) {
@@ -194,6 +191,7 @@ class postForm extends React.Component {
             {
               required: true,
               message: 'Please Input Steert number!',
+              pattern: new RegExp(/^[1-9]\d*$/, 'g'),
             },
           ]}
         >
@@ -303,6 +301,7 @@ class postForm extends React.Component {
           label="Rent"
           name="rent"
           mode="multiple"
+          placeholder=''
           rules={[
             {
               required: true,
