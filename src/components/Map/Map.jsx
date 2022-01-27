@@ -12,11 +12,13 @@ const Map = (add) => {
   const [zoom, setZoom]=useState(10)
 
   useEffect(() => {
+    //test console
+    console.log(add)
     add_search(add);
   },[]);
 
   const add_search = async (add) => {
-    console.log(add)
+    //console.log(add)
     if (add.add.indexOf('undefined') < 0) {
       var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=3&q=' + add.add;
       //console.log(url)

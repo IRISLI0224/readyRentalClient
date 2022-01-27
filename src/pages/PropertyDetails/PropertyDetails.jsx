@@ -120,7 +120,7 @@ const PropertyDetails = () => {
         <Blank></Blank>
       </FormContainer>
       <MapContainer>
-      {add ? <Map add={add} /> : null}
+      {add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}
       </MapContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />
