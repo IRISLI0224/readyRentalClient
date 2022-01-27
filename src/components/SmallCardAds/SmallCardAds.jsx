@@ -11,7 +11,7 @@ import defaultImage from '../../assets/img/room.jpg';
 
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0.0625rem 0.1875rem 0px;
-  max-width: 300px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -81,19 +81,8 @@ const IMG = styled.img`
 
 /*brand, agentName, agentIcon,price,slides,address.types */
 
-const SmallCardAds = (props) => {
-  const [property, setProperty] = useState([]);
-
-  useEffect(() => {
-    getPropertyAds();
-  }, []);
-
-  const getPropertyAds = async () => {
-    const res = await getPropertiesAds();
-    if (res) setProperty(res);
-  };
-
-  const P = property;
+const SmallCardAds = (property) => {
+  const P = property.PropertyInfo;
   const address =
     P.address?.streetNumber +
     ' ' +
