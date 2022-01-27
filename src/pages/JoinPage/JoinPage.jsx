@@ -170,7 +170,7 @@ class JoinPage extends React.Component {
           >
             <Form htmlFor="email" margin_bottom="1rem">
               <Input
-                size="400px"
+                size="100%"
                 name="email"
                 id="email"
                 type="email"
@@ -187,7 +187,7 @@ class JoinPage extends React.Component {
             )}
             <Form htmlFor="password" margin_bottom="1rem">
               <Input
-                size="400px"
+                size="100%"
                 name="password"
                 id="password"
                 type="password"
@@ -206,7 +206,7 @@ class JoinPage extends React.Component {
               </InputErrorMsg>
             )}
           </FormWrapper>
-          <Button primary size="80%" height="50px" onClick={this.userRegister}>
+          <Button primary size="81%" height="50px" onClick={this.userRegister}>
             Create Account
           </Button>
           {authErrors && <ServerMsg status="error">{authErrors}</ServerMsg>}

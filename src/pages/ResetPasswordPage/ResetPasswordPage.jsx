@@ -186,7 +186,7 @@ class ResetPasswordPage extends React.Component {
           <FormWrapper onSubmit={this.updatePassword}>
             <Form htmlFor="password">
               <Input
-                size="400px"
+                size="100%"
                 name="password"
                 id="password"
                 label="password"
@@ -200,7 +200,7 @@ class ResetPasswordPage extends React.Component {
               />
             </Form>
             <br />
-            <Button primary type="submit" size="83.75%" height="50px" disabled={authError}>
+            <Button primary type="submit" size="85.3%" height="50px" disabled={authError}>
               Update Password
             </Button>
           </FormWrapper>

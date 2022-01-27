@@ -53,6 +53,7 @@ class ForgotPasswordPage extends React.Component {
   sendEmail = async (e) => {
     e.preventDefault();
     const { email } = this.state;
+    console.log('123');
     if (email === '') {
       this.setState({
         showError: false,
@@ -61,6 +62,7 @@ class ForgotPasswordPage extends React.Component {
       });
     } else {
       try {
+        console.log('123');
         const response = await backendApi.post('/forgotPassword', {
           email,
         });
@@ -114,7 +116,7 @@ class ForgotPasswordPage extends React.Component {
           <FormWrapper onSubmit={this.sendEmail}>
             <Form htmlFor="email" margin_bottom="1rem">
               <Input
-                size="400px"
+                size="100%"
                 name="email"
                 id="email"
                 type="email"
@@ -125,7 +127,7 @@ class ForgotPasswordPage extends React.Component {
                 onBlur={this.handleBlurredChange}
               />
             </Form>
-            <Button primary type="submit" size="83.5%" height="50px">
+            <Button primary type="submit" size="85.3%" height="50px">
               Reset my password
             </Button>
           </FormWrapper>
