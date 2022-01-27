@@ -72,10 +72,11 @@ const LastFrame = styled.div`
 `;
 
 const IMG = styled.img`
-        max-width: 100%;
-        max-height: 100%;
-        display: block;
-        margin: auto;
+  height: 200px;
+  width: 300px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
 
 /*brand, agentName, agentIcon,price,slides,address.types */
