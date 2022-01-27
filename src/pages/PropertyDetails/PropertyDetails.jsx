@@ -82,7 +82,7 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     SetPropertiesById(id);
-  });
+  },[]);
 
   useEffect(() => {
     const P = property;
@@ -119,7 +119,9 @@ const PropertyDetails = () => {
         <Description property={property} />
         <Blank></Blank>
       </FormContainer>
-      <MapContainer>{add?.indexOf('undefined') < 0 ? <Map add={add} /> : null}</MapContainer>
+      <MapContainer>
+        {add?.indexOf('undefined') < 0 ? <Map add={add} height="300px" width="800px" /> : null}
+      </MapContainer>
       <FormContainer>
         <ContactForm id={id} property={property} />
         <Ads>
