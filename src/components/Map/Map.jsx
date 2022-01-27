@@ -9,19 +9,21 @@ const Map = (add) => {
   const [lat, setLat] = useState(-33.86013359152855);
   const [lan, setLan] = useState(151.24803202610013);
   const address =add;
-  const [zoom, setZoom]=useState(10)
+  const [zoom, setZoom]=useState(12)
 
   useEffect(() => {
+    //test console
+    //console.log(add)
     add_search(add);
-  });
+  },[]);
 
   const add_search = async (add) => {
-    console.log(add)
+    //console.log(add)
     if (add.add.indexOf('undefined') < 0) {
       var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=3&q=' + add.add;
-      console.log(url)
+      //console.log(url)
       const location = await axios.get(url);
-      console.log(location)
+      //console.log(location)
       if (location.data!=[]) {
         console.log(location?.data[0]?.boundingbox[0]);
         if(location?.data[0]?.boundingbox[0]) setLat(location?.data[0]?.boundingbox[0]);
