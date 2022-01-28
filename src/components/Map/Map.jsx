@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Tooltip,Popup } from 'react-leaflet';
 import { customMarker } from './constants';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
@@ -50,19 +50,20 @@ const Map = ({add,height,width}) => {
             onClick={handleClick}
             visible="false"
           >
-            <Tooltip direction="top">
-              <span style={{ fontSize: 14, fontWeight: 'bold' }}>{address.add}</span>
-            </Tooltip>
+            <Popup direction="top" keepInView='true'>
+              <span style={{ fontSize: 14, fontWeight: 'bold' }}>{add}</span>
+            </Popup>
           </Marker>
         </MapContainer>
       ) : (
-        <MapContainer
-          style={{ height:`${height}`, width:`${width}` }}
-          zoom='3'
-          center={[-33.870453,  151.208755]}
-        >
-          <TileLayer url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        </MapContainer>
+        // <MapContainer
+        //   style={{ height:`${height}`, width:`${width}` }}
+        //   zoom='15'
+        //   center={[-33.870453,  151.208755]}
+        // >
+        //   <TileLayer url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        // </MapContainer>
+        null
       )}
     </div>
   );
