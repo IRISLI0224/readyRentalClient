@@ -8,6 +8,11 @@ import { AiOutlineCar } from 'react-icons/ai';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+//TODO: do not use float
+//TODO: folder names always = compoment name
+const CustomButton = styled(Button)({
+  marginTop: '30px',
+});
 
 const Thumb = styled.div`
   border-radius: 3px 0 0 3px;
@@ -15,12 +20,13 @@ const Thumb = styled.div`
   width: 400px;
   background-color: #0d263b;
   overflow: hidden;
-  @media(max-width: 991px) {
-      width: 100%;
-      max-height: fit-content;
-  };
+  @media (max-width: 991px) {
+    width: 100%;
+    max-height: fit-content;
+  }
   @media (max-width: 768px) {
-      height: auto;
+    height: auto;
+  }
 `;
 
 const Details = styled.div`
@@ -29,7 +35,7 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 991px) {
-    width: auto;
+    width: 90%;
   }
 `;
 
@@ -68,6 +74,9 @@ const CallNow = styled.div`
   line-height: 1.8;
   margin-top: 10px;
   margin-bottom: 30px;
+  @media screen and (max-width: 767px) {
+    display: none;
+  } ;
 `;
 
 const ContentFooter = styled.div`
@@ -96,7 +105,7 @@ const Type = styled.h4`
   color: #0d263b;
   font-weight: 600;
   line-height: 28px;
-  margin-bottom: 5px;
+  margin: 5px 0;
   cursor: pointer;
 `;
 
@@ -169,7 +178,7 @@ const Cards = (props) => (
         </WrapperFloat>
         <WrapperCenter>
           <CallNow>Call: Ready Rental</CallNow>
-          <Button variant="contained">Details</Button>
+          <CustomButton variant="contained">Details</CustomButton>
         </WrapperCenter>
       </ContentDetail>
       <ContentFooter>

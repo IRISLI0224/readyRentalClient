@@ -54,4 +54,8 @@ export const DescItemRe = styled.div`
   width: 50vw;
   text-align: left;
   margin: auto;
+  @media screen and (max-width: 767px) {
+    padding-left: 20px;
+    width: 80%;
+  } ;
 `;

@@ -11,6 +11,7 @@ const Container = styled.div`
   word-wrap: break-word;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 0.5rem;
   height: 4.5rem;
   @media (max-width: 768px) {
@@ -55,14 +56,14 @@ const LogoPanel = styled.div`
 `;
 
 const AccountButtonGroup = styled.div`
-  display:flex;
+  display: flex;
   @media (max-width: 576px) {
-    // flex-direction:column; 
-    button{
-        width:100%;
+    // flex-direction:column;
+    button {
+      width: 100%;
     }
   }
-`
+`;
 
 const NavigationBar = () => {
   const [Login, setLogin] = useState(false);
@@ -90,16 +91,16 @@ const NavigationBar = () => {
         <>
           {' '}
           <AccountButtonGroup>
-          <Link to="/login" primary style={{ textDecoration: 'none' }}>
-            <ButtonwithoutBorder className="SigninButton" size="90px">
-              Sign in
-            </ButtonwithoutBorder>
-          </Link>
-          <Link to="/join" style={{ textDecoration: 'none' }}>
-            <Button className="JoinButton" size="80px" primary>
-              &nbsp;&nbsp;Join&nbsp;&nbsp;
-            </Button>
-          </Link>
+            <Link to="/login" primary style={{ textDecoration: 'none' }}>
+              <ButtonwithoutBorder className="SigninButton" size="90px">
+                Sign in
+              </ButtonwithoutBorder>
+            </Link>
+            <Link to="/join" style={{ textDecoration: 'none' }}>
+              <Button className="JoinButton" size="80px" primary>
+                &nbsp;&nbsp;Join&nbsp;&nbsp;
+              </Button>
+            </Link>
           </AccountButtonGroup>
         </>
       )}

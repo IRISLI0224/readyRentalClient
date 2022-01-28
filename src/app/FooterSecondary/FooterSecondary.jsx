@@ -38,6 +38,9 @@ const FooterContent = styled(Container)`
   width: 60%;
   margin: auto;
   font-family: Museo-Sans-300, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  @media screen and (max-width: 767px) {
+    width: 80%;
+  } ;
 `;
 
 const FooterText = styled.div`
