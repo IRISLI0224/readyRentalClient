@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import emailIcon from '../../assets/img/email.png';
 import ServerMsg from '../../hoc/ServerMsg';
 import backendApi from '../../api/backendApi';
-import FormBackground from '../../assets/video/FormBackground.mp4';
 import {
   Container,
   MainBox,
@@ -93,7 +92,7 @@ class ForgotPasswordPage extends React.Component {
       <Container>
         <video
           source
-          src={FormBackground}
+          src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/FormBackground.mp4"
           type="video/mp4"
           muted
           autoPlay={'autoplay'}
