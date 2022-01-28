@@ -12,7 +12,6 @@ import ServerMsg from '../../hoc/ServerMsg';
 import { connect } from 'react-redux';
 import { appendData } from '../../redux/action';
 import title from '../../assets/img/title2.png';
-import FormBackground from '../../assets/video/FormBackground.mp4';
 import {
   Container,
   MainBox,
@@ -145,7 +144,7 @@ class JoinPage extends React.Component {
       <Container>
         <video
           source
-          src={FormBackground}
+          src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/FormBackground.mp4"
           type="video/mp4"
           muted
           autoPlay={'autoplay'}

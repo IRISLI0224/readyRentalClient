@@ -24,7 +24,6 @@ import {
   LinktoLogin,
   FormWrapper,
 } from '../../hoc/AuthForm';
-import FormBackground from '../../assets/video/FormBackground.mp4';
 
 //API
 import { UserLogin } from '../../config/Users';
@@ -159,7 +158,7 @@ class Login extends React.Component {
       <Container>
         <video
           source
-          src={FormBackground}
+          src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/FormBackground.mp4"
           type="video/mp4"
           muted
           autoPlay={'autoplay'}

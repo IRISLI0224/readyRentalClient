@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from '../../../../assets/video/Street.mp4';
 import { Button } from '../../../../hoc/Button';
 
 const Container = styled.div`
@@ -38,7 +37,7 @@ const TrendBanner = () => {
         </Button>
       </DownloadAPP>
       <video
-        src={background}
+        src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/Street.mp4"
         type="video/mp4"
         muted
         autoPlay={'autoplay'}

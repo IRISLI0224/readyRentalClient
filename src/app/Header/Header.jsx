@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import background from '../../assets/video/night.mp4';
 import NextSearchBar from '../../components/NextSearchBar';
 import SearchBar from '../../components/SearchBar';
 import NavigationBar from './NavigationBar/Navigationbar';
@@ -55,7 +54,13 @@ const DownloadAPP = styled.div`
 const Header = () => (
   <React.Fragment>
     <Container className="Header" height={5}>
-      <video src={background} type="video/mp4" muted autoPlay={'autoplay'} loop></video>
+      <video
+        src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/night.mp4"
+        type="video/mp4"
+        muted
+        autoPlay={'autoplay'}
+        loop
+      ></video>
       <NavigationBar />
       <SearchBarPanel>
         <SearchBar />

@@ -9,7 +9,6 @@ import { Button } from '../../hoc/Button';
 import { Link } from 'react-router-dom';
 import passwordIcon from '../../assets/img/lock.png';
 import ServerMsg from '../../hoc/ServerMsg';
-import FormBackground from '../../assets/video/FormBackground.mp4';
 import {
   Container,
   MainBox,
@@ -115,7 +114,7 @@ class ResetPasswordPage extends React.Component {
         <Container>
           <video
             source
-            src={FormBackground}
+            src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/FormBackground.mp4"
             type="video/mp4"
             muted
             autoPlay={'autoplay'}
@@ -141,7 +140,7 @@ class ResetPasswordPage extends React.Component {
         <Container>
           <video
             source
-            src={FormBackground}
+            src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/FormBackground.mp4"
             type="video/mp4"
             muted
             autoPlay={'autoplay'}
@@ -166,7 +165,7 @@ class ResetPasswordPage extends React.Component {
       <Container>
         <video
           source
-          src={FormBackground}
+          src="https://buggodie-my-upload.s3.ap-southeast-2.amazonaws.com/FormBackground.mp4"
           type="video/mp4"
           muted
           autoPlay={'autoplay'}
