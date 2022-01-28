@@ -68,7 +68,7 @@ const heightSmall = '300';
 const heightLarge = '630';
 
 const ExploreCities = () => {
-  const [cityProperties, setCityProperties] = useState(['1', '2', '3', '4', '5', '6', '7']);
+  const [cityProperties, setCityProperties] = useState(['0', '0', '0', '0', '0', '0', '0']);
 
   useEffect(() => {
     getPropetyCounts();
