@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Card from '../../components/ListCardV2';
@@ -63,6 +63,10 @@ const PageList = styled.li`
   &:active {
     opacity: 0.8;
   }
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  } ;
 `;
 
 const renderData = (properties) => {
@@ -91,38 +95,25 @@ const renderData = (properties) => {
 const addressObjectToString = ({ streetNumber, streetName, city, state }) => {
   return `${streetNumber} ${streetName} ${city} ${state}`;
 };
-
+//TODO: This should split into two components
 const Pagination = ({ properties }) => {
-  const [currentPage, setcurrentPage] = useState(1); 
-  const [itemsPerpage] = useState(5); 
-  const [pageNumberLimit] = useState(5); 
-  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5); 
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerpage] = useState(5);
+  const [pageNumberLimit] = useState(5);
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
-
+  const [pages, setPages] = useState([]);
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
   };
 
-  const pages = [];
-  for (let i = 1; i <= Math.ceil(properties.length / itemsPerpage); i++) {
-    pages.push(i);
-  }
-  const renderPageNumbers = pages.map((number) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-      return (
-        <PageList
-          key={number}
-          id={number}
-          onClick={handleClick}
-          active={currentPage === number ? 'true' : ''}
-        >
-          {number}
-        </PageList>
-      );
-    } else {
-      return null;
+  //const pages = [];
+  useEffect(() => {
+    for (let i = 1; i <= Math.ceil(properties.length / itemsPerpage); i++) {
+      pages.push(i);
     }
-  });
+  }, [properties]);
+
   const indexOfLastItem = currentPage * itemsPerpage;
   const indexOfFirstItem = indexOfLastItem - itemsPerpage;
   const currentItems = properties.slice(indexOfFirstItem, indexOfLastItem);
@@ -138,6 +129,7 @@ const Pagination = ({ properties }) => {
       setminPageNumberLimit(pages.length - pageNumberLimit);
     }
   };
+
   const handlePrevbtn = () => {
     setcurrentPage(currentPage - 1);
     if ((currentPage - 1) % pageNumberLimit === 0) {
@@ -159,7 +151,7 @@ const Pagination = ({ properties }) => {
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip;</li>;
   }
-  
+
   const handleFirstbtn = () => {
     setcurrentPage(1);
     setmaxPageNumberLimit(5);
@@ -194,6 +186,23 @@ const Pagination = ({ properties }) => {
   if (maxPageNumberLimit > pages.length) {
     pageLastNumber = null;
   }
+
+  const renderPageNumbers = pages.map((number) => {
+    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+      return (
+        <PageList
+          key={number}
+          id={number}
+          onClick={handleClick}
+          active={currentPage === number ? 'true' : ''}
+        >
+          {number}
+        </PageList>
+      );
+    } else {
+      return null;
+    }
+  });
 
   return (
     <Main>

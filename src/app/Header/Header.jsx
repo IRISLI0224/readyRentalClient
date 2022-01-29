@@ -11,14 +11,12 @@ const Container = styled.div`
   text-align: center;
   color: white;
   height: 600px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   background: url(${({ img }) => img}) no-repeat center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background: white;
   @media (max-width: 768px) {
     height: ${({ height }) => height}rem;
     width: 100%;
-    background: none;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   }
   video {
     position: absolute;

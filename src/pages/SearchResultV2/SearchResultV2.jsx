@@ -71,6 +71,9 @@ const Listing = styled.div`
   border-radius: 3px;
   margin-bottom: 30px;
   padding: 30px;
+  @media screen and (max-width: 767px) {
+    padding: 0px;
+  } ;
 `;
 const Ads = styled.ul`
   display: flex;

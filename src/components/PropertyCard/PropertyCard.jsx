@@ -28,7 +28,9 @@ const PropertyCard = ({ PropertyInfo }, { key }) => {
     </Link>
   );
 };
+
 PropertyCard.propTypes = {
   PropertyInfo: ProtoType.object,
 };
+
 export default PropertyCard;

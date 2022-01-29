@@ -10,7 +10,6 @@ import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 
 export const DropdownContainer = styled.div`
   position: relative;
-  margin-top: 1rem;
   @media (max-width: 992px) {
     margin: 0;
   }
