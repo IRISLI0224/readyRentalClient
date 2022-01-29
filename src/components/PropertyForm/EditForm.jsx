@@ -361,7 +361,8 @@ const EditForm = () => {
       <Form.Item label="Description" name="description">
         <TextArea rows={5} placeholder="Description" style={{ width: 600 }} />
       </Form.Item>
-      <Form.Item label="Uploaded Images">
+      <Form.Item label="Delete Images">
+        <p>Please click on a image to delete</p>
         {images.length > 0 &&
           images.map((img, index) => (
             <img
