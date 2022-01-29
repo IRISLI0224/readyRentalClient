@@ -52,7 +52,7 @@ const MainBox = styled.div`
   align-items: center;
   justify-content: space-around;
   background: #353333;
-  opacity: 0.8;
+  opacity: 1;
   Button {
     margin: 0.5rem 0 46px;
     @media (max-width: 550px) {
