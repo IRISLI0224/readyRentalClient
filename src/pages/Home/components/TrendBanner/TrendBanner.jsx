@@ -33,7 +33,7 @@ const TrendBanner = () => {
         <h1 style={{ color: 'white' }}>Find a property manager to help</h1>
         <br />
         <Button primary size="15%" height="50px" as="a" href="/search?">
-          Search Now
+          Explore Now
         </Button>
       </DownloadAPP>
       <video
