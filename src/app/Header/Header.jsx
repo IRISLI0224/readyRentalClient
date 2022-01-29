@@ -13,10 +13,11 @@ const Container = styled.div`
   height: 600px;
   background: url(${({ img }) => img}) no-repeat center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: white;
+
   @media (max-width: 768px) {
     height: ${({ height }) => height}rem;
     width: 100%;
+    background: white;
   }
   video {
     position: absolute;
